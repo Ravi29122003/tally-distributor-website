@@ -548,7 +548,7 @@ function NotFound() {
 // ---------- Mount ----------
 function RouterApp() {
   return (
-    <BrowserRouter>
+    <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
       <ScrollToTop />
       <Routes>
         <Route element={<Layout />}>

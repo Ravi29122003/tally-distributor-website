@@ -1,11 +1,11 @@
 import { useState, useRef, useEffect } from 'react';
 import {
   ArrowLeft, ArrowRight, Award, BadgeCheck, Building2, Check,
-  ChevronDown, Clock, Code2, Construction, CreditCard, Facebook,
-  FileCheck, GraduationCap, Headphones, Infinity, Instagram,
-  LifeBuoy, Linkedin, Mail, MapPin, Menu, Phone, Quote, Receipt,
-  Send, Settings, ShieldCheck, Sparkles, Star, Tag, Target,
-  User, Users, X, Youtube, Zap,
+  ChevronDown, Clock, Code2, Construction, CreditCard, Crown,
+  Facebook, FileCheck, Gem, GraduationCap, Headphones, Infinity,
+  Instagram, LifeBuoy, Linkedin, Mail, MapPin, Menu, Phone,
+  Quote, Receipt, Send, Server, Settings, ShieldCheck, Sparkles,
+  Star, Tag, Target, User, Users, X, Youtube, Zap,
 } from 'lucide-react';
 import { siteConfig } from './config/site';
 
@@ -69,8 +69,10 @@ const ICON_MAP = {
   'code-2': Code2,
   'construction': Construction,
   'credit-card': CreditCard,
+  'crown': Crown,
   'facebook': Facebook,
   'file-check': FileCheck,
+  'gem': Gem,
   'graduation-cap': GraduationCap,
   'headphones': Headphones,
   'infinity': Infinity,
@@ -84,6 +86,7 @@ const ICON_MAP = {
   'quote': Quote,
   'receipt': Receipt,
   'send': Send,
+  'server': Server,
   'settings': Settings,
   'shield-check': ShieldCheck,
   'sparkles': Sparkles,
