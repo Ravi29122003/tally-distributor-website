@@ -1,12 +1,15 @@
 import { useState, useRef, useEffect } from 'react';
 import { createRoot } from 'react-dom/client';
 import {
-  HashRouter, Routes, Route, Outlet, Link, NavLink, useLocation, useNavigate,
+  BrowserRouter, Routes, Route, Outlet, Link, NavLink, useLocation, useNavigate,
 } from 'react-router-dom';
 import {
   HomeSections, Icon, FloatingWhatsApp, WhatsAppGlyph, Eyebrow, Reveal, waLink,
 } from './app';
+import { siteConfig } from './config/site';
 import './index.css';
+
+const telHref = `tel:${siteConfig.phones.sales.replace(/\s/g, '')}`;
 
 // ---------- Route maps ----------
 const PRODUCTS = [
@@ -35,21 +38,21 @@ const SIMPLE_NAV = [
 // ---------- Scroll restore on route change ----------
 function ScrollToTop() {
   const { pathname } = useLocation();
-  useEffect(() => { window.scrollTo({ top: 0, behavior: 'instant' in window ? 'instant' : 'auto' }); }, [pathname]);
+  useEffect(() => { requestAnimationFrame(() => window.scrollTo(0, 0)); }, [pathname]);
   return null;
 }
 
 // ---------- Logo as Link ----------
 function BrandMark({ className = '' }) {
   return (
-    <Link to="/" className={`flex items-center gap-2.5 ${className}`} aria-label="TallyHub home">
+    <Link to="/" className={`flex items-center gap-2.5 ${className}`} aria-label={`${siteConfig.brand} home`}>
       <span className="relative inline-flex h-9 w-9 items-center justify-center rounded-lg bg-navy-900 text-white">
-        <span className="font-display text-[18px] font-bold leading-none">T</span>
+        <span className="font-display text-[18px] font-bold leading-none">{siteConfig.brand[0]}</span>
         <span className="absolute -bottom-0.5 -right-0.5 h-2 w-2 rounded-full bg-teal-400 ring-2 ring-white"></span>
       </span>
       <div className="leading-none">
-        <div className="font-display text-[20px] font-bold text-navy-900">TallyHub</div>
-        <div className="text-[10px] font-medium uppercase tracking-[0.18em] text-navy-900/55">Certified Partner</div>
+        <div className="font-display text-[20px] font-bold text-navy-900">{siteConfig.brand}</div>
+        <div className="text-[10px] font-medium uppercase tracking-[0.18em] text-navy-900/55">{siteConfig.tagline}</div>
       </div>
     </Link>
   );
@@ -173,14 +176,14 @@ function RouterNav() {
 
         <div className="flex items-center gap-2.5">
           <a
-            href="tel:+919000000000"
-            aria-label="Call TallyHub at +91 90000 00000"
+            href={telHref}
+            aria-label={`Call ${siteConfig.brand} at ${siteConfig.phones.sales}`}
             className="btn-lift hidden items-center gap-2 rounded-full border border-navy-900/10 bg-white px-4 py-2.5 text-[14px] font-semibold text-navy-900 shadow-card hover:border-teal-500/40 hover:shadow-card-lg md:inline-flex"
           >
             <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-teal-50 text-teal-600">
               <Icon name="phone" size={13} />
             </span>
-            <span className="tabular-nums">+91 90000 00000</span>
+            <span className="tabular-nums">{siteConfig.phones.sales}</span>
           </a>
           <button
             type="button"
@@ -237,8 +240,8 @@ function RouterNav() {
           ))}
         </nav>
         <div className="flex-none border-t border-navy-900/10 p-5">
-          <a href="tel:+919000000000" className="btn-lift mb-2.5 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-navy-900 px-4 py-3.5 text-[15px] font-semibold text-white">
-            <Icon name="phone" size={15} /> Call +91 90000 00000
+          <a href={telHref} className="btn-lift mb-2.5 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-navy-900 px-4 py-3.5 text-[15px] font-semibold text-white">
+            <Icon name="phone" size={15} /> Call {siteConfig.phones.sales}
           </a>
           <a href={waLink("I'd like to know more about TallyPrime editions.")} target="_blank" rel="noreferrer"
             className="btn-lift inline-flex w-full items-center justify-center gap-2 rounded-xl border border-navy-900/10 bg-white px-4 py-3.5 text-[15px] font-semibold text-navy-900">
@@ -310,11 +313,11 @@ function RouterFooter() {
   ];
 
   const socials = [
-    { name: 'Facebook',  icon: 'facebook',  href: 'https://facebook.com' },
-    { name: 'Instagram', icon: 'instagram', href: 'https://instagram.com' },
-    { name: 'LinkedIn',  icon: 'linkedin',  href: 'https://linkedin.com' },
-    { name: 'YouTube',   icon: 'youtube',   href: 'https://youtube.com' },
-    { name: 'WhatsApp',  icon: null,        href: waLink("Hi TallyHub, I'd like to chat.") },
+    { name: 'Facebook',  icon: 'facebook',  href: siteConfig.socials.facebook },
+    { name: 'Instagram', icon: 'instagram', href: siteConfig.socials.instagram },
+    { name: 'LinkedIn',  icon: 'linkedin',  href: siteConfig.socials.linkedin },
+    { name: 'YouTube',   icon: 'youtube',   href: siteConfig.socials.youtube },
+    { name: 'WhatsApp',  icon: null,        href: waLink(`Hi ${siteConfig.brand}, I'd like to chat.`) },
   ];
 
   return (
@@ -332,12 +335,12 @@ function RouterFooter() {
           <div className="col-span-2 md:col-span-3 lg:col-span-1">
             <Link to="/" className="flex items-center gap-2.5">
               <span className="relative inline-flex h-9 w-9 items-center justify-center rounded-lg bg-white text-navy-900">
-                <span className="font-display text-[18px] font-bold leading-none">T</span>
+                <span className="font-display text-[18px] font-bold leading-none">{siteConfig.brand[0]}</span>
                 <span className="absolute -bottom-0.5 -right-0.5 h-2 w-2 rounded-full bg-teal-400 ring-2 ring-navy-900"></span>
               </span>
               <div className="leading-none">
-                <div className="font-display text-[20px] font-bold">TallyHub</div>
-                <div className="text-[10px] font-medium uppercase tracking-[0.18em] text-white/55">Certified Partner</div>
+                <div className="font-display text-[20px] font-bold">{siteConfig.brand}</div>
+                <div className="text-[10px] font-medium uppercase tracking-[0.18em] text-white/55">{siteConfig.tagline}</div>
               </div>
             </Link>
             <p className="mt-4 max-w-xs text-[13.5px] leading-[1.6] text-white/60">
@@ -369,7 +372,7 @@ function RouterFooter() {
 
         <div className="mt-14 flex flex-col items-start gap-4 border-t border-white/10 pt-6 text-[12.5px] text-white/55 lg:flex-row lg:items-center lg:justify-between">
           <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
-            <span>© {new Date().getFullYear()} TallyHub</span>
+            <span>© {new Date().getFullYear()} {siteConfig.brand}</span>
             <span className="text-white/25">·</span>
             <Link to="/policies" className="hover:text-white">Privacy</Link>
             <span className="text-white/25">·</span>
@@ -545,7 +548,7 @@ function NotFound() {
 // ---------- Mount ----------
 function RouterApp() {
   return (
-    <HashRouter>
+    <BrowserRouter>
       <ScrollToTop />
       <Routes>
         <Route element={<Layout />}>
@@ -573,7 +576,7 @@ function RouterApp() {
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
-    </HashRouter>
+    </BrowserRouter>
   );
 }
 

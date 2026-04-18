@@ -32,7 +32,7 @@
 }
 
 /* ---------- Base ---------- */
-html { scroll-behavior: smooth; scroll-padding-top: 88px; }
+html { scroll-padding-top: 88px; }
 body {
   font-family: 'DM Sans', system-ui, sans-serif;
   background: #fafbfd;

@@ -1,11 +1,15 @@
 import { useState, useRef, useEffect } from 'react';
 import * as LucideIcons from 'lucide-react';
+import { siteConfig } from './config/site';
+
+// ------ Validation helpers ------
+const isValidEmail = (v) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim());
+const isValidPhone = (v) => v.replace(/\D/g, '').length >= 10;
 
 // ------ Context-aware WhatsApp ------
-const WA_NUMBER = '919000000000';
 export function waLink(ctx) {
-  const msg = `Hi TallyHub, ${ctx}`;
-  return `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`;
+  const msg = `Hi ${siteConfig.brand}, ${ctx}`;
+  return `https://wa.me/${siteConfig.whatsapp}?text=${encodeURIComponent(msg)}`;
 }
 
 // ------ Reveal on scroll (with stagger) ------
@@ -66,187 +70,10 @@ export function Logo({ className = '' }) {
         <span className="absolute -bottom-0.5 -right-0.5 h-2 w-2 rounded-full bg-teal-500 ring-2 ring-white"></span>
       </span>
       <span className="flex flex-col leading-none">
-        <span className="font-display text-[20px] font-bold text-navy-900">TallyHub</span>
-        <span className="text-[10px] font-medium uppercase tracking-[0.18em] text-navy-900/55">Certified Partner</span>
+        <span className="font-display text-[20px] font-bold text-navy-900">{siteConfig.brand}</span>
+        <span className="text-[10px] font-medium uppercase tracking-[0.18em] text-navy-900/55">{siteConfig.tagline}</span>
       </span>
     </a>
-  );
-}
-
-// ------ Navigation ------
-const NAV_ITEMS = [
-  { label: 'Services', href: '#services', section: 'services' },
-  { label: 'Pricing',  href: '#pricing',  section: 'pricing' },
-  { label: 'About',    href: '#about',    section: 'about' },
-  { label: 'FAQ',      href: '#faq',      section: 'faq' },
-  { label: 'Contact',  href: '#contact',  section: 'contact' },
-];
-
-function useScrollSpy(ids) {
-  const [active, setActive] = useState(ids[0]);
-  useEffect(() => {
-    const els = ids.map((id) => document.getElementById(id)).filter(Boolean);
-    if (!els.length) return;
-    const io = new IntersectionObserver(
-      (entries) => {
-        const visible = entries
-          .filter((e) => e.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
-        if (visible[0]) setActive(visible[0].target.id);
-      },
-      { rootMargin: '-45% 0px -45% 0px', threshold: [0, 0.25, 0.5, 0.75, 1] }
-    );
-    els.forEach((el) => io.observe(el));
-    return () => io.disconnect();
-  }, [ids.join(',')]);
-  return active;
-}
-
-function Nav() {
-  const [scrolled, setScrolled] = useState(false);
-  const [open, setOpen] = useState(false);
-  const active = useScrollSpy(['pricing', 'services', 'about', 'faq', 'contact']);
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 8);
-    onScroll();
-    window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
-  }, []);
-
-  useEffect(() => {
-    if (open) {
-      document.body.style.overflow = 'hidden';
-      const onKey = (e) => { if (e.key === 'Escape') setOpen(false); };
-      window.addEventListener('keydown', onKey);
-      return () => { document.body.style.overflow = ''; window.removeEventListener('keydown', onKey); };
-    }
-  }, [open]);
-
-  return (
-    <header
-      className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? 'backdrop-blur-xl bg-white/85 border-b border-navy-900/10 shadow-[0_1px_0_rgba(11,29,58,0.04)]'
-          : 'bg-transparent border-b border-transparent'
-      }`}
-      role="banner"
-    >
-      <div className="mx-auto flex h-[72px] max-w-7xl items-center justify-between px-5 sm:px-8">
-        <Logo />
-
-        <nav aria-label="Primary" className="hidden items-center gap-1 lg:flex">
-          {NAV_ITEMS.map((it) => {
-            const isActive = it.section === active;
-            return (
-              <a
-                key={it.label}
-                href={it.href}
-                aria-current={isActive ? 'page' : undefined}
-                className={`nav-link rounded-md px-3 py-2 text-[14.5px] font-medium transition-colors ${
-                  isActive ? 'text-navy-900' : 'text-navy-900/70 hover:text-navy-900'
-                }`}
-              >
-                {it.label}
-                {isActive && (
-                  <span
-                    aria-hidden
-                    className="absolute inset-x-3 -bottom-0.5 h-[2px] rounded-sm bg-teal-500"
-                  />
-                )}
-              </a>
-            );
-          })}
-        </nav>
-
-        <div className="flex items-center gap-2.5">
-          <a
-            href="tel:+919000000000"
-            aria-label="Call TallyHub at +91 90000 00000"
-            className="btn-lift hidden items-center gap-2 rounded-full border border-navy-900/10 bg-white px-4 py-2.5 text-[14px] font-semibold text-navy-900 shadow-card hover:border-teal-500/40 hover:shadow-card-lg md:inline-flex"
-          >
-            <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-teal-50 text-teal-600">
-              <Icon name="phone" size={13} />
-            </span>
-            <span className="tabular-nums">+91 90000 00000</span>
-          </a>
-          <button
-            type="button"
-            onClick={() => setOpen(true)}
-            className="btn-lift inline-flex h-11 w-11 items-center justify-center rounded-xl border border-navy-900/10 bg-white text-navy-900 shadow-card lg:hidden"
-            aria-label="Open menu"
-            aria-expanded={open}
-            aria-controls="mobile-nav"
-          >
-            <Icon name="menu" size={20} />
-          </button>
-        </div>
-      </div>
-
-      {open && (
-        <div
-          className="nav-overlay fixed inset-0 z-[60] bg-navy-900/40 backdrop-blur-sm lg:hidden"
-          onClick={() => setOpen(false)}
-          aria-hidden
-        />
-      )}
-
-      <aside
-        id="mobile-nav"
-        role="dialog"
-        aria-modal="true"
-        aria-label="Mobile menu"
-        className={`nav-drawer fixed right-0 top-0 z-[70] flex h-[100dvh] w-[84%] max-w-[380px] flex-col bg-white shadow-card-lg lg:hidden ${open ? 'is-open' : ''}`}
-      >
-        <div className="flex h-[72px] items-center justify-between border-b border-navy-900/10 px-5">
-          <Logo />
-          <button
-            type="button"
-            onClick={() => setOpen(false)}
-            className="inline-flex h-11 w-11 items-center justify-center rounded-xl border border-navy-900/10 bg-white text-navy-900"
-            aria-label="Close menu"
-          >
-            <Icon name="x" size={20} />
-          </button>
-        </div>
-        <nav aria-label="Mobile primary" className="flex flex-col gap-1 px-5 py-5">
-          {NAV_ITEMS.map((it) => (
-            <a
-              key={it.label}
-              href={it.href}
-              onClick={() => setOpen(false)}
-              className={`flex items-center justify-between rounded-xl px-4 py-3.5 text-[16px] font-semibold transition-colors ${
-                active === it.section
-                  ? 'bg-navy-50 text-navy-900'
-                  : 'text-navy-900/80 hover:bg-navy-50/60'
-              }`}
-            >
-              {it.label}
-              <Icon name="arrow-right" size={16} className="text-navy-900/40" />
-            </a>
-          ))}
-        </nav>
-        <div className="mt-auto border-t border-navy-900/10 p-5">
-          <a
-            href="tel:+919000000000"
-            className="btn-lift mb-2.5 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-navy-900 px-4 py-3.5 text-[15px] font-semibold text-white"
-          >
-            <Icon name="phone" size={15} /> Call +91 90000 00000
-          </a>
-          <a
-            href={waLink("I'd like to know more about TallyPrime editions.")}
-            target="_blank"
-            rel="noreferrer"
-            className="btn-lift inline-flex w-full items-center justify-center gap-2 rounded-xl border border-navy-900/10 bg-white px-4 py-3.5 text-[15px] font-semibold text-navy-900"
-          >
-            <span className="inline-flex h-5 w-5 items-center justify-center rounded-full bg-teal-500 text-white">
-              <WhatsAppGlyph />
-            </span>
-            WhatsApp us
-          </a>
-        </div>
-      </aside>
-    </header>
   );
 }
 
@@ -365,6 +192,7 @@ function FloatingShapes() {
 // ------ Callback form card ------
 function CallbackCard() {
   const [form, setForm] = useState({ name: '', phone: '', interest: '' });
+  const [errors, setErrors] = useState({});
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
 
@@ -377,9 +205,16 @@ function CallbackCard() {
     'Training & support',
   ];
 
+  const clearError = (field) => setErrors((prev) => ({ ...prev, [field]: undefined }));
+
   const onSubmit = (e) => {
     e.preventDefault();
-    if (!form.name || !form.phone || loading) return;
+    if (loading) return;
+    const errs = {};
+    if (!form.name.trim()) errs.name = 'Please enter your name';
+    if (!isValidPhone(form.phone)) errs.phone = 'Please enter a valid 10-digit phone number';
+    if (Object.keys(errs).length) { setErrors(errs); return; }
+    setErrors({});
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
@@ -446,17 +281,24 @@ function CallbackCard() {
                 label="Your name"
                 icon="user"
                 placeholder="e.g. Priya Sharma"
+                autoComplete="name"
+                required
                 value={form.name}
-                onChange={(v) => setForm((f) => ({ ...f, name: v }))}
+                onChange={(v) => { clearError('name'); setForm((f) => ({ ...f, name: v })); }}
+                error={errors.name}
               />
               <Field
                 label="Phone number"
                 icon="phone"
+                type="tel"
+                autoComplete="tel"
+                required
                 prefix="+91"
                 placeholder="90000 00000"
                 inputMode="numeric"
                 value={form.phone}
-                onChange={(v) => setForm((f) => ({ ...f, phone: v.replace(/[^0-9\s]/g, '') }))}
+                onChange={(v) => { clearError('phone'); setForm((f) => ({ ...f, phone: v.replace(/[^0-9\s]/g, '') })); }}
+                error={errors.phone}
               />
               <SelectField
                 label="I'm interested in"
@@ -503,23 +345,31 @@ function CallbackCard() {
   );
 }
 
-function Field({ label, icon, prefix, value, onChange, placeholder, inputMode }) {
+function Field({ label, icon, prefix, value, onChange, placeholder, inputMode, type = 'text', autoComplete, required = false, error }) {
   return (
-    <label className="block">
-      <span className="mb-1.5 block text-[12px] font-semibold text-navy-900/70">{label}</span>
-      <div className="group flex items-center gap-2 rounded-xl border border-navy-900/12 bg-navy-50/30 px-3.5 py-3 transition-colors focus-within:border-teal-500 focus-within:bg-white focus-within:shadow-[0_0_0_3px_rgba(20,184,166,0.14)]">
-        {icon && <Icon name={icon} size={15} className="text-navy-900/50" />}
-        {prefix && <span className="text-[14px] font-semibold text-navy-900/80">{prefix}</span>}
-        <input
-          type="text"
-          value={value}
-          onChange={(e) => onChange(e.target.value)}
-          placeholder={placeholder}
-          inputMode={inputMode}
-          className="w-full bg-transparent text-[14.5px] text-navy-900 placeholder:text-navy-900/35 focus:outline-none"
-        />
-      </div>
-    </label>
+    <div>
+      <label className="block">
+        <span className="mb-1.5 block text-[12px] font-semibold text-navy-900/70">
+          {label}
+          {required && <span className="ml-0.5 text-red-600">*</span>}
+        </span>
+        <div className={`group flex items-center gap-2 rounded-xl border bg-navy-50/30 px-3.5 py-3 transition-colors focus-within:border-teal-500 focus-within:bg-white focus-within:shadow-[0_0_0_3px_rgba(20,184,166,0.14)] ${error ? 'border-red-400' : 'border-navy-900/12'}`}>
+          {icon && <Icon name={icon} size={15} className="text-navy-900/50" />}
+          {prefix && <span className="text-[14px] font-semibold text-navy-900/80">{prefix}</span>}
+          <input
+            type={type}
+            value={value}
+            onChange={(e) => onChange(e.target.value)}
+            placeholder={placeholder}
+            inputMode={inputMode}
+            autoComplete={autoComplete}
+            required={required}
+            className="w-full bg-transparent text-[14.5px] text-navy-900 placeholder:text-navy-900/35 focus:outline-none"
+          />
+        </div>
+      </label>
+      {error && <p className="text-[12px] text-red-600 mt-1">{error}</p>}
+    </div>
   );
 }
 
@@ -570,7 +420,7 @@ export function Hero() {
               />
             </span>
             <br />
-            Partner in <span className="italic text-navy-800">Bengaluru</span>
+            Partner in <span className="italic text-navy-800">{siteConfig.location}</span>
           </Reveal>
 
           <Reveal as="p" delay={160} className="mt-5 max-w-xl text-[16.5px] leading-[1.6] text-navy-900/65 sm:text-[17.5px]">
@@ -758,8 +608,8 @@ function formatINR(n) {
 }
 
 function PriceCard({ plan }) {
-  const link = `https://wa.me/919000000000?text=${encodeURIComponent(
-    `Hi TallyHub, I'd like to buy the ${plan.name} edition (₹${formatINR(plan.price)} + GST).`
+  const link = `https://wa.me/${siteConfig.whatsapp}?text=${encodeURIComponent(
+    `Hi ${siteConfig.brand}, I'd like to buy the ${plan.name} edition (₹${formatINR(plan.price)} + GST).`
   )}`;
 
   return (
@@ -876,8 +726,8 @@ function PriceCard({ plan }) {
 }
 
 export function Pricing() {
-  const waHelp = `https://wa.me/919000000000?text=${encodeURIComponent(
-    "Hi TallyHub, I'm not sure which TallyPrime edition suits my business. Can you help?"
+  const waHelp = `https://wa.me/${siteConfig.whatsapp}?text=${encodeURIComponent(
+    `Hi ${siteConfig.brand}, I'm not sure which TallyPrime edition suits my business. Can you help?`
   )}`;
 
   return (
@@ -1385,21 +1235,30 @@ export function FAQ() {
 // ------ Contact ------
 export function Contact() {
   const [form, setForm] = useState({ name: '', phone: '', email: '', subject: '', message: '' });
+  const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
   const [sent, setSent] = useState(false);
 
+  const clearError = (field) => setErrors((prev) => ({ ...prev, [field]: undefined }));
+
   const onSubmit = (e) => {
     e.preventDefault();
-    if (loading || !form.name || !form.phone || !form.email) return;
+    if (loading) return;
+    const errs = {};
+    if (!form.name.trim()) errs.name = 'Please enter your name';
+    if (!isValidPhone(form.phone)) errs.phone = 'Please enter a valid 10-digit phone number';
+    if (!isValidEmail(form.email)) errs.email = 'Please enter a valid email address';
+    if (Object.keys(errs).length) { setErrors(errs); return; }
+    setErrors({});
     setLoading(true);
     setTimeout(() => { setLoading(false); setSent(true); }, 1000);
   };
 
   const info = [
-    { icon: 'map-pin', title: 'Office Address', lines: ['4th Floor, Commerce Tower', '12 MG Road, Bengaluru — 560001', 'Karnataka, India'] },
-    { icon: 'phone', title: 'Talk to Us', lines: ['Sales · +91 90000 00000', 'Support · +91 90000 11111'] },
-    { icon: 'mail', title: 'Email', lines: ['sales@tallyhub.example', 'support@tallyhub.example'] },
-    { icon: 'clock', title: 'Business Hours', lines: ['Mon – Sat · 9:30 AM – 7:00 PM', 'Sunday · closed (emergency support on call)'] },
+    { icon: 'map-pin', title: 'Office Address', lines: [siteConfig.address.line1, siteConfig.address.line2, siteConfig.address.region] },
+    { icon: 'phone', title: 'Talk to Us', lines: [`Sales · ${siteConfig.phones.sales}`, `Support · ${siteConfig.phones.support}`] },
+    { icon: 'mail', title: 'Email', lines: [siteConfig.emails.sales, siteConfig.emails.support] },
+    { icon: 'clock', title: 'Business Hours', lines: [siteConfig.hours, 'Sunday · closed (emergency support on call)'] },
   ];
 
   return (
@@ -1488,13 +1347,19 @@ export function Contact() {
 
                   <div className="mt-5 grid grid-cols-1 gap-3.5 sm:grid-cols-2">
                     <Field label="Your name" icon="user" placeholder="e.g. Priya Sharma"
-                      value={form.name} onChange={(v) => setForm((f) => ({ ...f, name: v }))} />
-                    <Field label="Phone" icon="phone" prefix="+91" placeholder="90000 00000" inputMode="numeric"
-                      value={form.phone} onChange={(v) => setForm((f) => ({ ...f, phone: v.replace(/[^0-9\s]/g, '') }))} />
+                      autoComplete="name" required
+                      value={form.name} onChange={(v) => { clearError('name'); setForm((f) => ({ ...f, name: v })); }}
+                      error={errors.name} />
+                    <Field label="Phone" icon="phone" type="tel" autoComplete="tel" required
+                      prefix="+91" placeholder="90000 00000" inputMode="numeric"
+                      value={form.phone} onChange={(v) => { clearError('phone'); setForm((f) => ({ ...f, phone: v.replace(/[^0-9\s]/g, '') })); }}
+                      error={errors.phone} />
                   </div>
                   <div className="mt-3.5">
-                    <Field label="Email" icon="mail" placeholder="you@company.com"
-                      value={form.email} onChange={(v) => setForm((f) => ({ ...f, email: v }))} />
+                    <Field label="Email" icon="mail" type="email" autoComplete="email" required
+                      placeholder="you@company.com"
+                      value={form.email} onChange={(v) => { clearError('email'); setForm((f) => ({ ...f, email: v })); }}
+                      error={errors.email} />
                   </div>
                   <div className="mt-3.5">
                     <SelectField
@@ -1552,7 +1417,7 @@ export function FloatingWhatsApp() {
   return (
     <div className="fixed bottom-5 right-5 z-[80] flex items-end gap-3 sm:bottom-7 sm:right-7">
       <div
-        className={`pointer-events-none mb-2 origin-bottom-right rounded-2xl bg-white px-4 py-3 text-[13px] font-medium text-navy-900 shadow-card-lg transition-all duration-300 ${
+        className={`relative pointer-events-none mb-2 origin-bottom-right rounded-2xl bg-white px-4 py-3 text-[13px] font-medium text-navy-900 shadow-card-lg transition-all duration-300 ${
           showTip ? 'opacity-100 translate-y-0' : 'translate-y-2 opacity-0'
         }`}
       >
