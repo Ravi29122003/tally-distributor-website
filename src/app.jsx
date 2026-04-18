@@ -1,5 +1,12 @@
 import { useState, useRef, useEffect } from 'react';
-import * as LucideIcons from 'lucide-react';
+import {
+  ArrowLeft, ArrowRight, Award, BadgeCheck, Building2, Check,
+  ChevronDown, Clock, Code2, Construction, CreditCard, Facebook,
+  FileCheck, GraduationCap, Headphones, Infinity, Instagram,
+  LifeBuoy, Linkedin, Mail, MapPin, Menu, Phone, Quote, Receipt,
+  Send, Settings, ShieldCheck, Sparkles, Star, Tag, Target,
+  User, Users, X, Youtube, Zap,
+} from 'lucide-react';
 import { siteConfig } from './config/site';
 
 // ------ Validation helpers ------
@@ -50,14 +57,54 @@ export function Reveal({ as = 'div', delay = 0, className = '', children, ...res
 }
 
 // ------ Lucide icon helper ------
-function toPascal(s) {
-  return s.replace(/(^|-)(\w)/g, (_, __, c) => c.toUpperCase());
-}
+const ICON_MAP = {
+  'arrow-left': ArrowLeft,
+  'arrow-right': ArrowRight,
+  'award': Award,
+  'badge-check': BadgeCheck,
+  'building-2': Building2,
+  'check': Check,
+  'chevron-down': ChevronDown,
+  'clock': Clock,
+  'code-2': Code2,
+  'construction': Construction,
+  'credit-card': CreditCard,
+  'facebook': Facebook,
+  'file-check': FileCheck,
+  'graduation-cap': GraduationCap,
+  'headphones': Headphones,
+  'infinity': Infinity,
+  'instagram': Instagram,
+  'life-buoy': LifeBuoy,
+  'linkedin': Linkedin,
+  'mail': Mail,
+  'map-pin': MapPin,
+  'menu': Menu,
+  'phone': Phone,
+  'quote': Quote,
+  'receipt': Receipt,
+  'send': Send,
+  'settings': Settings,
+  'shield-check': ShieldCheck,
+  'sparkles': Sparkles,
+  'star': Star,
+  'tag': Tag,
+  'target': Target,
+  'user': User,
+  'users': Users,
+  'x': X,
+  'youtube': Youtube,
+  'zap': Zap,
+};
 
 export function Icon({ name, size = 18, strokeWidth = 2, className = '', ...rest }) {
-  const pascalName = toPascal(name);
-  const LucideIcon = LucideIcons[pascalName];
-  if (!LucideIcon) return null;
+  const LucideIcon = ICON_MAP[name];
+  if (!LucideIcon) {
+    if (import.meta.env.DEV) {
+      console.warn(`[Icon] Unknown icon name: "${name}"`);
+    }
+    return null;
+  }
   return <LucideIcon size={size} strokeWidth={strokeWidth} className={className} aria-hidden {...rest} />;
 }
 
