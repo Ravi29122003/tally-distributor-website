@@ -353,6 +353,7 @@ function CallbackCard() {
               <SelectField
                 label="I'm interested in"
                 icon="target"
+                placeholder="Tell us what you're exploring"
                 value={form.interest}
                 onChange={(v) => setForm((f) => ({ ...f, interest: v }))}
                 options={interests}
@@ -423,23 +424,137 @@ function Field({ label, icon, prefix, value, onChange, placeholder, inputMode, t
   );
 }
 
-function SelectField({ label, icon, value, onChange, options }) {
+let selectIdCounter = 0;
+
+function SelectField({ label, icon, value, onChange, options, placeholder = 'Choose an option', required = false, error }) {
+  const [open, setOpen] = useState(false);
+  const [highlight, setHighlight] = useState(-1);
+  const wrapperRef = useRef(null);
+  const listboxRef = useRef(null);
+  const [listboxId] = useState(() => `select-listbox-${++selectIdCounter}`);
+
+  // Close on outside click
+  useEffect(() => {
+    if (!open) return;
+    const onDown = (e) => {
+      if (wrapperRef.current && !wrapperRef.current.contains(e.target)) setOpen(false);
+    };
+    document.addEventListener('mousedown', onDown);
+    return () => document.removeEventListener('mousedown', onDown);
+  }, [open]);
+
+  // Scroll highlighted option into view
+  useEffect(() => {
+    if (!open || highlight < 0 || !listboxRef.current) return;
+    const el = listboxRef.current.children[highlight];
+    if (el) el.scrollIntoView({ block: 'nearest' });
+  }, [highlight, open]);
+
+  const toggle = () => {
+    setOpen((o) => !o);
+    if (!open) setHighlight(value ? options.indexOf(value) : -1);
+  };
+
+  const select = (opt) => {
+    onChange(opt);
+    setOpen(false);
+  };
+
+  const onKeyDown = (e) => {
+    if (!open) {
+      if (e.key === 'ArrowDown' || e.key === 'ArrowUp' || e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        setOpen(true);
+        setHighlight(value ? options.indexOf(value) : 0);
+      }
+      return;
+    }
+
+    switch (e.key) {
+      case 'Escape':
+        e.preventDefault();
+        setOpen(false);
+        break;
+      case 'ArrowDown':
+        e.preventDefault();
+        setHighlight((h) => (h < options.length - 1 ? h + 1 : 0));
+        break;
+      case 'ArrowUp':
+        e.preventDefault();
+        setHighlight((h) => (h > 0 ? h - 1 : options.length - 1));
+        break;
+      case 'Enter':
+        e.preventDefault();
+        if (highlight >= 0 && highlight < options.length) select(options[highlight]);
+        break;
+    }
+  };
+
   return (
-    <label className="block">
-      <span className="mb-1.5 block text-[12px] font-semibold text-navy-900/70">{label}</span>
-      <div className="relative flex items-center gap-2 rounded-xl border border-navy-900/12 bg-navy-50/30 px-3.5 py-3 transition-colors focus-within:border-teal-500 focus-within:bg-white focus-within:shadow-[0_0_0_3px_rgba(20,184,166,0.14)]">
+    <div ref={wrapperRef} className="relative">
+      <span className="mb-1.5 block text-[12px] font-semibold text-navy-900/70">
+        {label}
+        {required && <span className="ml-0.5 text-red-600">*</span>}
+      </span>
+      <button
+        type="button"
+        role="combobox"
+        aria-haspopup="listbox"
+        aria-expanded={open}
+        aria-controls={listboxId}
+        onClick={toggle}
+        onKeyDown={onKeyDown}
+        className={`flex w-full items-center gap-2 rounded-xl border bg-navy-50/30 px-3.5 py-3 text-left transition-colors ${
+          open
+            ? 'border-teal-500 bg-white shadow-[0_0_0_3px_rgba(20,184,166,0.14)]'
+            : error ? 'border-red-400' : 'border-navy-900/12'
+        } focus:border-teal-500 focus:bg-white focus:shadow-[0_0_0_3px_rgba(20,184,166,0.14)] focus:outline-none`}
+      >
         {icon && <Icon name={icon} size={15} className="text-navy-900/50" />}
-        <select
-          value={value}
-          onChange={(e) => onChange(e.target.value)}
-          className="w-full appearance-none bg-transparent pr-6 text-[14.5px] text-navy-900 focus:outline-none"
-        >
-          <option value="" disabled>Select an area…</option>
-          {options.map((o) => <option key={o} value={o}>{o}</option>)}
-        </select>
-        <Icon name="chevron-down" size={16} className="pointer-events-none absolute right-3.5 text-navy-900/45" />
-      </div>
-    </label>
+        <span className={`flex-1 text-[14.5px] ${value ? 'text-navy-900' : 'text-navy-900/35'}`}>
+          {value || placeholder}
+        </span>
+        <Icon
+          name="chevron-down"
+          size={16}
+          className={`text-navy-900/45 transition-transform duration-150 ${open ? 'rotate-180' : ''}`}
+        />
+      </button>
+
+      {/* Dropdown menu */}
+      <ul
+        ref={listboxRef}
+        id={listboxId}
+        role="listbox"
+        className={`absolute left-0 right-0 z-50 mt-1.5 max-h-60 overflow-y-auto rounded-xl border border-navy-900/10 bg-white py-1 shadow-card-lg transition-all duration-150 origin-top ${
+          open
+            ? 'opacity-100 translate-y-0 scale-100'
+            : 'opacity-0 -translate-y-1 scale-[0.98] pointer-events-none'
+        }`}
+      >
+        {options.map((opt, i) => {
+          const isSelected = opt === value;
+          const isHighlighted = i === highlight;
+          return (
+            <li
+              key={opt}
+              role="option"
+              aria-selected={isSelected}
+              onMouseEnter={() => setHighlight(i)}
+              onClick={() => select(opt)}
+              className={`flex cursor-pointer items-center justify-between gap-2 px-3.5 py-2.5 text-[14px] transition-colors ${
+                isHighlighted ? 'bg-teal-50 text-navy-900' : 'text-navy-900/80'
+              }`}
+            >
+              <span>{opt}</span>
+              {isSelected && <Icon name="check" size={14} strokeWidth={2.5} className="text-teal-600" />}
+            </li>
+          );
+        })}
+      </ul>
+
+      {error && <p className="text-[12px] text-red-600 mt-1">{error}</p>}
+    </div>
   );
 }
 
@@ -1414,6 +1529,7 @@ export function Contact() {
                   <div className="mt-3.5">
                     <SelectField
                       label="Subject" icon="tag"
+                      placeholder="Choose a subject"
                       value={form.subject}
                       onChange={(v) => setForm((f) => ({ ...f, subject: v }))}
                       options={['General enquiry','Buy TallyPrime licence','TSS renewal','Customisation / TDL','AMC & support','Training','Partnership']}
