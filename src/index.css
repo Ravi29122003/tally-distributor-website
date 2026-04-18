@@ -1,0 +1,192 @@
+@import "tailwindcss";
+
+/* ---------- Tailwind theme extensions ---------- */
+@theme {
+  --color-navy-50: #f2f5fa;
+  --color-navy-100: #e3e9f3;
+  --color-navy-200: #c2cde0;
+  --color-navy-700: #1a3463;
+  --color-navy-800: #122a52;
+  --color-navy-900: #0B1D3A;
+  --color-navy-950: #060f22;
+
+  --color-teal-50: #effdfa;
+  --color-teal-100: #cdfaf1;
+  --color-teal-300: #5eead4;
+  --color-teal-400: #2dd4bf;
+  --color-teal-500: #14B8A6;
+  --color-teal-600: #0d9488;
+  --color-teal-700: #0f766e;
+
+  --color-amber-400: #fbbf24;
+  --color-amber-500: #F59E0B;
+  --color-amber-600: #d97706;
+  --color-amber-700: #b45309;
+
+  --font-display: "Playfair Display", serif;
+  --font-sans: "DM Sans", system-ui, sans-serif;
+
+  --shadow-card: 0 1px 2px rgba(11,29,58,0.04), 0 8px 24px rgba(11,29,58,0.06);
+  --shadow-card-lg: 0 2px 4px rgba(11,29,58,0.04), 0 24px 48px -12px rgba(11,29,58,0.12);
+  --shadow-glow: 0 0 0 1px rgba(20,184,166,0.25), 0 12px 32px -8px rgba(20,184,166,0.35);
+}
+
+/* ---------- Base ---------- */
+html { scroll-behavior: smooth; scroll-padding-top: 88px; }
+body {
+  font-family: 'DM Sans', system-ui, sans-serif;
+  background: #fafbfd;
+  color: #0B1D3A;
+  -webkit-font-smoothing: antialiased;
+}
+
+.font-display { font-family: 'Playfair Display', serif; letter-spacing: -0.01em; }
+
+/* ---------- Hero gradient background ---------- */
+.hero-bg {
+  background:
+    radial-gradient(1200px 600px at 85% -10%, rgba(20,184,166,0.10), transparent 60%),
+    radial-gradient(900px 500px at 10% 20%, rgba(245,158,11,0.08), transparent 55%),
+    linear-gradient(180deg, #ffffff 0%, #f6f8fc 55%, #eef2f8 100%);
+}
+
+/* Faint grid */
+.hero-grid::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(to right, rgba(11,29,58,0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(11,29,58,0.05) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: radial-gradient(ellipse at 50% 30%, black 20%, transparent 75%);
+  -webkit-mask-image: radial-gradient(ellipse at 50% 30%, black 20%, transparent 75%);
+  pointer-events: none;
+}
+
+/* ---------- Floating shapes ---------- */
+@keyframes floatY {
+  0%, 100% { transform: translateY(0) rotate(var(--r, 0deg)); }
+  50% { transform: translateY(-18px) rotate(var(--r, 0deg)); }
+}
+@keyframes floatY2 {
+  0%, 100% { transform: translateY(0) rotate(var(--r, 0deg)); }
+  50% { transform: translateY(14px) rotate(var(--r, 0deg)); }
+}
+.float-a { animation: floatY 9s ease-in-out infinite; }
+.float-b { animation: floatY2 11s ease-in-out infinite; }
+.float-c { animation: floatY 13s ease-in-out infinite; }
+
+/* ---------- Counter pulse ---------- */
+@keyframes softPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+.pulse-dot { animation: softPulse 2.2s ease-in-out infinite; }
+
+/* ---------- Nav underline ---------- */
+.nav-link { position: relative; }
+.nav-link::after {
+  content: '';
+  position: absolute; left: 12px; right: 12px; bottom: 6px;
+  height: 2px; background: #14B8A6; border-radius: 2px;
+  transform: scaleX(0); transform-origin: left;
+  transition: transform .25s ease;
+}
+.nav-link:hover::after { transform: scaleX(1); }
+
+/* ---------- Focus ring ---------- */
+.ring-brand:focus { outline: none; box-shadow: 0 0 0 3px rgba(20,184,166,0.25); border-color: #14B8A6; }
+
+/* ---------- Button shimmer ---------- */
+.btn-primary { position: relative; overflow: hidden; }
+.btn-primary::before {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(120deg, transparent 20%, rgba(255,255,255,0.18) 50%, transparent 80%);
+  transform: translateX(-100%);
+  transition: transform .6s ease;
+}
+.btn-primary:hover::before { transform: translateX(100%); }
+
+/* ---------- Selection ---------- */
+::selection { background: rgba(20,184,166,0.25); color: #0B1D3A; }
+
+/* ---------- Reveal on scroll ---------- */
+.reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity .7s cubic-bezier(.2,.7,.2,1), transform .7s cubic-bezier(.2,.7,.2,1);
+  will-change: opacity, transform;
+}
+.reveal.is-in { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
+  .float-a, .float-b, .float-c, .pulse-dot { animation: none !important; }
+}
+
+/* ---------- Focus-visible polish ---------- */
+:focus { outline: none; }
+a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible,
+[tabindex]:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(20,184,166,0.35), 0 0 0 1px #14B8A6 inset;
+  border-radius: 10px;
+}
+
+/* ---------- Hover lift helper ---------- */
+.btn-lift { transition: transform .2s ease, box-shadow .2s ease, background-color .2s ease, border-color .2s ease; }
+.btn-lift:hover { transform: translateY(-2px) scale(1.015); }
+.btn-lift:active { transform: translateY(0) scale(0.995); }
+
+/* ---------- Hero scroll indicator ---------- */
+@keyframes scrollDot {
+  0%   { transform: translateY(0); opacity: 0; }
+  30%  { opacity: 1; }
+  80%  { transform: translateY(14px); opacity: 0; }
+  100% { transform: translateY(14px); opacity: 0; }
+}
+.scroll-dot { animation: scrollDot 1.8s cubic-bezier(.3,.6,.2,1) infinite; }
+
+/* ---------- Mobile nav overlay ---------- */
+@keyframes fadeOverlay {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+.nav-overlay { animation: fadeOverlay .2s ease both; }
+.nav-drawer {
+  transform: translateX(100%);
+  transition: transform .35s cubic-bezier(.2,.7,.2,1);
+}
+.nav-drawer.is-open { transform: translateX(0); }
+
+/* ---------- Skeleton shimmer ---------- */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+.shimmer {
+  background: linear-gradient(90deg, rgba(11,29,58,0.06) 0%, rgba(11,29,58,0.12) 50%, rgba(11,29,58,0.06) 100%);
+  background-size: 200% 100%;
+  animation: shimmer 1.4s linear infinite;
+  border-radius: 8px;
+}
+
+/* ---------- Spinner ---------- */
+@keyframes spin { to { transform: rotate(360deg); } }
+.spinner {
+  width: 16px; height: 16px; border-radius: 999px;
+  border: 2px solid rgba(255,255,255,0.35);
+  border-top-color: #ffffff;
+  animation: spin .7s linear infinite;
+}
+
+/* ---------- WhatsApp pulse ---------- */
+@keyframes waPulse {
+  0%   { box-shadow: 0 0 0 0 rgba(37,211,102,0.55); }
+  70%  { box-shadow: 0 0 0 18px rgba(37,211,102,0); }
+  100% { box-shadow: 0 0 0 0 rgba(37,211,102,0); }
+}
+
+/* ---------- Small screens text safety ---------- */
+@media (max-width: 360px) {
+  h1.hero-head { font-size: 36px !important; line-height: 1.06 !important; }
+}
