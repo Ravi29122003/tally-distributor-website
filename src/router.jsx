@@ -316,22 +316,13 @@ function MobileExpandable({ label, items, basePath, isOpen, onToggle, onLink }) 
 function RouterFooter() {
   const cols = [
     { title: 'Products', links: PRODUCTS.map(p => ({ label: p.label, to: p.to })) },
-    { title: 'Solutions', links: SOLUTIONS.map(p => ({ label: p.label, to: p.to })) },
-    {
-      title: 'Services',
-      links: [
-        { label: 'Implementation', to: '/services#implementation' },
-        { label: 'Training',       to: '/services#training' },
-        { label: 'TDL Customisation', to: '/services#tdl' },
-        { label: 'AMC & Support',  to: '/services#amc' },
-        { label: 'Data Migration', to: '/services#migration' },
-      ],
-    },
+    { title: 'Services', links: SERVICES.map(s => ({ label: s.label, to: s.to })) },
     {
       title: 'Company',
       links: [
         { label: 'About us',   to: '/about' },
         { label: 'Industries', to: '/industries' },
+        { label: 'Offers',     to: '/offers' },
         { label: 'Contact',    to: '/contact' },
         { label: 'Privacy',    to: '/policies' },
       ],
@@ -357,7 +348,7 @@ function RouterFooter() {
         }} />
 
       <div className="relative mx-auto max-w-7xl px-5 pt-16 pb-10 sm:px-8">
-        <div className="grid grid-cols-2 gap-10 md:grid-cols-3 lg:grid-cols-5 lg:gap-10">
+        <div className="grid grid-cols-2 gap-10 md:grid-cols-3 lg:grid-cols-4 lg:gap-10">
           <div className="col-span-2 md:col-span-3 lg:col-span-1">
             <Link to="/" className="flex items-center gap-2.5">
               <span className="relative inline-flex h-9 w-9 items-center justify-center rounded-lg bg-white text-navy-900">
