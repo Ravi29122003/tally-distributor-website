@@ -7,6 +7,7 @@ import {
   Quote, Receipt, Send, Server, Settings, ShieldCheck, Sparkles,
   Star, Tag, Target, User, Users, X, Youtube, Zap,
 } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { siteConfig } from './config/site';
 
 // ------ Validation helpers ------
@@ -649,8 +650,8 @@ export function Hero() {
 
 export function WhatsAppGlyph() {
   return (
-    <svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor" aria-hidden>
-      <path d="M20.5 3.5A11 11 0 0 0 3.2 16.9L2 22l5.3-1.1A11 11 0 1 0 20.5 3.5Zm-8.5 17a9 9 0 0 1-4.6-1.3l-.3-.2-3.2.6.7-3.1-.2-.3a9 9 0 1 1 7.6 4.3Zm5-6.4c-.3-.1-1.6-.8-1.9-.9-.3-.1-.4-.1-.6.1l-.8 1c-.2.2-.3.2-.6.1-1.6-.8-2.7-1.5-3.8-3.4-.3-.5.3-.5.8-1.5.1-.2 0-.3 0-.5 0-.1-.6-1.4-.8-1.9-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.3.3-1 .9-1 2.2s1 2.6 1.2 2.8c.1.2 2 3.1 4.9 4.3 1.8.7 2.5.8 3.4.7.5-.1 1.6-.6 1.8-1.3.2-.6.2-1.1.2-1.2-.1-.1-.2-.1-.5-.3Z" />
+    <svg viewBox="0 0 32 32" width="13" height="13" fill="currentColor" aria-hidden>
+      <path d="M16.04 2.003C8.36 2.003 2.12 8.2 2.12 15.84c0 2.44.64 4.82 1.86 6.92L2 30l7.44-1.95a13.86 13.86 0 0 0 6.6 1.68c7.68 0 13.92-6.2 13.92-13.84S23.72 2.003 16.04 2.003Zm0 25.36c-2.18 0-4.32-.58-6.18-1.7l-.44-.26-4.58 1.2 1.24-4.5-.3-.46a11.42 11.42 0 0 1-1.78-6.12c0-6.34 5.2-11.5 11.6-11.5s11.6 5.16 11.6 11.5c0 6.34-5.24 11.54-11.16 11.54v-.7.7Zm6.36-8.62c-.34-.18-2.06-1.02-2.38-1.14-.32-.12-.56-.18-.8.18-.22.36-.88 1.1-1.08 1.34-.2.22-.4.26-.74.08-.34-.18-1.46-.54-2.78-1.72-1.02-.92-1.72-2.06-1.92-2.4-.2-.36-.02-.54.16-.72.16-.16.34-.4.52-.6.18-.2.22-.36.34-.58.12-.24.06-.44-.02-.62-.1-.18-.8-1.94-1.1-2.66-.3-.7-.58-.6-.8-.62h-.68c-.22 0-.6.08-.92.4-.32.34-1.22 1.18-1.22 2.88s1.24 3.34 1.42 3.58c.18.22 2.44 3.74 5.94 5.24.84.36 1.48.58 1.98.74.84.26 1.6.22 2.2.14.68-.1 2.06-.84 2.36-1.66.28-.8.28-1.5.2-1.64-.1-.16-.34-.26-.7-.42Z" />
     </svg>
   );
 }
@@ -731,6 +732,8 @@ const PRICING = [
       'Free on-site installation in city',
     ],
     popular: false,
+    buyUrl: 'https://tallysolutions.com/buy-tally/',
+    ctaLabel: 'Buy Now',
   },
   {
     id: 'gold',
@@ -748,6 +751,8 @@ const PRICING = [
       '1 year TSS + free migration',
     ],
     popular: true,
+    buyUrl: 'https://tallysolutions.com/buy-tally/',
+    ctaLabel: 'Buy Now',
   },
   {
     id: 'server',
@@ -765,6 +770,9 @@ const PRICING = [
       'On-site training (2 sessions)',
     ],
     popular: false,
+    buyUrl: '/contact',
+    ctaLabel: 'Contact Us',
+    ctaInternal: true,
   },
 ];
 
@@ -773,10 +781,6 @@ function formatINR(n) {
 }
 
 function PriceCard({ plan }) {
-  const link = `https://wa.me/${siteConfig.whatsapp}?text=${encodeURIComponent(
-    `Hi ${siteConfig.brand}, I'd like to buy the ${plan.name} edition (₹${formatINR(plan.price)} + GST).`
-  )}`;
-
   return (
     <div
       className={`group relative flex flex-col rounded-2xl border bg-white p-7 transition-all duration-300 sm:p-8
@@ -863,22 +867,17 @@ function PriceCard({ plan }) {
       </ul>
 
       <div className="mt-8 flex flex-col gap-2.5">
-        <a
-          href={link}
-          target="_blank"
-          rel="noreferrer"
-          className={`btn-primary inline-flex w-full items-center justify-center gap-2 rounded-xl px-5 py-3.5 text-[14.5px] font-semibold transition-all
-            ${plan.popular
+        {(() => {
+          const cls = `btn-primary inline-flex w-full items-center justify-center gap-2 rounded-xl px-5 py-3.5 text-[14.5px] font-semibold transition-all ${
+            plan.popular
               ? 'bg-navy-900 text-white hover:bg-navy-800 hover:shadow-card-lg'
               : 'border border-navy-900/12 bg-white text-navy-900 hover:border-teal-500/40 hover:shadow-card'
-            }`}
-        >
-          <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-teal-500 text-white">
-            <WhatsAppGlyph />
-          </span>
-          Buy on WhatsApp
-          <Icon name="arrow-right" size={15} strokeWidth={2.5} className="opacity-70 transition-transform group-hover:translate-x-0.5" />
-        </a>
+          }`;
+          const children = <>{plan.ctaLabel} <Icon name="arrow-right" size={15} strokeWidth={2.5} className="opacity-70 transition-transform group-hover:translate-x-0.5" /></>;
+          return plan.ctaInternal
+            ? <Link to={plan.buyUrl} className={cls}>{children}</Link>
+            : <a href={plan.buyUrl} target="_blank" rel="noopener noreferrer" className={cls}>{children}</a>;
+        })()}
         <a
           href="#contact"
           className="text-center text-[12.5px] font-medium text-navy-900/55 hover:text-navy-900"
@@ -1607,8 +1606,8 @@ export function FloatingWhatsApp() {
         style={{ background: 'linear-gradient(135deg, #25D366 0%, #128C7E 100%)' }}
       >
         <span className="pointer-events-none absolute inset-0 rounded-full" style={{ boxShadow: '0 0 0 0 rgba(37,211,102,0.6)', animation: 'waPulse 2s ease-out infinite' }} aria-hidden />
-        <svg viewBox="0 0 24 24" width="26" height="26" fill="currentColor" aria-hidden>
-          <path d="M20.5 3.5A11 11 0 0 0 3.2 16.9L2 22l5.3-1.1A11 11 0 1 0 20.5 3.5Zm-8.5 17a9 9 0 0 1-4.6-1.3l-.3-.2-3.2.6.7-3.1-.2-.3a9 9 0 1 1 7.6 4.3Zm5-6.4c-.3-.1-1.6-.8-1.9-.9-.3-.1-.4-.1-.6.1l-.8 1c-.2.2-.3.2-.6.1-1.6-.8-2.7-1.5-3.8-3.4-.3-.5.3-.5.8-1.5.1-.2 0-.3 0-.5 0-.1-.6-1.4-.8-1.9-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.3.3-1 .9-1 2.2s1 2.6 1.2 2.8c.1.2 2 3.1 4.9 4.3 1.8.7 2.5.8 3.4.7.5-.1 1.6-.6 1.8-1.3.2-.6.2-1.1.2-1.2-.1-.1-.2-.1-.5-.3Z" />
+        <svg viewBox="0 0 32 32" width="26" height="26" fill="currentColor" aria-hidden>
+          <path d="M16.04 2.003C8.36 2.003 2.12 8.2 2.12 15.84c0 2.44.64 4.82 1.86 6.92L2 30l7.44-1.95a13.86 13.86 0 0 0 6.6 1.68c7.68 0 13.92-6.2 13.92-13.84S23.72 2.003 16.04 2.003Zm0 25.36c-2.18 0-4.32-.58-6.18-1.7l-.44-.26-4.58 1.2 1.24-4.5-.3-.46a11.42 11.42 0 0 1-1.78-6.12c0-6.34 5.2-11.5 11.6-11.5s11.6 5.16 11.6 11.5c0 6.34-5.24 11.54-11.16 11.54v-.7.7Zm6.36-8.62c-.34-.18-2.06-1.02-2.38-1.14-.32-.12-.56-.18-.8.18-.22.36-.88 1.1-1.08 1.34-.2.22-.4.26-.74.08-.34-.18-1.46-.54-2.78-1.72-1.02-.92-1.72-2.06-1.92-2.4-.2-.36-.02-.54.16-.72.16-.16.34-.4.52-.6.18-.2.22-.36.34-.58.12-.24.06-.44-.02-.62-.1-.18-.8-1.94-1.1-2.66-.3-.7-.58-.6-.8-.62h-.68c-.22 0-.6.08-.92.4-.32.34-1.22 1.18-1.22 2.88s1.24 3.34 1.42 3.58c.18.22 2.44 3.74 5.94 5.24.84.36 1.48.58 1.98.74.84.26 1.6.22 2.2.14.68-.1 2.06-.84 2.36-1.66.28-.8.28-1.5.2-1.64-.1-.16-.34-.26-.7-.42Z" />
         </svg>
       </a>
     </div>
