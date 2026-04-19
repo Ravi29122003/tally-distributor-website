@@ -125,11 +125,19 @@ body {
 
 /* ---------- Focus-visible polish ---------- */
 :focus { outline: none; }
-a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible,
-[tabindex]:focus-visible {
+a:focus-visible, button:focus-visible, [tabindex]:focus-visible {
   outline: none;
   box-shadow: 0 0 0 3px rgba(20,184,166,0.35), 0 0 0 1px #14B8A6 inset;
   border-radius: 10px;
+}
+
+/* Form inputs manage focus via their wrapper's focus-within ring.
+   Just make sure the raw element has no default browser outline. */
+input:focus, input:focus-visible,
+select:focus, select:focus-visible,
+textarea:focus, textarea:focus-visible {
+  outline: none;
+  box-shadow: none;
 }
 
 /* ---------- Hover lift helper ---------- */

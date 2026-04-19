@@ -430,6 +430,7 @@ let selectIdCounter = 0;
 function SelectField({ label, icon, value, onChange, options, placeholder = 'Choose an option', required = false, error }) {
   const [open, setOpen] = useState(false);
   const [highlight, setHighlight] = useState(-1);
+  const [dropUp, setDropUp] = useState(false);
   const wrapperRef = useRef(null);
   const listboxRef = useRef(null);
   const [listboxId] = useState(() => `select-listbox-${++selectIdCounter}`);
@@ -451,7 +452,17 @@ function SelectField({ label, icon, value, onChange, options, placeholder = 'Cho
     if (el) el.scrollIntoView({ block: 'nearest' });
   }, [highlight, open]);
 
+  const measureFlip = () => {
+    if (!wrapperRef.current) return;
+    const rect = wrapperRef.current.getBoundingClientRect();
+    const spaceBelow = window.innerHeight - rect.bottom;
+    const spaceAbove = rect.top;
+    const menuMaxHeight = 240; // matches max-h-60 = 15rem = 240px
+    setDropUp(spaceBelow < menuMaxHeight && spaceAbove > spaceBelow);
+  };
+
   const toggle = () => {
+    if (!open) measureFlip();
     setOpen((o) => !o);
     if (!open) setHighlight(value ? options.indexOf(value) : -1);
   };
@@ -465,6 +476,7 @@ function SelectField({ label, icon, value, onChange, options, placeholder = 'Cho
     if (!open) {
       if (e.key === 'ArrowDown' || e.key === 'ArrowUp' || e.key === 'Enter' || e.key === ' ') {
         e.preventDefault();
+        measureFlip();
         setOpen(true);
         setHighlight(value ? options.indexOf(value) : 0);
       }
@@ -527,10 +539,12 @@ function SelectField({ label, icon, value, onChange, options, placeholder = 'Cho
         ref={listboxRef}
         id={listboxId}
         role="listbox"
-        className={`absolute left-0 right-0 z-50 mt-1.5 max-h-60 overflow-y-auto rounded-xl border border-navy-900/10 bg-white py-1 shadow-card-lg transition-all duration-150 origin-top ${
+        className={`absolute left-0 right-0 z-50 max-h-60 overflow-y-auto rounded-xl border border-navy-900/10 bg-white py-1 shadow-card-lg transition-all duration-150 ${
+          dropUp ? 'bottom-full mb-1.5 origin-bottom' : 'top-full mt-1.5 origin-top'
+        } ${
           open
             ? 'opacity-100 translate-y-0 scale-100'
-            : 'opacity-0 -translate-y-1 scale-[0.98] pointer-events-none'
+            : `opacity-0 ${dropUp ? 'translate-y-1' : '-translate-y-1'} scale-[0.98] pointer-events-none`
         }`}
       >
         {options.map((opt, i) => {
