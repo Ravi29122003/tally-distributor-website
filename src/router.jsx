@@ -491,10 +491,10 @@ function ProductsIndex() {
     </Placeholder>
   );
 }
-function SolutionsIndex() {
+function ServicesIndex() {
   return (
-    <Placeholder eyebrow="Solutions" title="Solutions built " accent="on Tally" sub="Custom add-ons and integrations our team has built over fifteen years — battle-tested in real businesses across India.">
-      <SubPageGrid items={SOLUTIONS} eyebrow="Solutions" />
+    <Placeholder eyebrow="Services" title="Everything we do " accent="beyond licensing" sub="Implementation, training, customisation, AMC, cloud, TSS renewal and Zoho integration — delivered by a team that has done this 500+ times.">
+      <SubPageGrid items={SERVICES} eyebrow="Services" />
     </Placeholder>
   );
 }
@@ -531,18 +531,28 @@ function makeSub(eyebrow, title, sub, accent) {
   return () => <Placeholder eyebrow={eyebrow} title={title} accent={accent} sub={sub} />;
 }
 
-const TallyPrimePage   = makeSub('Products · TallyPrime',  'TallyPrime Silver ',     'The flagship business-management software — Silver for single-user, Gold for unlimited users on a LAN.', '& Gold');
-const ServerPage       = makeSub('Products · Server',      'TallyPrime ',            'Run hundreds of concurrent users on a single, high-performance Tally deployment with bulletproof data integrity.', 'Server');
-const TSSPage          = makeSub('Products · TSS',         'TSS ',                   'Tally Software Services — keeps your Tally up-to-date with statutory changes, online features and remote access.', 'Renewal');
-const CloudPage        = makeSub('Products · Cloud',       'Tally on ',              'Access your Tally instance from anywhere — laptop, tablet, phone — hosted on enterprise-grade infrastructure.', 'Cloud');
+// Product sub-pages
+const SilverPage        = makeSub('Products · Silver',        'TallyPrime ',     'Single-user edition for small businesses — accounting, inventory and GST on one computer with zero complications.',         'Silver');
+const GoldPage          = makeSub('Products · Gold',          'TallyPrime ',     'Unlimited users on your LAN — ideal for teams collaborating from a single location, with multi-company and payroll built in.', 'Gold');
+const ServerPage        = makeSub('Products · Server',        'TallyPrime ',     'Enterprise-grade Tally for multi-branch operations, with centralised control and high-performance concurrent access.',       'Server');
+const AuditorsPage      = makeSub('Products · Auditors',      'Auditors ',       'Purpose-built for CA firms — remote client data access, full audit trails and statutory compliance tools in one place.',      'Edition');
+const VirtualUserPage   = makeSub('Products · Virtual User',  'Tally Virtual ',  'Give remote team members secure access to your on-premise Tally installation from anywhere, on any device.',                'User');
+const MobileAppPage     = makeSub('Products · Mobile',        'Tally ',          'Reports, voucher approvals and outstanding tracking — directly on your phone, iOS and Android.',                             'Mobile App');
+const UpgradePage       = makeSub('Products · Upgrade',       'Upgrade ',        'Move to the latest TallyPrime from any older version — Tally 9, ERP 9, or earlier — with zero data loss.',                   'Options');
 
-const CBAPage          = makeSub('Solutions · CBA',        'Centralized Branch ',    'Consolidate books across multiple branches in real time, with automated inter-branch reconciliation.', 'Accounting');
-const SDISPage         = makeSub('Solutions · SDIS',       'Smart Dynamic ',         'Connect Tally to your e-commerce, ERP or in-house systems with our integration framework.', 'Integration Suite');
-const VoucherPage      = makeSub('Solutions · Approvals',  'Smart Voucher ',         'Multi-level approval workflows for purchase, sales and journal vouchers — directly inside Tally.', 'Approval');
-const MobileAppPage    = makeSub('Solutions · Mobile',     'Tally ',                 'Reports, voucher approvals and outstanding tracking — on iOS and Android.', 'Mobile App');
-const BuildersPage     = makeSub('Solutions · Builders',   'Builders ',              'Project-wise costing, RERA-aligned reporting and milestone billing for real-estate and construction firms.', 'Module');
+// Service sub-pages
+const CustomizationPage       = makeSub('Services · Custom',    'Tally ',         'Custom TDL modules, bespoke reports, tailored invoices — shaped around your exact workflow.',                                 'Customization');
+const TrainingPage            = makeSub('Services · Training',  'Corporate ',     'Structured 1-on-1 and group training for teams new to Tally, or upgrading from older versions.',                             'Training');
+const IntegrationPage         = makeSub('Services · Integ',     'Tally ',         'Connect TallyPrime with your CRM, e-commerce, banking or any custom system — end-to-end.',                                    'Integration');
+const SupportPage             = makeSub('Services · Support',   'Support ',       'Dedicated AMC plans with priority response times and guaranteed SLAs — we pick up the phone.',                                'Services');
+const ServiceCloudPage        = makeSub('Services · Cloud',     'Tally on ',      'Access your Tally instance from anywhere — laptop, tablet, phone — hosted on enterprise-grade infrastructure.',            'Cloud');
+const TSSRenewalPage          = makeSub('Services · TSS',       'TSS ',           'Tally Software Services — keeps your Tally up-to-date with statutory changes, e-invoicing and online features.',             'Renewal');
+const ZohoIntegrationPage     = makeSub('Services · Zoho',      'Zoho \u2194 Tally ',  'Two-way sync between Zoho Books and TallyPrime for businesses running both, end-of-month reconciliation made painless.',   'Integration');
 
-const ServicesPage     = makeSub('Services',    'Services that go beyond ',  'Implementation, training, customisation, AMC and data migration — delivered by a team that has done this 500+ times.', 'a licence');
+// Offers
+const OffersPage              = makeSub('Offers',               'Current ',       'Festive and launch-period discounts on TallyPrime licences and services. Check back often — new offers added monthly.',     'Offers');
+
+// Top-level pages
 const IndustriesPage   = makeSub('Industries',  'Industries we ',            'Manufacturing, retail, distribution, services, real-estate, healthcare, education and more.', 'know inside out');
 const AboutPage        = makeSub('About',       'A team that takes ',        'Fifteen years, five-star certification and hundreds of businesses still on our books — that\'s the only resume that matters.', 'Tally seriously');
 const ContactPage      = makeSub('Contact',     'Let\'s ',                   'Reach out by phone, WhatsApp, email or by visiting our office. We respond within one business hour, every working day.', 'talk');
@@ -571,26 +581,34 @@ function RouterApp() {
         <Route element={<Layout />}>
           <Route index element={<HomePage />} />
 
-          <Route path="products" element={<ProductsIndex />} />
-          <Route path="products/tallyprime" element={<TallyPrimePage />} />
-          <Route path="products/server" element={<ServerPage />} />
-          <Route path="products/tss" element={<TSSPage />} />
-          <Route path="products/cloud" element={<CloudPage />} />
+          {/* Products */}
+          <Route path="products"               element={<ProductsIndex />} />
+          <Route path="products/silver"        element={<SilverPage />} />
+          <Route path="products/gold"          element={<GoldPage />} />
+          <Route path="products/server"        element={<ServerPage />} />
+          <Route path="products/auditors"      element={<AuditorsPage />} />
+          <Route path="products/virtual-user"  element={<VirtualUserPage />} />
+          <Route path="products/mobile-app"    element={<MobileAppPage />} />
+          <Route path="products/upgrade"       element={<UpgradePage />} />
 
-          <Route path="solutions" element={<SolutionsIndex />} />
-          <Route path="solutions/branch-accounting" element={<CBAPage />} />
-          <Route path="solutions/sdis" element={<SDISPage />} />
-          <Route path="solutions/voucher-approval" element={<VoucherPage />} />
-          <Route path="solutions/mobile-app" element={<MobileAppPage />} />
-          <Route path="solutions/builders" element={<BuildersPage />} />
+          {/* Services */}
+          <Route path="services"               element={<ServicesIndex />} />
+          <Route path="services/customization" element={<CustomizationPage />} />
+          <Route path="services/training"      element={<TrainingPage />} />
+          <Route path="services/integration"   element={<IntegrationPage />} />
+          <Route path="services/support"       element={<SupportPage />} />
+          <Route path="services/cloud"         element={<ServiceCloudPage />} />
+          <Route path="services/tss-renewal"   element={<TSSRenewalPage />} />
+          <Route path="services/zoho"          element={<ZohoIntegrationPage />} />
 
-          <Route path="services"   element={<ServicesPage />} />
-          <Route path="industries" element={<IndustriesPage />} />
-          <Route path="about"      element={<AboutPage />} />
-          <Route path="contact"    element={<ContactPage />} />
-          <Route path="policies"   element={<PoliciesPage />} />
+          {/* Top-level pages */}
+          <Route path="industries"             element={<IndustriesPage />} />
+          <Route path="about"                  element={<AboutPage />} />
+          <Route path="offers"                 element={<OffersPage />} />
+          <Route path="contact"                element={<ContactPage />} />
+          <Route path="policies"               element={<PoliciesPage />} />
 
-          <Route path="*" element={<NotFound />} />
+          <Route path="*"                      element={<NotFound />} />
         </Route>
       </Routes>
     </BrowserRouter>
