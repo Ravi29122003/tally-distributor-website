@@ -14,6 +14,13 @@ import { siteConfig } from './config/site';
 const isValidEmail = (v) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim());
 const isValidPhone = (v) => v.replace(/\D/g, '').length >= 10;
 
+// ------ Smooth scroll to section ------
+const scrollToSection = (id) => (e) => {
+  e.preventDefault();
+  document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  window.history.replaceState(null, '', `#${id}`);
+};
+
 // ------ Context-aware WhatsApp ------
 export function waLink(ctx) {
   const msg = `Hi ${siteConfig.brand}, ${ctx}`;
@@ -115,7 +122,12 @@ export function Icon({ name, size = 18, strokeWidth = 2, className = '', ...rest
 // ------ Brand mark ------
 export function Logo({ className = '' }) {
   return (
-    <a href="#" className={`flex items-center gap-2.5 ${className}`}>
+    <button
+      type="button"
+      onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+      className={`flex items-center gap-2.5 ${className}`}
+      aria-label="Scroll to top"
+    >
       <span className="relative inline-flex h-9 w-9 items-center justify-center rounded-lg bg-navy-900 text-white shadow-card">
         <span className="font-display text-[18px] font-bold leading-none">T</span>
         <span className="absolute -bottom-0.5 -right-0.5 h-2 w-2 rounded-full bg-teal-500 ring-2 ring-white"></span>
@@ -124,7 +136,7 @@ export function Logo({ className = '' }) {
         <span className="font-display text-[20px] font-bold text-navy-900">{siteConfig.brand}</span>
         <span className="text-[10px] font-medium uppercase tracking-[0.18em] text-navy-900/55">{siteConfig.tagline}</span>
       </span>
-    </a>
+    </button>
   );
 }
 
@@ -612,6 +624,7 @@ export function Hero() {
           <Reveal delay={240} className="mt-7 flex flex-wrap items-center gap-3">
             <a
               href="#pricing"
+              onClick={scrollToSection('pricing')}
               className="btn-primary btn-lift inline-flex items-center gap-2 rounded-full bg-navy-900 px-6 py-3.5 text-[15px] font-semibold text-white shadow-card hover:bg-navy-800 hover:shadow-card-lg"
             >
               View Pricing
@@ -651,7 +664,7 @@ export function Hero() {
       </div>
 
       <div className="pointer-events-none absolute inset-x-0 bottom-4 hidden justify-center md:flex">
-        <a href="#trust" className="pointer-events-auto group flex flex-col items-center gap-1.5 text-navy-900/55 hover:text-navy-900" aria-label="Scroll to next section">
+        <a href="#trust" onClick={scrollToSection('trust')} className="pointer-events-auto group flex flex-col items-center gap-1.5 text-navy-900/55 hover:text-navy-900" aria-label="Scroll to next section">
           <span className="text-[10px] font-semibold uppercase tracking-[0.22em]">Scroll</span>
           <span className="relative mt-1 block h-7 w-[18px] rounded-full border border-navy-900/25">
             <span className="scroll-dot absolute left-1/2 top-1 block h-1.5 w-1.5 -translate-x-1/2 rounded-full bg-teal-500" />
@@ -894,6 +907,7 @@ function PriceCard({ plan }) {
         })()}
         <a
           href="#contact"
+          onClick={scrollToSection('contact')}
           className="text-center text-[12.5px] font-medium text-navy-900/55 hover:text-navy-900"
         >
           or request a formal quote →
