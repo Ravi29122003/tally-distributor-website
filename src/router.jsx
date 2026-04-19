@@ -170,13 +170,25 @@ function RouterNav() {
             Home
           </NavLink>
           <NavDropdown label="Products" items={PRODUCTS} basePath="/products" />
-          <NavDropdown label="Solutions" items={SOLUTIONS} basePath="/solutions" />
-          {SIMPLE_NAV.filter(i => i.to !== '/').map((it) => (
-            <NavLink key={it.to} to={it.to} className={({isActive}) =>
-              `nav-link rounded-md px-3 py-2 text-[14.5px] font-medium transition-colors ${isActive ? 'text-navy-900' : 'text-navy-900/70 hover:text-navy-900'}`}>
-              {it.label}
-            </NavLink>
-          ))}
+          <NavDropdown label="Services" items={SERVICES} basePath="/services" />
+          {SIMPLE_NAV.filter(i => i.to !== '/').map((it) => {
+            const isOffers = it.label === 'Offers';
+            return (
+              <NavLink
+                key={it.to}
+                to={it.to}
+                className={({isActive}) =>
+                  `nav-link rounded-md px-3 py-2 text-[14.5px] font-medium transition-colors ${
+                    isOffers
+                      ? (isActive ? 'text-orange-700' : 'text-orange-600 hover:text-orange-700')
+                      : (isActive ? 'text-navy-900' : 'text-navy-900/70 hover:text-navy-900')
+                  }`
+                }
+              >
+                {it.label}
+              </NavLink>
+            );
+          })}
         </nav>
 
         <div className="flex items-center gap-2.5">
@@ -231,18 +243,27 @@ function RouterNav() {
             onLink={() => setOpen(false)}
           />
           <MobileExpandable
-            label="Solutions" items={SOLUTIONS} basePath="/solutions"
-            isOpen={mobileExpanded === 'solutions'}
-            onToggle={() => setMobileExpanded(m => m === 'solutions' ? null : 'solutions')}
+            label="Services" items={SERVICES} basePath="/services"
+            isOpen={mobileExpanded === 'services'}
+            onToggle={() => setMobileExpanded(m => m === 'services' ? null : 'services')}
             onLink={() => setOpen(false)}
           />
 
-          {SIMPLE_NAV.filter(i => i.to !== '/').map((it) => (
-            <Link key={it.to} to={it.to} onClick={() => setOpen(false)}
-              className="flex items-center justify-between rounded-xl px-4 py-3.5 text-[16px] font-semibold text-navy-900/80 hover:bg-navy-50/60">
-              {it.label} <Icon name="arrow-right" size={16} className="text-navy-900/40" />
-            </Link>
-          ))}
+          {SIMPLE_NAV.filter(i => i.to !== '/').map((it) => {
+            const isOffers = it.label === 'Offers';
+            return (
+              <Link
+                key={it.to}
+                to={it.to}
+                onClick={() => setOpen(false)}
+                className={`flex items-center justify-between rounded-xl px-4 py-3.5 text-[16px] font-semibold hover:bg-navy-50/60 ${
+                  isOffers ? 'text-orange-600 hover:text-orange-700' : 'text-navy-900/80'
+                }`}
+              >
+                {it.label} <Icon name="arrow-right" size={16} className={isOffers ? 'text-orange-600/50' : 'text-navy-900/40'} />
+              </Link>
+            );
+          })}
         </nav>
         <div className="flex-none border-t border-navy-900/10 p-5">
           <a href={telHref} className="btn-lift mb-2.5 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-navy-900 px-4 py-3.5 text-[15px] font-semibold text-white">
