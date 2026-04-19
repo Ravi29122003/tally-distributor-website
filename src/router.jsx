@@ -13,25 +13,30 @@ const telHref = `tel:${siteConfig.phones.sales.replace(/\s/g, '')}`;
 
 // ---------- Route maps ----------
 const PRODUCTS = [
-  { label: 'TallyPrime Silver & Gold', to: '/products/tallyprime', desc: 'Single & multi-user editions' },
-  { label: 'TallyPrime Server',         to: '/products/server',     desc: 'Concurrent users, high performance' },
-  { label: 'TSS Renewal',               to: '/products/tss',        desc: 'Tally Software Services' },
-  { label: 'Tally on Cloud',            to: '/products/cloud',      desc: 'Access Tally from anywhere' },
+  { label: 'TallyPrime Silver',     to: '/products/silver',         desc: 'Single user · Small business' },
+  { label: 'TallyPrime Gold',       to: '/products/gold',           desc: 'Unlimited users on LAN' },
+  { label: 'TallyPrime Server',     to: '/products/server',         desc: 'Enterprise, multi-branch' },
+  { label: 'Auditors Edition',      to: '/products/auditors',       desc: 'For CA firms & auditors' },
+  { label: 'Tally Virtual User',    to: '/products/virtual-user',   desc: 'Remote access add-on' },
+  { label: 'Tally Mobile App',      to: '/products/mobile-app',     desc: 'Reports & approvals on the go' },
+  { label: 'Upgrade Options',       to: '/products/upgrade',        desc: 'From older Tally versions' },
 ];
 
-const SOLUTIONS = [
-  { label: 'Centralized Branch Accounting', to: '/solutions/branch-accounting', desc: 'Consolidate multi-branch books' },
-  { label: 'Smart Dynamic Integration',     to: '/solutions/sdis',              desc: 'Connect Tally to any system' },
-  { label: 'Smart Voucher Approval',        to: '/solutions/voucher-approval',  desc: 'Workflow-based approvals' },
-  { label: 'Tally Mobile App',              to: '/solutions/mobile-app',        desc: 'Reports & approvals on the go' },
-  { label: 'Builders Module',               to: '/solutions/builders',          desc: 'Real-estate / construction' },
+const SERVICES = [
+  { label: 'Tally Customization',   to: '/services/customization',  desc: 'TDL, custom reports & modules' },
+  { label: 'Corporate Training',    to: '/services/training',       desc: '1-on-1 and group sessions' },
+  { label: 'Tally Integration',     to: '/services/integration',    desc: 'Connect Tally to any system' },
+  { label: 'Support Services',      to: '/services/support',        desc: 'AMC & priority support' },
+  { label: 'Tally on Cloud',        to: '/services/cloud',          desc: 'Access Tally from anywhere' },
+  { label: 'TSS Renewal',           to: '/services/tss-renewal',    desc: 'Keep your Tally up-to-date' },
+  { label: 'Zoho Integration',      to: '/services/zoho',           desc: 'Zoho Books ↔ Tally sync' },
 ];
 
 const SIMPLE_NAV = [
   { label: 'Home',       to: '/' },
-  { label: 'Services',   to: '/services' },
   { label: 'Industries', to: '/industries' },
   { label: 'About',      to: '/about' },
+  { label: 'Offers',     to: '/offers' },
   { label: 'Contact',    to: '/contact' },
 ];
 

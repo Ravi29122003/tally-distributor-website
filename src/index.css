@@ -18,12 +18,18 @@
   --color-teal-600: #0d9488;
   --color-teal-700: #0f766e;
 
-  --color-amber-400: #fbbf24;
-  --color-amber-500: #F59E0B;
-  --color-amber-600: #d97706;
-  --color-amber-700: #b45309;
+  /* NOTE: These tokens keep the `amber` name for Tailwind class compatibility,
+     but the palette has been shifted to warm terracotta for a subtle regional
+     accent. Original amber values preserved in git history if we need to revert. */
+  --color-amber-400: #E8A04F;
+  --color-amber-500: #C26E3A;
+  --color-amber-600: #A0552A;
+  --color-amber-700: #7A3E1F;
 
-  --font-display: "Playfair Display", serif;
+  --color-orange-600: #EA580C;
+  --color-orange-700: #C2410C;
+
+  --font-display: "Fraunces", serif;
   --font-sans: "DM Sans", system-ui, sans-serif;
 
   --shadow-card: 0 1px 2px rgba(11,29,58,0.04), 0 8px 24px rgba(11,29,58,0.06);
@@ -40,7 +46,11 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-.font-display { font-family: 'Playfair Display', serif; letter-spacing: -0.01em; }
+.font-display {
+  font-family: 'Fraunces', serif;
+  letter-spacing: -0.015em;
+  font-feature-settings: "ss01";
+}
 
 /* ---------- Hero gradient background ---------- */
 .hero-bg {

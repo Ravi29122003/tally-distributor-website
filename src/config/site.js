@@ -1,7 +1,7 @@
 export const siteConfig = {
   brand: 'TallyHub',
   tagline: 'Certified Partner',
-  location: 'Bengaluru',
+  location: 'Jaipur',
   phones: {
     sales: '+91 90000 00000',
     support: '+91 90000 11111',
@@ -12,9 +12,9 @@ export const siteConfig = {
     support: 'support@tallyhub.example',
   },
   address: {
-    line1: '4th Floor, Commerce Tower',
-    line2: '12 MG Road, Bengaluru — 560001',
-    region: 'Karnataka, India',
+    line1: '2nd Floor, Silver Square', // TODO: replace with real address
+    line2: 'Ashok Marg, C-Scheme, Jaipur — 302001', // TODO: replace with real address
+    region: 'Rajasthan, India',
   },
   hours: 'Mon – Sat · 9:30 AM – 7:00 PM',
   socials: {

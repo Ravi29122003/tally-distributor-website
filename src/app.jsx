@@ -593,14 +593,14 @@ export function Hero() {
           <Reveal as="h1" id="hero-heading" delay={80} className="hero-head mt-5 font-display text-[44px] font-bold leading-[1.05] text-navy-900 sm:text-[56px] lg:text-[64px]">
             Your Trusted{' '}
             <span className="relative inline-block">
-              <span className="relative z-10">TallyPrime</span>
+              <span className="relative z-10 text-orange-600">TallyPrime</span>
               <span
                 aria-hidden
-                className="absolute inset-x-0 bottom-1 -z-0 h-3 rounded-sm bg-teal-500/25 sm:h-4"
+                className="absolute inset-x-0 bottom-1 -z-0 h-3 rounded-sm bg-orange-600/20 sm:h-4"
               />
             </span>
             <br />
-            Partner in <span className="italic text-navy-800">{siteConfig.location}</span>
+            Partner in <span className="italic text-orange-600">{siteConfig.location}</span>
           </Reveal>
 
           <Reveal as="p" delay={160} className="mt-5 max-w-xl text-[16.5px] leading-[1.6] text-navy-900/65 sm:text-[17.5px]">
