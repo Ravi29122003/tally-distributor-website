@@ -283,7 +283,7 @@ function CallbackCard() {
             'radial-gradient(60% 60% at 30% 20%, rgba(20,184,166,0.18), transparent 70%), radial-gradient(50% 50% at 80% 90%, rgba(245,158,11,0.14), transparent 70%)',
         }}
       />
-      <div className="relative overflow-hidden rounded-2xl border border-navy-900/8 bg-white shadow-card-lg">
+      <div className="relative rounded-2xl border border-navy-900/8 bg-white shadow-card-lg">
         <div className="flex items-center justify-between border-b border-navy-900/8 bg-gradient-to-r from-navy-50/60 to-white px-6 py-4">
           <div className="flex items-center gap-2.5">
             <span className="relative inline-flex h-2.5 w-2.5">
