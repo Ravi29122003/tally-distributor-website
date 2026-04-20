@@ -31,6 +31,11 @@ function formatPrice(n) {
 }
 
 function PricingCard({ tier }) {
+  const ctaClassName =
+    'btn-lift mt-5 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-orange-600 px-4 py-3 text-[14.5px] font-semibold text-white shadow-card hover:bg-orange-700';
+  const ctaLabel = tier.ctaLabel || 'Buy Now';
+  const isInternal = tier.ctaUrl?.startsWith('/');
+
   return (
     <div className="relative flex h-full flex-col rounded-2xl border border-navy-900/8 bg-white p-6 shadow-card">
       {tier.discount && (
@@ -62,15 +67,22 @@ function PricingCard({ tier }) {
         </div>
       )}
 
-      <a
-        href={tier.ctaUrl}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="btn-lift mt-5 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-orange-600 px-4 py-3 text-[14.5px] font-semibold text-white shadow-card hover:bg-orange-700"
-      >
-        {tier.ctaLabel || 'Buy Now'}
-        <Icon name="arrow-right" size={15} />
-      </a>
+      {isInternal ? (
+        <Link to={tier.ctaUrl} className={ctaClassName}>
+          {ctaLabel}
+          <Icon name="arrow-right" size={15} />
+        </Link>
+      ) : (
+        <a
+          href={tier.ctaUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={ctaClassName}
+        >
+          {ctaLabel}
+          <Icon name="arrow-right" size={15} />
+        </a>
+      )}
 
       {tier.highlights?.length > 0 && (
         <ul className="mt-6 space-y-2.5 border-t border-navy-900/8 pt-5">
