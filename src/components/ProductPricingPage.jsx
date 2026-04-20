@@ -32,12 +32,12 @@ function formatPrice(n) {
 
 function PricingCard({ tier }) {
   const ctaClassName =
-    'btn-lift mt-5 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-orange-600 px-4 py-3 text-[14.5px] font-semibold text-white shadow-card hover:bg-orange-700';
+    'btn-lift inline-flex w-full items-center justify-center gap-2 rounded-xl bg-orange-600 px-4 py-3 text-[14.5px] font-semibold text-white shadow-card hover:bg-orange-700';
   const ctaLabel = tier.ctaLabel || 'Buy Now';
   const isInternal = tier.ctaUrl?.startsWith('/');
 
   return (
-    <div className="relative flex h-full flex-col rounded-2xl border border-navy-900/8 bg-white p-6 shadow-card">
+    <div className="relative flex h-full flex-col rounded-2xl border border-navy-900/8 bg-white p-5 shadow-card sm:p-6">
       {tier.discount && (
         <span className="absolute -top-2 right-4 inline-flex items-center rounded-full bg-teal-500 px-3 py-1 text-[11px] font-semibold uppercase tracking-wide text-white shadow-card">
           {tier.discount}
@@ -49,7 +49,7 @@ function PricingCard({ tier }) {
       </div>
 
       <div className="mt-4 flex items-baseline gap-2">
-        <span className="font-display text-[48px] font-bold leading-none text-navy-900">
+        <span className="font-display text-[40px] font-bold leading-none text-navy-900 sm:text-[42px]">
           ₹{formatPrice(tier.price)}
         </span>
       </div>
@@ -67,25 +67,8 @@ function PricingCard({ tier }) {
         </div>
       )}
 
-      {isInternal ? (
-        <Link to={tier.ctaUrl} className={ctaClassName}>
-          {ctaLabel}
-          <Icon name="arrow-right" size={15} />
-        </Link>
-      ) : (
-        <a
-          href={tier.ctaUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className={ctaClassName}
-        >
-          {ctaLabel}
-          <Icon name="arrow-right" size={15} />
-        </a>
-      )}
-
       {tier.highlights?.length > 0 && (
-        <ul className="mt-6 space-y-2.5 border-t border-navy-900/8 pt-5">
+        <ul className="mt-5 space-y-2.5">
           {tier.highlights.map((h) => (
             <li key={h} className="flex items-start gap-2.5 text-[14px] leading-[1.55] text-navy-900/75">
               <span className="mt-0.5 inline-flex h-5 w-5 flex-none items-center justify-center rounded-full bg-teal-50 text-teal-600">
@@ -96,6 +79,25 @@ function PricingCard({ tier }) {
           ))}
         </ul>
       )}
+
+      <div className="mt-auto pt-6">
+        {isInternal ? (
+          <Link to={tier.ctaUrl} className={ctaClassName}>
+            {ctaLabel}
+            <Icon name="arrow-right" size={15} />
+          </Link>
+        ) : (
+          <a
+            href={tier.ctaUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={ctaClassName}
+          >
+            {ctaLabel}
+            <Icon name="arrow-right" size={15} />
+          </a>
+        )}
+      </div>
     </div>
   );
 }
@@ -158,7 +160,7 @@ export default function ProductPricingPage({ product }) {
               }
             >
               {tiers.map((tier, i) => (
-                <Reveal key={`${tier.label}-${i}`} delay={i * 60}>
+                <Reveal key={`${tier.label}-${i}`} delay={i * 60} className="h-full">
                   <PricingCard tier={tier} />
                 </Reveal>
               ))}
