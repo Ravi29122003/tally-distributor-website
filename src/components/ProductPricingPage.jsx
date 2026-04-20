@@ -1,0 +1,225 @@
+import { Link } from 'react-router-dom';
+import { Icon, Reveal } from '../app';
+
+/**
+ * Product data shape (populated in Wave 2B):
+ * {
+ *   slug: string,
+ *   eyebrow: string,              // e.g. "Products · Silver"
+ *   title: string,                // e.g. "TallyPrime Silver"
+ *   tagline: string,              // e.g. "For businesses that need TallyPrime on a single PC"
+ *   description: string,          // 2-3 sentence positioning
+ *   pricingTiers: [               // 1-4 pricing cards (Server has 1, others have up to 4)
+ *     {
+ *       label: string,            // e.g. "1 Month", "Lifetime"
+ *       price: number,            // e.g. 750, 22500
+ *       originalPrice?: number,   // strikethrough price if discounted
+ *       discount?: string,        // e.g. "Get 5% off"
+ *       effectiveMonthly?: string,// e.g. "Effective price 712.5/Month"
+ *       highlights: string[],     // e.g. ["Affordable Plan", "Free expert assistance"]
+ *       ctaUrl: string,           // external buy link
+ *       ctaLabel?: string,        // default "Buy Now"
+ *     }
+ *   ],
+ *   features: string[],           // shared "What you get" list
+ *   notes?: string[],             // optional fine-print (e.g. "+18% GST")
+ * }
+ */
+
+function formatPrice(n) {
+  return new Intl.NumberFormat('en-IN').format(n);
+}
+
+function PricingCard({ tier }) {
+  return (
+    <div className="relative flex h-full flex-col rounded-2xl border border-navy-900/8 bg-white p-6 shadow-card">
+      {tier.discount && (
+        <span className="absolute -top-2 right-4 inline-flex items-center rounded-full bg-teal-500 px-3 py-1 text-[11px] font-semibold uppercase tracking-wide text-white shadow-card">
+          {tier.discount}
+        </span>
+      )}
+
+      <div className="text-[13px] font-semibold uppercase tracking-[0.16em] text-navy-900/60">
+        {tier.label}
+      </div>
+
+      <div className="mt-4 flex items-baseline gap-2">
+        <span className="font-display text-[48px] font-bold leading-none text-navy-900">
+          ₹{formatPrice(tier.price)}
+        </span>
+      </div>
+      <div className="mt-1 text-[12.5px] text-navy-900/55">+18% GST</div>
+
+      {tier.originalPrice && (
+        <div className="mt-2 text-[13px] text-navy-900/50 line-through">
+          ₹{formatPrice(tier.originalPrice)}
+        </div>
+      )}
+
+      {tier.effectiveMonthly && (
+        <div className="mt-2 text-[13px] font-semibold text-navy-900">
+          {tier.effectiveMonthly}
+        </div>
+      )}
+
+      <a
+        href={tier.ctaUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="btn-lift mt-5 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-orange-600 px-4 py-3 text-[14.5px] font-semibold text-white shadow-card hover:bg-orange-700"
+      >
+        {tier.ctaLabel || 'Buy Now'}
+        <Icon name="arrow-right" size={15} />
+      </a>
+
+      {tier.highlights?.length > 0 && (
+        <ul className="mt-6 space-y-2.5 border-t border-navy-900/8 pt-5">
+          {tier.highlights.map((h) => (
+            <li key={h} className="flex items-start gap-2.5 text-[14px] leading-[1.55] text-navy-900/75">
+              <span className="mt-0.5 inline-flex h-5 w-5 flex-none items-center justify-center rounded-full bg-teal-50 text-teal-600">
+                <Icon name="check" size={13} strokeWidth={2.5} />
+              </span>
+              <span>{h}</span>
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  );
+}
+
+export default function ProductPricingPage({ product }) {
+  if (!product || !product.title) return null;
+
+  const tiers = product.pricingTiers || [];
+  const singleTier = tiers.length === 1;
+  const primaryCtaUrl = tiers[0]?.ctaUrl;
+
+  return (
+    <>
+      {/* Hero */}
+      <section className="hero-bg hero-grid relative overflow-hidden pt-[128px] pb-16 sm:pt-[148px] sm:pb-20">
+        <div className="relative mx-auto max-w-7xl px-5 sm:px-8">
+          <Reveal>
+            <div className="inline-flex items-center gap-2 rounded-full border border-navy-900/10 bg-white px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.2em] text-navy-900/70 shadow-card">
+              <span className="h-1.5 w-1.5 rounded-full bg-teal-500" />
+              {product.eyebrow}
+            </div>
+          </Reveal>
+          <Reveal delay={80}>
+            <h1 className="font-display mt-5 max-w-3xl text-[44px] font-bold leading-[1.05] text-navy-900 sm:text-[60px]">
+              {product.title}
+            </h1>
+          </Reveal>
+          {product.tagline && (
+            <Reveal delay={120}>
+              <p className="mt-4 max-w-2xl text-[17px] font-semibold leading-[1.5] text-teal-700 sm:text-[19px]">
+                {product.tagline}
+              </p>
+            </Reveal>
+          )}
+          {product.description && (
+            <Reveal delay={160}>
+              <p className="mt-5 max-w-2xl text-[16px] leading-[1.65] text-navy-900/65 sm:text-[17px]">
+                {product.description}
+              </p>
+            </Reveal>
+          )}
+        </div>
+      </section>
+
+      {/* Pricing */}
+      {tiers.length > 0 && (
+        <section className="border-t border-navy-900/8 bg-white py-20 sm:py-24">
+          <div className="mx-auto max-w-7xl px-5 sm:px-8">
+            <Reveal>
+              <h2 className="font-display max-w-3xl text-[28px] font-bold leading-[1.2] text-navy-900 sm:text-[36px]">
+                {product.tagline}
+              </h2>
+            </Reveal>
+
+            <div
+              className={
+                singleTier
+                  ? 'mx-auto mt-10 max-w-md'
+                  : 'mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4'
+              }
+            >
+              {tiers.map((tier, i) => (
+                <Reveal key={`${tier.label}-${i}`} delay={i * 60}>
+                  <PricingCard tier={tier} />
+                </Reveal>
+              ))}
+            </div>
+
+            {product.notes?.length > 0 && (
+              <div className="mt-8 space-y-1.5 text-[13px] text-navy-900/55">
+                {product.notes.map((n) => (
+                  <p key={n}>{n}</p>
+                ))}
+              </div>
+            )}
+          </div>
+        </section>
+      )}
+
+      {/* What you get */}
+      {product.features?.length > 0 && (
+        <section className="border-t border-navy-900/8 bg-navy-50/40 py-20 sm:py-24">
+          <div className="mx-auto max-w-7xl px-5 sm:px-8">
+            <Reveal>
+              <h2 className="font-display max-w-3xl text-[28px] font-bold leading-[1.2] text-navy-900 sm:text-[36px]">
+                What you get with {product.title}
+              </h2>
+            </Reveal>
+
+            <ul className="mt-10 grid gap-4 sm:grid-cols-2">
+              {product.features.map((f, i) => (
+                <Reveal key={f} delay={i * 40}>
+                  <li className="flex items-start gap-3 rounded-2xl border border-navy-900/8 bg-white p-4 shadow-card">
+                    <span className="mt-0.5 inline-flex h-7 w-7 flex-none items-center justify-center rounded-lg bg-green-50 text-green-600">
+                      <Icon name="check" size={15} strokeWidth={2.5} />
+                    </span>
+                    <span className="text-[14.5px] leading-[1.55] text-navy-900/80">{f}</span>
+                  </li>
+                </Reveal>
+              ))}
+            </ul>
+          </div>
+        </section>
+      )}
+
+      {/* Final CTA strip */}
+      <section className="border-t border-navy-900/8 bg-white py-20 sm:py-24">
+        <div className="mx-auto max-w-5xl px-5 sm:px-8">
+          <div className="rounded-3xl border border-navy-900/10 bg-navy-50/60 p-8 text-center shadow-card sm:p-12">
+            <h2 className="font-display text-[28px] font-bold leading-[1.2] text-navy-900 sm:text-[34px]">
+              Ready to get started?
+            </h2>
+            <p className="mx-auto mt-3 max-w-xl text-[15.5px] leading-[1.6] text-navy-900/65">
+              Talk to us about the right edition for your business, or head straight to Tally.com to buy.
+            </p>
+            <div className="mt-7 flex flex-wrap items-center justify-center gap-3">
+              <Link
+                to="/contact"
+                className="btn-lift btn-primary inline-flex items-center gap-2 rounded-full bg-navy-900 px-5 py-3 text-[14.5px] font-semibold text-white shadow-card"
+              >
+                Contact us <Icon name="arrow-right" size={15} />
+              </Link>
+              {primaryCtaUrl && (
+                <a
+                  href={primaryCtaUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-lift inline-flex items-center gap-2 rounded-full bg-orange-600 px-5 py-3 text-[14.5px] font-semibold text-white shadow-card hover:bg-orange-700"
+                >
+                  Buy on Tally.com <Icon name="arrow-right" size={15} />
+                </a>
+              )}
+            </div>
+          </div>
+        </div>
+      </section>
+    </>
+  );
+}
