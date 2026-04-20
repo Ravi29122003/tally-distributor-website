@@ -531,15 +531,6 @@ function makeSub(eyebrow, title, sub, accent) {
   return () => <Placeholder eyebrow={eyebrow} title={title} accent={accent} sub={sub} />;
 }
 
-// Product sub-pages
-const SilverPage        = makeSub('Products · Silver',        'TallyPrime ',     'Single-user edition for small businesses — accounting, inventory and GST on one computer with zero complications.',         'Silver');
-const GoldPage          = makeSub('Products · Gold',          'TallyPrime ',     'Unlimited users on your LAN — ideal for teams collaborating from a single location, with multi-company and payroll built in.', 'Gold');
-const ServerPage        = makeSub('Products · Server',        'TallyPrime ',     'Enterprise-grade Tally for multi-branch operations, with centralised control and high-performance concurrent access.',       'Server');
-const AuditorsPage      = makeSub('Products · Auditors',      'Auditors ',       'Purpose-built for CA firms — remote client data access, full audit trails and statutory compliance tools in one place.',      'Edition');
-const VirtualUserPage   = makeSub('Products · Virtual User',  'Tally Virtual ',  'Give remote team members secure access to your on-premise Tally installation from anywhere, on any device.',                'User');
-const MobileAppPage     = makeSub('Products · Mobile',        'Tally ',          'Reports, voucher approvals and outstanding tracking — directly on your phone, iOS and Android.',                             'Mobile App');
-const UpgradePage       = makeSub('Products · Upgrade',       'Upgrade ',        'Move to the latest TallyPrime from any older version — Tally 9, ERP 9, or earlier — with zero data loss.',                   'Options');
-
 // Service sub-pages
 const CustomizationPage       = makeSub('Services · Custom',    'Tally ',         'Custom TDL modules, bespoke reports, tailored invoices — shaped around your exact workflow.',                                 'Customization');
 const TrainingPage            = makeSub('Services · Training',  'Corporate ',     'Structured 1-on-1 and group training for teams new to Tally, or upgrading from older versions.',                             'Training');
@@ -586,9 +577,9 @@ function RouterApp() {
           <Route path="products/gold"          element={<ProductPricingPage product={productsData.gold} />} />
           <Route path="products/server"        element={<ProductPricingPage product={productsData.server} />} />
           <Route path="products/auditors"      element={<ProductPricingPage product={productsData.auditors} />} />
-          <Route path="products/virtual-user"  element={<VirtualUserPage />} />
-          <Route path="products/mobile-app"    element={<MobileAppPage />} />
-          <Route path="products/upgrade"       element={<UpgradePage />} />
+          <Route path="products/virtual-user"  element={<ProductPricingPage product={productsData['virtual-user']} />} />
+          <Route path="products/mobile-app"    element={<ProductPricingPage product={productsData['mobile-app']} />} />
+          <Route path="products/upgrade"       element={<ProductPricingPage product={productsData.upgrade} />} />
 
           {/* Services */}
           <Route path="services"               element={<ServicesIndex />} />

@@ -12,7 +12,8 @@ import { Icon, Reveal } from '../app';
  *   pricingTiers: [               // 1-4 pricing cards (Server has 1, others have up to 4)
  *     {
  *       label: string,            // e.g. "1 Month", "Lifetime"
- *       price: number,            // e.g. 750, 22500
+ *       price?: number,           // e.g. 750, 22500 — ignored if priceLabel is set
+ *       priceLabel?: string,      // overrides ₹-formatted price, e.g. "Included", "Custom"
  *       originalPrice?: number,   // strikethrough price if discounted
  *       discount?: string,        // e.g. "Get 5% off"
  *       effectiveMonthly?: string,// e.g. "Effective price 712.5/Month"
@@ -50,10 +51,12 @@ function PricingCard({ tier }) {
 
       <div className="mt-4 flex items-baseline gap-2">
         <span className="font-display text-[40px] font-bold leading-none text-navy-900 sm:text-[42px]">
-          ₹{formatPrice(tier.price)}
+          {tier.priceLabel ? tier.priceLabel : `₹${formatPrice(tier.price)}`}
         </span>
       </div>
-      <div className="mt-1 text-[12.5px] text-navy-900/55">+18% GST</div>
+      {!tier.priceLabel && (
+        <div className="mt-1 text-[12.5px] text-navy-900/55">+18% GST</div>
+      )}
 
       {tier.originalPrice && (
         <div className="mt-2 text-[13px] text-navy-900/50 line-through">
