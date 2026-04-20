@@ -583,7 +583,7 @@ function RouterApp() {
           {/* Products */}
           <Route path="products"               element={<ProductsIndex />} />
           <Route path="products/silver"        element={<ProductPricingPage product={productsData.silver} />} />
-          <Route path="products/gold"          element={<GoldPage />} />
+          <Route path="products/gold"          element={<ProductPricingPage product={productsData.gold} />} />
           <Route path="products/server"        element={<ServerPage />} />
           <Route path="products/auditors"      element={<AuditorsPage />} />
           <Route path="products/virtual-user"  element={<VirtualUserPage />} />
