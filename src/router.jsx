@@ -7,6 +7,8 @@ import {
   HomeSections, Icon, FloatingWhatsApp, WhatsAppGlyph, Eyebrow, Reveal, waLink,
 } from './app';
 import { siteConfig } from './config/site';
+import ProductPricingPage from './components/ProductPricingPage';
+import { productsData } from './data/products';
 import './index.css';
 
 const telHref = `tel:${siteConfig.phones.sales.replace(/\s/g, '')}`;
@@ -580,7 +582,7 @@ function RouterApp() {
 
           {/* Products */}
           <Route path="products"               element={<ProductsIndex />} />
-          <Route path="products/silver"        element={<SilverPage />} />
+          <Route path="products/silver"        element={<ProductPricingPage product={productsData.silver} />} />
           <Route path="products/gold"          element={<GoldPage />} />
           <Route path="products/server"        element={<ServerPage />} />
           <Route path="products/auditors"      element={<AuditorsPage />} />
