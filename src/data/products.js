@@ -3,6 +3,7 @@
 // Updated from research doc (TallyPrime 7.0, released Dec 2025).
 
 const TALLY_BUY_URL = 'https://tallysolutions.com/buy-tally/';
+const TALLY_SERVER_URL = 'https://tallysolutions.com/tally-prime-server/';
 
 export const productsData = {
   silver: {
@@ -117,7 +118,44 @@ export const productsData = {
       'Need more than 10 simultaneous users? Consider TallyPrime Server.',
     ],
   },
-  server: {},
+  server: {
+    slug: 'server',
+    eyebrow: 'Products · Server',
+    title: 'TallyPrime Server',
+    tagline: 'Enterprise-grade architecture for 10+ concurrent users',
+    description: 'Server-based data architecture built for businesses where Gold\'s peer-to-peer model starts to slow down. True concurrency, no queueing on reads or writes, and 20 extra TVU packs included.',
+    pricingTiers: [
+      {
+        label: 'Lifetime',
+        price: 270000,
+        highlights: [
+          'Perpetual license',
+          'Requires a live Gold license underneath',
+          'Free expert assistance',
+          '20 free TVU packs included',
+          'Zero-cost EMI available',
+        ],
+        ctaUrl: TALLY_SERVER_URL,
+      },
+    ],
+    features: [
+      'Server-based data architecture — not peer-to-peer',
+      'Concurrent read + read and read + write without queueing',
+      'Runs as a Windows Service with session monitoring',
+      'Admins can monitor and disconnect active sessions',
+      'Load, save, print, import, export, backup without downtime',
+      'Users connect by server name, not file path',
+      '20 free TVU packs (stack with Gold\'s 10 for 30 total)',
+      'Ideal for 10+ simultaneous users or large data volumes',
+      'Dedicated capacity-planning and deployment support',
+      'Requires active TSS on the underlying Gold license',
+    ],
+    notes: [
+      'Price excludes 18% GST.',
+      'TallyPrime Server is an enterprise add-on — it requires an active TallyPrime Gold license.',
+      'For detailed enterprise pricing or deployment assistance, contact us.',
+    ],
+  },
   auditors: {},
   'virtual-user': {},
   'mobile-app': {},
