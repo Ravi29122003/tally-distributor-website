@@ -102,11 +102,17 @@ function PricingCard({ tier }) {
   );
 }
 
+const getGridClass = (count) => {
+  if (count === 1) return 'mx-auto mt-10 max-w-md';
+  if (count === 2) return 'mt-10 grid gap-6 sm:grid-cols-2 mx-auto max-w-3xl';
+  if (count === 3) return 'mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3';
+  return 'mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4';
+};
+
 export default function ProductPricingPage({ product }) {
   if (!product || !product.title) return null;
 
   const tiers = product.pricingTiers || [];
-  const singleTier = tiers.length === 1;
   const primaryCtaUrl = tiers[0]?.ctaUrl;
 
   return (
@@ -152,13 +158,7 @@ export default function ProductPricingPage({ product }) {
               </h2>
             </Reveal>
 
-            <div
-              className={
-                singleTier
-                  ? 'mx-auto mt-10 max-w-md'
-                  : 'mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4'
-              }
-            >
+            <div className={getGridClass(tiers.length)}>
               {tiers.map((tier, i) => (
                 <Reveal key={`${tier.label}-${i}`} delay={i * 60} className="h-full">
                   <PricingCard tier={tier} />
