@@ -34,7 +34,6 @@ const SERVICES = [
 
 const SIMPLE_NAV = [
   { label: 'Home',       to: '/' },
-  { label: 'Industries', to: '/industries' },
   { label: 'About',      to: '/about' },
   { label: 'Offers',     to: '/offers' },
   { label: 'Contact',    to: '/contact' },
@@ -321,7 +320,6 @@ function RouterFooter() {
       title: 'Company',
       links: [
         { label: 'About us',   to: '/about' },
-        { label: 'Industries', to: '/industries' },
         { label: 'Offers',     to: '/offers' },
         { label: 'Contact',    to: '/contact' },
         { label: 'Privacy',    to: '/policies' },
@@ -553,7 +551,6 @@ const ZohoIntegrationPage     = makeSub('Services · Zoho',      'Zoho \u2194 Ta
 const OffersPage              = makeSub('Offers',               'Current ',       'Festive and launch-period discounts on TallyPrime licences and services. Check back often — new offers added monthly.',     'Offers');
 
 // Top-level pages
-const IndustriesPage   = makeSub('Industries',  'Industries we ',            'Manufacturing, retail, distribution, services, real-estate, healthcare, education and more.', 'know inside out');
 const AboutPage        = makeSub('About',       'A team that takes ',        'Fifteen years, five-star certification and hundreds of businesses still on our books — that\'s the only resume that matters.', 'Tally seriously');
 const ContactPage      = makeSub('Contact',     'Let\'s ',                   'Reach out by phone, WhatsApp, email or by visiting our office. We respond within one business hour, every working day.', 'talk');
 const PoliciesPage     = makeSub('Policies',    'Privacy, Refund & ',        'The fine print — privacy policy, refund terms, terms of service and licence agreements.', 'Terms');
@@ -602,7 +599,6 @@ function RouterApp() {
           <Route path="services/zoho"          element={<ZohoIntegrationPage />} />
 
           {/* Top-level pages */}
-          <Route path="industries"             element={<IndustriesPage />} />
           <Route path="about"                  element={<AboutPage />} />
           <Route path="offers"                 element={<OffersPage />} />
           <Route path="contact"                element={<ContactPage />} />
