@@ -14,7 +14,7 @@ import './index.css';
 const telHref = `tel:${siteConfig.phones.sales.replace(/\s/g, '')}`;
 
 // ---------- Route maps ----------
-const PRODUCTS = [
+const TALLY_PRODUCTS = [
   { label: 'TallyPrime Silver',     to: '/products/silver',         desc: 'Single user · Small business' },
   { label: 'TallyPrime Gold',       to: '/products/gold',           desc: 'Unlimited users on LAN' },
   { label: 'TallyPrime Server',     to: '/products/server',         desc: 'Enterprise, multi-branch' },
@@ -24,7 +24,7 @@ const PRODUCTS = [
   { label: 'Upgrade Options',       to: '/products/upgrade',        desc: 'From older Tally versions' },
 ];
 
-const SERVICES = [
+const TALLY_SERVICES = [
   { label: 'Tally Customization',   to: '/services/customization',  desc: 'TDL, custom reports & modules' },
   { label: 'Corporate Training',    to: '/services/training',       desc: '1-on-1 and group sessions' },
   { label: 'Tally Integration',     to: '/services/integration',    desc: 'Connect Tally to any system' },
@@ -32,6 +32,13 @@ const SERVICES = [
   { label: 'Tally on Cloud',        to: '/services/cloud',          desc: 'Access Tally from anywhere' },
   { label: 'TSS Renewal',           to: '/services/tss-renewal',    desc: 'Keep your Tally up-to-date' },
   { label: 'Zoho Integration',      to: '/services/zoho',           desc: 'Zoho Books ↔ Tally sync' },
+];
+
+const PRODUCTS_NON_TALLY = [
+  { label: 'SoftTrade-Mandi',   to: '/products/softtrade-mandi',   desc: 'Mahajani accounting for mandis, mills & traders' },
+  { label: 'SoftTrade-Brokwin', to: '/products/softtrade-brokwin', desc: 'For commodity and textile brokers' },
+  { label: 'SoftTrade-Coldwin', to: '/products/softtrade-coldwin', desc: 'Cold storage & warehouse management' },
+  { label: 'Zayaka',            to: '/products/zayaka',            desc: 'Restaurant & F&B billing software' },
 ];
 
 const SIMPLE_NAV = [
@@ -170,8 +177,8 @@ function RouterNav() {
             `nav-link rounded-md px-3 py-2 text-[14.5px] font-medium transition-colors ${isActive ? 'text-navy-900' : 'text-navy-900/70 hover:text-navy-900'}`}>
             Home
           </NavLink>
-          <NavDropdown label="Products" items={PRODUCTS} basePath="/products" />
-          <NavDropdown label="Services" items={SERVICES} basePath="/services" />
+          <NavDropdown label="Products" items={TALLY_PRODUCTS} basePath="/products" />
+          <NavDropdown label="Services" items={TALLY_SERVICES} basePath="/services" />
           {SIMPLE_NAV.filter(i => i.to !== '/').map((it) => {
             const isOffers = it.label === 'Offers';
             return (
@@ -238,13 +245,13 @@ function RouterNav() {
           </Link>
 
           <MobileExpandable
-            label="Products" items={PRODUCTS} basePath="/products"
+            label="Products" items={TALLY_PRODUCTS} basePath="/products"
             isOpen={mobileExpanded === 'products'}
             onToggle={() => setMobileExpanded(m => m === 'products' ? null : 'products')}
             onLink={() => setOpen(false)}
           />
           <MobileExpandable
-            label="Services" items={SERVICES} basePath="/services"
+            label="Services" items={TALLY_SERVICES} basePath="/services"
             isOpen={mobileExpanded === 'services'}
             onToggle={() => setMobileExpanded(m => m === 'services' ? null : 'services')}
             onLink={() => setOpen(false)}
@@ -316,8 +323,8 @@ function MobileExpandable({ label, items, basePath, isOpen, onToggle, onLink }) 
 // ---------- Footer ----------
 function RouterFooter() {
   const cols = [
-    { title: 'Products', links: PRODUCTS.map(p => ({ label: p.label, to: p.to })) },
-    { title: 'Services', links: SERVICES.map(s => ({ label: s.label, to: s.to })) },
+    { title: 'Products', links: TALLY_PRODUCTS.map(p => ({ label: p.label, to: p.to })) },
+    { title: 'Services', links: TALLY_SERVICES.map(s => ({ label: s.label, to: s.to })) },
     {
       title: 'Company',
       links: [
@@ -487,14 +494,14 @@ function HomePage() { return <HomeSections />; }
 function ProductsIndex() {
   return (
     <Placeholder eyebrow="Products" title="The complete TallyPrime " accent="line-up" sub="Everything you need to license, scale and run TallyPrime — from single-user editions to enterprise server deployments and cloud access.">
-      <SubPageGrid items={PRODUCTS} eyebrow="Products" />
+      <SubPageGrid items={TALLY_PRODUCTS} eyebrow="Products" />
     </Placeholder>
   );
 }
 function ServicesIndex() {
   return (
     <Placeholder eyebrow="Services" title="Everything we do " accent="beyond licensing" sub="Implementation, training, customisation, AMC, cloud, TSS renewal and Zoho integration — delivered by a team that has done this 500+ times.">
-      <SubPageGrid items={SERVICES} eyebrow="Services" />
+      <SubPageGrid items={TALLY_SERVICES} eyebrow="Services" />
     </Placeholder>
   );
 }
