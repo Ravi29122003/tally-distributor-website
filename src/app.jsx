@@ -1087,7 +1087,7 @@ export function About() {
         <Reveal as="div">
           <Eyebrow>About us</Eyebrow>
           <h2 className="mt-5 font-display text-[36px] font-bold leading-[1.1] text-navy-900 sm:text-[46px]">
-            <span className="text-teal-600">15+ years</span> of empowering{' '}
+            <span className="text-teal-600">17 years</span> of empowering{' '}
             <span className="italic text-navy-800">businesses</span>
           </h2>
 
