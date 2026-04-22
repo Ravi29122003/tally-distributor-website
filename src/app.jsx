@@ -333,7 +333,7 @@ function CallbackCard() {
         ) : (
           <form onSubmit={onSubmit} className="px-6 py-6">
             <h3 className="font-display text-[22px] font-bold leading-tight text-navy-900 sm:text-[24px]">
-              Talk to a Tally expert
+              Talk to a software expert
             </h3>
             <p className="mt-1.5 text-[13.5px] text-navy-900/60">
               Share a few details — we'll call back in <span className="font-semibold text-navy-900">15 minutes</span> with a tailored recommendation.
@@ -599,13 +599,13 @@ export function Hero() {
                 <Icon key={i} name="star" size={12} strokeWidth={2} className="fill-current" />
               ))}
             </span>
-            Certified 5-Star TallyPrime Partner
+            Serving Indian Businesses Since {siteConfig.since}
           </Reveal>
 
           <Reveal as="h1" id="hero-heading" delay={80} className="hero-head mt-5 font-display text-[44px] font-bold leading-[1.05] text-navy-900 sm:text-[56px] lg:text-[64px]">
             Your Trusted{' '}
             <span className="relative inline-block">
-              <span className="relative z-10 text-orange-600">TallyPrime</span>
+              <span className="relative z-10 text-orange-600">Business Software</span>
               <span
                 aria-hidden
                 className="absolute inset-x-0 bottom-1 -z-0 h-3 rounded-sm bg-orange-600/20 sm:h-4"
@@ -616,9 +616,9 @@ export function Hero() {
           </Reveal>
 
           <Reveal as="p" delay={160} className="mt-5 max-w-xl text-[16.5px] leading-[1.6] text-navy-900/65 sm:text-[17.5px]">
-            From licensing and implementation to training and round-the-clock
-            support — we help Indian businesses run their books with confidence.
-            <span className="text-navy-900/85"> 500+ businesses already trust us.</span>
+            From Tally and SoftTrade to custom business software — we help Indian
+            businesses run their books with confidence.
+            <span className="text-navy-900/85"> 1,800+ businesses already trust us.</span>
           </Reveal>
 
           <Reveal delay={240} className="mt-7 flex flex-wrap items-center gap-3">
@@ -631,7 +631,7 @@ export function Hero() {
               <Icon name="arrow-right" size={16} strokeWidth={2.5} />
             </a>
             <a
-              href={waLink("I'd like to know more about TallyPrime editions and get a quote.")}
+              href={waLink("I'd like to know more about your software products and get a quote.")}
               target="_blank"
               rel="noreferrer"
               className="btn-lift inline-flex items-center gap-2 rounded-full border border-navy-900/12 bg-white px-6 py-3.5 text-[15px] font-semibold text-navy-900 shadow-card hover:border-teal-500/40"
