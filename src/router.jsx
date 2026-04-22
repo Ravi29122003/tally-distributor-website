@@ -600,6 +600,12 @@ const ServiceCloudPage        = makeSub('Services · Cloud',     'Tally on ',   
 const TSSRenewalPage          = makeSub('Services · TSS',       'TSS ',           'Tally Software Services — keeps your Tally up-to-date with statutory changes, e-invoicing and online features.',             'Renewal');
 const ZohoIntegrationPage     = makeSub('Services · Zoho',      'Zoho \u2194 Tally ',  'Two-way sync between Zoho Books and TallyPrime for businesses running both, end-of-month reconciliation made painless.',   'Integration');
 
+// SoftTrade and other non-Tally products — placeholders until Wave C
+const SoftTradeMandiPage   = makeSub('Products · SoftTrade-Mandi',   'SoftTrade ',  'Mahajani-style accounting software for mandis, mills, kirana wholesalers, and adat traders. A 25-year-old battle-tested system with GST, e-way bill, and Hindi invoice support.',                       '—Mandi');
+const SoftTradeBrokwinPage = makeSub('Products · SoftTrade-Brokwin', 'SoftTrade ',  'Broker and commission accounting for commodity and textile brokers — biltikat, kirana, seeds, oil, cake and all trading categories. Handles dual-ledger mahajani with interest calculation.',          '—Brokwin');
+const SoftTradeColdwinPage = makeSub('Products · SoftTrade-Coldwin', 'SoftTrade ',  'Purpose-built accounting for cold storage and all types of warehouses — stock location tracking, transfer registers, outstanding bilty reports, and storage-charge billing.',                         '—Coldwin');
+const ZayakaPage           = makeSub('Products · Zayaka',            'Zayaka ',     'Restaurant and F&B billing software — KOT printing, table management, menu engineering, home delivery support, and GST-compliant invoicing for restaurants, cafés, and takeaway outlets.',        'Software');
+
 // Offers
 const OffersPage              = makeSub('Offers',               'Current ',       'Festive and launch-period discounts on TallyPrime licences and services. Check back often — new offers added monthly.',     'Offers');
 
@@ -640,6 +646,12 @@ function RouterApp() {
           <Route path="products/virtual-user"  element={<ProductPricingPage product={productsData['virtual-user']} />} />
           <Route path="products/mobile-app"    element={<ProductPricingPage product={productsData['mobile-app']} />} />
           <Route path="products/upgrade"       element={<ProductPricingPage product={productsData.upgrade} />} />
+
+          {/* SoftTrade and other non-Tally products — placeholders until Wave C */}
+          <Route path="products/softtrade-mandi"   element={<SoftTradeMandiPage />} />
+          <Route path="products/softtrade-brokwin" element={<SoftTradeBrokwinPage />} />
+          <Route path="products/softtrade-coldwin" element={<SoftTradeColdwinPage />} />
+          <Route path="products/zayaka"            element={<ZayakaPage />} />
 
           {/* Services */}
           <Route path="services"               element={<ServicesIndex />} />
