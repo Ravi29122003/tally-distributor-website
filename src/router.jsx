@@ -198,8 +198,19 @@ function RouterNav() {
             `nav-link rounded-md px-3 py-2 text-[14.5px] font-medium transition-colors ${isActive ? 'text-navy-900' : 'text-navy-900/70 hover:text-navy-900'}`}>
             Home
           </NavLink>
-          <NavDropdown label="Products" items={TALLY_PRODUCTS} basePath="/products" />
-          <NavDropdown label="Services" items={TALLY_SERVICES} basePath="/services" />
+          <NavDropdown
+            label="Products"
+            items={PRODUCTS_NON_TALLY}
+            basePath="/products"
+          />
+          <NavDropdown
+            label="Tally"
+            groups={[
+              { heading: 'Tally Products', items: TALLY_PRODUCTS },
+              { heading: 'Tally Services', items: TALLY_SERVICES },
+            ]}
+            basePath="/tally"
+          />
           {SIMPLE_NAV.filter(i => i.to !== '/').map((it) => {
             const isOffers = it.label === 'Offers';
             return (
@@ -266,15 +277,27 @@ function RouterNav() {
           </Link>
 
           <MobileExpandable
-            label="Products" items={TALLY_PRODUCTS} basePath="/products"
+            label="Products"
+            items={PRODUCTS_NON_TALLY}
+            basePath="/products"
             isOpen={mobileExpanded === 'products'}
             onToggle={() => setMobileExpanded(m => m === 'products' ? null : 'products')}
             onLink={() => setOpen(false)}
           />
           <MobileExpandable
-            label="Services" items={TALLY_SERVICES} basePath="/services"
-            isOpen={mobileExpanded === 'services'}
-            onToggle={() => setMobileExpanded(m => m === 'services' ? null : 'services')}
+            label="Tally Products"
+            items={TALLY_PRODUCTS}
+            basePath="/products"
+            isOpen={mobileExpanded === 'tally-products'}
+            onToggle={() => setMobileExpanded(m => m === 'tally-products' ? null : 'tally-products')}
+            onLink={() => setOpen(false)}
+          />
+          <MobileExpandable
+            label="Tally Services"
+            items={TALLY_SERVICES}
+            basePath="/services"
+            isOpen={mobileExpanded === 'tally-services'}
+            onToggle={() => setMobileExpanded(m => m === 'tally-services' ? null : 'tally-services')}
             onLink={() => setOpen(false)}
           />
 
@@ -344,8 +367,17 @@ function MobileExpandable({ label, items, basePath, isOpen, onToggle, onLink }) 
 // ---------- Footer ----------
 function RouterFooter() {
   const cols = [
-    { title: 'Products', links: TALLY_PRODUCTS.map(p => ({ label: p.label, to: p.to })) },
-    { title: 'Services', links: TALLY_SERVICES.map(s => ({ label: s.label, to: s.to })) },
+    {
+      title: 'Our Products',
+      links: PRODUCTS_NON_TALLY.map(p => ({ label: p.label, to: p.to })),
+    },
+    {
+      title: 'Tally',
+      links: [
+        ...TALLY_PRODUCTS.map(p => ({ label: p.label, to: p.to })),
+        ...TALLY_SERVICES.map(s => ({ label: s.label, to: s.to })),
+      ],
+    },
     {
       title: 'Company',
       links: [
