@@ -72,7 +72,7 @@ function BrandMark({ className = '' }) {
 }
 
 // ---------- Desktop dropdown menu ----------
-function NavDropdown({ label, items, basePath }) {
+function NavDropdown({ label, items, groups, basePath }) {
   const [open, setOpen] = useState(false);
   const closeT = useRef(null);
   const { pathname } = useLocation();
@@ -80,6 +80,30 @@ function NavDropdown({ label, items, basePath }) {
 
   const onEnter = () => { clearTimeout(closeT.current); setOpen(true); };
   const onLeave = () => { closeT.current = setTimeout(() => setOpen(false), 120); };
+
+  const isGrouped = Array.isArray(groups) && groups.length > 0;
+  const hasFlat = Array.isArray(items) && items.length > 0;
+  if (!isGrouped && !hasFlat) return null;
+
+  const panelWidthClass = isGrouped ? 'w-[640px] max-w-[calc(100vw-2rem)]' : 'w-[340px]';
+
+  const renderItem = (it) => (
+    <Link
+      key={it.to}
+      to={it.to}
+      role="menuitem"
+      onClick={() => setOpen(false)}
+      className="group flex items-start gap-3 rounded-xl px-3 py-2.5 transition-colors hover:bg-navy-50"
+    >
+      <span className="mt-0.5 inline-flex h-8 w-8 flex-none items-center justify-center rounded-lg bg-teal-50 text-teal-600 group-hover:bg-teal-500 group-hover:text-white transition-colors">
+        <Icon name="arrow-right" size={14} />
+      </span>
+      <span className="min-w-0 flex-1">
+        <span className="block text-[14px] font-semibold text-navy-900">{it.label}</span>
+        <span className="block text-[12.5px] text-navy-900/60">{it.desc}</span>
+      </span>
+    </Link>
+  );
 
   return (
     <div className="relative" onMouseEnter={onEnter} onMouseLeave={onLeave}>
@@ -99,31 +123,28 @@ function NavDropdown({ label, items, basePath }) {
       </Link>
 
       <div
-        className={`absolute left-1/2 top-full z-[60] mt-2 w-[340px] -translate-x-1/2 transition-all duration-200 ${
+        className={`absolute left-1/2 top-full z-[60] mt-2 ${panelWidthClass} -translate-x-1/2 transition-all duration-200 ${
           open ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 -translate-y-1 pointer-events-none'
         }`}
         role="menu"
       >
         <div className="overflow-hidden rounded-2xl border border-navy-900/10 bg-white shadow-card-lg">
-          <div className="p-2">
-            {items.map((it) => (
-              <Link
-                key={it.to}
-                to={it.to}
-                role="menuitem"
-                onClick={() => setOpen(false)}
-                className="group flex items-start gap-3 rounded-xl px-3 py-2.5 transition-colors hover:bg-navy-50"
-              >
-                <span className="mt-0.5 inline-flex h-8 w-8 flex-none items-center justify-center rounded-lg bg-teal-50 text-teal-600 group-hover:bg-teal-500 group-hover:text-white transition-colors">
-                  <Icon name="arrow-right" size={14} />
-                </span>
-                <span className="min-w-0 flex-1">
-                  <span className="block text-[14px] font-semibold text-navy-900">{it.label}</span>
-                  <span className="block text-[12.5px] text-navy-900/60">{it.desc}</span>
-                </span>
-              </Link>
-            ))}
-          </div>
+          {isGrouped ? (
+            <div className="grid grid-cols-2 divide-x divide-navy-900/8">
+              {groups.map((group) => (
+                <div key={group.heading} className="p-2">
+                  <div className="px-3 py-2 text-[11px] font-bold uppercase tracking-[0.14em] text-navy-900/55">
+                    {group.heading}
+                  </div>
+                  {group.items.map(renderItem)}
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div className="p-2">
+              {items.map(renderItem)}
+            </div>
+          )}
           <div className="border-t border-navy-900/8 bg-navy-50/50 px-4 py-2.5">
             <Link to={basePath} onClick={() => setOpen(false)} className="inline-flex items-center gap-1.5 text-[12.5px] font-semibold text-navy-900 hover:text-teal-700">
               View all {label.toLowerCase()} <Icon name="arrow-right" size={13} />
