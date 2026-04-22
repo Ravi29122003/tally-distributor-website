@@ -1093,17 +1093,20 @@ export function About() {
 
           <div className="mt-6 space-y-4 text-[15.5px] leading-[1.7] text-navy-900/70" id="about-body">
             <p>
-              TallyHub began in 2010 as a two-person consultancy with one goal:
-              make enterprise-grade accounting software feel friendly to every
-              Indian business — from single-shop traders to multi-branch
-              manufacturers. Fifteen years on, that goal hasn't changed.
+              We started in 2009 with a simple idea: Indian SMBs deserve
+              business software that fits how they actually work, not how a
+              textbook says they should. Seventeen years on, {siteConfig.brand} is
+              a certified Tally 5-Star Partner and the authorised SoftTrade
+              reseller for Rajasthan — selling software we use, implement and
+              support ourselves.
             </p>
             <p>
-              Today we're a team of certified implementers, TDL developers and
-              chartered accountants serving 500+ clients across retail,
-              manufacturing, trading, logistics and services. We sell genuine
-              licences, but what we really deliver is the confidence of knowing
-              your books, compliance and reports are always in order.
+              Today we serve 1,800+ customers across seven states — Rajasthan,
+              Gujarat, Madhya Pradesh, Uttar Pradesh, Haryana, Punjab and
+              Maharashtra — in retail, manufacturing, trading, CA practice and
+              services. We handle licensing, implementation, customisation and
+              support end-to-end, which is why many of the clients we signed in
+              our first year are still with us today.
             </p>
           </div>
 
@@ -1191,9 +1194,9 @@ export function About() {
 
 // ------ Testimonials ------
 const TESTIMONIALS = [
-  { name: 'Rajesh Agarwal', role: 'Owner · Agarwal Steel Trading', quote: 'TallyHub migrated our 12-year data from an old version without losing a single voucher. Their TDL tweaks cut our monthly GST reconciliation from 2 days to 3 hours.', tone: 'teal' },
-  { name: 'Priya Iyer', role: 'Chartered Accountant · Iyer & Associates', quote: 'As a CA firm, we recommend TallyHub to every client who needs a real partner — not a reseller. The support team actually picks up the phone, even at month-end.', tone: 'amber' },
-  { name: 'Vikram Mehta', role: 'Director · Mehta Textiles Pvt. Ltd.', quote: 'Running four branches on a single server used to be chaos. TallyHub deployed Server edition in a weekend and trained our staff. Month-end closing is finally painless.', tone: 'teal' },
+  { name: 'Rajesh Agarwal', role: 'Owner · Agarwal Steel Trading', quote: 'Unique Info Systems migrated our 12-year data from an old version without losing a single voucher. Their TDL tweaks cut our monthly GST reconciliation from 2 days to 3 hours.', tone: 'teal' },
+  { name: 'Priya Iyer', role: 'Chartered Accountant · Iyer & Associates', quote: 'As a CA firm, we recommend Unique Info Systems to every client who needs a real partner — not a reseller. The support team actually picks up the phone, even at month-end.', tone: 'amber' },
+  { name: 'Vikram Mehta', role: 'Director · Mehta Textiles Pvt. Ltd.', quote: 'Running four branches on a single server used to be chaos. Unique Info Systems deployed Server edition in a weekend and trained our staff. Month-end closing is finally painless.', tone: 'teal' },
 ];
 
 function initials(name) {
