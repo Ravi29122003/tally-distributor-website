@@ -578,4 +578,49 @@ export const productsData = {
       showSecondary: false,
     },
   },
+  zayaka: {
+    slug: 'zayaka',
+    eyebrow: 'Products · Zayaka',
+    title: 'Zayaka',
+    tagline: 'Restaurant and counter-sale billing from SoftTrade',
+    description: 'Zayaka is SoftTrade\'s Windows-based billing product for restaurants, fast-food outlets and counter-sale businesses. We resell and support it locally in Jaipur. The confirmed core is table-wise KOT printing and sales invoicing — because we believe in honest positioning over long feature lists, we recommend a quick walkthrough to judge the fit before you buy.',
+    pricingTiers: [
+      {
+        label: 'Single Counter',
+        contactForPricing: true,
+        highlights: [
+          'Windows desktop install',
+          'KOT and counter billing',
+          'Free demo before you commit',
+          'Local Jaipur support',
+        ],
+      },
+    ],
+    features: [
+      'Table-wise KOT (Kitchen Order Ticket) printing',
+      'Counter sale and sales invoice generation',
+      'Runs offline on Windows — no internet needed',
+      'Supported locally by our Jaipur team',
+    ],
+    additionalFeaturesHeading: 'Before you buy',
+    additionalFeatures: [
+      'We will give you an honest, no-pressure product demo on your own menu data',
+      'We will clarify what\'s available, what\'s not, and what can be customised',
+      'We will help you compare against Petpooja, Gofrugal and other cloud alternatives',
+      'If Zayaka isn\'t the right fit for your restaurant, we\'ll say so',
+    ],
+    additionalFeaturesFootnote: 'We only list features we can demonstrate live. Zayaka is a niche product — it may be right for your counter, or it may not. A 20-minute demo will tell you.',
+    notes: [
+      'Ideal for: single-outlet restaurants, fast-food counters, cafes, bakeries and dhabas with counter or table-based billing.',
+      'Not for: multi-outlet chains needing cloud sync, Zomato/Swiggy integration, or Kitchen Display Systems — consider Petpooja, Gofrugal or Restroworks for those use cases.',
+      'Final pricing depends on customisation scope. Contact us for a tailored quote.',
+    ],
+    finalCta: {
+      heading: 'Thinking about Zayaka for your restaurant?',
+      body: 'Call or WhatsApp us for a free 20-minute demo. We\'ll run through the product on your menu and help you decide honestly. No obligation, no hard sell.',
+      primaryLabel: 'Book a free demo',
+      primaryUrl: '/contact',
+      showSecondary: false,
+    },
+  },
 };
