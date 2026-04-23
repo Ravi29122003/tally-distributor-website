@@ -452,5 +452,12 @@ export const productsData = {
       'Includes free installation, data setup and user training in Jaipur. Outside Jaipur handled remotely or by visit as agreed.',
       'Annual maintenance contract (AMC) available separately to cover updates, compliance changes and priority support.',
     ],
+    finalCta: {
+      heading: 'Ready to see SoftTrade-Mandi in action?',
+      body: 'Book a demo with us. We\'ll walk you through the Mahajani modules on your own data and answer every question — no hard selling.',
+      primaryLabel: 'Book a demo',
+      primaryUrl: '/contact',
+      showSecondary: false,
+    },
   },
 };

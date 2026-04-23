@@ -25,6 +25,15 @@ import { Icon, Reveal } from '../app';
  *   ],
  *   features: string[],           // shared "What you get" list
  *   notes?: string[],             // optional fine-print (e.g. "+18% GST")
+ *   finalCta?: {                  // optional — override the "Ready to get started?" bottom strip
+ *     heading?: string,
+ *     body?: string,
+ *     primaryLabel?: string,
+ *     primaryUrl?: string,        // / for internal Link, https:// for external
+ *     secondaryLabel?: string,
+ *     secondaryUrl?: string,
+ *     showSecondary?: boolean,    // default: true when the first pricing tier has an external ctaUrl
+ *   },
  * }
  */
 
@@ -125,6 +134,19 @@ export default function ProductPricingPage({ product }) {
   const tiers = product.pricingTiers || [];
   const primaryCtaUrl = tiers[0]?.ctaUrl;
 
+  const defaultFinal = {
+    heading: 'Ready to get started?',
+    body: 'Talk to us about the right edition for your business, or head straight to Tally.com to buy.',
+    primaryLabel: 'Contact us',
+    primaryUrl: '/contact',
+    secondaryLabel: 'Buy on Tally.com',
+    secondaryUrl: primaryCtaUrl,
+    showSecondary: !!primaryCtaUrl,
+  };
+  const finalCta = { ...defaultFinal, ...(product.finalCta || {}) };
+  const primaryIsInternal = finalCta.primaryUrl?.startsWith('/');
+  const secondaryIsInternal = finalCta.secondaryUrl?.startsWith('/');
+
   return (
     <>
       {/* Hero */}
@@ -218,27 +240,47 @@ export default function ProductPricingPage({ product }) {
         <div className="mx-auto max-w-5xl px-5 sm:px-8">
           <div className="rounded-3xl border border-navy-900/10 bg-navy-50/60 p-8 text-center shadow-card sm:p-12">
             <h2 className="font-display text-[28px] font-bold leading-[1.2] text-navy-900 sm:text-[34px]">
-              Ready to get started?
+              {finalCta.heading}
             </h2>
             <p className="mx-auto mt-3 max-w-xl text-[15.5px] leading-[1.6] text-navy-900/65">
-              Talk to us about the right edition for your business, or head straight to Tally.com to buy.
+              {finalCta.body}
             </p>
             <div className="mt-7 flex flex-wrap items-center justify-center gap-3">
-              <Link
-                to="/contact"
-                className="btn-lift btn-primary inline-flex items-center gap-2 rounded-full bg-navy-900 px-5 py-3 text-[14.5px] font-semibold text-white shadow-card"
-              >
-                Contact us <Icon name="arrow-right" size={15} />
-              </Link>
-              {primaryCtaUrl && (
+              {primaryIsInternal ? (
+                <Link
+                  to={finalCta.primaryUrl}
+                  className="btn-lift btn-primary inline-flex items-center gap-2 rounded-full bg-navy-900 px-5 py-3 text-[14.5px] font-semibold text-white shadow-card"
+                >
+                  {finalCta.primaryLabel} <Icon name="arrow-right" size={15} />
+                </Link>
+              ) : (
                 <a
-                  href={primaryCtaUrl}
+                  href={finalCta.primaryUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="btn-lift inline-flex items-center gap-2 rounded-full bg-orange-600 px-5 py-3 text-[14.5px] font-semibold text-white shadow-card hover:bg-orange-700"
+                  className="btn-lift btn-primary inline-flex items-center gap-2 rounded-full bg-navy-900 px-5 py-3 text-[14.5px] font-semibold text-white shadow-card"
                 >
-                  Buy on Tally.com <Icon name="arrow-right" size={15} />
+                  {finalCta.primaryLabel} <Icon name="arrow-right" size={15} />
                 </a>
+              )}
+              {finalCta.showSecondary && finalCta.secondaryUrl && (
+                secondaryIsInternal ? (
+                  <Link
+                    to={finalCta.secondaryUrl}
+                    className="btn-lift inline-flex items-center gap-2 rounded-full bg-orange-600 px-5 py-3 text-[14.5px] font-semibold text-white shadow-card hover:bg-orange-700"
+                  >
+                    {finalCta.secondaryLabel} <Icon name="arrow-right" size={15} />
+                  </Link>
+                ) : (
+                  <a
+                    href={finalCta.secondaryUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn-lift inline-flex items-center gap-2 rounded-full bg-orange-600 px-5 py-3 text-[14.5px] font-semibold text-white shadow-card hover:bg-orange-700"
+                  >
+                    {finalCta.secondaryLabel} <Icon name="arrow-right" size={15} />
+                  </a>
+                )
               )}
             </div>
           </div>
