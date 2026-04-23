@@ -593,6 +593,56 @@ function ProductsIndex() {
     </>
   );
 }
+function TallyIndex() {
+  return (
+    <>
+      <PageHero
+        eyebrow="All Tally"
+        title="TallyPrime — licensing, implementation, support"
+        sub="Authorised Tally 5-Star Partner since 2009. Everything from buying your first licence to customising TDL, deploying Server edition, and migrating from Tally.ERP 9."
+      />
+
+      <section className="border-t border-navy-900/8 bg-white py-16 sm:py-20">
+        <div className="mx-auto max-w-7xl px-5 sm:px-8">
+          <Reveal>
+            <div className="flex items-end justify-between gap-4">
+              <div>
+                <div className="text-[11px] font-bold uppercase tracking-[0.18em] text-teal-700">Section 01</div>
+                <h2 className="font-display mt-2 text-[28px] font-bold leading-[1.2] text-navy-900 sm:text-[34px]">
+                  Tally Products
+                </h2>
+                <p className="mt-2 max-w-2xl text-[15px] leading-[1.55] text-navy-900/65">
+                  Every TallyPrime edition at partner-channel rates — Silver, Gold, Server, Auditors, Virtual User, Mobile App, and upgrade options.
+                </p>
+              </div>
+            </div>
+          </Reveal>
+          <CardGrid items={TALLY_PRODUCTS} />
+        </div>
+      </section>
+
+      <section className="border-t border-navy-900/8 bg-navy-50/30 py-16 sm:py-20">
+        <div className="mx-auto max-w-7xl px-5 sm:px-8">
+          <Reveal>
+            <div className="flex items-end justify-between gap-4">
+              <div>
+                <div className="text-[11px] font-bold uppercase tracking-[0.18em] text-teal-700">Section 02</div>
+                <h2 className="font-display mt-2 text-[28px] font-bold leading-[1.2] text-navy-900 sm:text-[34px]">
+                  Tally Services
+                </h2>
+                <p className="mt-2 max-w-2xl text-[15px] leading-[1.55] text-navy-900/65">
+                  Beyond licensing: implementation, training, customisation, AMC, cloud hosting, TSS renewal, and Zoho integration — delivered end-to-end by our Jaipur team.
+                </p>
+              </div>
+            </div>
+          </Reveal>
+          <CardGrid items={TALLY_SERVICES} />
+        </div>
+      </section>
+    </>
+  );
+}
+
 function ServicesIndex() {
   return (
     <Placeholder eyebrow="Services" title="Everything we do " accent="beyond licensing" sub="Implementation, training, customisation, AMC, cloud, TSS renewal and Zoho integration — delivered by a team that has done this 500+ times.">
@@ -681,6 +731,7 @@ function RouterApp() {
 
           {/* Products */}
           <Route path="products"               element={<ProductsIndex />} />
+          <Route path="tally"                  element={<TallyIndex />} />
           <Route path="products/silver"        element={<ProductPricingPage product={productsData.silver} />} />
           <Route path="products/gold"          element={<ProductPricingPage product={productsData.gold} />} />
           <Route path="products/server"        element={<ProductPricingPage product={productsData.server} />} />
