@@ -11,9 +11,10 @@ import { Icon, Reveal } from '../app';
  *   description: string,          // 2-3 sentence positioning
  *   pricingTiers: [               // 1-4 pricing cards (Server has 1, others have up to 4)
  *     {
- *       label: string,            // e.g. "1 Month", "Lifetime"
- *       price?: number,           // e.g. 750, 22500 — ignored if priceLabel is set
+ *       label: string,            // e.g. "1 Month", "Lifetime", "Enterprise"
+ *       price?: number,           // e.g. 750, 22500 — ignored if priceLabel or contactForPricing is set
  *       priceLabel?: string,      // overrides ₹-formatted price, e.g. "Included", "Custom"
+ *       contactForPricing?: bool, // if true, shows "Contact for pricing" and CTA becomes "Get a Quote" → /contact
  *       originalPrice?: number,   // strikethrough price if discounted
  *       discount?: string,        // e.g. "Get 5% off"
  *       effectiveMonthly?: string,// e.g. "Effective price 712.5/Month"
@@ -34,8 +35,10 @@ function formatPrice(n) {
 function PricingCard({ tier }) {
   const ctaClassName =
     'btn-lift inline-flex w-full items-center justify-center gap-2 rounded-xl bg-orange-600 px-4 py-3 text-[14.5px] font-semibold text-white shadow-card hover:bg-orange-700';
-  const ctaLabel = tier.ctaLabel || 'Buy Now';
-  const isInternal = tier.ctaUrl?.startsWith('/');
+  const isContactForPricing = tier.contactForPricing === true;
+  const ctaLabel = isContactForPricing ? (tier.ctaLabel || 'Get a Quote') : (tier.ctaLabel || 'Buy Now');
+  const effectiveCtaUrl = isContactForPricing ? (tier.ctaUrl || '/contact') : tier.ctaUrl;
+  const isInternal = effectiveCtaUrl?.startsWith('/');
 
   return (
     <div className="relative flex h-full flex-col rounded-2xl border border-navy-900/8 bg-white p-5 shadow-card sm:p-6">
@@ -50,11 +53,15 @@ function PricingCard({ tier }) {
       </div>
 
       <div className="mt-4 flex items-baseline gap-2">
-        <span className="font-display text-[40px] font-bold leading-none text-navy-900 sm:text-[42px]">
-          {tier.priceLabel ? tier.priceLabel : `₹${formatPrice(tier.price)}`}
+        <span className={`font-display font-bold text-navy-900 ${isContactForPricing ? 'text-[26px] leading-snug sm:text-[28px]' : 'text-[40px] leading-none sm:text-[42px]'}`}>
+          {isContactForPricing
+            ? 'Contact for pricing'
+            : tier.priceLabel
+              ? tier.priceLabel
+              : `₹${formatPrice(tier.price)}`}
         </span>
       </div>
-      {!tier.priceLabel && (
+      {!tier.priceLabel && !isContactForPricing && (
         <div className="mt-1 text-[12.5px] text-navy-900/55">+18% GST</div>
       )}
 
@@ -85,13 +92,13 @@ function PricingCard({ tier }) {
 
       <div className="mt-auto pt-6">
         {isInternal ? (
-          <Link to={tier.ctaUrl} className={ctaClassName}>
+          <Link to={effectiveCtaUrl} className={ctaClassName}>
             {ctaLabel}
             <Icon name="arrow-right" size={15} />
           </Link>
         ) : (
           <a
-            href={tier.ctaUrl}
+            href={effectiveCtaUrl}
             target="_blank"
             rel="noopener noreferrer"
             className={ctaClassName}
