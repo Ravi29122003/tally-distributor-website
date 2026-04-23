@@ -23,7 +23,10 @@ import { Icon, Reveal } from '../app';
  *       ctaLabel?: string,        // default "Buy Now"
  *     }
  *   ],
- *   features: string[],           // shared "What you get" list
+ *   features: string[],           // main "What you get" list
+ *   additionalFeatures?: string[],// optional second list (e.g. "What you can typically expect")
+ *   additionalFeaturesHeading?: string, // heading for the second list; defaults to "What you can typically expect"
+ *   additionalFeaturesFootnote?: string, // italic footnote below the second list (e.g. "Verified with vendor on request")
  *   notes?: string[],             // optional fine-print (e.g. "+18% GST")
  *   finalCta?: {                  // optional — override the "Ready to get started?" bottom strip
  *     heading?: string,
@@ -231,6 +234,33 @@ export default function ProductPricingPage({ product }) {
                 </Reveal>
               ))}
             </ul>
+
+            {product.additionalFeatures?.length > 0 && (
+              <>
+                <Reveal>
+                  <h3 className="font-display mt-16 max-w-3xl text-[22px] font-bold leading-[1.25] text-navy-900 sm:text-[26px]">
+                    {product.additionalFeaturesHeading || 'What you can typically expect'}
+                  </h3>
+                </Reveal>
+                <ul className="mt-6 grid gap-4 sm:grid-cols-2">
+                  {product.additionalFeatures.map((f, i) => (
+                    <Reveal key={f} delay={i * 40}>
+                      <li className="flex items-start gap-3 rounded-2xl border border-navy-900/8 bg-white/60 p-4">
+                        <span className="mt-0.5 inline-flex h-7 w-7 flex-none items-center justify-center rounded-lg bg-navy-900/5 text-navy-900/60">
+                          <Icon name="arrow-right" size={13} strokeWidth={2.5} />
+                        </span>
+                        <span className="text-[14.5px] leading-[1.55] text-navy-900/70">{f}</span>
+                      </li>
+                    </Reveal>
+                  ))}
+                </ul>
+                {product.additionalFeaturesFootnote && (
+                  <p className="mt-5 max-w-3xl text-[13px] italic text-navy-900/55">
+                    {product.additionalFeaturesFootnote}
+                  </p>
+                )}
+              </>
+            )}
           </div>
         </section>
       )}
