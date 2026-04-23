@@ -321,7 +321,7 @@ function RouterNav() {
           <a href={telHref} className="btn-lift mb-2.5 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-navy-900 px-4 py-3.5 text-[15px] font-semibold text-white">
             <Icon name="phone" size={15} /> Call {siteConfig.phones.sales}
           </a>
-          <a href={waLink("I'd like to know more about TallyPrime editions.")} target="_blank" rel="noreferrer"
+          <a href={waLink("I'd like to know more about your software products and get a quote.")} target="_blank" rel="noreferrer"
             className="btn-lift inline-flex w-full items-center justify-center gap-2 rounded-xl border border-navy-900/10 bg-white px-4 py-3.5 text-[15px] font-semibold text-navy-900">
             <span className="inline-flex h-5 w-5 items-center justify-center rounded-full bg-teal-500 text-white">
               <WhatsAppGlyph />
