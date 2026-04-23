@@ -546,9 +546,51 @@ function HomePage() { return <HomeSections />; }
 
 function ProductsIndex() {
   return (
-    <Placeholder eyebrow="Products" title="The complete TallyPrime " accent="line-up" sub="Everything you need to license, scale and run TallyPrime — from single-user editions to enterprise server deployments and cloud access.">
-      <SubPageGrid items={TALLY_PRODUCTS} eyebrow="Products" />
-    </Placeholder>
+    <>
+      <PageHero
+        eyebrow="All Products"
+        title="Business software we sell and support"
+        sub="From our own SoftTrade suite to TallyPrime licensing — all supported end-to-end by our Jaipur team."
+      />
+
+      <section className="border-t border-navy-900/8 bg-white py-16 sm:py-20">
+        <div className="mx-auto max-w-7xl px-5 sm:px-8">
+          <Reveal>
+            <div className="flex items-end justify-between gap-4">
+              <div>
+                <div className="text-[11px] font-bold uppercase tracking-[0.18em] text-teal-700">Section 01</div>
+                <h2 className="font-display mt-2 text-[28px] font-bold leading-[1.2] text-navy-900 sm:text-[34px]">
+                  Our own software
+                </h2>
+                <p className="mt-2 max-w-2xl text-[15px] leading-[1.55] text-navy-900/65">
+                  SoftTrade applications we sell, deploy and support directly — built for Indian agri trade, cold chain and F&B billing.
+                </p>
+              </div>
+            </div>
+          </Reveal>
+          <CardGrid items={PRODUCTS_NON_TALLY} />
+        </div>
+      </section>
+
+      <section className="border-t border-navy-900/8 bg-navy-50/30 py-16 sm:py-20">
+        <div className="mx-auto max-w-7xl px-5 sm:px-8">
+          <Reveal>
+            <div className="flex items-end justify-between gap-4">
+              <div>
+                <div className="text-[11px] font-bold uppercase tracking-[0.18em] text-teal-700">Section 02</div>
+                <h2 className="font-display mt-2 text-[28px] font-bold leading-[1.2] text-navy-900 sm:text-[34px]">
+                  Tally Products
+                </h2>
+                <p className="mt-2 max-w-2xl text-[15px] leading-[1.55] text-navy-900/65">
+                  Authorised TallyPrime partner — licensing, implementation, TDL customisation and TSS renewal across all Tally editions.
+                </p>
+              </div>
+            </div>
+          </Reveal>
+          <CardGrid items={TALLY_PRODUCTS} />
+        </div>
+      </section>
+    </>
   );
 }
 function ServicesIndex() {
@@ -559,28 +601,34 @@ function ServicesIndex() {
   );
 }
 
+function CardGrid({ items }) {
+  return (
+    <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      {items.map((it, i) => (
+        <Reveal key={it.to} delay={i * 60}>
+          <Link to={it.to}
+            className="btn-lift group flex h-full flex-col gap-3 rounded-2xl border border-navy-900/8 bg-white p-6 shadow-card hover:border-teal-500/30 hover:shadow-card-lg">
+            <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-teal-50 text-teal-600 group-hover:bg-teal-500 group-hover:text-white transition-colors">
+              <Icon name="arrow-right" size={18} />
+            </span>
+            <h3 className="font-display text-[20px] font-bold text-navy-900">{it.label}</h3>
+            <p className="text-[14px] leading-[1.6] text-navy-900/65">{it.desc}</p>
+            <span className="mt-auto inline-flex items-center gap-1.5 pt-3 text-[13px] font-semibold text-teal-700">
+              Learn more <Icon name="arrow-right" size={13} />
+            </span>
+          </Link>
+        </Reveal>
+      ))}
+    </div>
+  );
+}
+
 function SubPageGrid({ items, eyebrow }) {
   return (
     <section className="border-t border-navy-900/8 bg-white py-20 sm:py-24">
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
         <Eyebrow>{eyebrow}</Eyebrow>
-        <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {items.map((it, i) => (
-            <Reveal key={it.to} delay={i * 60}>
-              <Link to={it.to}
-                className="btn-lift group flex h-full flex-col gap-3 rounded-2xl border border-navy-900/8 bg-white p-6 shadow-card hover:border-teal-500/30 hover:shadow-card-lg">
-                <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-teal-50 text-teal-600 group-hover:bg-teal-500 group-hover:text-white transition-colors">
-                  <Icon name="arrow-right" size={18} />
-                </span>
-                <h3 className="font-display text-[20px] font-bold text-navy-900">{it.label}</h3>
-                <p className="text-[14px] leading-[1.6] text-navy-900/65">{it.desc}</p>
-                <span className="mt-auto inline-flex items-center gap-1.5 pt-3 text-[13px] font-semibold text-teal-700">
-                  Learn more <Icon name="arrow-right" size={13} />
-                </span>
-              </Link>
-            </Reveal>
-          ))}
-        </div>
+        <CardGrid items={items} />
       </div>
     </section>
   );
