@@ -28,6 +28,17 @@ import { Icon, Reveal } from '../app';
  *   additionalFeaturesHeading?: string, // heading for the second list; defaults to "What you can typically expect"
  *   additionalFeaturesFootnote?: string, // italic footnote below the second list (e.g. "Verified with vendor on request")
  *   notes?: string[],             // optional fine-print (e.g. "+18% GST")
+ *   valueProps?: Array<{ icon: string, label: string, desc: string }>,     // 4-tile strip under hero
+ *   whatIs?: {                                                             // informational long-form section
+ *     heading: string,
+ *     paragraphs: string[],                                                // array of prose paragraphs
+ *   },
+ *   howItWorks?: {                                                         // 4-step process
+ *     heading?: string,                                                    // defaults to "How It Works"
+ *     steps: Array<{ title: string, desc: string }>,
+ *   },
+ *   faqs?: Array<{ question: string, answer: string }>,                    // accordion FAQ
+ *   relatedServices?: Array<{ label: string, desc: string, to: string }>,  // 3 cross-sell cards
  *   finalCta?: {                  // optional — override the "Ready to get started?" bottom strip
  *     heading?: string,
  *     body?: string,
@@ -136,6 +147,7 @@ export default function ProductPricingPage({ product }) {
 
   const tiers = product.pricingTiers || [];
   const primaryCtaUrl = tiers[0]?.ctaUrl;
+  const { valueProps, whatIs, howItWorks, faqs, relatedServices } = product;
 
   const defaultFinal = {
     heading: 'Ready to get started?',
@@ -183,6 +195,29 @@ export default function ProductPricingPage({ product }) {
         </div>
       </section>
 
+      {/* Value props 4-tile strip */}
+      {valueProps && valueProps.length > 0 && (
+        <section className="border-t border-navy-900/8 bg-navy-50/40 py-10 sm:py-12">
+          <div className="mx-auto max-w-6xl px-5 sm:px-8">
+            <ul className="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
+              {valueProps.map((vp, i) => (
+                <Reveal key={vp.label} delay={i * 40}>
+                  <li className="flex gap-3 rounded-2xl border border-navy-900/8 bg-white p-4 shadow-card">
+                    <span className="mt-0.5 inline-flex h-10 w-10 flex-none items-center justify-center rounded-xl bg-teal-50 text-teal-600">
+                      <Icon name={vp.icon} size={18} strokeWidth={2} />
+                    </span>
+                    <div className="min-w-0">
+                      <div className="text-[14px] font-bold text-navy-900 leading-tight">{vp.label}</div>
+                      <div className="mt-1 text-[13px] leading-[1.5] text-navy-900/65">{vp.desc}</div>
+                    </div>
+                  </li>
+                </Reveal>
+              ))}
+            </ul>
+          </div>
+        </section>
+      )}
+
       {/* Pricing */}
       {tiers.length > 0 && (
         <section className="border-t border-navy-900/8 bg-white py-20 sm:py-24">
@@ -208,6 +243,27 @@ export default function ProductPricingPage({ product }) {
                 ))}
               </div>
             )}
+          </div>
+        </section>
+      )}
+
+      {/* What is X — long-form overview */}
+      {whatIs && whatIs.paragraphs?.length > 0 && (
+        <section className="border-t border-navy-900/8 bg-white py-16 sm:py-20">
+          <div className="mx-auto max-w-3xl px-5 sm:px-8">
+            <Reveal>
+              <div className="text-[11px] font-bold uppercase tracking-[0.18em] text-teal-700">Overview</div>
+              <h2 className="font-display mt-2 text-[28px] font-bold leading-[1.2] text-navy-900 sm:text-[34px]">
+                {whatIs.heading}
+              </h2>
+            </Reveal>
+            <div className="mt-6 space-y-5">
+              {whatIs.paragraphs.map((p, i) => (
+                <Reveal key={i} delay={i * 40}>
+                  <p className="text-[16px] leading-[1.65] text-navy-900/75">{p}</p>
+                </Reveal>
+              ))}
+            </div>
           </div>
         </section>
       )}
@@ -261,6 +317,94 @@ export default function ProductPricingPage({ product }) {
                 )}
               </>
             )}
+          </div>
+        </section>
+      )}
+
+      {/* How It Works — 4-step process */}
+      {howItWorks && howItWorks.steps?.length > 0 && (
+        <section className="border-t border-navy-900/8 bg-navy-50/30 py-16 sm:py-20">
+          <div className="mx-auto max-w-5xl px-5 sm:px-8">
+            <Reveal className="text-center">
+              <div className="text-[11px] font-bold uppercase tracking-[0.18em] text-teal-700">Process</div>
+              <h2 className="font-display mt-2 text-[28px] font-bold leading-[1.2] text-navy-900 sm:text-[34px]">
+                {howItWorks.heading || 'How It Works'}
+              </h2>
+            </Reveal>
+            <ol className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+              {howItWorks.steps.map((step, i) => {
+                const colors = ['bg-teal-500 text-white', 'bg-orange-600 text-white', 'bg-navy-900 text-white', 'bg-teal-500 text-white'];
+                return (
+                  <Reveal key={step.title} delay={i * 80}>
+                    <li className="text-center">
+                      <span className={`inline-flex h-12 w-12 items-center justify-center rounded-full font-display text-[20px] font-bold shadow-card ${colors[i % colors.length]}`}>
+                        {i + 1}
+                      </span>
+                      <h3 className="font-display mt-4 text-[17px] font-bold text-navy-900">{step.title}</h3>
+                      <p className="mt-2 text-[14px] leading-[1.55] text-navy-900/65">{step.desc}</p>
+                    </li>
+                  </Reveal>
+                );
+              })}
+            </ol>
+          </div>
+        </section>
+      )}
+
+      {/* FAQ accordion */}
+      {faqs && faqs.length > 0 && (
+        <section className="border-t border-navy-900/8 bg-white py-16 sm:py-20">
+          <div className="mx-auto max-w-3xl px-5 sm:px-8">
+            <Reveal>
+              <div className="text-[11px] font-bold uppercase tracking-[0.18em] text-teal-700">FAQ</div>
+              <h2 className="font-display mt-2 text-[28px] font-bold leading-[1.2] text-navy-900 sm:text-[34px]">
+                Frequently Asked Questions
+              </h2>
+            </Reveal>
+            <div className="mt-8 space-y-3">
+              {faqs.map((f, i) => (
+                <Reveal key={f.question} delay={i * 30}>
+                  <details className="group rounded-2xl border border-navy-900/8 bg-white shadow-card overflow-hidden">
+                    <summary className="flex cursor-pointer items-center justify-between gap-4 px-5 py-4 text-[15.5px] font-semibold text-navy-900 hover:bg-navy-50/50 transition-colors">
+                      <span>{f.question}</span>
+                      <Icon name="chevron-down" size={18} className="flex-none transition-transform group-open:rotate-180" />
+                    </summary>
+                    <div className="border-t border-navy-900/8 bg-navy-50/30 px-5 py-4 text-[14.5px] leading-[1.65] text-navy-900/75">
+                      {f.answer}
+                    </div>
+                  </details>
+                </Reveal>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Related services 3-card strip */}
+      {relatedServices && relatedServices.length > 0 && (
+        <section className="border-t border-navy-900/8 bg-navy-50/30 py-16 sm:py-20">
+          <div className="mx-auto max-w-6xl px-5 sm:px-8">
+            <Reveal className="text-center">
+              <div className="text-[11px] font-bold uppercase tracking-[0.18em] text-teal-700">Related</div>
+              <h2 className="font-display mt-2 text-[28px] font-bold leading-[1.2] text-navy-900 sm:text-[34px]">
+                Related Services
+              </h2>
+            </Reveal>
+            <ul className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {relatedServices.map((rs, i) => (
+                <Reveal key={rs.to} delay={i * 60}>
+                  <li>
+                    <Link to={rs.to} className="group block h-full rounded-2xl border border-navy-900/8 bg-white p-5 shadow-card transition-all hover:-translate-y-1 hover:border-teal-500/40">
+                      <h3 className="font-display text-[17px] font-bold text-navy-900">{rs.label}</h3>
+                      <p className="mt-2 text-[14px] leading-[1.55] text-navy-900/65">{rs.desc}</p>
+                      <span className="mt-4 inline-flex items-center gap-1.5 text-[13.5px] font-semibold text-teal-700 group-hover:text-teal-800">
+                        Learn More <Icon name="arrow-right" size={13} />
+                      </span>
+                    </Link>
+                  </li>
+                </Reveal>
+              ))}
+            </ul>
           </div>
         </section>
       )}
