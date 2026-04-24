@@ -623,4 +623,53 @@ export const productsData = {
       showSecondary: false,
     },
   },
+  customization: {
+    slug: 'customization',
+    eyebrow: 'Services · Tally Customisation',
+    title: 'Tally Customisation (TDL)',
+    tagline: 'Custom vouchers, reports, print formats and modules that fit how you actually run your business',
+    description: 'TDL (Tally Definition Language) lets a certified partner modify almost every user-facing element in TallyPrime — input screens, voucher types, masters, print formats, reports and business logic — without breaking upgrade compatibility. As a Tally 5-Star Partner with an in-house development team, we build both narrow enhancements (a new field on a sales voucher, a custom GSTR-1 summary) and full industry modules.',
+    pricingTiers: [
+      {
+        label: 'Scoped Project',
+        contactForPricing: true,
+        highlights: [
+          'Fixed quote after a scoped requirements workshop',
+          'Built in sandbox TDL, tested, then deployed',
+          'Source code handed over on project close',
+          'Upgrade-compatible — tested against current TallyPrime',
+        ],
+      },
+    ],
+    features: [
+      'Custom voucher types — production, stock transfer with approvals, maker-checker workflows',
+      'Custom reports — tabular, columnar, matrix, hierarchical with auto-column support',
+      'Invoice and print-format customisation — branded layouts, pre-printed stationery, thermal/POS, bilingual print',
+      'User-defined fields (UDFs) — delivery date, agent, vehicle/LR number, lot/batch, MRP, last-purchase price',
+      'Business logic modules — BOM with sub-assemblies, auto-consumption on production, scheme/discount engines, credit-limit enforcement',
+      'Import utilities — scheduled Excel-to-Tally master and voucher import',
+      'Integration hooks — TDL-driven HTTP/SOAP calls, ODBC exposure, interfaces to .NET, Java, PHP, SQL applications',
+      'Voucher-level security — user rights, approval workflows, audit trail',
+    ],
+    additionalFeaturesHeading: 'Typical Rajasthan scenarios we address',
+    additionalFeatures: [
+      'Bhilwara textile mills — production vouchers that consume roving/raw cotton by recipe, with lot numbers flowing from production to packing list to sales invoice',
+      'Kishangarh marble traders — slab-wise inventory with block number, dimensions (L×W), thickness and area in sq.ft., invoices showing per-slab and per-sq.ft. pricing',
+      'APMC / commission agents in Jaipur and Bikaner — sales bills that auto-calculate commission, dami, hamali, bardana, freight and mandi cess with farmer-wise patti printing',
+      'CA firms — one-click B2B/B2C HSN summaries and GSTR-1 summary with bill-wise negative-stock flags before filing',
+    ],
+    additionalFeaturesFootnote: 'Each industry scenario above represents a common need we\'ve encountered. Actual deliverables depend on your specific workflow — we document the full scope in a requirements workshop before quotation.',
+    notes: [
+      'Engagement models: fixed-price for defined scope (most common), hourly for post-go-live tweaks, retainer for enterprise customers with an ongoing roadmap.',
+      'All TDL is written against documented APIs and tested against the current TallyPrime release to stay upgrade-compatible.',
+      'Source code (.tdl / .tcp) is handed over on project close — no vendor lock-in.',
+    ],
+    finalCta: {
+      heading: 'Have a Tally customisation in mind?',
+      body: 'Share what you\'re trying to achieve — even if it\'s vague — and we\'ll run a 30-minute requirements workshop, sketch an approach, and give you a scoped quote. No obligation.',
+      primaryLabel: 'Start a conversation',
+      primaryUrl: '/contact',
+      showSecondary: false,
+    },
+  },
 };

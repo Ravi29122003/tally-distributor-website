@@ -690,7 +690,6 @@ function makeSub(eyebrow, title, sub, accent) {
 }
 
 // Service sub-pages
-const CustomizationPage       = makeSub('Services · Custom',    'Tally ',         'Custom TDL modules, bespoke reports, tailored invoices — shaped around your exact workflow.',                                 'Customization');
 const TrainingPage            = makeSub('Services · Training',  'Corporate ',     'Structured 1-on-1 and group training for teams new to Tally, or upgrading from older versions.',                             'Training');
 const IntegrationPage         = makeSub('Services · Integ',     'Tally ',         'Connect TallyPrime with your CRM, e-commerce, banking or any custom system — end-to-end.',                                    'Integration');
 const SupportPage             = makeSub('Services · Support',   'Support ',       'Dedicated AMC plans with priority response times and guaranteed SLAs — we pick up the phone.',                                'Services');
@@ -748,7 +747,7 @@ function RouterApp() {
 
           {/* Services */}
           <Route path="services"               element={<ServicesIndex />} />
-          <Route path="services/customization" element={<CustomizationPage />} />
+          <Route path="services/customization" element={<ProductPricingPage product={productsData.customization} />} />
           <Route path="services/training"      element={<TrainingPage />} />
           <Route path="services/integration"   element={<IntegrationPage />} />
           <Route path="services/support"       element={<SupportPage />} />
