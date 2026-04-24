@@ -770,4 +770,53 @@ export const productsData = {
       showSecondary: false,
     },
   },
+  training: {
+    slug: 'training',
+    eyebrow: 'Services · Corporate Training',
+    title: 'Corporate Training',
+    tagline: 'Instructor-led TallyPrime training for accounts teams, CA firms and students',
+    description: 'Structured TallyPrime training delivered at your office, online, or at our Jaipur facility. Modular format — from a one-day orientation for a new accountant to multi-week programmes covering GST, payroll, inventory and MIS. English or Hindi, bilingual where helpful. Trainers who implement Tally in the real world, not just teach from a deck.',
+    pricingTiers: [
+      {
+        label: 'Corporate Training',
+        contactForPricing: true,
+        highlights: [
+          'On-site, online or hybrid delivery',
+          'Custom curriculum around your company',
+          'Optional certification preparation',
+          'Post-training Q&A window included',
+        ],
+      },
+    ],
+    features: [
+      'TallyPrime Essential — company setup, chart of accounts, vouchers, inventory basics, banking, backup and restore',
+      'TallyPrime Professional — GST (CGST/SGST/IGST, e-invoice, e-way bill), TDS/TCS, payroll, cost centres, BOM, multi-currency',
+      'TallyPrime Advanced — multi-godown, job-work, batch/expiry/FEFO, order processing, budgets, consolidation',
+      'GST deep-dive — GSTR-1 / 3B / 2A-2B reconciliation, connected GST filing, HSN summaries',
+      'Industry-specific sessions — retail, manufacturing, distribution, CA firm workflows',
+      'Administrator training — user management, audit trail, data migration, Tally on Cloud operations',
+      'English and Hindi delivery — bilingual where helpful',
+      'Post-training support window — email and phone Q&A for a defined period after batch completion',
+    ],
+    additionalFeaturesHeading: 'Who typically enrols with us',
+    additionalFeatures: [
+      'Accounts teams at SMEs — onboarding new hires or migrating from another accounting package',
+      'CA and tax consultancy firms — training articled clerks and juniors, often quarterly refreshers',
+      'Colleges and training institutes — adding 40-60 hour TallyPrime + GST modules to B.Com, BBA and MBA programmes',
+      'Business owners — learning to read their own books, especially MIS reports like debtor ageing and gross margin',
+    ],
+    additionalFeaturesFootnote: 'We help candidates prepare for Tally Education certification where relevant. Certification issuance is handled per Tally Education Pvt. Ltd.\'s current policies.',
+    notes: [
+      'Engagement models: per-batch fixed fee for corporate on-site programmes (1-5 days), per-seat for public batches, annual retainer for CA firms and institutes, online live-instructor cohorts for distributed teams.',
+      'We prefer to train on a sandbox copy of your company data — makes the training immediately applicable. NDA signed where required.',
+      'All training uses the current TallyPrime release including Connected GST, Connected Banking, and WhatsApp-from-Tally features.',
+    ],
+    finalCta: {
+      heading: 'Planning a training programme for your team?',
+      body: 'Tell us about the team size, current Tally experience, and what business problems they need to solve. We\'ll propose a curriculum and schedule — usually within 48 hours.',
+      primaryLabel: 'Discuss a training plan',
+      primaryUrl: '/contact',
+      showSecondary: false,
+    },
+  },
 };
