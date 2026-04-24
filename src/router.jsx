@@ -691,7 +691,6 @@ function makeSub(eyebrow, title, sub, accent) {
 
 // Service sub-pages
 const SupportPage             = makeSub('Services · Support',   'Support ',       'Dedicated AMC plans with priority response times and guaranteed SLAs — we pick up the phone.',                                'Services');
-const ZohoIntegrationPage     = makeSub('Services · Zoho',      'Zoho \u2194 Tally ',  'Two-way sync between Zoho Books and TallyPrime for businesses running both, end-of-month reconciliation made painless.',   'Integration');
 
 // Offers
 const OffersPage              = makeSub('Offers',               'Current ',       'Festive and launch-period discounts on TallyPrime licences and services. Check back often — new offers added monthly.',     'Offers');
@@ -749,7 +748,7 @@ function RouterApp() {
           <Route path="services/support"       element={<SupportPage />} />
           <Route path="services/cloud"         element={<ProductPricingPage product={productsData.cloud} />} />
           <Route path="services/tss-renewal"   element={<ProductPricingPage product={productsData['tss-renewal']} />} />
-          <Route path="services/zoho"          element={<ZohoIntegrationPage />} />
+          <Route path="services/zoho"          element={<ProductPricingPage product={productsData.zoho} />} />
 
           {/* Top-level pages */}
           <Route path="about"                  element={<AboutPage />} />

@@ -870,4 +870,53 @@ export const productsData = {
       showSecondary: false,
     },
   },
+  zoho: {
+    slug: 'zoho',
+    eyebrow: 'Services · Zoho Integration',
+    title: 'Zoho Integration',
+    tagline: 'Implementation, migration and sync services for Zoho Books, Inventory, CRM and Finance Plus — alongside or instead of Tally',
+    description: 'Zoho Books is a cloud-native accounting platform tightly integrated with Zoho\'s wider suite — CRM, Inventory, People, Expense, Subscriptions. For some businesses it replaces TallyPrime. For others, the right answer is both: Tally for statutory books, Zoho for sales, inventory and subscriptions, with a sync layer in between. Because we sell Tally, build our own SoftTrade software, and implement Zoho, we\'re positioned to give an honest recommendation rather than push one tool by default.',
+    pricingTiers: [
+      {
+        label: 'Zoho Engagement',
+        contactForPricing: true,
+        highlights: [
+          'Fit-check before we quote — Zoho, Tally, or both',
+          'Fixed-price for defined implementations',
+          'Migration includes opening balance reconciliation',
+          'Post-go-live support window included',
+        ],
+      },
+    ],
+    features: [
+      'Zoho Books implementation — chart of accounts, GST, bank feeds, e-invoicing, e-way bill, payment gateway integration',
+      'Tally-to-Zoho Books migration — export masters from Tally, map to Zoho Books fields, import historical transactions, trial-balance reconciliation',
+      'Tally ↔ Zoho Books bidirectional sync — for businesses running both, using middleware to sync contacts, invoices, payments and items',
+      'Zoho Inventory + Tally — e-commerce and warehouse flows in Zoho Inventory, accounting entries posted to Tally',
+      'Zoho CRM ↔ Tally — customer and invoice data shared between sales (CRM) and accounts (Tally)',
+      'Zoho People and Payroll — HRMS in Zoho, salary journal vouchers posted to Tally monthly',
+      'Zoho Finance Plus — unified deployment of Books, Invoice, Subscriptions, Inventory, Expense, Checkout, Commerce and Payroll',
+      'User training — so your finance and ops teams are productive on Zoho within days, not weeks',
+    ],
+    additionalFeaturesHeading: 'How we help you choose between Tally and Zoho',
+    additionalFeatures: [
+      'Zoho typically wins for cloud-first, remote, service and SaaS businesses — and teams already using Zoho CRM or Zoho One',
+      'Tally typically wins for complex inventory, manufacturing, job-work, deep statutory reporting and businesses whose auditors are Tally-native',
+      'Running both is valid — Tally for statutory books and audit trail, Zoho for sales, CRM, subscriptions and e-commerce',
+      'We\'ll map your actual business flow before recommending — a 30-minute fit-check session, not a sales pitch',
+    ],
+    additionalFeaturesFootnote: 'We implement, migrate and support Zoho deployments. Zoho licence sales are handled per Zoho\'s current partner and direct-sale policies — we\'ll walk you through the right purchase path during the fit-check.',
+    notes: [
+      'Engagement models: fixed-price for defined scope (setup + migration + training + 30/60/90-day support), migration-only for customers with in-house admin, integration builds as separate projects, monthly retainer for ongoing Zoho admin.',
+      'Zoho Books, Inventory, CRM, People and Finance Plus are separate products with separate subscriptions — we scope each based on your actual use case.',
+      'Data migration timelines depend on history depth and number of companies. Small single-company migrations typically run 1-2 weeks; multi-entity migrations 3-6 weeks.',
+    ],
+    finalCta: {
+      heading: 'Zoho, Tally, or both for your business?',
+      body: 'Tell us what you\'re running today and where you want to get to. We\'ll do an honest fit-check — sometimes we recommend staying on Tally, sometimes fully migrating, sometimes running both. No tool push.',
+      primaryLabel: 'Book a 30-minute fit-check',
+      primaryUrl: '/contact',
+      showSecondary: false,
+    },
+  },
 };
