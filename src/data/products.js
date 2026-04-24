@@ -672,4 +672,53 @@ export const productsData = {
       showSecondary: false,
     },
   },
+  cloud: {
+    slug: 'cloud',
+    eyebrow: 'Services · Tally on Cloud',
+    title: 'Tally on Cloud',
+    tagline: 'Host TallyPrime on a secure cloud server — access from anywhere, across branches',
+    description: 'Tally on Cloud is your existing TallyPrime licence deployed on a cloud server (Tally\'s own Cloud Access on Oracle Cloud, or AWS) and accessed over RDP or a secure browser client. Encrypted backups, 2FA, printer redirection to your local machine — everything your accountant gets on their desktop, available from head office, warehouse, home or while travelling.',
+    pricingTiers: [
+      {
+        label: 'Cloud Deployment',
+        contactForPricing: true,
+        highlights: [
+          'Deployment on Tally Cloud Access or AWS',
+          'One-time setup + monthly per-user hosting',
+          'Licence, TSS and TVU packs billed separately',
+          'Includes user training and printer mapping',
+        ],
+      },
+    ],
+    features: [
+      'Deployment on Tally Cloud Access (Oracle Cloud Infrastructure) or AWS — Tally\'s own supported platforms',
+      'Browser-based access from Windows, Mac, or Linux via Chrome',
+      'Automatic encrypted daily backups stored in the cloud',
+      'Two-factor authentication (Tally.NET ID + Secure PIN)',
+      'Connected Banking configured for supported banks (Axis, SBI, HDFC, ICICI, Kotak and others)',
+      'Printer and peripheral mapping to your local machine over RDP',
+      'Multi-branch sync — centralised (all branches log into one server) or decentralised (branch Tally syncing to HO via Tally.NET)',
+      'Ongoing monitoring, patching, user add/remove, and TSS renewal management',
+    ],
+    additionalFeaturesHeading: 'What you\'ll need to know about licensing',
+    additionalFeatures: [
+      'Your TallyPrime licence (Silver, Gold or Server) is separate from cloud hosting — hosting is an additional cost',
+      'Virtual User (TVU) licensing applies: Silver includes 1 free TVU, Gold includes 10, Tally Server adds 20 more',
+      'Additional users beyond those included need extra TVU packs — billed annually',
+      'An active TSS subscription is required for connected features (banking, sync, remote access)',
+    ],
+    additionalFeaturesFootnote: 'We walk through the full licence, TSS and TVU math during the initial conversation so there are no surprises. Everything is billed transparently.',
+    notes: [
+      'Ideal for multi-branch businesses, CA firms, distributed finance teams, and owners who travel. Also the right answer after hardware failures or office incidents.',
+      'Stable 2–4 Mbps per concurrent user is comfortable for RDP; 10+ Mbps recommended for heavy report export.',
+      'Monthly hosting rates depend on user count, data size and RAM needs. Contact us for a detailed quote including licence and TVU.',
+    ],
+    finalCta: {
+      heading: 'Thinking about moving Tally to the cloud?',
+      body: 'We\'ll review your current setup, branch structure and user count, then walk you through the options — Tally Cloud Access vs AWS, centralised vs decentralised sync, and the real total cost. No hard sell.',
+      primaryLabel: 'Start with a 20-minute call',
+      primaryUrl: '/contact',
+      showSecondary: false,
+    },
+  },
 };
