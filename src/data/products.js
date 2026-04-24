@@ -678,6 +678,28 @@ export const productsData = {
     title: 'Tally on Cloud',
     tagline: 'Host TallyPrime on a secure cloud server — access from anywhere, across branches',
     description: 'Tally on Cloud is your existing TallyPrime licence deployed on a cloud server (Tally\'s own Cloud Access on Oracle Cloud, or AWS) and accessed over RDP or a secure browser client. Encrypted backups, 2FA, printer redirection to your local machine — everything your accountant gets on their desktop, available from head office, warehouse, home or while travelling.',
+    valueProps: [
+      {
+        icon: 'globe',
+        label: 'Anywhere Access',
+        desc: 'Work on live TallyPrime data from office, home, warehouse or while travelling.',
+      },
+      {
+        icon: 'shield',
+        label: 'Encrypted & Secure',
+        desc: 'Two-factor auth, encrypted data in transit and at rest, automatic daily backups.',
+      },
+      {
+        icon: 'server',
+        label: 'Zero IT Hassle',
+        desc: 'We provision, patch, back up and monitor — you just log in and work.',
+      },
+      {
+        icon: 'refresh-cw',
+        label: 'Multi-Branch Sync',
+        desc: 'All branches see the same books in real time, or sync on schedule — your choice.',
+      },
+    ],
     pricingTiers: [
       {
         label: 'Cloud Deployment',
@@ -712,6 +734,86 @@ export const productsData = {
       'Ideal for multi-branch businesses, CA firms, distributed finance teams, and owners who travel. Also the right answer after hardware failures or office incidents.',
       'Stable 2–4 Mbps per concurrent user is comfortable for RDP; 10+ Mbps recommended for heavy report export.',
       'Monthly hosting rates depend on user count, data size and RAM needs. Contact us for a detailed quote including licence and TVU.',
+    ],
+    whatIs: {
+      heading: 'What is Tally on Cloud?',
+      paragraphs: [
+        'Tally on Cloud is not a different product. It\'s your existing TallyPrime licence deployed on a cloud server instead of a single office PC — accessed over a secure Remote Desktop session or a browser client. Everything your accountant does on desktop Tally works the same way, from any laptop, tablet or phone with an internet connection.',
+        'The most common reasons businesses move to cloud are: growing beyond one office, adding remote staff, reducing IT headache after server crashes or ransomware scares, or simply wanting owners and auditors to log in from anywhere without VPNs and USB backups.',
+        'Unique Info Systems deploys TallyPrime on Tally\'s own Cloud Access (Oracle Cloud Infrastructure) or AWS — both officially supported by Tally Solutions. We handle licence configuration, user setup, TVU pack management, printer mapping and ongoing support, so you get cloud without the sysadmin problem.',
+      ],
+    },
+    howItWorks: {
+      heading: 'How It Works',
+      steps: [
+        {
+          title: 'Consult',
+          desc: 'We review your branch structure, user count, data size and current Tally licences — usually a 30-minute call.',
+        },
+        {
+          title: 'Deploy',
+          desc: 'We provision the cloud server, install TallyPrime, migrate your data and configure users.',
+        },
+        {
+          title: 'Train',
+          desc: 'Your team gets a walkthrough — login, printing, file transfer, daily workflows. English or Hindi.',
+        },
+        {
+          title: 'Support',
+          desc: 'Ongoing monitoring, backups, patching and user changes. You focus on accounting, we handle IT.',
+        },
+      ],
+    },
+    faqs: [
+      {
+        question: 'Is my Tally licence included in cloud pricing?',
+        answer: 'No. Cloud hosting is separate from your TallyPrime licence. You need an active TallyPrime Silver, Gold or Server licence — the cloud is where it runs. We can also handle new licence purchases if you don\'t already have one.',
+      },
+      {
+        question: 'Do I need extra user licences if staff connect remotely?',
+        answer: 'Yes. Tally\'s Virtual User (TVU) policy applies to any virtualised or remote access. TallyPrime Silver includes 1 free TVU, Gold includes 10, and Tally Server adds 20 more. Additional users beyond those need extra TVU packs, which we\'ll walk you through during the consultation.',
+      },
+      {
+        question: 'How secure is my data on the cloud?',
+        answer: 'Data is encrypted both in transit (TLS) and at rest. Two-factor authentication (Tally.NET ID + Secure PIN) is enforced. Automatic encrypted backups run daily. Both Tally Cloud Access and AWS deployments use enterprise-grade infrastructure.',
+      },
+      {
+        question: 'What internet speed do we need?',
+        answer: 'A stable 2–4 Mbps per concurrent user is comfortable for normal RDP sessions. For heavy printing or large report exports, 10+ Mbps is recommended. We do a connectivity check during onboarding.',
+      },
+      {
+        question: 'Can I print locally from a cloud Tally session?',
+        answer: 'Yes. RDP printer redirection lets you print directly to any printer connected to your local PC — invoices, cheques, delivery challans all work normally. We configure this during setup.',
+      },
+      {
+        question: 'What happens if the internet goes down at my office?',
+        answer: 'You can still access Tally from any other connected location — a partner office, home, or even a phone hotspot. That\'s one of the main reasons to move to cloud in the first place.',
+      },
+      {
+        question: 'Can multiple branches work on the same Tally data?',
+        answer: 'Yes. Two patterns: centralised (all branches log into one cloud server — everyone sees live data) or decentralised (each branch runs its own Tally and syncs to head office via Tally.NET). We recommend centralised unless bandwidth at branches is unreliable.',
+      },
+      {
+        question: 'How long does setup take?',
+        answer: 'Typically 1–2 days for a single-company, single-user setup; 3–7 days for multi-branch or multi-company deployments. The bottleneck is usually data migration validation — we test against your books before handing over.',
+      },
+    ],
+    relatedServices: [
+      {
+        label: 'TSS Renewal',
+        desc: 'Annual renewal for TallyPrime updates and connected services — required for cloud features.',
+        to: '/services/tss-renewal',
+      },
+      {
+        label: 'Tally Customisation',
+        desc: 'Custom TDL reports, vouchers and print formats that also work on your cloud deployment.',
+        to: '/services/customization',
+      },
+      {
+        label: 'TallyPrime Server',
+        desc: 'Enterprise architecture for 10+ concurrent users — the natural step up from cloud.',
+        to: '/products/server',
+      },
     ],
     finalCta: {
       heading: 'Thinking about moving Tally to the cloud?',
