@@ -691,7 +691,6 @@ function makeSub(eyebrow, title, sub, accent) {
 
 // Service sub-pages
 const TrainingPage            = makeSub('Services · Training',  'Corporate ',     'Structured 1-on-1 and group training for teams new to Tally, or upgrading from older versions.',                             'Training');
-const IntegrationPage         = makeSub('Services · Integ',     'Tally ',         'Connect TallyPrime with your CRM, e-commerce, banking or any custom system — end-to-end.',                                    'Integration');
 const SupportPage             = makeSub('Services · Support',   'Support ',       'Dedicated AMC plans with priority response times and guaranteed SLAs — we pick up the phone.',                                'Services');
 const TSSRenewalPage          = makeSub('Services · TSS',       'TSS ',           'Tally Software Services — keeps your Tally up-to-date with statutory changes, e-invoicing and online features.',             'Renewal');
 const ZohoIntegrationPage     = makeSub('Services · Zoho',      'Zoho \u2194 Tally ',  'Two-way sync between Zoho Books and TallyPrime for businesses running both, end-of-month reconciliation made painless.',   'Integration');
@@ -748,7 +747,7 @@ function RouterApp() {
           <Route path="services"               element={<ServicesIndex />} />
           <Route path="services/customization" element={<ProductPricingPage product={productsData.customization} />} />
           <Route path="services/training"      element={<TrainingPage />} />
-          <Route path="services/integration"   element={<IntegrationPage />} />
+          <Route path="services/integration"   element={<ProductPricingPage product={productsData.integration} />} />
           <Route path="services/support"       element={<SupportPage />} />
           <Route path="services/cloud"         element={<ProductPricingPage product={productsData.cloud} />} />
           <Route path="services/tss-renewal"   element={<TSSRenewalPage />} />

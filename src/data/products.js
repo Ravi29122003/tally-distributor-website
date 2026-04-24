@@ -721,4 +721,53 @@ export const productsData = {
       showSecondary: false,
     },
   },
+  integration: {
+    slug: 'integration',
+    eyebrow: 'Services · Tally Integration',
+    title: 'Tally Integration',
+    tagline: 'Connect TallyPrime to the other systems your business runs — so data flows once and stays in sync',
+    description: 'TallyPrime ships with rich integration capabilities — XML-over-HTTP, ODBC for data extraction, and TDL-based custom collections — that allow data exchange with virtually any modern application. We design the integration (mapping, scheduling, error-handling), build the connector, and own it end-to-end so your accounts team doesn\'t become an API debugging team.',
+    pricingTiers: [
+      {
+        label: 'Scoped Integration',
+        contactForPricing: true,
+        highlights: [
+          'Fixed quote after a technical discovery session',
+          'Built with idempotent, reconcilable design',
+          'Post-go-live SLA for monitoring and API changes',
+          'Source code and documentation handed over',
+        ],
+      },
+    ],
+    features: [
+      'E-commerce to Tally — near real-time sync of sales orders, invoices, payments and stock from Shopify, WooCommerce, Magento, Amazon and Flipkart',
+      'Website and portal integrations — quote-request flows, dealer portals, customer self-service via XML APIs',
+      'CRM to Tally — sync of contacts, invoices and payment status between Zoho CRM, Salesforce or custom CRMs',
+      'Banking integration — Connected Banking for Axis, SBI, HDFC, ICICI, Kotak, Yes Bank and other supported banks (real-time statement fetch, auto-reconciliation, e-payments)',
+      'Excel to Tally — scheduled Excel-to-Tally masters and voucher import',
+      'Tally to BI — ODBC-based data pulls into SQL Server, Power BI or Google Data Studio with scheduled ETL',
+      'Payment gateway integration — Razorpay, PayU and other gateways posting receipts to Tally automatically',
+      'File-based ERP bridges — SAP / Oracle export files (CSV, XML, IDoc) converted to Tally vouchers on schedule',
+    ],
+    additionalFeaturesHeading: 'How we approach every integration',
+    additionalFeatures: [
+      'Discovery first — we map both sides (Tally and the external system) before quoting, so scope is realistic',
+      'Idempotent design — integration never duplicates, always reconciles, produces a daily reconciliation report',
+      'Loosely-coupled middleware — a small service between external app and Tally, so API version bumps don\'t break the integration',
+      'Monitoring and alerting — we notice integration failures before your accounts team does',
+    ],
+    additionalFeaturesFootnote: 'Most "real-time" integrations in the Indian market are actually 5–15 minute scheduled syncs. We use honest language about what\'s truly live vs scheduled — so you can plan your close and reconciliation properly.',
+    notes: [
+      'For SAP and Oracle ERP, we recommend file-based / middleware integration (export → Excel/XML → Tally import) unless your team already has SAP PI/PO or BTP infrastructure in place.',
+      'Engagement models: fixed-price for scoped integrations, T&M for exploratory builds, annual subscription for maintained connectors (Shopify to Tally, etc.), AMC add-on for monitoring.',
+      'An active TSS is recommended for connected features. Pure XML/ODBC integrations can work without TSS but we recommend keeping it active.',
+    ],
+    finalCta: {
+      heading: 'Have a system you need connected to Tally?',
+      body: 'Tell us what you\'re trying to sync — orders from Shopify, payments from Razorpay, data out to Power BI — and we\'ll sketch an architecture and give you a scoped quote. Usually a 30-minute technical call is enough.',
+      primaryLabel: 'Book a technical call',
+      primaryUrl: '/contact',
+      showSecondary: false,
+    },
+  },
 };
