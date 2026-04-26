@@ -4,10 +4,10 @@
 //
 // Status of this file:
 //   ✓ Hero (Prompt 1)
-//   ✓ WorkflowDiagram (this prompt — Prompt 2)
-//   ✓ Pricing (this prompt — Prompt 2)
-//   TODO: Features (Prompt 3)
-//   TODO: FinalCTA (Prompt 3)
+//   ✓ WorkflowDiagram (Prompt 2)
+//   ✓ Pricing (Prompt 2)
+//   ✓ Features (this prompt — Prompt 3)
+//   ✓ FinalCTA (this prompt — Prompt 3)
 //
 // Design tokens and utility classes (.serif, .paper-grid, .container,
 // .btn, .btn-primary, .eyebrow, .dot, .mono) are scoped under
@@ -389,7 +389,6 @@ function Hero() {
 }
 
 // ============================================================
-// ============================================================
 // WorkflowDiagram — 6-step process flow on warm paper.
 // Ported verbatim from design/features.jsx (kept as-is per
 // content reconciliation).
@@ -606,6 +605,191 @@ function Pricing() {
 }
 
 // ============================================================
+// featureGroups — 16 modules (matches products.js features count),
+// regrouped into 4 thematic categories per the design's editorial
+// choice. Each item is a [title, blurb] pair derived from
+// products.js features (split on the em-dash).
+// ============================================================
+
+const featureGroups = [
+  {
+    id: 'mahajani',
+    icon: 'ledger',
+    tone: 'orange',
+    title: 'Mahajani Books',
+    sub: 'The traditional ledger system, digitised',
+    items: [
+      ['Chittha',             'Daily transaction register in traditional mandi format'],
+      ['Vyapar Khata',        'Trader / customer ledger with outstanding'],
+      ['Bank & Rokad Khata',  'Double-sided cash register'],
+      ['Talpat',              'Daily T-format summary'],
+      ['Labh-Hani Khata',     'Profit and loss account'],
+      ['Kachi-Pakki Aaita',   'Distinction with Hindi bill printing'],
+    ],
+  },
+  {
+    id: 'stock',
+    icon: 'boxes',
+    tone: 'teal',
+    title: 'Stock & Production',
+    sub: 'Built for grain, mills and cold-storage',
+    items: [
+      ['Lot ka Maal',          'Maal Mulyankan — mandi lot tracking and valuation'],
+      ['Multi-godown stock',   'Transfer register, cold-storage stock tracking'],
+      ['Production module',    'For flour, dal, oil and rice mills'],
+      ['Aaita & Vikray Parchi','Arrival register and sale slips'],
+    ],
+  },
+  {
+    id: 'broker',
+    icon: 'handshake',
+    tone: 'paper',
+    title: 'Dalali & Outstanding',
+    sub: 'Commission, ageing, interest',
+    items: [
+      ['Dalal Khata, Dalali & Pete Ugahi', 'Broker commission workflow'],
+      ['Interest calculation',             'On delayed receipts and payments'],
+      ['Outstanding bilty (LR)',           'Reports and party-wise ageing'],
+    ],
+  },
+  {
+    id: 'tax',
+    icon: 'file',
+    tone: 'ink',
+    title: 'GST, e-Way & Compliance',
+    sub: 'Modern returns on top of Mahajani',
+    items: [
+      ['GSTR-1 Excel template',  'GSTR-3B generation, RCM handling'],
+      ['e-Way Bill JSON upload', 'e-invoice support, e-TDS returns'],
+      ['Direct SMS / Email',     'On every transaction'],
+    ],
+  },
+];
+
+// ============================================================
+// FeatureCard — single feature group card. Used by Features.
+// ============================================================
+
+function FeatureCard({ group }) {
+  return (
+    <div className="card" style={{padding:28, height:'100%', display:'flex', flexDirection:'column'}}>
+      <div style={{display:'flex', alignItems:'flex-start', justifyContent:'space-between', gap:16}}>
+        <IconChip name={group.icon} tone={group.tone} size={48}/>
+        <span style={{fontSize:11, fontWeight:700, letterSpacing:'.14em', color:'var(--muted)'}}>
+          0{featureGroups.indexOf(group)+1}
+        </span>
+      </div>
+      <div style={{marginTop:20}}>
+        <h3 className="serif" style={{fontSize:24, fontWeight:600, margin:0, letterSpacing:'-0.015em'}}>
+          {group.title}
+        </h3>
+        <div style={{fontSize:13.5, color:'var(--muted)', marginTop:4}}>{group.sub}</div>
+      </div>
+      <ul style={{listStyle:'none', padding:0, margin:'20px 0 0', display:'flex', flexDirection:'column', gap:12}}>
+        {group.items.map((it,i)=>(
+          <li key={i} style={{display:'flex', alignItems:'flex-start', gap:10, paddingTop:12, borderTop:'1px solid var(--line)'}}>
+            <span style={{
+              width:18, height:18, borderRadius:'50%',
+              background:'var(--teal-soft)', color:'var(--teal)',
+              display:'grid', placeItems:'center', flexShrink:0, marginTop:2,
+            }}>
+              <Icon name="check" size={11} stroke={2.5}/>
+            </span>
+            <div>
+              <div style={{fontSize:14, fontWeight:600, color:'var(--ink)'}}>{it[0]}</div>
+              <div style={{fontSize:13, color:'var(--ink-soft)', marginTop:2, lineHeight:1.5}}>{it[1]}</div>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+// ============================================================
+// Features — 4-card grid of feature groups.
+//
+// Edits from the design:
+//   - Section title "Sixteen modules, four ways your mandi already
+//     thinks." removed
+//   - Section lede paragraph removed
+//   - "What you get" kicker kept (only the title and lede were removed,
+//     per content reconciliation)
+// ============================================================
+
+function Features() {
+  return (
+    <section className="pad-section" style={{background:'var(--bg)'}}>
+      <div className="container">
+        <div className="section-kicker" style={{marginBottom:48}}>What you get</div>
+        <div style={{display:'grid', gridTemplateColumns:'repeat(4, 1fr)', gap:20}}>
+          {featureGroups.map(g => <FeatureCard key={g.id} group={g}/>)}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// ============================================================
+// FinalCTA — dark single-column CTA card with one button.
+//
+// Edits from the design:
+//   - Right-side "WHAT TO EXPECT" 3-row card — removed
+//   - Layout switched from 2-column grid to centered single column
+//   - "30-minute" word removed from body (Bucket 1)
+//   - Secondary phone-number button removed (Bucket 2)
+//   - "Book a demo" wired as <Link to="/contact"> (was <button>)
+//   - Decorative orange glow + paper-grid overlay kept (purely visual)
+// ============================================================
+
+function FinalCTA() {
+  return (
+    <section className="pad-section">
+      <div className="container">
+        <div style={{
+          position:'relative', overflow:'hidden',
+          background:'var(--ink)',
+          borderRadius:24,
+          padding:'72px 64px',
+          textAlign:'center',
+        }}>
+          {/* decorative orange glow */}
+          <div style={{
+            position:'absolute', right:-100, top:-100,
+            width:400, height:400, borderRadius:'50%',
+            background:'radial-gradient(circle, rgba(225,83,11,.25), transparent 60%)',
+          }}/>
+          {/* paper grid overlay (subtle, light-on-dark) */}
+          <div className="paper-grid" style={{
+            position:'absolute', inset:0, opacity:.04,
+            backgroundImage:'linear-gradient(rgba(255,255,255,1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,1) 1px, transparent 1px)',
+            backgroundSize:'48px 48px',
+          }}/>
+
+          <div style={{position:'relative'}}>
+            <div className="eyebrow" style={{background:'rgba(255,255,255,.08)', borderColor:'rgba(255,255,255,.12)', color:'#fff'}}>
+              <span className="dot" style={{background:'var(--orange)'}}></span>
+              Free walkthrough
+            </div>
+            <h2 className="serif" style={{fontSize:52, lineHeight:1.05, fontWeight:600, color:'#fff', margin:'20px 0 16px', letterSpacing:'-0.02em'}}>
+              Ready to see SoftTrade-Mandi in action?
+            </h2>
+            <p style={{fontSize:17, color:'rgba(255,255,255,.7)', maxWidth:480, lineHeight:1.6, margin:'0 auto'}}>
+              Book a demo with us. We'll walk you through the Mahajani modules on your own data and answer every question — no hard selling.
+            </p>
+            <div style={{display:'flex', gap:12, marginTop:32, flexWrap:'wrap', justifyContent:'center'}}>
+              <Link to="/contact" className="btn btn-primary">
+                Book a demo <Icon name="arrow" size={16} stroke={2.2} className="arrow"/>
+              </Link>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// ============================================================
 // MandiPage — page-level composition.
 // Renders inside Layout's <Outlet/>. The .design-page wrapper
 // activates the cream theme + Inter font + scoped utility
@@ -618,8 +802,8 @@ export default function MandiPage() {
       <Hero/>
       <WorkflowDiagram/>
       <Pricing/>
-      {/* TODO Prompt 3: <Features/> */}
-      {/* TODO Prompt 3: <FinalCTA/> */}
+      <Features/>
+      <FinalCTA/>
     </div>
   );
 }
