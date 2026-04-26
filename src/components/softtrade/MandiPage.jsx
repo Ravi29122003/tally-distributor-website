@@ -3,9 +3,9 @@
 // SoftTrade-Mandi product page — Wave 3 redesign.
 //
 // Status of this file:
-//   ✓ Hero (this prompt — Prompt 1)
-//   TODO: WorkflowDiagram (Prompt 2)
-//   TODO: Pricing (Prompt 2)
+//   ✓ Hero (Prompt 1)
+//   ✓ WorkflowDiagram (this prompt — Prompt 2)
+//   ✓ Pricing (this prompt — Prompt 2)
 //   TODO: Features (Prompt 3)
 //   TODO: FinalCTA (Prompt 3)
 //
@@ -17,7 +17,7 @@
 
 import { Fragment } from 'react';
 import { Link } from 'react-router-dom';
-import { Icon } from '../design/Icon';
+import { Icon, IconChip } from '../design/Icon';
 
 // ============================================================
 // HeroLedger — decorative open-ledger book visual on the right
@@ -389,6 +389,223 @@ function Hero() {
 }
 
 // ============================================================
+// ============================================================
+// WorkflowDiagram — 6-step process flow on warm paper.
+// Ported verbatim from design/features.jsx (kept as-is per
+// content reconciliation).
+// ============================================================
+
+function WorkflowDiagram() {
+  const steps = [
+    { ic:'receipt', label:'Aaita Parchi', sub:'Arrival slip',    tone:'paper' },
+    { ic:'ledger',  label:'Chittha',      sub:'Daily register',  tone:'orange' },
+    { ic:'calc',    label:'Talpat',       sub:'T-summary',       tone:'paper' },
+    { ic:'coins',   label:'Dalali',       sub:'Commission',      tone:'paper' },
+    { ic:'file',    label:'GSTR-1 / 3B',  sub:'Auto-generated',  tone:'teal' },
+    { ic:'truck',   label:'e-Way Bill',   sub:'JSON ready',      tone:'ink' },
+  ];
+  return (
+    <section style={{background:'var(--paper)', borderTop:'1px solid var(--line-2)', borderBottom:'1px solid var(--line-2)', padding:'88px 0'}}>
+      <div className="container">
+        <div style={{textAlign:'center', maxWidth:680, margin:'0 auto 48px'}}>
+          <div className="section-kicker">How it flows</div>
+          <h2 className="section-title serif">From <em>aaita parchi</em> to e-Way Bill —<br/>one entry, one trail.</h2>
+        </div>
+
+        <div style={{
+          position:'relative',
+          display:'grid', gridTemplateColumns:`repeat(${steps.length}, 1fr)`,
+          gap:0, alignItems:'stretch',
+        }}>
+          {/* dashed connecting line between steps */}
+          <div style={{
+            position:'absolute', left:'8%', right:'8%', top:'34px',
+            height:2, background:'repeating-linear-gradient(90deg, var(--line-2) 0 8px, transparent 8px 14px)',
+            zIndex:0,
+          }}/>
+          {steps.map((s,i)=>(
+            <div key={i} style={{display:'flex', flexDirection:'column', alignItems:'center', gap:14, position:'relative', zIndex:1}}>
+              <div style={{background:'var(--paper)', padding:'0 8px'}}>
+                <IconChip name={s.ic} tone={s.tone} size={68}/>
+              </div>
+              <div style={{textAlign:'center'}}>
+                <div style={{fontSize:11, fontWeight:700, letterSpacing:'.14em', color:'var(--muted)'}}>STEP {i+1}</div>
+                <div className="serif" style={{fontSize:20, fontWeight:600, marginTop:4, letterSpacing:'-0.01em'}}>{s.label}</div>
+                <div style={{fontSize:13, color:'var(--ink-soft)', marginTop:2}}>{s.sub}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div style={{textAlign:'center', marginTop:48, fontSize:14, color:'var(--ink-soft)'}}>
+          <span style={{
+            display:'inline-flex', alignItems:'center', gap:8,
+            padding:'8px 16px', borderRadius:999,
+            background:'#fff', border:'1px solid var(--line-2)',
+          }}>
+            <Icon name="zap" size={14} stroke={2} style={{color:'var(--orange)'}}/>
+            One Chittha entry posts to Talpat, Khatas, GSTR and e-Way Bill simultaneously
+          </span>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// ============================================================
+// PlanCard — single pricing card. Used by Pricing.
+//
+// Edits from the design:
+//   - "Quote in under 2 hours" sub-line below "Contact for pricing" — removed (Bucket 1)
+//   - features prop is a flat array of strings (was [text, on] pairs).
+//     The 8-item check/lock cross-plan comparison was dropped — each
+//     card now shows only its own plan's highlights, all checked.
+//   - CTA rendered as <Link to="/contact"> (was <button>)
+// ============================================================
+
+function PlanCard({ tag, name, blurb, features, highlight, badge, ctaLabel = 'Get a Quote' }) {
+  return (
+    <div style={{
+      position:'relative',
+      background: highlight ? 'var(--ink)' : '#fff',
+      color: highlight ? '#fff' : 'var(--ink)',
+      border: highlight ? '1px solid var(--ink)' : '1px solid var(--line)',
+      borderRadius:20,
+      padding:'36px 32px',
+      display:'flex', flexDirection:'column',
+      boxShadow: highlight ? '0 30px 60px -25px rgba(14,27,44,.4)' : '0 1px 0 rgba(14,27,44,.02)',
+      overflow:'hidden',
+    }}>
+      {highlight && (
+        <div className="paper-grid" style={{
+          position:'absolute', inset:0, opacity:.04, pointerEvents:'none',
+          backgroundImage:'linear-gradient(rgba(255,255,255,1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,1) 1px, transparent 1px)',
+          backgroundSize:'40px 40px',
+        }}/>
+      )}
+      {badge && (
+        <span style={{
+          position:'absolute', top:20, right:20,
+          fontSize:10.5, fontWeight:700, letterSpacing:'.14em',
+          padding:'5px 10px', borderRadius:999,
+          background:'var(--orange)', color:'#fff',
+        }}>{badge}</span>
+      )}
+
+      <div style={{position:'relative'}}>
+        <div style={{fontSize:11, fontWeight:700, letterSpacing:'.16em', color: highlight ? 'rgba(255,255,255,.5)' : 'var(--muted)'}}>{tag}</div>
+        <div className="serif" style={{fontSize:34, fontWeight:600, marginTop:10, letterSpacing:'-0.015em'}}>{name}</div>
+        <div style={{fontSize:14, color: highlight ? 'rgba(255,255,255,.65)' : 'var(--ink-soft)', marginTop:6, lineHeight:1.5}}>{blurb}</div>
+
+        {/* Price block */}
+        <div style={{marginTop:22, paddingBottom:22, borderBottom: highlight ? '1px solid rgba(255,255,255,.10)' : '1px solid var(--line)'}}>
+          <div style={{display:'flex', alignItems:'baseline', gap:8}}>
+            <span className="serif" style={{fontSize:42, fontWeight:600, lineHeight:1, letterSpacing:'-0.02em'}}>Contact</span>
+            <span style={{fontSize:14, color: highlight ? 'rgba(255,255,255,.55)' : 'var(--muted)'}}>for pricing</span>
+          </div>
+        </div>
+
+        {/* Features — flat list, all checked */}
+        <ul style={{listStyle:'none', padding:0, margin:'24px 0 0', display:'flex', flexDirection:'column', gap:12}}>
+          {features.map((t, i)=>(
+            <li key={i} style={{display:'flex', alignItems:'flex-start', gap:10, fontSize:14, color: highlight ? '#fff' : 'var(--ink)'}}>
+              <span style={{
+                width:18, height:18, borderRadius:'50%',
+                background: highlight ? 'rgba(255,255,255,.10)' : 'var(--teal-soft)',
+                color: highlight ? '#fff' : 'var(--teal)',
+                display:'grid', placeItems:'center', flexShrink:0, marginTop:1,
+              }}>
+                <Icon name="check" size={10} stroke={2.5}/>
+              </span>
+              <span>{t}</span>
+            </li>
+          ))}
+        </ul>
+
+        <Link to="/contact" className={highlight ? 'btn btn-primary' : 'btn btn-dark'} style={{marginTop:28, width:'100%', justifyContent:'center'}}>
+          {ctaLabel} <Icon name="arrow" size={15} stroke={2.2} className="arrow"/>
+        </Link>
+      </div>
+    </div>
+  );
+}
+
+// ============================================================
+// Pricing — 2 plan cards on the right, sticky copy + 2 info
+// chips on the left.
+//
+// Edits from the design:
+//   - Section title "Two editions — same modules, different reach" — removed
+//   - "back to you within 2 working hours" clause in the lede — removed (Bucket 1)
+//   - "Honest first" info chip — removed (3 chips → 2)
+//   - Plan display names: "Mandi Solo" → "Single User", "Mandi Plus" → "Multi User"
+//   - Plan features sourced from products.js highlights (4 per card, all checked)
+//   - "MOST POPULAR" badge kept on Multi User
+//   - "EDITIONS" kicker kept (only the title below it was removed)
+// ============================================================
+
+function Pricing() {
+  return (
+    <section style={{background:'#fff', padding:'104px 0', borderTop:'1px solid var(--line)', borderBottom:'1px solid var(--line)'}}>
+      <div className="container">
+        <div style={{display:'grid', gridTemplateColumns:'1fr 1.3fr', gap:64, alignItems:'flex-start'}}>
+          {/* LEFT — sticky copy + info chips */}
+          <div style={{position:'sticky', top:100}}>
+            <div className="section-kicker">Editions</div>
+            <p className="section-lede">
+              Final pricing depends on number of users, modules, and annual support plan. Contact us for a tailored quote.
+            </p>
+
+            <div style={{marginTop:32, display:'flex', flexDirection:'column', gap:14}}>
+              {[
+                ['handshake', 'Free installation',  'Data setup and user training included in Jaipur. Outside Jaipur handled remotely or by visit as agreed.'],
+                ['shield',    'Annual maintenance', 'AMC available separately to cover updates, compliance changes and priority support.'],
+              ].map(([ic, h, t], i)=>(
+                <div key={i} style={{display:'flex', gap:14, alignItems:'flex-start'}}>
+                  <IconChip name={ic} tone="paper" size={36}/>
+                  <div>
+                    <div style={{fontSize:14.5, fontWeight:600}}>{h}</div>
+                    <div style={{fontSize:13.5, color:'var(--ink-soft)', marginTop:3, lineHeight:1.55}}>{t}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* RIGHT — plan cards */}
+          <div style={{display:'grid', gridTemplateColumns:'1fr 1fr', gap:20}}>
+            <PlanCard
+              tag="SINGLE USER"
+              name="Single User"
+              blurb="One workstation. Perfect for small mandi shops, kirana stores and single-godown traders."
+              features={[
+                'Windows desktop install',
+                'All Mahajani modules included',
+                'GST, e-invoice, e-Way Bill ready',
+                'Local Jaipur support from Unique Info Systems',
+              ]}
+            />
+            <PlanCard
+              tag="MULTI USER · LAN"
+              name="Multi User"
+              blurb="Unlimited LAN users at one location, branch sync, role-based access — for growing trades and mills."
+              features={[
+                'Unlimited LAN users at one location',
+                'Branch / godown data sync',
+                'Role-based access control',
+                'On-site installation and training',
+              ]}
+              highlight
+              badge="MOST POPULAR"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// ============================================================
 // MandiPage — page-level composition.
 // Renders inside Layout's <Outlet/>. The .design-page wrapper
 // activates the cream theme + Inter font + scoped utility
@@ -399,8 +616,8 @@ export default function MandiPage() {
   return (
     <div className="design-page">
       <Hero/>
-      {/* TODO Prompt 2: <WorkflowDiagram/> */}
-      {/* TODO Prompt 2: <Pricing/> */}
+      <WorkflowDiagram/>
+      <Pricing/>
       {/* TODO Prompt 3: <Features/> */}
       {/* TODO Prompt 3: <FinalCTA/> */}
     </div>
