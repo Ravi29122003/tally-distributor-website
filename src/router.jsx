@@ -9,6 +9,7 @@ import {
 import { siteConfig } from './config/site';
 import ProductPricingPage from './components/ProductPricingPage';
 import MandiPage from './components/softtrade/MandiPage';
+import BrokwinPage from './components/softtrade/BrokwinPage';
 import { productsData } from './data/products';
 import './index.css';
 
@@ -737,7 +738,7 @@ function RouterApp() {
 
           {/* SoftTrade and other non-Tally products — placeholders until Wave C */}
           <Route path="products/softtrade-mandi"   element={<MandiPage />} />
-          <Route path="products/softtrade-brokwin" element={<ProductPricingPage product={productsData['softtrade-brokwin']} />} />
+          <Route path="products/softtrade-brokwin" element={<BrokwinPage />} />
           <Route path="products/softtrade-coldwin" element={<ProductPricingPage product={productsData['softtrade-coldwin']} />} />
           <Route path="products/zayaka"            element={<ProductPricingPage product={productsData.zayaka} />} />
 
