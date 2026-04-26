@@ -11,6 +11,7 @@ import ProductPricingPage from './components/ProductPricingPage';
 import MandiPage from './components/softtrade/MandiPage';
 import BrokwinPage from './components/softtrade/BrokwinPage';
 import ColdwinPage from './components/softtrade/ColdwinPage';
+import SilverPage from './components/tally/SilverPage';
 import { productsData } from './data/products';
 import './index.css';
 
@@ -729,7 +730,7 @@ function RouterApp() {
           {/* Products */}
           <Route path="products"               element={<ProductsIndex />} />
           <Route path="tally"                  element={<TallyIndex />} />
-          <Route path="products/silver"        element={<ProductPricingPage product={productsData.silver} />} />
+          <Route path="products/silver"        element={<SilverPage />} />
           <Route path="products/gold"          element={<ProductPricingPage product={productsData.gold} />} />
           <Route path="products/server"        element={<ProductPricingPage product={productsData.server} />} />
           <Route path="products/auditors"      element={<ProductPricingPage product={productsData.auditors} />} />
