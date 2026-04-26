@@ -208,3 +208,174 @@ textarea:focus, textarea:focus-visible {
 @media (max-width: 360px) {
   h1.hero-head { font-size: 36px !important; line-height: 1.06 !important; }
 }
+
+/* ============================================================
+   DESIGN SYSTEM — Wave 3 visual refresh
+   ------------------------------------------------------------
+   Tokens are global (safe — names don't collide with anything
+   above). Utility classes are scoped under `.design-page` so
+   they don't clash with existing classes or Tailwind defaults
+   (e.g. .btn-primary, .container). To opt a page in, wrap its
+   top-level JSX in <div className="design-page">…</div>.
+   Pages NOT wrapped in .design-page are unaffected.
+   ============================================================ */
+
+:root {
+  /* Ink (text) */
+  --ink: #0E1B2C;
+  --ink-2: #16263C;
+  --ink-soft: #3B4A60;
+  --muted: #6B7A90;
+
+  /* Hairlines */
+  --line: #E6E1D6;
+  --line-2: #D9D3C3;
+
+  /* Paper / cream surfaces */
+  --paper: #F6F1E6;
+  --paper-2: #EFE7D3;
+  --paper-grid: #E7DEC4;
+  --bg: #FBF8F1;
+
+  /* Brand */
+  --orange: #E1530B;
+  --orange-2: #C9430A;
+  --orange-soft: #FBE6D6;
+
+  /* Accent */
+  --teal: #0F8A6F;
+  --teal-soft: #D9F0E7;
+
+  /* Specials */
+  --gold: #B8860B;
+  --red:  #B23A2A;
+}
+
+/* Wrapper — every redesigned page goes inside this */
+.design-page {
+  font-family: 'Inter', system-ui, sans-serif;
+  color: var(--ink);
+  background: var(--bg);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Typography helpers */
+.design-page .serif {
+  font-family: 'Fraunces', serif;
+  font-feature-settings: "ss01", "ss02";
+  letter-spacing: -0.01em;
+}
+.design-page .mono {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+}
+
+/* Background patterns */
+.design-page .paper-grid {
+  background-image:
+    linear-gradient(var(--paper-grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--paper-grid) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+.design-page .dots {
+  background-image: radial-gradient(rgba(14,27,44,.10) 1px, transparent 1px);
+  background-size: 16px 16px;
+}
+
+/* Layout */
+.design-page .container {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+.design-page .pad-section { padding: 96px 0; }
+.design-page .pad-section-sm { padding: 72px 0; }
+.design-page .hr { height: 1px; background: var(--line); border: 0; }
+
+/* Cards */
+.design-page .card {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+}
+.design-page .card-warm {
+  background: var(--paper);
+  border: 1px solid var(--line-2);
+  border-radius: 18px;
+}
+
+/* Section headings */
+.design-page .section-title {
+  font-size: 44px;
+  line-height: 1.05;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+.design-page .section-kicker {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--orange);
+  margin-bottom: 14px;
+}
+.design-page .section-lede {
+  font-size: 17px;
+  line-height: 1.55;
+  color: var(--ink-soft);
+  max-width: 640px;
+}
+
+/* Eyebrow pill */
+.design-page .eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: #fff;
+  border: 1px solid var(--line-2);
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+.design-page .eyebrow .dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--teal);
+}
+
+/* Buttons (scoped — does NOT override the existing site's .btn-primary) */
+.design-page .btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 22px;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 15px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: transform .15s ease, box-shadow .2s ease, background .2s ease;
+  white-space: nowrap;
+}
+.design-page .btn-primary {
+  background: var(--orange);
+  color: #fff;
+  box-shadow: 0 1px 0 rgba(0,0,0,.05), inset 0 -2px 0 rgba(0,0,0,.10);
+}
+.design-page .btn-primary:hover {
+  background: var(--orange-2);
+  transform: translateY(-1px);
+}
+.design-page .btn-dark { background: var(--ink); color: #fff; }
+.design-page .btn-dark:hover { background: var(--ink-2); transform: translateY(-1px); }
+.design-page .btn-ghost { background: transparent; color: var(--ink); border-color: var(--line-2); }
+.design-page .btn-ghost:hover { background: var(--paper); }
+.design-page .btn-white { background: #fff; color: var(--ink); border-color: var(--line-2); }
+.design-page .arrow { transition: transform .2s ease; }
+.design-page .btn:hover .arrow { transform: translateX(2px); }
