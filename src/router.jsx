@@ -15,6 +15,7 @@ import SilverPage from './components/tally/SilverPage';
 import GoldPage from './components/tally/GoldPage';
 import ServerPage from './components/tally/ServerPage';
 import BizAnalystPage from './components/tally/BizAnalystPage';
+import CustomizationPage from './components/services/CustomizationPage';
 import { productsData } from './data/products';
 import './index.css';
 
@@ -749,7 +750,7 @@ function RouterApp() {
 
           {/* Services */}
           <Route path="services"               element={<ServicesIndex />} />
-          <Route path="services/customization" element={<ProductPricingPage product={productsData.customization} />} />
+          <Route path="services/customization" element={<CustomizationPage />} />
           <Route path="services/training"      element={<ProductPricingPage product={productsData.training} />} />
           <Route path="services/integration"   element={<ProductPricingPage product={productsData.integration} />} />
           <Route path="services/support"       element={<SupportPage />} />
