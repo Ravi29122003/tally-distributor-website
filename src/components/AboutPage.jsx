@@ -80,8 +80,8 @@ function Hero() {
       <div className="paper-grid" style={{position:'absolute', inset:0, opacity:.4, pointerEvents:'none',
         maskImage:'radial-gradient(ellipse at top right, black, transparent 70%)',
         WebkitMaskImage:'radial-gradient(ellipse at top right, black, transparent 70%)'}}/>
-      <div className="container" style={{position:'relative', padding:'152px 32px 100px'}}>
-        <div style={{display:'grid', gridTemplateColumns:'1.2fr 1fr', gap:64, alignItems:'center'}}>
+      <div className="container wave-hero" style={{position:'relative', padding:'152px 32px 100px'}}>
+        <div className="wave-hero-grid" style={{display:'grid', gridTemplateColumns:'1.2fr 1fr', gap:64, alignItems:'center'}}>
           <div>
             <div style={{display:'flex', gap:10, alignItems:'center', flexWrap:'wrap'}}>
               <span className="eyebrow"><span className="dot"></span>About · since 2009</span>
@@ -111,7 +111,7 @@ function Hero() {
           </div>
 
           {/* Stats card stack */}
-          <div style={{display:'grid', gridTemplateColumns:'1fr 1fr', gap:14}}>
+          <div className="wave-grid-2" style={{display:'grid', gridTemplateColumns:'1fr 1fr', gap:14}}>
             {[
               ['2009',  'Founded in Jaipur',     'calc'],
               ['600+',  'Active clients',         'users'],
@@ -142,7 +142,7 @@ function Story() {
   return (
     <section className="pad-section" style={{background:'#fff'}}>
       <div className="container">
-        <div style={{display:'grid', gridTemplateColumns:'1fr 1.4fr', gap:64, alignItems:'flex-start'}}>
+        <div className="wave-split" style={{display:'grid', gridTemplateColumns:'1fr 1.4fr', gap:64, alignItems:'flex-start'}}>
           <div style={{position:'sticky', top:100}}>
             <div className="section-kicker">Our story</div>
             <h2 className="section-title serif">Built by accountants,<br/>not just coders.</h2>
@@ -187,7 +187,7 @@ function Values() {
             Plenty of Tally vendors will undercut us on price. None of them will be here in 2030. These four make the difference.
           </p>
         </div>
-        <div style={{display:'grid', gridTemplateColumns:'repeat(2, 1fr)', gap:18}}>
+        <div className="wave-grid-2" style={{display:'grid', gridTemplateColumns:'repeat(2, 1fr)', gap:18}}>
           {items.map(([ic,h,t],i)=>(
             <div key={i} style={{padding:'30px 32px', background:'var(--paper)', border:'1px solid var(--line-2)', borderRadius:18}}>
               <div style={{display:'flex', alignItems:'center', gap:16}}>
@@ -232,7 +232,7 @@ function Team() {
           <div className="section-kicker">The team</div>
           <h2 className="section-title serif">Real people.<br/>Same office. No outsourcing.</h2>
         </div>
-        <div style={{display:'grid', gridTemplateColumns:'repeat(4, 1fr)', gap:18}}>
+        <div className="wave-grid-4" style={{display:'grid', gridTemplateColumns:'repeat(4, 1fr)', gap:18}}>
           {folks.map(([role,desc,abbr,tone],i)=>{
             const t = tones[tone];
             return (
@@ -262,7 +262,7 @@ function Visit() {
     <section className="pad-section">
       <div className="container">
         <div style={{position:'relative', overflow:'hidden', background:'var(--ink)', borderRadius:24, padding:'56px 56px',
-          display:'grid', gridTemplateColumns:'1.1fr 1fr', gap:48, alignItems:'center'}}>
+          display:'grid', gridTemplateColumns:'1.1fr 1fr', gap:48, alignItems:'center'}} className="wave-finalcta">
           <div style={{position:'absolute', right:-100, top:-100, width:400, height:400, borderRadius:'50%',
             background:'radial-gradient(circle, rgba(225,83,11,.25), transparent 60%)'}}/>
           <div style={{position:'relative'}}>

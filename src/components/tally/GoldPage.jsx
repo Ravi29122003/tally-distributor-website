@@ -134,8 +134,8 @@ function Hero() {
         maskImage:'radial-gradient(ellipse at top right, black, transparent 70%)',
         WebkitMaskImage:'radial-gradient(ellipse at top right, black, transparent 70%)'}}/>
 
-      <div className="container" style={{position:'relative', padding:'152px 32px 120px'}}>
-        <div style={{display:'grid', gridTemplateColumns:'1.05fr 1fr', gap:80, alignItems:'center'}}>
+      <div className="container wave-hero" style={{position:'relative', padding:'152px 32px 120px'}}>
+        <div className="wave-hero-grid" style={{display:'grid', gridTemplateColumns:'1.05fr 1fr', gap:80, alignItems:'center'}}>
           <div>
             <div style={{display:'flex', gap:10, alignItems:'center', flexWrap:'wrap'}}>
               <span className="eyebrow"><span className="dot"></span>Tally · TallyPrime Gold</span>
@@ -258,7 +258,7 @@ function Pricing() {
   return (
     <section style={{background:'#fff', padding:'104px 0', borderTop:'1px solid var(--line)', borderBottom:'1px solid var(--line)'}}>
       <div className="container">
-        <div style={{display:'grid', gridTemplateColumns:'1fr 1.1fr', gap:64, alignItems:'center'}}>
+        <div className="wave-split" style={{display:'grid', gridTemplateColumns:'1fr 1.1fr', gap:64, alignItems:'center'}}>
           <div>
             <div className="section-kicker">One plan. One price.</div>
             <h2 className="section-title serif">Own TallyPrime Gold for life.</h2>
@@ -333,7 +333,7 @@ function Features() {
             Gold is the same TallyPrime engine as Silver, with unlimited concurrent users on a single LAN. Outgrow LAN performance? Move up to TallyPrime Server.
           </p>
         </div>
-        <div style={{display:'grid', gridTemplateColumns:'repeat(4, 1fr)', gap:20}}>
+        <div className="wave-grid-4" style={{display:'grid', gridTemplateColumns:'repeat(4, 1fr)', gap:20}}>
           {featureGroups.map((g,i)=>(
             <div key={i} className="card" style={{padding:26, height:'100%', display:'flex', flexDirection:'column'}}>
               <div style={{display:'flex', alignItems:'flex-start', justifyContent:'space-between'}}>
@@ -408,7 +408,7 @@ function FinalCTA() {
     <section className="pad-section">
       <div className="container">
         <div style={{position:'relative', overflow:'hidden', background:'var(--ink)', borderRadius:24, padding:'72px 64px',
-          display:'grid', gridTemplateColumns:'1.4fr 1fr', gap:48, alignItems:'center'}}>
+          display:'grid', gridTemplateColumns:'1.4fr 1fr', gap:48, alignItems:'center'}} className="wave-finalcta">
           <div style={{position:'absolute', right:-100, top:-100, width:400, height:400, borderRadius:'50%',
             background:'radial-gradient(circle, rgba(225,83,11,.25), transparent 60%)'}}/>
 

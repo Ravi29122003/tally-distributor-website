@@ -173,8 +173,8 @@ function Hero() {
         maskImage:'radial-gradient(ellipse at top right, black, transparent 70%)',
         WebkitMaskImage:'radial-gradient(ellipse at top right, black, transparent 70%)'}}/>
 
-      <div className="container" style={{position:'relative', padding:'152px 32px 110px'}}>
-        <div style={{display:'grid', gridTemplateColumns:'1.1fr 1fr', gap:60, alignItems:'center'}}>
+      <div className="container wave-hero" style={{position:'relative', padding:'152px 32px 110px'}}>
+        <div className="wave-hero-grid" style={{display:'grid', gridTemplateColumns:'1.1fr 1fr', gap:60, alignItems:'center'}}>
           <div>
             <div style={{display:'flex', gap:10, alignItems:'center', flexWrap:'wrap'}}>
               <span className="eyebrow"><span className="dot"></span>Services · Tally Customisation</span>
@@ -250,7 +250,7 @@ function Process() {
           <div className="section-kicker">How we work</div>
           <h2 className="section-title serif">Honest process —<br/>no surprises after.</h2>
         </div>
-        <div style={{display:'grid', gridTemplateColumns:'repeat(4, 1fr)', gap:20, position:'relative'}}>
+        <div className="wave-grid-4" style={{display:'grid', gridTemplateColumns:'repeat(4, 1fr)', gap:20, position:'relative'}}>
           <div style={{position:'absolute', top:36, left:'10%', right:'10%', height:2,
             background:'repeating-linear-gradient(90deg, var(--line-2) 0 8px, transparent 8px 14px)', zIndex:0}}/>
           {steps.map(([n,h,t],i)=>(
@@ -310,7 +310,7 @@ function WhatWeBuild() {
             Narrow enhancements (a new field on a sales voucher, a custom GSTR-1 summary) or full industry modules — same team, same upgrade-safe TDL discipline.
           </p>
         </div>
-        <div style={{display:'grid', gridTemplateColumns:'repeat(4, 1fr)', gap:20}}>
+        <div className="wave-grid-4" style={{display:'grid', gridTemplateColumns:'repeat(4, 1fr)', gap:20}}>
           {buildGroups.map((g,i)=>(
             <div key={i} className="card" style={{padding:26, height:'100%'}}>
               <div style={{display:'flex', alignItems:'flex-start', justifyContent:'space-between'}}>
@@ -356,7 +356,7 @@ function Scenarios() {
   return (
     <section className="pad-section" style={{background:'#fff'}}>
       <div className="container">
-        <div style={{display:'grid', gridTemplateColumns:'1fr 1.6fr', gap:64, alignItems:'flex-start'}}>
+        <div className="wave-split" style={{display:'grid', gridTemplateColumns:'1fr 1.6fr', gap:64, alignItems:'flex-start'}}>
           <div style={{position:'sticky', top:100}}>
             <div className="section-kicker">Where we've shipped</div>
             <h2 className="section-title serif">Typical Rajasthan<br/>scenarios.</h2>
@@ -364,7 +364,7 @@ function Scenarios() {
               Real customisations we've built for businesses near you. Industry, scope and outcome — references on request.
             </p>
           </div>
-          <div style={{display:'grid', gridTemplateColumns:'1fr 1fr', gap:18}}>
+          <div className="wave-grid-2" style={{display:'grid', gridTemplateColumns:'1fr 1fr', gap:18}}>
             {items.map(([h,t],i)=>(
               <div key={i} style={{padding:'22px 22px', background:'var(--paper)', border:'1px solid var(--line-2)', borderRadius:14}}>
                 <div style={{display:'flex', alignItems:'center', gap:8, fontSize:11, fontWeight:700, letterSpacing:'.12em', color:'var(--orange)'}}>
@@ -395,7 +395,7 @@ function Pricing() {
   return (
     <section style={{background:'var(--paper)', padding:'104px 0', borderTop:'1px solid var(--line-2)', borderBottom:'1px solid var(--line-2)'}}>
       <div className="container">
-        <div style={{display:'grid', gridTemplateColumns:'1fr 1.05fr', gap:64, alignItems:'center'}}>
+        <div className="wave-split" style={{display:'grid', gridTemplateColumns:'1fr 1.05fr', gap:64, alignItems:'center'}}>
           <div>
             <div className="section-kicker">Pricing</div>
             <h2 className="section-title serif">Scoped projects.<br/>Fixed quote after the workshop.</h2>
@@ -472,7 +472,7 @@ function FinalCTA() {
     <section className="pad-section">
       <div className="container">
         <div style={{position:'relative', overflow:'hidden', background:'var(--ink)', borderRadius:24, padding:'72px 64px',
-          display:'grid', gridTemplateColumns:'1.4fr 1fr', gap:48, alignItems:'center'}}>
+          display:'grid', gridTemplateColumns:'1.4fr 1fr', gap:48, alignItems:'center'}} className="wave-finalcta">
           <div style={{position:'absolute', right:-100, top:-100, width:400, height:400, borderRadius:'50%',
             background:'radial-gradient(circle, rgba(225,83,11,.25), transparent 60%)'}}/>
 

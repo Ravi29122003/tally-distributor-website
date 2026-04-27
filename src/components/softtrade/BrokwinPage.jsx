@@ -218,8 +218,8 @@ function Hero() {
       <div style={{position:'absolute', right:'-200px', top:'-200px', width:600, height:600, borderRadius:'50%',
         background:'radial-gradient(circle, rgba(225,83,11,.10), transparent 60%)', pointerEvents:'none'}}/>
 
-      <div className="container" style={{position:'relative', padding:'152px 32px 100px'}}>
-        <div style={{display:'grid', gridTemplateColumns:'1.1fr 1fr', gap:80, alignItems:'center'}}>
+      <div className="container wave-hero" style={{position:'relative', padding:'152px 32px 100px'}}>
+        <div className="wave-hero-grid" style={{display:'grid', gridTemplateColumns:'1.1fr 1fr', gap:80, alignItems:'center'}}>
           <div>
             <div style={{display:'flex', gap:10, alignItems:'center', flexWrap:'wrap'}}>
               <span className="eyebrow"><span className="dot"></span>Products · SoftTrade-Brokwin</span>
@@ -433,7 +433,7 @@ function Pricing() {
   return (
     <section style={{background:'#fff', padding:'104px 0', borderTop:'1px solid var(--line)', borderBottom:'1px solid var(--line)'}}>
       <div className="container">
-        <div style={{display:'grid', gridTemplateColumns:'1fr 1.3fr', gap:64, alignItems:'flex-start'}}>
+        <div className="wave-split" style={{display:'grid', gridTemplateColumns:'1fr 1.3fr', gap:64, alignItems:'flex-start'}}>
           <div style={{position:'sticky', top:100}}>
             <div className="section-kicker">Editions</div>
             <p className="section-lede">
@@ -583,7 +583,7 @@ function Features() {
     <section className="pad-section" style={{background:'var(--bg)'}}>
       <div className="container">
         <div className="section-kicker" style={{marginBottom:48}}>What you get</div>
-        <div style={{display:'grid', gridTemplateColumns:'repeat(4, 1fr)', gap:20}}>
+        <div className="wave-grid-4" style={{display:'grid', gridTemplateColumns:'repeat(4, 1fr)', gap:20}}>
           {featureGroups.map((g,i) => <FeatureCard key={i} group={g} idx={i}/>)}
         </div>
       </div>

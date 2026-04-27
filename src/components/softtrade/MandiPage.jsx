@@ -276,8 +276,8 @@ function Hero() {
         pointerEvents:'none',
       }}/>
 
-      <div className="container" style={{position:'relative', padding:'152px 32px 100px'}}>
-        <div style={{display:'grid', gridTemplateColumns:'1.1fr 1fr', gap:80, alignItems:'center'}}>
+      <div className="container wave-hero" style={{position:'relative', padding:'152px 32px 100px'}}>
+        <div className="wave-hero-grid" style={{display:'grid', gridTemplateColumns:'1.1fr 1fr', gap:80, alignItems:'center'}}>
           {/* LEFT */}
           <div>
             {/* eyebrow */}
@@ -547,7 +547,7 @@ function Pricing() {
   return (
     <section style={{background:'#fff', padding:'104px 0', borderTop:'1px solid var(--line)', borderBottom:'1px solid var(--line)'}}>
       <div className="container">
-        <div style={{display:'grid', gridTemplateColumns:'1fr 1.3fr', gap:64, alignItems:'flex-start'}}>
+        <div className="wave-split" style={{display:'grid', gridTemplateColumns:'1fr 1.3fr', gap:64, alignItems:'flex-start'}}>
           {/* LEFT — sticky copy + info chips */}
           <div style={{position:'sticky', top:100}}>
             <div className="section-kicker">Editions</div>
@@ -722,7 +722,7 @@ function Features() {
     <section className="pad-section" style={{background:'var(--bg)'}}>
       <div className="container">
         <div className="section-kicker" style={{marginBottom:48}}>What you get</div>
-        <div style={{display:'grid', gridTemplateColumns:'repeat(4, 1fr)', gap:20}}>
+        <div className="wave-grid-4" style={{display:'grid', gridTemplateColumns:'repeat(4, 1fr)', gap:20}}>
           {featureGroups.map(g => <FeatureCard key={g.id} group={g}/>)}
         </div>
       </div>

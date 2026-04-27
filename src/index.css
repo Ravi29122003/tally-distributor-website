@@ -381,304 +381,185 @@ textarea:focus, textarea:focus-visible {
 .design-page .btn:hover .arrow { transform: translateX(2px); }
 
 /* ============================================================
-   MOBILE — Wave 3 responsiveness (≤ 640px)
+   MOBILE & TABLET — Wave 3 responsive pass (v2, class-based)
    ------------------------------------------------------------
-   All rules below are scoped under .design-page and live inside
-   @media (max-width: 640px). Desktop rendering is untouched.
+   Targets utility classes added to wrapper divs across the 10
+   redesigned pages. All rules scoped under .design-page so Home
+   and legacy ProductPricingPage routes are unaffected. Desktop
+   (>1024px) renders byte-identical to before.
 
-   Strategy: target inline-style grid patterns via CSS attribute
-   selectors with !important to override JSX-applied styles.
-
-   Pages NOT wrapped in .design-page (e.g. /, the old Home page,
-   and the legacy ProductPricingPage routes) are unaffected.
+   Wrapper classes used:
+     .wave-hero        → Hero <div className="container">
+     .wave-hero-grid   → Hero text+visual outer 2-col grid
+     .wave-grid-2      → Inner 2-col card grids
+     .wave-grid-3      → 3-col card grids
+     .wave-grid-4      → 4-col card grids (Features, Why, etc.)
+     .wave-split       → Sticky-left + content-right grids
+     .wave-finalcta    → Big dark FinalCTA cards (1.4fr 1fr)
    ============================================================ */
+
+@media (max-width: 1024px) {
+
+  /* TABLET (641-1024px): grid-4 → 2 cols. Other splits stay
+     side-by-side but tighter. Hero font caps a bit lower. */
+
+  .design-page .wave-grid-4 {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 18px !important;
+  }
+}
 
 @media (max-width: 640px) {
 
   /* ----- Container & section padding ----- */
   .design-page .container {
-    padding-left: 20px !important;
-    padding-right: 20px !important;
+    padding-left: 18px !important;
+    padding-right: 18px !important;
   }
-
   .design-page .pad-section { padding: 56px 0 !important; }
   .design-page .pad-section-sm { padding: 40px 0 !important; }
 
-  /* Hero top padding (clears fixed RouterNav with smaller phone-size buffer) */
-  .design-page [style*="padding:'152px 32px 100px'"],
-  .design-page [style*="padding:'152px 32px 110px'"],
-  .design-page [style*="padding:'152px 32px 120px'"],
-  .design-page [style*="padding: 152px 32px 100px"],
-  .design-page [style*="padding: 152px 32px 110px"],
-  .design-page [style*="padding: 152px 32px 120px"] {
-    padding: 110px 20px 56px !important;
+  /* ----- Hero: tighter top padding ----- */
+  .design-page .wave-hero {
+    padding: 110px 18px 56px !important;
   }
 
-  /* ----- Grids: collapse multi-column to single column ----- */
-  .design-page [style*="grid-template-columns:repeat(4, 1fr)"],
-  .design-page [style*="grid-template-columns:repeat(4,1fr)"],
-  .design-page [style*="grid-template-columns:repeat(3, 1fr)"],
-  .design-page [style*="grid-template-columns:repeat(3,1fr)"],
-  .design-page [style*="grid-template-columns:repeat(2, 1fr)"],
-  .design-page [style*="grid-template-columns:repeat(2,1fr)"] {
+  /* ----- Hero & all 2-column splits: stack vertically ----- */
+  .design-page .wave-hero-grid,
+  .design-page .wave-split,
+  .design-page .wave-finalcta {
     grid-template-columns: 1fr !important;
-    gap: 16px !important;
+    gap: 28px !important;
   }
 
-  /* Two-column splits (Hero, sticky-left layouts) → stack vertically */
-  .design-page [style*="grid-template-columns:'1.1fr 1fr'"],
-  .design-page [style*="grid-template-columns:'1.05fr 1fr'"],
-  .design-page [style*="grid-template-columns:'1.2fr 1fr'"],
-  .design-page [style*="grid-template-columns:'1.3fr 1fr'"],
-  .design-page [style*="grid-template-columns:'1.4fr 1fr'"],
-  .design-page [style*="grid-template-columns:'1fr 1.1fr'"],
-  .design-page [style*="grid-template-columns:'1fr 1.3fr'"],
-  .design-page [style*="grid-template-columns:'1fr 1.4fr'"],
-  .design-page [style*="grid-template-columns:'1fr 1.05fr'"],
-  .design-page [style*="grid-template-columns:'1fr 1.6fr'"],
-  .design-page [style*="grid-template-columns:'1fr 1fr'"] {
+  /* FinalCTA card: tighten padding */
+  .design-page .wave-finalcta {
+    padding: 36px 22px !important;
+    border-radius: 16px !important;
+  }
+
+  /* ----- Multi-column card grids → single column ----- */
+  .design-page .wave-grid-2,
+  .design-page .wave-grid-3,
+  .design-page .wave-grid-4 {
     grid-template-columns: 1fr !important;
-    gap: 32px !important;
-  }
-
-  /* Section header + lede splits (Features section pattern: heading left, lede right) */
-  .design-page [style*="justify-content:'space-between'"][style*="align-items:'flex-end'"] {
-    flex-direction: column !important;
-    align-items: flex-start !important;
-    gap: 16px !important;
+    gap: 14px !important;
   }
 
   /* ----- Hero typography ----- */
-  .design-page h1.serif,
-  .design-page [class*="serif"][style*="clamp(46px"],
-  .design-page [class*="serif"][style*="clamp(48px"] {
-    font-size: 40px !important;
+  .design-page .wave-hero h1.serif,
+  .design-page .wave-hero h1[class*="serif"] {
+    font-size: 38px !important;
     line-height: 1.04 !important;
     letter-spacing: -0.02em !important;
   }
 
-  /* Hero sub-tagline (the small italic line under the H1) */
-  .design-page h1 div[style*="0.32em"] {
-    font-size: 16px !important;
-    margin-top: 10px !important;
+  /* Sub-tagline (the small italic line nested inside H1) */
+  .design-page .wave-hero h1 div {
+    font-size: 15px !important;
+    margin-top: 8px !important;
   }
 
-  /* Hero lede paragraph */
-  .design-page section p[style*="fontSize:18"],
-  .design-page section p[style*="fontSize:19"],
-  .design-page section p[style*="fontSize:17"] {
-    font-size: 15.5px !important;
+  /* Hero lede paragraph (first p after the h1) */
+  .design-page .wave-hero p {
+    font-size: 15px !important;
     line-height: 1.55 !important;
-    margin-top: 18px !important;
+    margin-top: 16px !important;
   }
 
-  /* ----- Section titles (h2 across all sections) ----- */
+  /* ----- Section titles ----- */
   .design-page .section-title {
-    font-size: 32px !important;
+    font-size: 30px !important;
     line-height: 1.08 !important;
   }
 
-  /* FinalCTA H2 (the big "Talk to us" / "Considering Coldwin?" / etc.) */
-  .design-page section h2[style*="fontSize:52"],
-  .design-page section h2[style*="fontSize:48"],
-  .design-page section h2[style*="fontSize:44"] {
-    font-size: 30px !important;
-    line-height: 1.1 !important;
-    margin: 14px 0 12px !important;
-  }
-
-  /* ----- Buttons & CTA rows ----- */
-  .design-page .btn {
-    padding: 11px 18px !important;
-    font-size: 14px !important;
-  }
-
-  /* CTA flex rows wrap properly and gap shrinks */
-  .design-page [style*="display:'flex'"][style*="gap:12"][style*="flexWrap:'wrap'"] {
-    gap: 8px !important;
-  }
-
-  /* ----- Hero trust strip (3-stat block under CTAs) ----- */
-  .design-page [style*="border-top:'1px dashed var(--line-2)'"][style*="display:'flex'"] {
-    flex-wrap: wrap !important;
-    gap: 16px !important;
-    margin-top: 28px !important;
-    padding-top: 20px !important;
-  }
-
-  /* The "1px height 36" dividers between stats — hide on mobile (they look weird stacked) */
-  .design-page [style*="width:1"][style*="height:36"][style*="background:'var(--line-2)'"] {
-    display: none !important;
-  }
-
-  /* ----- Decorative visuals: shrink to fit single-column width ----- */
-  /* These visuals (PhoneMockup, ChamberMap, CodeEditor, LicenseCard,
-     TicketVisual, HeroLedger, SaudaVisual) are absolutely-positioned
-     compositions inside their own container divs. We let them shrink
-     naturally — the maxWidth caps already exist. We just clamp the
-     parent flex/grid to push them into a sensible mobile size and
-     center them. */
-
-  .design-page section [style*="display:'flex'"][style*="justifyContent:'flex-end'"],
-  .design-page section [style*="display:'flex'"][style*="justify-content:'center'"] {
-    justify-content: center !important;
-  }
-
-  /* Visuals get a sane max-width on mobile (most have maxWidth:520-560 inline,
-     which is wider than 640-40 padding allows — force tighter cap) */
-  .design-page section [style*="maxWidth:560"],
-  .design-page section [style*="maxWidth:540"],
-  .design-page section [style*="maxWidth:520"],
-  .design-page section [style*="maxWidth:480"] {
-    max-width: 100% !important;
-  }
-
-  /* ----- HowItWorks / Process / WorkflowDiagram horizontal flows ----- */
-  /* These are 3-6 step horizontal flows with a dashed connector line.
-     On mobile we let them stack via the grid rule above. The dashed
-     line absolute-positioned across the row needs to be hidden when
-     items are stacked vertically. */
-  .design-page [style*="background:'repeating-linear-gradient(90deg"] {
-    display: none !important;
-  }
-
-  /* ----- Pricing cards (most pages) ----- */
-  /* Pricing cards have padding:'40px 36px' or '36px 32px' or '30px 26px'.
-     Tighten on mobile. */
-  .design-page [style*="padding:'40px 36px'"],
-  .design-page [style*="padding:'36px 32px'"],
-  .design-page [style*="padding:'30px 26px'"] {
-    padding: 24px 20px !important;
-  }
-
-  /* Pricing card big serif price (₹22,500 / ₹67,500 / etc.) */
-  .design-page [class*="serif"][style*="fontSize:42"],
-  .design-page [class*="serif"][style*="fontSize:48"] {
-    font-size: 36px !important;
-  }
-
-  /* "MOST POPULAR" / "BEST ROI" / "ENTERPRISE" Plus card raise removed on mobile
-     (it pushes badge above the viewport when stacked) */
-  .design-page [style*="transform:'translateY(-8px)'"] {
-    transform: none !important;
-  }
-
-  /* ----- FinalCTA dark card ----- */
-  /* All FinalCTAs use padding:'72px 64px' or '64px 56px' or '56px 56px' */
-  .design-page [style*="padding:'72px 64px'"],
-  .design-page [style*="padding:'64px 56px'"],
-  .design-page [style*="padding:'56px 56px'"] {
-    padding: 36px 24px !important;
-    border-radius: 16px !important;
-  }
-
-  /* The big decorative orange glow in FinalCTAs — shrink so it doesn't
-     overflow the smaller card bounds */
-  .design-page [style*="width:400"][style*="height:400"][style*="border-radius:'50%'"] {
-    width: 220px !important;
-    height: 220px !important;
-    right: -60px !important;
-    top: -60px !important;
-  }
-
-  /* ----- Sticky positioning: disable on mobile (sticky on phone is
-     usually a hostile UX — content scrolls under itself) ----- */
-  .design-page [style*="position:'sticky'"] {
-    position: static !important;
-  }
-
-  /* ----- Cards: tighten padding ----- */
-  .design-page .card,
-  .design-page [style*="padding:28px"],
-  .design-page [style*="padding:26px"],
-  .design-page [style*="padding:24px"] {
-    padding: 20px !important;
-  }
-
-  /* ----- Eyebrow + section kicker spacing ----- */
-  .design-page .section-kicker { font-size: 11px !important; }
-  .design-page .section-lede { font-size: 15px !important; line-height: 1.55 !important; }
-
-  /* ----- Tables / wide content overflow protection ----- */
-  .design-page section { overflow-x: hidden !important; }
-
-  /* ----- Hide off-canvas decorative offset cards on mobile ----- */
-  /* Some Hero stats grids have offset cards (translateY(14px), rotate(-3deg))
-     that push content off the visible area when stacked. Reset transforms. */
-  .design-page [style*="transform:'translateY(14px)'"],
-  .design-page [style*="transform:'rotate(-3deg)'"],
-  .design-page [style*="transform:'rotate(-4deg)'"] {
-    transform: none !important;
-  }
-
-  /* ----- Floating cards in decorative visuals: keep them but constrain ----- */
-  /* Many visuals have absolutely-positioned "floating" cards (Top Customers,
-     WhatsApp Reminder, Scope Brief, Response SLA, AMC Log, etc.). When the
-     parent shrinks to mobile width, these can overflow. Cap their widths. */
-  .design-page section [style*="position:'absolute'"][style*="width:'52%'"],
-  .design-page section [style*="position:'absolute'"][style*="width:'56%'"],
-  .design-page section [style*="position:'absolute'"][style*="width:'48%'"],
-  .design-page section [style*="position:'absolute'"][style*="width:'46%'"],
-  .design-page section [style*="position:'absolute'"][style*="width:'62%'"] {
-    /* keep them as designed — they're % of parent which already shrinks */
-  }
-
-  /* ----- Marquee on hero (Mandi/Brokwin/Coldwin) — keep, it's already
-     full-width and works on mobile ----- */
-
-  /* ----- ServerStrip / GoldStrip / ChamberMap inner grids ----- */
-  /* These have inline grids that should stack on mobile too; the
-     repeat(N, 1fr) rule above catches them. */
-
-  /* ----- Code editor visual: tighten code font ----- */
-  .design-page [class*="mono"] { font-size: 11px !important; }
-
-  /* ----- Hide horizontal decorative connectors that don't translate ----- */
-  /* (The dashed line between Process steps — handled above) */
-
-  /* ----- Pricing left-column 2 chip rows on cards ----- */
-  /* Already collapses via the grid rule. */
-
-  /* ----- Footer (untouched in Wave 3 redesign) — leave alone. ----- */
-
-}
-
-/* ============================================================
-   TABLET — Wave 3 mid-width responsiveness (641px–1024px)
-   Lighter touch — 4-column grids become 2-column, hero stays
-   side-by-side but tighter.
-   ============================================================ */
-
-@media (min-width: 641px) and (max-width: 1024px) {
-
-  .design-page .container {
-    padding-left: 32px !important;
-    padding-right: 32px !important;
-  }
-
-  /* 4-column grids → 2-column on tablet */
-  .design-page [style*="grid-template-columns:repeat(4, 1fr)"],
-  .design-page [style*="grid-template-columns:repeat(4,1fr)"] {
-    grid-template-columns: 1fr 1fr !important;
-    gap: 18px !important;
-  }
-
-  /* 3-column grids stay 3-col but tighter */
-  .design-page [style*="grid-template-columns:repeat(3, 1fr)"] {
+  /* ----- Section header + lede side-by-side rows: stack ----- */
+  /* Many sections use display:flex justify-content:space-between
+     with align-items:flex-end for the section-kicker/title left
+     and lede right. We don't have a class on these, but they
+     consistently sit inside .pad-section as direct flex children. */
+  .design-page .pad-section > .container > div[style*="flex-end"],
+  .design-page section > .container > div[style*="flex-end"] {
+    flex-direction: column !important;
+    align-items: flex-start !important;
     gap: 14px !important;
   }
 
-  /* Hero font cap a bit lower */
-  .design-page h1.serif,
-  .design-page [class*="serif"][style*="clamp(46px"],
-  .design-page [class*="serif"][style*="clamp(48px"] {
-    font-size: 56px !important;
+  /* ----- Buttons: tighter padding, wrap better ----- */
+  .design-page .btn {
+    padding: 11px 16px !important;
+    font-size: 13.5px !important;
   }
 
-  /* Sticky-left on tablet — keep, but tighten gap */
-  .design-page [style*="grid-template-columns:'1fr 1.6fr'"],
-  .design-page [style*="grid-template-columns:'1fr 1.4fr'"],
-  .design-page [style*="grid-template-columns:'1fr 1.3fr'"] {
-    gap: 36px !important;
+  /* ----- Hero trust strip: stats wrap, hide vertical dividers ----- */
+  .design-page .wave-hero [style*="border-top:'1px dashed"],
+  .design-page .wave-hero [style*="border-top: 1px dashed"] {
+    flex-wrap: wrap !important;
+    gap: 14px !important;
+    padding-top: 18px !important;
+    margin-top: 24px !important;
   }
+  .design-page .wave-hero div[style*="height:36"][style*="background"] {
+    display: none !important;
+  }
+
+  /* ----- Sticky positioning: disable on mobile ----- */
+  .design-page [style*="position:'sticky'"],
+  .design-page [style*="position: sticky"] {
+    position: static !important;
+  }
+
+  /* ----- Decorative visuals: prevent overflow ----- */
+  /* All visual containers cap themselves; ensure they fit width */
+  .design-page section > div > div[style*="maxWidth:"] {
+    max-width: 100% !important;
+  }
+
+  /* ----- HowItWorks/Process horizontal dashed line: hide ----- */
+  /* When steps stack, the absolute-positioned dashed connector
+     across the row makes no sense. */
+  .design-page [style*="repeating-linear-gradient(90deg"] {
+    display: none !important;
+  }
+
+  /* ----- Pricing card big serif price: scale ----- */
+  .design-page section [class*="serif"][style*="fontSize:42"],
+  .design-page section [class*="serif"][style*="fontSize:48"] {
+    font-size: 32px !important;
+  }
+
+  /* ----- "POPULAR"/"BEST ROI" raised plus-card transform: reset ----- */
+  .design-page [style*="translateY(-8px)"] {
+    transform: none !important;
+  }
+
+  /* ----- Decorative orange glow in FinalCTAs: shrink ----- */
+  .design-page .wave-finalcta div[style*="width:400"][style*="height:400"] {
+    width: 200px !important;
+    height: 200px !important;
+    right: -50px !important;
+    top: -50px !important;
+  }
+
+  /* ----- Off-canvas offset transforms: reset ----- */
+  .design-page [style*="translateY(14px)"],
+  .design-page [style*="rotate(-3deg)"],
+  .design-page [style*="rotate(-4deg)"] {
+    transform: none !important;
+  }
+
+  /* ----- Cards: tighter padding ----- */
+  .design-page .card {
+    padding: 20px !important;
+  }
+
+  /* ----- Section-kicker / section-lede: tighten ----- */
+  .design-page .section-kicker { font-size: 11px !important; }
+  .design-page .section-lede { font-size: 14.5px !important; line-height: 1.55 !important; }
+
+  /* ----- Final overflow guard ----- */
+  .design-page section { overflow-x: hidden !important; }
+
+  /* ----- Code editor mono font: tighter ----- */
+  .design-page [class*="mono"] { font-size: 11px !important; }
 }

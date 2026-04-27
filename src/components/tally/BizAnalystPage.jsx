@@ -198,8 +198,8 @@ function Hero() {
         maskImage:'radial-gradient(ellipse at top right, black, transparent 70%)',
         WebkitMaskImage:'radial-gradient(ellipse at top right, black, transparent 70%)'}}/>
 
-      <div className="container" style={{position:'relative', padding:'152px 32px 100px'}}>
-        <div style={{display:'grid', gridTemplateColumns:'1.1fr 1fr', gap:60, alignItems:'center'}}>
+      <div className="container wave-hero" style={{position:'relative', padding:'152px 32px 100px'}}>
+        <div className="wave-hero-grid" style={{display:'grid', gridTemplateColumns:'1.1fr 1fr', gap:60, alignItems:'center'}}>
           <div>
             <div style={{display:'flex', gap:10, alignItems:'center', flexWrap:'wrap'}}>
               <span className="eyebrow"><span className="dot"></span>Tally · Mobile App</span>
@@ -268,7 +268,7 @@ function Why() {
   return (
     <section className="pad-section" style={{background:'var(--bg)'}}>
       <div className="container">
-        <div style={{display:'grid', gridTemplateColumns:'1fr 1.6fr', gap:64, alignItems:'flex-start'}}>
+        <div className="wave-split" style={{display:'grid', gridTemplateColumns:'1fr 1.6fr', gap:64, alignItems:'flex-start'}}>
           <div>
             <div className="section-kicker">Why Biz Analyst</div>
             <h2 className="section-title serif">Tally without the desk.</h2>
@@ -328,7 +328,7 @@ function Features() {
             Built specifically for the way Indian SMEs use Tally — invoices, outstandings, sales follow-ups. Not a watered-down dashboard.
           </p>
         </div>
-        <div style={{display:'grid', gridTemplateColumns:'repeat(4, 1fr)', gap:20}}>
+        <div className="wave-grid-4" style={{display:'grid', gridTemplateColumns:'repeat(4, 1fr)', gap:20}}>
           {featureGroups.map((g,i)=>(
             <div key={i} className="card" style={{padding:26, height:'100%'}}>
               <div style={{display:'flex', alignItems:'flex-start', justifyContent:'space-between'}}>
@@ -374,7 +374,7 @@ function HowItWorks() {
           <div className="section-kicker">How it works</div>
           <h2 className="section-title serif">Up and running in under an hour.</h2>
         </div>
-        <div style={{display:'grid', gridTemplateColumns:'repeat(3, 1fr)', gap:24, position:'relative'}}>
+        <div className="wave-grid-3" style={{display:'grid', gridTemplateColumns:'repeat(3, 1fr)', gap:24, position:'relative'}}>
           <div style={{position:'absolute', top:36, left:'14%', right:'14%', height:2,
             background:'repeating-linear-gradient(90deg, var(--line-2) 0 8px, transparent 8px 14px)', zIndex:0}}/>
           {steps.map(([n,h,t],i)=>(
@@ -465,7 +465,7 @@ function Pricing() {
           </p>
         </div>
 
-        <div style={{display:'grid', gridTemplateColumns:'repeat(3, 1fr)', gap:20, alignItems:'stretch'}}>
+        <div className="wave-grid-3" style={{display:'grid', gridTemplateColumns:'repeat(3, 1fr)', gap:20, alignItems:'stretch'}}>
           <PlanCard
             tag="7 DAYS FREE"
             name="Free Trial"
@@ -561,7 +561,7 @@ function RelatedProducts() {
           <div className="section-kicker">Related products</div>
           <h2 className="section-title serif">Buy together, save together.</h2>
         </div>
-        <div style={{display:'grid', gridTemplateColumns:'repeat(3, 1fr)', gap:20}}>
+        <div className="wave-grid-3" style={{display:'grid', gridTemplateColumns:'repeat(3, 1fr)', gap:20}}>
           {items.map((it,i)=>(
             <Link key={i} to={it.to} className="card"
               style={{padding:26, textDecoration:'none', color:'var(--ink)', display:'flex', flexDirection:'column', gap:10,
@@ -592,7 +592,7 @@ function FinalCTA() {
     <section className="pad-section" style={{background:'var(--bg)'}}>
       <div className="container">
         <div style={{position:'relative', overflow:'hidden', background:'var(--ink)', borderRadius:24, padding:'72px 64px',
-          display:'grid', gridTemplateColumns:'1.4fr 1fr', gap:48, alignItems:'center'}}>
+          display:'grid', gridTemplateColumns:'1.4fr 1fr', gap:48, alignItems:'center'}} className="wave-finalcta">
           <div style={{position:'absolute', right:-100, top:-100, width:400, height:400, borderRadius:'50%',
             background:'radial-gradient(circle, rgba(225,83,11,.25), transparent 60%)'}}/>
 
