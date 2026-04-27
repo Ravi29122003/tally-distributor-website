@@ -17,6 +17,7 @@ import ServerPage from './components/tally/ServerPage';
 import BizAnalystPage from './components/tally/BizAnalystPage';
 import CustomizationPage from './components/services/CustomizationPage';
 import SupportPage from './components/services/SupportPage';
+import AboutPage from './components/AboutPage';
 import { productsData } from './data/products';
 import './index.css';
 
@@ -704,7 +705,6 @@ function makeSub(eyebrow, title, sub, accent) {
 const OffersPage              = makeSub('Offers',               'Current ',       'Festive and launch-period discounts on TallyPrime licences and services. Check back often — new offers added monthly.',     'Offers');
 
 // Top-level pages
-const AboutPage        = makeSub('About',       'A team that takes ',        'Fifteen years, five-star certification and hundreds of businesses still on our books — that\'s the only resume that matters.', 'Tally seriously');
 const ContactPage      = makeSub('Contact',     'Let\'s ',                   'Reach out by phone, WhatsApp, email or by visiting our office. We respond within one business hour, every working day.', 'talk');
 const PoliciesPage     = makeSub('Policies',    'Privacy, Refund & ',        'The fine print — privacy policy, refund terms, terms of service and licence agreements.', 'Terms');
 
