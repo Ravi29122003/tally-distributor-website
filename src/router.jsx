@@ -14,6 +14,7 @@ import ColdwinPage from './components/softtrade/ColdwinPage';
 import SilverPage from './components/tally/SilverPage';
 import GoldPage from './components/tally/GoldPage';
 import ServerPage from './components/tally/ServerPage';
+import BizAnalystPage from './components/tally/BizAnalystPage';
 import { productsData } from './data/products';
 import './index.css';
 
@@ -737,7 +738,7 @@ function RouterApp() {
           <Route path="products/server"        element={<ServerPage />} />
           <Route path="products/auditors"      element={<ProductPricingPage product={productsData.auditors} />} />
           <Route path="products/virtual-user"  element={<ProductPricingPage product={productsData['virtual-user']} />} />
-          <Route path="products/mobile-app"    element={<ProductPricingPage product={productsData['mobile-app']} />} />
+          <Route path="products/mobile-app"    element={<BizAnalystPage />} />
           <Route path="products/upgrade"       element={<ProductPricingPage product={productsData.upgrade} />} />
 
           {/* SoftTrade and other non-Tally products — placeholders until Wave C */}
