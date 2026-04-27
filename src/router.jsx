@@ -16,6 +16,7 @@ import GoldPage from './components/tally/GoldPage';
 import ServerPage from './components/tally/ServerPage';
 import BizAnalystPage from './components/tally/BizAnalystPage';
 import CustomizationPage from './components/services/CustomizationPage';
+import SupportPage from './components/services/SupportPage';
 import { productsData } from './data/products';
 import './index.css';
 
@@ -698,7 +699,6 @@ function makeSub(eyebrow, title, sub, accent) {
 }
 
 // Service sub-pages
-const SupportPage             = makeSub('Services · Support',   'Support ',       'Dedicated AMC plans with priority response times and guaranteed SLAs — we pick up the phone.',                                'Services');
 
 // Offers
 const OffersPage              = makeSub('Offers',               'Current ',       'Festive and launch-period discounts on TallyPrime licences and services. Check back often — new offers added monthly.',     'Offers');
