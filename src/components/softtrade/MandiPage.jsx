@@ -18,6 +18,114 @@
 import { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import { Icon, IconChip } from '../design/Icon';
+import FeatureTicker from '../products/FeatureTicker';
+import FeatureCategoryGrid from '../products/FeatureCategoryGrid';
+
+// ============================================================
+// tickerItems / categories — additive content for the new
+// FeatureTicker and FeatureCategoryGrid sections. Kept at module
+// scope so they are defined once per render and easy to tweak.
+// ============================================================
+
+const tickerItems = [
+  { label: 'Mahajani / Adat system' },
+  { label: 'Kachi-Pakki Adat' },
+  { label: 'Mandi tax register' },
+  { label: 'Multi-godown stock' },
+  { label: 'Lot-wise tracking' },
+  { label: 'Bilty management' },
+  { label: 'Interest calculation' },
+  { label: 'Dalal khata' },
+  { label: 'Daily stock report' },
+  { label: 'Production reports' },
+  { label: 'GST-ready' },
+  { label: 'e-Way Bill' },
+  { label: 'e-TDS forms' },
+  { label: 'Hindi bill printing' },
+  { label: 'SMS / Email for transactions' },
+];
+
+const categories = [
+  {
+    title: 'Core Accounting',
+    subtitle: 'The fundamentals, done right',
+    items: [
+      'Chittha (ledger)',
+      'Talpat (trial balance)',
+      'Business account',
+      'Profit & loss account',
+      'Bank & cash account',
+      'Bank reconciliation',
+      'Purchase & sales accounts',
+      'Goods account',
+      'Duplicate copies (nakal)',
+    ],
+  },
+  {
+    title: 'Mandi & Adat',
+    subtitle: 'What sets Mandi apart',
+    items: [
+      'Mandi tax calculation & register',
+      'Adat khata',
+      'Adat purchase',
+      'Sending goods on adat',
+      'Kachi-Pakki Adat',
+      'Mahajani double-side cash account',
+      'Sales slip (vikray parchi)',
+      'Interest calculation',
+      'Interest at time of cash receipt',
+    ],
+  },
+  {
+    title: 'Broker / Dalal Management',
+    items: [
+      'Dalal khata',
+      'Dalali khata',
+      'Dalal pete ugahi',
+      'Station pete ugahi',
+    ],
+  },
+  {
+    title: 'Stock & Lot Tracking',
+    items: [
+      'Goods valuation (maal mulyankan)',
+      'Lot-wise goods',
+      'Lot purchase-sale report',
+      'Daily stock report',
+      'Multi-godown management',
+      'Godown-to-godown transfer',
+      'Pending bilty report',
+      'Trade account per item',
+      'Sales detail with expenses',
+    ],
+  },
+  {
+    title: 'Production',
+    items: [
+      'Production system with reports',
+      'Voucher for goods increase / decrease',
+    ],
+  },
+  {
+    title: 'Compliance',
+    items: [
+      'GST-ready',
+      'Sales tax form & register',
+      'e-Way Bill',
+      'e-TDS form & return',
+      'Purchase-sale tax form reports',
+      'Price with tax',
+    ],
+  },
+  {
+    title: 'Communication',
+    items: [
+      'Hindi bill printing',
+      'Direct SMS for transactions',
+      'Direct email for invoices & reports',
+    ],
+  },
+];
 
 // ============================================================
 // HeroLedger — decorative open-ledger book visual on the right
@@ -790,6 +898,33 @@ function FinalCTA() {
 }
 
 // ============================================================
+// FeaturesGridSection — additive section that hosts the new
+// FeatureCategoryGrid below the existing Features cards. Keeps
+// eyebrow / heading / subtitle copy on the page, while the grid
+// itself stays generic and re-usable for Brokwin / ColdWin.
+// ============================================================
+
+function FeaturesGridSection() {
+  return (
+    <section className="pad-section" style={{background:'#fff', borderTop:'1px solid var(--line)'}}>
+      <div className="container">
+        <div style={{maxWidth:720, margin:'0 auto 48px', textAlign:'center'}}>
+          <div className="section-kicker">What you get</div>
+          <h2 className="section-title serif" style={{marginTop:12}}>
+            Everything <em>SoftTrade Mandi</em> can do
+          </h2>
+          <p className="section-lede" style={{marginTop:16, marginLeft:'auto', marginRight:'auto'}}>
+            Built specifically for the mahajani trade — every feature your munim
+            already uses, now digital.
+          </p>
+        </div>
+        <FeatureCategoryGrid categories={categories}/>
+      </div>
+    </section>
+  );
+}
+
+// ============================================================
 // MandiPage — page-level composition.
 // Renders inside Layout's <Outlet/>. The .design-page wrapper
 // activates the cream theme + Inter font + scoped utility
@@ -800,9 +935,11 @@ export default function MandiPage() {
   return (
     <div className="design-page">
       <Hero/>
+      <FeatureTicker items={tickerItems} ariaLabel="SoftTrade Mandi feature highlights"/>
       <WorkflowDiagram/>
       <Pricing/>
       <Features/>
+      <FeaturesGridSection/>
       <FinalCTA/>
     </div>
   );
