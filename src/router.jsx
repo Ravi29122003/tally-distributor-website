@@ -68,15 +68,12 @@ function ScrollToTop() {
 // ---------- Logo as Link ----------
 function BrandMark({ className = '' }) {
   return (
-    <Link to="/" className={`flex items-center gap-2.5 ${className}`} aria-label={`${siteConfig.brand} home`}>
-      <span className="relative inline-flex h-9 w-9 items-center justify-center rounded-lg bg-navy-900 text-white">
-        <span className="font-display text-[18px] font-bold leading-none">{siteConfig.brand[0]}</span>
-        <span className="absolute -bottom-0.5 -right-0.5 h-2 w-2 rounded-full bg-teal-400 ring-2 ring-white"></span>
-      </span>
-      <div className="leading-none">
-        <div className="font-display text-[20px] font-bold text-navy-900">{siteConfig.brand}</div>
-        <div className="text-[10px] font-medium uppercase tracking-[0.18em] text-navy-900/55">{siteConfig.tagline}</div>
-      </div>
+    <Link to="/" className={`flex items-center ${className}`} aria-label={`${siteConfig.brand} home`}>
+      <img
+        src="/Logo.png"
+        alt={siteConfig.brand}
+        className="h-14 w-auto sm:h-18"
+      />
     </Link>
   );
 }
@@ -420,15 +417,12 @@ function RouterFooter() {
       <div className="relative mx-auto max-w-7xl px-5 pt-16 pb-10 sm:px-8">
         <div className="grid grid-cols-2 gap-10 md:grid-cols-3 lg:grid-cols-4 lg:gap-10">
           <div className="col-span-2 md:col-span-3 lg:col-span-1">
-            <Link to="/" className="flex items-center gap-2.5">
-              <span className="relative inline-flex h-9 w-9 items-center justify-center rounded-lg bg-white text-navy-900">
-                <span className="font-display text-[18px] font-bold leading-none">{siteConfig.brand[0]}</span>
-                <span className="absolute -bottom-0.5 -right-0.5 h-2 w-2 rounded-full bg-teal-400 ring-2 ring-navy-900"></span>
-              </span>
-              <div className="leading-none">
-                <div className="font-display text-[20px] font-bold">{siteConfig.brand}</div>
-                <div className="text-[10px] font-medium uppercase tracking-[0.18em] text-white/55">{siteConfig.tagline}</div>
-              </div>
+            <Link to="/" className="flex items-center" aria-label={`${siteConfig.brand} home`}>
+              <img
+                src="/Logo.png"
+                alt={siteConfig.brand}
+                className="h-10 w-auto sm:h-12"
+              />
             </Link>
             <p className="mt-4 max-w-xs text-[13.5px] leading-[1.6] text-white/60">
               Helping Indian businesses run their books with confidence since 2010. Genuine licences. Honest service. No surprises.
