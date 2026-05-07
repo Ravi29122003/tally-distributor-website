@@ -1022,3 +1022,26 @@ export const productsData = {
     },
   },
 };
+
+// SoftTrade flagship lineup — placeholder cards for the home showcase.
+// Real images, prices, and descriptions to be added in a later prompt.
+export const softTradeShowcase = [
+  {
+    name: 'SoftTrade-Mandi',
+    image: '/images/placeholder.png',
+    to: '/products/softtrade-mandi',
+    cta: 'View Products',
+  },
+  {
+    name: 'SoftTrade ColdWin',
+    image: '/images/placeholder.png',
+    to: '/products/softtrade-coldwin',
+    cta: 'View Products',
+  },
+  {
+    name: 'Soft Cloud ERP',
+    image: '/images/placeholder.png',
+    to: '/products/soft-cloud-erp',
+    cta: 'View Products',
+  },
+];

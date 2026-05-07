@@ -9,6 +9,7 @@ import {
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { siteConfig } from './config/site';
+import { softTradeShowcase } from './data/products';
 
 // ------ Validation helpers ------
 const isValidEmail = (v) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim());
@@ -615,7 +616,7 @@ export function Hero() {
               />
             </span>
             <br />
-            Partner in <span className="italic text-orange-600">{siteConfig.location}</span>
+            Partner
           </Reveal>
 
           <Reveal as="p" delay={160} className="mt-5 max-w-xl text-[16.5px] leading-[1.6] text-navy-900/65 sm:text-[17.5px]">
@@ -683,54 +684,6 @@ export function WhatsAppGlyph() {
     <svg viewBox="0 0 32 32" width="13" height="13" fill="currentColor" aria-hidden>
       <path d="M16.04 2.003C8.36 2.003 2.12 8.2 2.12 15.84c0 2.44.64 4.82 1.86 6.92L2 30l7.44-1.95a13.86 13.86 0 0 0 6.6 1.68c7.68 0 13.92-6.2 13.92-13.84S23.72 2.003 16.04 2.003Zm0 25.36c-2.18 0-4.32-.58-6.18-1.7l-.44-.26-4.58 1.2 1.24-4.5-.3-.46a11.42 11.42 0 0 1-1.78-6.12c0-6.34 5.2-11.5 11.6-11.5s11.6 5.16 11.6 11.5c0 6.34-5.24 11.54-11.16 11.54v-.7.7Zm6.36-8.62c-.34-.18-2.06-1.02-2.38-1.14-.32-.12-.56-.18-.8.18-.22.36-.88 1.1-1.08 1.34-.2.22-.4.26-.74.08-.34-.18-1.46-.54-2.78-1.72-1.02-.92-1.72-2.06-1.92-2.4-.2-.36-.02-.54.16-.72.16-.16.34-.4.52-.6.18-.2.22-.36.34-.58.12-.24.06-.44-.02-.62-.1-.18-.8-1.94-1.1-2.66-.3-.7-.58-.6-.8-.62h-.68c-.22 0-.6.08-.92.4-.32.34-1.22 1.18-1.22 2.88s1.24 3.34 1.42 3.58c.18.22 2.44 3.74 5.94 5.24.84.36 1.48.58 1.98.74.84.26 1.6.22 2.2.14.68-.1 2.06-.84 2.36-1.66.28-.8.28-1.5.2-1.64-.1-.16-.34-.26-.7-.42Z" />
     </svg>
-  );
-}
-
-// ------ Trust bar ------
-export function TrustBar() {
-  const items = [
-    { label: 'Tally Certified', sub: '5-Star Partner', icon: 'award' },
-    { label: 'ISO 9001:2015', sub: 'Quality Certified', icon: 'badge-check' },
-    { label: 'GSTN Suvidha', sub: 'Provider', icon: 'file-check' },
-    { label: 'MSME Registered', sub: 'Udyam Verified', icon: 'building-2' },
-    { label: 'ICAI Approved', sub: 'Training Partner', icon: 'graduation-cap' },
-  ];
-
-  return (
-    <section id="trust" aria-label="Certifications" className="relative border-y border-navy-900/8 bg-white">
-      <div className="mx-auto max-w-7xl px-5 py-10 sm:px-8 sm:py-12">
-        <div className="mb-7 flex items-center justify-center gap-3">
-          <span className="h-px w-10 bg-navy-900/15"></span>
-          <span className="text-[11px] font-semibold uppercase tracking-[0.22em] text-navy-900/55">
-            Certified &amp; Accredited by
-          </span>
-          <span className="h-px w-10 bg-navy-900/15"></span>
-        </div>
-
-        <ul className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:gap-6 lg:grid-cols-5">
-          {items.map((it, i) => (
-            <Reveal
-              as="li"
-              delay={i * 90}
-              key={it.label}
-              className="group flex items-center gap-3 rounded-2xl border border-navy-900/8 bg-white px-4 py-4 btn-lift hover:border-teal-500/30 hover:shadow-card"
-            >
-              <span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-navy-900 text-white transition-colors group-hover:bg-navy-800">
-                <Icon name={it.icon} size={20} strokeWidth={1.8} />
-              </span>
-              <div className="min-w-0">
-                <div className="truncate font-display text-[14.5px] font-bold leading-tight text-navy-900">
-                  {it.label}
-                </div>
-                <div className="mt-0.5 truncate text-[11.5px] font-medium text-navy-900/55">
-                  {it.sub}
-                </div>
-              </div>
-            </Reveal>
-          ))}
-        </ul>
-      </div>
-    </section>
   );
 }
 
@@ -920,39 +873,109 @@ function PriceCard({ plan }) {
   );
 }
 
+// ------ SoftTrade flagship showcase ------
+export function SoftTradeShowcase() {
+  return (
+    <section id="softtrade" className="relative overflow-hidden bg-white py-20 sm:py-28">
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0"
+        style={{
+          background:
+            'radial-gradient(720px 420px at 12% 0%, rgba(245,158,11,0.08), transparent 60%), radial-gradient(640px 360px at 92% 100%, rgba(20,184,166,0.06), transparent 60%)',
+        }}
+      />
+
+      <div className="relative mx-auto max-w-7xl px-5 sm:px-8">
+        <Reveal className="mx-auto max-w-2xl text-center">
+          <Eyebrow>Our Flagship Lineup</Eyebrow>
+          <h2 className="mt-5 font-display text-[40px] font-bold leading-[1.05] text-navy-900 sm:text-[54px]">
+            Our{' '}
+            <span className="relative inline-block">
+              <span className="relative z-10 text-orange-600">SoftTrade</span>
+              <span
+                aria-hidden
+                className="absolute inset-x-0 bottom-1 -z-0 h-3 rounded-sm bg-orange-600/20 sm:h-4"
+              />
+            </span>{' '}
+            Products
+          </h2>
+          <p className="mx-auto mt-5 max-w-xl text-[16px] leading-[1.6] text-navy-900/65 sm:text-[17px]">
+            Built in-house for Indian agri trade, cold chain and modern ERP needs — sold and supported directly by our team.
+          </p>
+        </Reveal>
+
+        <div className="mt-14 grid grid-cols-1 gap-7 sm:grid-cols-2 lg:grid-cols-3">
+          {softTradeShowcase.map((p, i) => (
+            <Reveal key={p.name} delay={i * 120}>
+              <Link
+                to={p.to}
+                className="btn-lift group flex h-full flex-col overflow-hidden rounded-2xl border border-navy-900/8 bg-white shadow-card hover:border-orange-500/40 hover:shadow-card-lg"
+              >
+                <div className="aspect-[4/3] w-full overflow-hidden bg-navy-50">
+                  <img
+                    src={p.image}
+                    alt={p.name}
+                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                    loading="lazy"
+                  />
+                </div>
+                <div className="flex flex-1 flex-col p-6 sm:p-7">
+                  <h3 className="font-display text-[24px] font-bold leading-tight text-navy-900 sm:text-[26px]">
+                    {p.name}
+                  </h3>
+                  <span className="mt-auto inline-flex items-center gap-2 pt-6 text-[14.5px] font-semibold text-orange-700">
+                    {p.cta}
+                    <Icon
+                      name="arrow-right"
+                      size={15}
+                      strokeWidth={2.5}
+                      className="transition-transform group-hover:translate-x-0.5"
+                    />
+                  </span>
+                </div>
+              </Link>
+            </Reveal>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 export function Pricing() {
   const waHelp = `https://wa.me/${siteConfig.whatsapp}?text=${encodeURIComponent(
     `Hi ${siteConfig.brand}, I'm not sure which TallyPrime edition suits my business. Can you help?`
   )}`;
 
   return (
-    <section id="pricing" className="relative overflow-hidden bg-[#fafbfd] py-20 sm:py-28">
+    <section id="pricing" className="relative overflow-hidden border-t border-navy-900/8 bg-[#fafbfd] py-16 sm:py-20">
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0"
         style={{
           background:
-            'radial-gradient(700px 380px at 85% 0%, rgba(20,184,166,0.06), transparent 60%), radial-gradient(600px 320px at 10% 100%, rgba(245,158,11,0.05), transparent 60%)',
+            'radial-gradient(700px 380px at 85% 0%, rgba(20,184,166,0.05), transparent 60%), radial-gradient(600px 320px at 10% 100%, rgba(245,158,11,0.04), transparent 60%)',
         }}
       />
 
       <div className="relative mx-auto max-w-7xl px-5 sm:px-8">
         <Reveal className="mx-auto max-w-2xl text-center">
-          <Eyebrow>Products &amp; Pricing</Eyebrow>
-          <h2 className="mt-5 font-display text-[36px] font-bold leading-[1.1] text-navy-900 sm:text-[46px]">
+          <Eyebrow>Also Available · TallyPrime</Eyebrow>
+          <h2 className="mt-4 font-display text-[28px] font-bold leading-[1.15] text-navy-900 sm:text-[34px]">
             TallyPrime —{' '}
             <span className="relative inline-block">
               <span className="relative z-10 italic text-navy-800">choose</span>
               <span
                 aria-hidden
-                className="absolute inset-x-0 bottom-1 -z-0 h-3 rounded-sm bg-amber-500/30 sm:h-3.5"
+                className="absolute inset-x-0 bottom-1 -z-0 h-2.5 rounded-sm bg-amber-500/30 sm:h-3"
               />
             </span>{' '}
             your edition
           </h2>
-          <p className="mx-auto mt-4 max-w-xl text-[15.5px] leading-[1.6] text-navy-900/60 sm:text-[16.5px]">
-            Transparent pricing with no hidden charges. GST included on invoice.
-            <span className="text-navy-900/85"> EMI available</span> on all major cards.
+          <p className="mx-auto mt-3 max-w-xl text-[14.5px] leading-[1.6] text-navy-900/60 sm:text-[15.5px]">
+            Authorised TallyPrime partner — transparent pricing, GST invoice,
+            <span className="text-navy-900/85"> EMI available</span>.
           </p>
 
           <div className="mx-auto mt-6 flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-[12.5px] font-medium text-navy-900/65">
@@ -1653,7 +1676,7 @@ export function HomeSections() {
   return (
     <>
       <Hero />
-      <TrustBar />
+      <SoftTradeShowcase />
       <Pricing />
       <Services />
       <About />
