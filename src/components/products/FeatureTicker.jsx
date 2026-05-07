@@ -66,7 +66,7 @@ export default function FeatureTicker({ items, ariaLabel = 'Feature ticker' }) {
           gap: 48px;
           white-space: nowrap;
           width: max-content;
-          animation: ft-ticker-scroll 30s linear infinite;
+          animation: ft-ticker-scroll 55s linear infinite;
           will-change: transform;
         }
         .ft-ticker:hover .ft-ticker__track,

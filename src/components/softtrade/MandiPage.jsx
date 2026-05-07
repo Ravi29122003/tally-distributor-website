@@ -460,7 +460,7 @@ function Hero() {
         borderTop:'1px solid rgba(255,255,255,.05)',
       }}>
         <div style={{display:'flex', alignItems:'center', gap:48, whiteSpace:'nowrap',
-          animation:'mandi-marquee 40s linear infinite'}}>
+          animation:'mandi-marquee 60s linear infinite'}}>
           {Array(2).fill(0).map((_,k)=>(
             <Fragment key={k}>
               {[
@@ -935,9 +935,9 @@ export default function MandiPage() {
   return (
     <div className="design-page">
       <Hero/>
-      <FeatureTicker items={tickerItems} ariaLabel="SoftTrade Mandi feature highlights"/>
       <WorkflowDiagram/>
       <Pricing/>
+      <FeatureTicker items={tickerItems} ariaLabel="SoftTrade Mandi feature highlights"/>
       <Features/>
       <FeaturesGridSection/>
       <FinalCTA/>
