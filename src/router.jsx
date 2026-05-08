@@ -11,6 +11,7 @@ import ProductPricingPage from './components/ProductPricingPage';
 import MandiPage from './components/softtrade/MandiPage';
 import BrokwinPage from './components/softtrade/BrokwinPage';
 import ColdwinPage from './components/softtrade/ColdwinPage';
+import SoftCloudERPPage from './components/softtrade/SoftCloudERPPage';
 import SilverPage from './components/tally/SilverPage';
 import GoldPage from './components/tally/GoldPage';
 import ServerPage from './components/tally/ServerPage';
@@ -48,7 +49,7 @@ const PRODUCTS_NON_TALLY = [
   { label: 'SoftTrade-Mandi',   to: '/products/softtrade-mandi',   desc: 'Mahajani accounting for mandis, mills & traders' },
   { label: 'SoftTrade-Brokwin', to: '/products/softtrade-brokwin', desc: 'For commodity and textile brokers' },
   { label: 'SoftTrade-Coldwin', to: '/products/softtrade-coldwin', desc: 'Cold storage & warehouse management' },
-  { label: 'Zayaka',            to: '/products/zayaka',            desc: 'Restaurant & F&B billing software' },
+  { label: 'SoftCloud-ERP',     to: '/products/softcloud-erp',     desc: 'Smart business control system for mandis, mills & processors' },
 ];
 
 const SIMPLE_NAV = [
@@ -740,7 +741,7 @@ function RouterApp() {
           <Route path="products/softtrade-mandi"   element={<MandiPage />} />
           <Route path="products/softtrade-brokwin" element={<BrokwinPage />} />
           <Route path="products/softtrade-coldwin" element={<ColdwinPage />} />
-          <Route path="products/zayaka"            element={<ProductPricingPage product={productsData.zayaka} />} />
+          <Route path="products/softcloud-erp"     element={<SoftCloudERPPage />} />
 
           {/* Services */}
           <Route path="services"               element={<ServicesIndex />} />
