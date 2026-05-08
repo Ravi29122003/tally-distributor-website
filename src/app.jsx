@@ -888,8 +888,14 @@ export function SoftTradeShowcase() {
 
       <div className="relative mx-auto max-w-7xl px-5 sm:px-8">
         <Reveal className="mx-auto max-w-2xl text-center">
-          <Eyebrow>Our Flagship Lineup</Eyebrow>
-          <h2 className="mt-5 font-display text-[40px] font-bold leading-[1.05] text-navy-900 sm:text-[54px]">
+          <div className="mx-auto -mb-2 flex justify-center">
+            <img
+              src="/Soft-Trade.png"
+              alt="SoftTrade"
+              className="h-36 w-auto sm:h-44 lg:h-52"
+            />
+          </div>
+          <h2 className="mt-1 font-display text-[40px] font-bold leading-[1.05] text-navy-900 sm:text-[54px]">
             Our{' '}
             <span className="relative inline-block">
               <span className="relative z-10 text-orange-600">SoftTrade</span>
