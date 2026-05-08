@@ -551,49 +551,223 @@ function Placeholder({ eyebrow, title, sub, accent, children }) {
 function HomePage() { return <HomeSections />; }
 
 function ProductsIndex() {
+  const products = [
+    {
+      eyebrow: 'Mandi accounting',
+      name: 'SoftTrade-Mandi',
+      tagline: 'Mahajani accounting, the way mandis actually keep books.',
+      desc: 'Windows-based accounting and inventory suite that runs the traditional Mahajani (Adat) bookkeeping North Indian grain, kirana, oil-mill and commission traders actually use — Chittha, Talpat, Aaita, Dalali — while layering modern GST, e-invoice and e-Way Bill generation on top.',
+      features: ['Chittha · Talpat · Aaita', 'Mahajani / Adat system', 'GST + e-Way Bill', 'Multi-godown stock'],
+      image: '/softtrade-mandi-box.png',
+      to: '/products/softtrade-mandi',
+    },
+    {
+      eyebrow: 'Broker-only suite',
+      name: 'SoftTrade-Brokwin',
+      tagline: 'Broker-only Mahajani accounting, built around the sauda.',
+      desc: 'A purpose-built product for pure commission agents — grain, kirana, cattle-feed, oil-cake, bilty-cut and textile brokers who never take ownership of goods. The primary document is the sauda (contract), with confirmation slips, covering letters, brokerage bills and dual-party Mahajani ledgers all flowing from it.',
+      features: ['Sauda contracts', 'Confirmation slips', 'Brokerage bills', 'Dual-party Mahajani'],
+      image: '/brokwin-removebg-preview.png',
+      to: '/products/softtrade-brokwin',
+    },
+    {
+      eyebrow: 'Cold-chain billing',
+      name: 'SoftTrade-Coldwin',
+      tagline: 'Cold storage billing & stock register, built for the Indian cold chain.',
+      desc: 'An offline Windows-based accounting and billing product for Indian cold storage operators and warehouses. Covers inward / outward, per-bag and per-bilty billing, GST invoicing and return filing. Part of the same trusted product family as SoftTrade-Mandi.',
+      features: ['Inward / outward', 'Per-bag · per-bilty billing', 'Chamber allotment', 'GST + e-way bills'],
+      image: '/Coldwin-removebg-preview.png',
+      to: '/products/softtrade-coldwin',
+    },
+    {
+      eyebrow: 'Cloud ERP',
+      name: 'SoftCloud-ERP',
+      tagline: 'Smart business control for mandis, mills & processing units.',
+      desc: 'A cloud-based ERP built for grain, dal, spice, kirana and dry-fruit traders, plus flour mills, dal mills, oil mills and processing units. Real-time profit, item-wise margin, lot-wise stock, branch-wise control and a mobile dashboard for the owner — all from one system.',
+      features: ['Real-time profit', 'Lot-wise stock', 'Branch-wise control', 'Mobile dashboard for owner'],
+      image: '/Cloud ERP.png',
+      to: '/products/softcloud-erp',
+    },
+  ];
+
   return (
     <>
-      <PageHero
-        eyebrow="All Products"
-        title="Business software we sell and support"
-        sub="From our own SoftTrade suite to TallyPrime licensing — all supported end-to-end by our Jaipur team."
-      />
+      {/* HERO */}
+      <section className="relative overflow-hidden bg-gradient-to-b from-[#F1EADB] to-[#FBF8F1] pt-[152px] pb-20 sm:pt-[168px] sm:pb-28 border-b border-navy-900/8">
+        <div className="pointer-events-none absolute inset-0 opacity-40"
+          style={{
+            backgroundImage:'linear-gradient(rgba(11,29,58,.04) 1px, transparent 1px), linear-gradient(90deg, rgba(11,29,58,.04) 1px, transparent 1px)',
+            backgroundSize:'48px 48px',
+            maskImage:'radial-gradient(ellipse at top, black, transparent 75%)',
+            WebkitMaskImage:'radial-gradient(ellipse at top, black, transparent 75%)',
+          }}
+        />
+        <div className="pointer-events-none absolute -right-48 -top-48 h-[600px] w-[600px] rounded-full"
+          style={{background:'radial-gradient(circle, rgba(225,83,11,.10), transparent 60%)'}}
+        />
 
-      <section className="border-t border-navy-900/8 bg-white py-16 sm:py-20">
-        <div className="mx-auto max-w-7xl px-5 sm:px-8">
+        <div className="relative mx-auto max-w-7xl px-5 sm:px-8">
+          <div className="grid items-center gap-10 lg:grid-cols-[1.4fr_1fr] lg:gap-12">
+            <div>
+          {/* breadcrumb */}
+          <nav aria-label="Breadcrumb" className="mb-6 flex items-center gap-2 text-[12.5px] font-medium text-navy-900/55">
+            <Link to="/" className="hover:text-navy-900 transition-colors">Home</Link>
+            <span aria-hidden>›</span>
+            <span className="text-navy-900">Products</span>
+          </nav>
+
+          {/* eyebrow chip */}
           <Reveal>
-            <div className="flex items-end justify-between gap-4">
-              <div>
-                <div className="text-[11px] font-bold uppercase tracking-[0.18em] text-teal-700">Section 01</div>
-                <h2 className="font-display mt-2 text-[28px] font-bold leading-[1.2] text-navy-900 sm:text-[34px]">
-                  Our own software
-                </h2>
-                <p className="mt-2 max-w-2xl text-[15px] leading-[1.55] text-navy-900/65">
-                  SoftTrade applications we sell, deploy and support directly — built for Indian agri trade, cold chain and F&B billing.
-                </p>
-              </div>
+            <div className="inline-flex items-center gap-2 rounded-full border border-navy-900/10 bg-white px-3 py-1.5 text-[11px] font-bold uppercase tracking-[0.2em] text-navy-900/70 shadow-card">
+              <span className="h-1.5 w-1.5 rounded-full bg-teal-500" />
+              Our software
             </div>
           </Reveal>
-          <CardGrid items={PRODUCTS_NON_TALLY} />
+
+          {/* big title */}
+          <Reveal delay={80}>
+            <h1 className="font-display mt-6 max-w-5xl text-[44px] font-semibold leading-[1.02] tracking-[-0.025em] text-navy-900 sm:text-[68px]">
+              SoftTrade — software <span className="italic text-orange-600">built for</span> Indian trade.
+            </h1>
+          </Reveal>
+
+          {/* body copy */}
+          <Reveal delay={140}>
+            <p className="mt-6 max-w-2xl text-[16.5px] leading-[1.65] text-navy-900/70 sm:text-[17px]">
+              Four products, one philosophy: build software the way Indian traders, brokers, mills and cold-storage operators actually keep books — Mahajani-first, GST-ready, supported end-to-end by our Jaipur team.
+            </p>
+          </Reveal>
+
+          {/* dual CTAs */}
+          <Reveal delay={200}>
+            <div className="mt-8 flex flex-wrap items-center gap-3">
+              <a href="#products"
+                className="btn-lift inline-flex items-center gap-2 rounded-full bg-orange-600 px-6 py-3 text-[14.5px] font-semibold text-white shadow-card hover:bg-orange-700">
+                View software <ArrowRight size={15} strokeWidth={2.2} />
+              </a>
+              <a href={telHref}
+                className="btn-lift inline-flex items-center gap-2 rounded-full bg-navy-900 px-5 py-3 text-[14.5px] font-semibold text-white shadow-card hover:bg-navy-800">
+                <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-white/15">
+                  <Icon name="phone" size={12} />
+                </span>
+                {siteConfig.phones.sales}
+              </a>
+            </div>
+          </Reveal>
+            </div>
+            <div className="hidden justify-center lg:flex">
+              <div className="relative w-full max-w-[420px]">
+                <img
+                  src="/Soft-Trade.png"
+                  alt="SoftTrade"
+                  className="w-full h-auto"
+                  style={{ filter: 'drop-shadow(0 20px 40px rgba(11, 27, 44, 0.12))' }}
+                />
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
-      <section className="border-t border-navy-900/8 bg-navy-50/30 py-16 sm:py-20">
+      {/* SECTION INTRO */}
+      <section id="products" className="border-t border-navy-900/8 bg-white pt-20 sm:pt-24 scroll-mt-24">
+        <div className="mx-auto max-w-7xl px-5 sm:px-8 pb-12">
+          <Reveal>
+            <div className="max-w-3xl">
+              <div className="text-[11px] font-bold uppercase tracking-[0.22em] text-teal-700">Our software</div>
+              <h2 className="font-display mt-3 text-[34px] font-semibold leading-[1.1] tracking-[-0.02em] text-navy-900 sm:text-[44px]">
+                Built for the way <span className="italic text-orange-600">Indian trade</span> actually works
+              </h2>
+              <p className="mt-4 text-[15.5px] leading-[1.65] text-navy-900/65 sm:text-[16px]">
+                Four products that solve specific Indian trade problems — Mahajani accounting, broker workflows, cold storage operations, and cloud ERP. Each one is sold, deployed, and supported by our team directly.
+              </p>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* PRODUCT ROWS */}
+      {products.map((p, i) => (
+        <section key={p.to}
+          className={`border-t border-navy-900/8 ${i % 2 === 0 ? 'bg-white' : 'bg-[#FBF8F1]'} py-16 sm:py-20`}
+        >
+          <div className="mx-auto max-w-7xl px-5 sm:px-8">
+            <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+              {/* IMAGE COLUMN */}
+              <div className={i % 2 === 1 ? 'lg:order-2' : ''}>
+                <Reveal>
+                  <div className="flex items-center justify-center">
+                    <img src={p.image} alt={`${p.name} product box`}
+                      className="w-full max-w-[440px] h-auto"
+                      style={{ filter: 'drop-shadow(0 30px 50px rgba(11,27,44,0.18))' }}
+                    />
+                  </div>
+                </Reveal>
+              </div>
+
+              {/* CONTENT COLUMN */}
+              <div className={i % 2 === 1 ? 'lg:order-1' : ''}>
+                <Reveal delay={80}>
+                  <div>
+                    <div className="text-[11px] font-bold uppercase tracking-[0.22em] text-teal-700">{p.eyebrow}</div>
+                    <h2 className="font-display mt-3 text-[32px] font-semibold leading-[1.1] tracking-[-0.02em] text-navy-900 sm:text-[42px]">
+                      {p.name}
+                    </h2>
+                    <p className="mt-4 font-display text-[18px] italic font-medium text-navy-900/85 sm:text-[20px]">
+                      {p.tagline}
+                    </p>
+                    <p className="mt-5 text-[15px] leading-[1.7] text-navy-900/70 sm:text-[15.5px]">
+                      {p.desc}
+                    </p>
+
+                    {/* Feature chips */}
+                    <div className="mt-6 flex flex-wrap gap-2">
+                      {p.features.map((f, j) => (
+                        <span key={j}
+                          className="inline-flex items-center gap-1.5 rounded-full border border-navy-900/10 bg-white px-3 py-1.5 text-[12.5px] font-semibold text-navy-900/80 shadow-card">
+                          <span className="h-1.5 w-1.5 rounded-full bg-orange-500" />
+                          {f}
+                        </span>
+                      ))}
+                    </div>
+
+                    {/* CTA */}
+                    <div className="mt-8">
+                      <Link to={p.to}
+                        className="btn-lift inline-flex items-center gap-2 rounded-full bg-navy-900 px-5 py-3 text-[14px] font-semibold text-white shadow-card hover:bg-navy-800">
+                        Learn more about {p.name} <ArrowRight size={14} strokeWidth={2.2} />
+                      </Link>
+                    </div>
+                  </div>
+                </Reveal>
+              </div>
+            </div>
+          </div>
+        </section>
+      ))}
+
+      {/* FINAL CTA STRIP — Tally cross-link */}
+      <section className="border-t border-navy-900/8 bg-white py-20 sm:py-24">
         <div className="mx-auto max-w-7xl px-5 sm:px-8">
           <Reveal>
-            <div className="flex items-end justify-between gap-4">
-              <div>
-                <div className="text-[11px] font-bold uppercase tracking-[0.18em] text-teal-700">Section 02</div>
-                <h2 className="font-display mt-2 text-[28px] font-bold leading-[1.2] text-navy-900 sm:text-[34px]">
-                  Tally Products
-                </h2>
-                <p className="mt-2 max-w-2xl text-[15px] leading-[1.55] text-navy-900/65">
-                  Authorised TallyPrime partner — licensing, implementation, TDL customisation and TSS renewal across all Tally editions.
-                </p>
+            <div className="rounded-2xl border border-navy-900/10 bg-gradient-to-br from-[#F1EADB] to-[#FBF8F1] p-8 sm:p-10">
+              <div className="flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-center">
+                <div>
+                  <div className="text-[11px] font-bold uppercase tracking-[0.22em] text-teal-700">Looking for Tally?</div>
+                  <h3 className="font-display mt-2 text-[24px] font-semibold leading-[1.2] text-navy-900 sm:text-[28px]">
+                    We're a 5-Star TallyPrime Partner since 2009.
+                  </h3>
+                  <p className="mt-2 max-w-xl text-[14.5px] leading-[1.6] text-navy-900/65">
+                    Need TallyPrime licensing, implementation, customisation or migration from Tally.ERP 9? View our Tally services.
+                  </p>
+                </div>
+                <Link to="/tally"
+                  className="btn-lift inline-flex shrink-0 items-center gap-2 rounded-full bg-orange-600 px-5 py-3 text-[14px] font-semibold text-white shadow-card hover:bg-orange-700">
+                  View Tally services <ArrowRight size={14} strokeWidth={2.2} />
+                </Link>
               </div>
             </div>
           </Reveal>
-          <CardGrid items={TALLY_PRODUCTS} />
         </div>
       </section>
     </>
@@ -815,6 +989,8 @@ function TallyIndex() {
         />
 
         <div className="relative mx-auto max-w-7xl px-5 sm:px-8">
+          <div className="grid items-center gap-10 lg:grid-cols-[1.4fr_1fr] lg:gap-12">
+            <div>
           {/* breadcrumb */}
           <nav aria-label="Breadcrumb" className="mb-6 flex items-center gap-2 text-[12.5px] font-medium text-navy-900/55">
             <Link to="/" className="hover:text-navy-900 transition-colors">Home</Link>
@@ -833,7 +1009,7 @@ function TallyIndex() {
           {/* big serif title with orange italic accent */}
           <Reveal delay={80}>
             <h1 className="font-display mt-6 max-w-5xl text-[44px] font-semibold leading-[1.02] tracking-[-0.025em] text-navy-900 sm:text-[68px]">
-              TallyPrime — <span className="italic text-orange-600">licensing</span>,<br className="hidden sm:block" /> implementation, support.
+              TallyPrime — <span className="italic text-orange-600">licensing</span>, implementation, support.
             </h1>
           </Reveal>
 
@@ -860,6 +1036,18 @@ function TallyIndex() {
               </a>
             </div>
           </Reveal>
+            </div>
+            <div className="hidden justify-center lg:flex">
+              <div className="relative w-full max-w-[420px]">
+                <img
+                  src="/3 Star Partner.png"
+                  alt="Tally Certified 3 Star Sales & Implementation Partner"
+                  className="w-full h-auto"
+                  style={{ filter: 'drop-shadow(0 20px 40px rgba(11, 27, 44, 0.12))' }}
+                />
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
