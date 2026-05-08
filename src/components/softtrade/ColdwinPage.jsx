@@ -64,167 +64,26 @@ import { Icon, IconChip } from '../design/Icon';
 // ============================================================
 
 function ChamberMap() {
-  // 6 chambers × 4 floors grid — 1 = occupied, 0 = free
-  const grid = [
-    [1,1,1,1,0,1],
-    [1,1,0,1,1,1],
-    [1,0,1,1,1,1],
-    [1,1,1,1,1,0],
-  ];
   return (
-    <div style={{position:'relative', width:'100%', aspectRatio:'1.05/1', maxWidth:560}}>
-      {/* Back card — Storage rate slab */}
-      <div style={{
-        position:'absolute', left:'-6%', top:'12%',
-        width:'62%', aspectRatio:'1.55/1',
-        background:'#fff', borderRadius:14, border:'1px solid var(--line)',
-        boxShadow:'0 24px 40px -28px rgba(14,27,44,.20)',
-        transform:'rotate(-4deg)', padding:14, zIndex:1,
-      }}>
-        <div style={{display:'flex', justifyContent:'space-between', alignItems:'center'}}>
-          <div style={{fontSize:10, fontWeight:700, letterSpacing:'.16em', color:'var(--muted)'}}>STORAGE RATE · MAR–OCT</div>
-          <div style={{fontSize:10, fontWeight:700, color:'var(--teal)', background:'var(--teal-soft)', padding:'3px 8px', borderRadius:999}}>SEASON</div>
-        </div>
-        <div style={{marginTop:10, display:'grid', gridTemplateColumns:'1fr auto auto', fontSize:9.5, gap:'5px 8px'}}>
-          <span style={{fontWeight:700, color:'var(--muted)', fontSize:9}}>UNIT</span>
-          <span style={{fontWeight:700, color:'var(--muted)', fontSize:9, textAlign:'right'}}>MONTH</span>
-          <span style={{fontWeight:700, color:'var(--muted)', fontSize:9, textAlign:'right'}}>SEASON</span>
-          {[
-            ['Per bag (50kg)','₹18','₹95'],
-            ['Per quintal',   '₹35','₹185'],
-            ['Per package',   '₹45','₹240'],
-            ['Hammali in/out','₹4', '—'],
-          ].map((r,i)=>(
-            <Fragment key={i}>
-              <span style={{borderTop:'1px solid var(--paper-grid)', paddingTop:4}}>{r[0]}</span>
-              <span className="mono" style={{textAlign:'right', borderTop:'1px solid var(--paper-grid)', paddingTop:4}}>{r[1]}</span>
-              <span className="mono" style={{textAlign:'right', borderTop:'1px solid var(--paper-grid)', paddingTop:4, color: i===0?'var(--orange)':'var(--ink)'}}>{r[2]}</span>
-            </Fragment>
-          ))}
-        </div>
-      </div>
-
-      {/* Main: Chamber occupancy map */}
-      <div style={{position:'absolute', right:0, top:0, width:'92%', aspectRatio:'1.15/1', zIndex:2}}>
-        <div style={{
-          position:'absolute', inset:0,
-          background:'linear-gradient(180deg,#FFFEF9 0%,#F5EDD8 100%)',
-          borderRadius:14, boxShadow:'0 30px 60px -25px rgba(14,27,44,.28)',
-          border:'1px solid var(--line-2)', overflow:'hidden', padding:'18px 20px',
-        }}>
-          <div style={{display:'flex', justifyContent:'space-between', alignItems:'flex-start'}}>
-            <div>
-              <div style={{fontFamily:"'Fraunces',serif", fontSize:16, fontWeight:600}}>Chamber Map</div>
-              <div style={{fontSize:10, color:'var(--muted)', marginTop:2}}>Cold Storage No. 2 · Live</div>
-            </div>
-            <div style={{display:'flex', gap:8, fontSize:9}}>
-              <span style={{display:'inline-flex', alignItems:'center', gap:4, color:'var(--ink-soft)'}}>
-                <span style={{width:8, height:8, borderRadius:2, background:'var(--ink)'}}></span>Occupied
-              </span>
-              <span style={{display:'inline-flex', alignItems:'center', gap:4, color:'var(--ink-soft)'}}>
-                <span style={{width:8, height:8, borderRadius:2, background:'var(--paper-2)', border:'1px solid var(--line-2)'}}></span>Free
-              </span>
-            </div>
-          </div>
-
-          {/* Grid */}
-          <div style={{marginTop:14, display:'grid', gridTemplateColumns:'auto 1fr', gap:8, alignItems:'center'}}>
-            {grid.map((row, ri) => (
-              <Fragment key={ri}>
-                <span style={{fontSize:9, fontWeight:700, color:'var(--muted)', letterSpacing:'.1em', textAlign:'right', paddingRight:6}}>F{4-ri}</span>
-                <div style={{display:'grid', gridTemplateColumns:`repeat(${row.length}, 1fr)`, gap:6}}>
-                  {row.map((cell, ci) => (
-                    <div key={ci} style={{
-                      aspectRatio:'1.6/1',
-                      background: cell ? 'var(--ink)' : 'var(--paper-2)',
-                      border: cell ? '1px solid var(--ink)' : '1px dashed var(--line-2)',
-                      borderRadius:5,
-                      position:'relative',
-                      display:'grid', placeItems:'center',
-                      fontSize:8, fontWeight:700,
-                      color: cell ? 'rgba(255,255,255,.7)' : 'var(--muted)',
-                    }}>
-                      {cell ? `${ci+1}` : '·'}
-                      {ri===1 && ci===2 && (
-                        <div style={{position:'absolute', inset:-2, border:'2px solid var(--orange)', borderRadius:6}}></div>
-                      )}
-                    </div>
-                  ))}
-                </div>
-              </Fragment>
-            ))}
-          </div>
-
-          {/* Selected lot detail */}
-          <div style={{marginTop:14, background:'#fff', border:'1px solid var(--line-2)', borderRadius:8, padding:'8px 10px'}}>
-            <div style={{display:'flex', justifyContent:'space-between', alignItems:'center'}}>
-              <div style={{fontSize:10, fontWeight:700, letterSpacing:'.1em', color:'var(--orange)'}}>F3 · CHAMBER 3</div>
-              <div className="mono" style={{fontSize:10, fontWeight:600}}>LOT-2026-0481</div>
-            </div>
-            <div style={{display:'grid', gridTemplateColumns:'repeat(4, 1fr)', gap:6, marginTop:6}}>
-              {[
-                ['Party',  'Suresh & Co.'],
-                ['Marka',  'SR-71'],
-                ['Bags',   '420'],
-                ['Inward', '12 Apr'],
-              ].map((r,i)=>(
-                <div key={i}>
-                  <div style={{fontSize:8, fontWeight:700, letterSpacing:'.1em', color:'var(--muted)'}}>{r[0]}</div>
-                  <div style={{fontSize:11, fontWeight:600, marginTop:2}}>{r[1]}</div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* footer stats */}
-          <div style={{
-            position:'absolute', left:20, right:20, bottom:14,
-            display:'flex', justifyContent:'space-between', alignItems:'center',
-            padding:'8px 12px', background:'var(--ink)', color:'#fff', borderRadius:8,
-          }}>
-            <div>
-              <div style={{fontSize:9, fontWeight:700, letterSpacing:'.12em', color:'rgba(255,255,255,.55)'}}>OCCUPANCY</div>
-              <div className="mono" style={{fontSize:13, fontWeight:700, marginTop:1}}>20 / 24 chambers</div>
-            </div>
-            <div className="mono" style={{fontSize:18, fontWeight:700, color:'var(--teal)'}}>83%</div>
-          </div>
-        </div>
-      </div>
-
-      {/* Floating bardana / hammali card */}
-      <div style={{
-        position:'absolute', right:'-2%', bottom:'2%', width:'46%',
-        background:'#fff', border:'1px solid var(--line)',
-        borderRadius:14, padding:'14px 16px',
-        boxShadow:'0 24px 40px -20px rgba(14,27,44,.30)', zIndex:3,
-      }}>
-        <div style={{display:'flex', alignItems:'center', justifyContent:'space-between'}}>
-          <div style={{
-            width:32, height:32, borderRadius:8,
-            background:'var(--teal-soft)', color:'var(--teal)',
-            display:'grid', placeItems:'center',
-          }}>
-            <Icon name="boxes" size={16} stroke={2}/>
-          </div>
-          <div style={{fontSize:10, fontWeight:700, letterSpacing:'.12em', color:'var(--muted)'}}>TODAY'S OPS</div>
-        </div>
-        <div style={{display:'grid', gridTemplateColumns:'1fr 1fr', gap:10, marginTop:12}}>
-          <div>
-            <div style={{fontSize:10, color:'var(--muted)', fontWeight:500}}>Inward</div>
-            <div className="serif" style={{fontSize:20, fontWeight:600, lineHeight:1}}>1,840</div>
-            <div style={{fontSize:9.5, color:'var(--teal)', marginTop:2}}>↑ bags</div>
-          </div>
-          <div>
-            <div style={{fontSize:10, color:'var(--muted)', fontWeight:500}}>Outward</div>
-            <div className="serif" style={{fontSize:20, fontWeight:600, lineHeight:1}}>620</div>
-            <div style={{fontSize:9.5, color:'var(--orange)', marginTop:2}}>↓ bags</div>
-          </div>
-        </div>
-        <div style={{marginTop:10, paddingTop:8, borderTop:'1px dashed var(--line-2)', fontSize:10, color:'var(--ink-soft)', display:'flex', justifyContent:'space-between'}}>
-          <span>Hammali charges</span>
-          <span className="mono" style={{fontWeight:600, color:'var(--ink)'}}>₹9,840</span>
-        </div>
-      </div>
+    <div style={{
+      position: 'relative',
+      width: '100%',
+      maxWidth: 560,
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+    }}>
+      <img
+        src="/Coldwin-removebg-preview.png"
+        alt="SoftTrade Coldwin product box"
+        style={{
+          width: '100%',
+          height: 'auto',
+          maxWidth: 520,
+          objectFit: 'contain',
+          filter: 'drop-shadow(0 30px 50px rgba(14, 27, 44, 0.18))',
+        }}
+      />
     </div>
   );
 }

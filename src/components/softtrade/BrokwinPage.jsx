@@ -53,152 +53,25 @@ import { Icon, IconChip } from '../design/Icon';
 
 function SaudaVisual() {
   return (
-    <div style={{position:'relative', width:'100%', aspectRatio:'1.05/1', maxWidth:560}}>
-      {/* Back card — Brokerage rate matrix */}
-      <div style={{
-        position:'absolute', left:'-6%', top:'10%',
-        width:'62%', aspectRatio:'1.55/1',
-        background:'#fff', borderRadius:14, border:'1px solid var(--line)',
-        boxShadow:'0 24px 40px -28px rgba(14,27,44,.20)',
-        transform:'rotate(-4deg)', padding:14, zIndex:1,
-      }}>
-        <div style={{display:'flex', justifyContent:'space-between', alignItems:'center'}}>
-          <div style={{fontSize:10, fontWeight:700, letterSpacing:'.16em', color:'var(--muted)'}}>BROKERAGE MATRIX</div>
-          <div style={{fontSize:10, fontWeight:700, color:'var(--teal)', background:'var(--teal-soft)', padding:'3px 8px', borderRadius:999}}>AUTO</div>
-        </div>
-        <div style={{marginTop:10, display:'grid', gridTemplateColumns:'1fr auto auto auto', fontSize:9.5, gap:'4px 8px'}}>
-          <span style={{fontWeight:700, color:'var(--muted)', fontSize:9}}>ITEM</span>
-          <span style={{fontWeight:700, color:'var(--muted)', fontSize:9, textAlign:'right'}}>JPR</span>
-          <span style={{fontWeight:700, color:'var(--muted)', fontSize:9, textAlign:'right'}}>KOTA</span>
-          <span style={{fontWeight:700, color:'var(--muted)', fontSize:9, textAlign:'right'}}>UDR</span>
-          {[
-            ['Wheat',  '1.50%','1.75%','2.00%'],
-            ['Mustard','2.00%','2.25%','2.50%'],
-            ['Bajra',  '1.25%','1.50%','1.75%'],
-            ['Gram',   '1.75%','2.00%','2.25%'],
-          ].map((r,i)=>(
-            <Fragment key={i}>
-              <span style={{color:'var(--ink)', borderTop:'1px solid var(--paper-grid)', paddingTop:3}}>{r[0]}</span>
-              <span className="mono" style={{textAlign:'right', borderTop:'1px solid var(--paper-grid)', paddingTop:3, color: i===1?'var(--orange)':'var(--ink)'}}>{r[1]}</span>
-              <span className="mono" style={{textAlign:'right', borderTop:'1px solid var(--paper-grid)', paddingTop:3}}>{r[2]}</span>
-              <span className="mono" style={{textAlign:'right', borderTop:'1px solid var(--paper-grid)', paddingTop:3}}>{r[3]}</span>
-            </Fragment>
-          ))}
-        </div>
-      </div>
-
-      {/* Main: Sauda contract */}
-      <div style={{position:'absolute', right:0, top:0, width:'92%', aspectRatio:'1.15/1', zIndex:2}}>
-        <div style={{
-          position:'absolute', inset:0,
-          background:'linear-gradient(180deg,#FFFEF9 0%,#F5EDD8 100%)',
-          borderRadius:14, boxShadow:'0 30px 60px -25px rgba(14,27,44,.28)',
-          border:'1px solid var(--line-2)', overflow:'hidden', padding:'20px 22px',
-        }}>
-          {/* Header */}
-          <div style={{display:'flex', justifyContent:'space-between', alignItems:'flex-start', borderBottom:'2px solid var(--ink)', paddingBottom:10}}>
-            <div>
-              <div style={{fontFamily:"'Fraunces',serif", fontSize:18, fontWeight:600}}>सौदा / Sauda</div>
-              <div style={{fontSize:10, color:'var(--muted)', marginTop:2}}>Contract Note · Brokwin Reg.</div>
-            </div>
-            <div style={{textAlign:'right'}}>
-              <div className="mono" style={{fontSize:11, fontWeight:600, color:'var(--orange)'}}>SD-2026-04812</div>
-              <div style={{fontSize:9.5, color:'var(--muted)', marginTop:2}}>25 Apr 2026</div>
-            </div>
-          </div>
-
-          {/* Parties */}
-          <div style={{display:'grid', gridTemplateColumns:'1fr 1fr', gap:10, marginTop:12}}>
-            {[
-              ['SELLER · विक्रेता','Ramlal Aaita','Krishi Mandi, Jaipur'],
-              ['BUYER · क्रेता','Mohan Flour Mill','Industrial Area, Kota'],
-            ].map((c,i)=>(
-              <div key={i} style={{background:'#fff', border:'1px solid var(--line-2)', borderRadius:8, padding:'8px 10px'}}>
-                <div style={{fontSize:8.5, fontWeight:700, letterSpacing:'.12em', color:'var(--muted)'}}>{c[0]}</div>
-                <div style={{fontSize:11.5, fontWeight:600, marginTop:3, color:'var(--ink)'}}>{c[1]}</div>
-                <div style={{fontSize:9.5, color:'var(--ink-soft)', marginTop:1}}>{c[2]}</div>
-              </div>
-            ))}
-          </div>
-
-          {/* Goods */}
-          <div style={{marginTop:10, background:'var(--paper)', border:'1px solid var(--line-2)', borderRadius:8, padding:'10px 12px'}}>
-            <div style={{display:'grid', gridTemplateColumns:'1.2fr 1fr 1fr 1fr', gap:6, alignItems:'baseline'}}>
-              <div>
-                <div style={{fontSize:8.5, fontWeight:700, letterSpacing:'.1em', color:'var(--muted)'}}>ITEM</div>
-                <div style={{fontSize:11.5, fontWeight:600, marginTop:2}}>Wheat (Lokwan)</div>
-              </div>
-              <div>
-                <div style={{fontSize:8.5, fontWeight:700, letterSpacing:'.1em', color:'var(--muted)'}}>QTY</div>
-                <div className="mono" style={{fontSize:11.5, fontWeight:600, marginTop:2}}>500 qtl</div>
-              </div>
-              <div>
-                <div style={{fontSize:8.5, fontWeight:700, letterSpacing:'.1em', color:'var(--muted)'}}>RATE</div>
-                <div className="mono" style={{fontSize:11.5, fontWeight:600, marginTop:2}}>₹2,840</div>
-              </div>
-              <div>
-                <div style={{fontSize:8.5, fontWeight:700, letterSpacing:'.1em', color:'var(--muted)'}}>VALUE</div>
-                <div className="mono" style={{fontSize:11.5, fontWeight:700, marginTop:2, color:'var(--ink)'}}>₹14,20,000</div>
-              </div>
-            </div>
-          </div>
-
-          {/* Brokerage auto-calc */}
-          <div style={{marginTop:10, display:'flex', justifyContent:'space-between', alignItems:'center',
-            padding:'8px 12px', background:'var(--ink)', color:'#fff', borderRadius:8}}>
-            <div>
-              <div style={{fontSize:9, fontWeight:700, letterSpacing:'.12em', color:'rgba(255,255,255,.55)'}}>BROKERAGE · 1.75%</div>
-              <div style={{fontSize:9, color:'rgba(255,255,255,.7)', marginTop:1}}>Auto-applied · station rate matrix</div>
-            </div>
-            <div className="mono" style={{fontSize:14, fontWeight:700}}>₹24,850</div>
-          </div>
-
-          {/* Footer chips */}
-          <div style={{position:'absolute', left:22, right:22, bottom:14, display:'flex', gap:6, flexWrap:'wrap'}}>
-            {['Confirmation Letter','Covering Letter','Brokerage Bill','Dalal Ledger'].map((c,i)=>(
-              <span key={i} style={{
-                fontSize:9, fontWeight:600, padding:'3px 8px', borderRadius:999,
-                background: i===0?'var(--teal-soft)':'#fff',
-                color: i===0?'var(--teal)':'var(--ink-soft)',
-                border: i===0?'1px solid var(--teal)':'1px solid var(--line-2)',
-              }}>
-                {i===0 && '✓ '}{c}
-              </span>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      {/* Floating commission card */}
-      <div style={{
-        position:'absolute', right:'-2%', bottom:'2%', width:'46%',
-        background:'#fff', border:'1px solid var(--line)',
-        borderRadius:14, padding:'14px 16px',
-        boxShadow:'0 24px 40px -20px rgba(14,27,44,.30)', zIndex:3,
-      }}>
-        <div style={{display:'flex', alignItems:'center', justifyContent:'space-between'}}>
-          <div style={{
-            width:32, height:32, borderRadius:8,
-            background:'var(--orange-soft)', color:'var(--orange)',
-            display:'grid', placeItems:'center',
-          }}>
-            <Icon name="coins" size={16} stroke={2}/>
-          </div>
-          <div style={{fontSize:10, fontWeight:700, letterSpacing:'.12em', color:'var(--muted)'}}>THIS MONTH</div>
-        </div>
-        <div style={{fontSize:11, color:'var(--muted)', marginTop:10, fontWeight:500}}>
-          Brokerage earned
-        </div>
-        <div className="serif" style={{fontSize:24, fontWeight:600, marginTop:2, letterSpacing:'-0.015em'}}>
-          ₹3,84,250
-        </div>
-        <div style={{marginTop:8, display:'flex', alignItems:'center', gap:6, fontSize:10.5, color:'var(--ink-soft)'}}>
-          <span style={{color:'var(--teal)', fontWeight:600}}>↑ 18%</span>
-          <span>vs March</span>
-          <span style={{color:'var(--muted)'}}>·</span>
-          <span>142 saudas</span>
-        </div>
-      </div>
+    <div style={{
+      position: 'relative',
+      width: '100%',
+      maxWidth: 560,
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+    }}>
+      <img
+        src="/brokwin-removebg-preview.png"
+        alt="SoftTrade Brokwin product box"
+        style={{
+          width: '100%',
+          height: 'auto',
+          maxWidth: 520,
+          objectFit: 'contain',
+          filter: 'drop-shadow(0 30px 50px rgba(14, 27, 44, 0.18))',
+        }}
+      />
     </div>
   );
 }
