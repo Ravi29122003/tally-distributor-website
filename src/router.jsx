@@ -20,6 +20,7 @@ import CustomizationPage from './components/services/CustomizationPage';
 import SupportPage from './components/services/SupportPage';
 import AboutPage from './components/AboutPage';
 import { productsData } from './data/products';
+import { Banknote, MessageCircle, RefreshCw, IndianRupee, BarChart3, ShieldCheck, ArrowRight, FileText, Cloud, Wallet, Globe } from 'lucide-react';
 import './index.css';
 
 const telHref = `tel:${siteConfig.phones.sales.replace(/\s/g, '')}`;
@@ -73,7 +74,7 @@ function BrandMark({ className = '' }) {
       <img
         src="/Logo.png"
         alt={siteConfig.brand}
-        className="h-14 w-auto sm:h-18"
+        className="h-12 w-auto sm:h-14"
       />
     </Link>
   );
@@ -193,12 +194,12 @@ function RouterNav() {
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
         scrolled
-          ? 'backdrop-blur-xl bg-white/85 border-b border-navy-900/10 shadow-[0_1px_0_rgba(11,29,58,0.04)]'
-          : 'bg-white/60 backdrop-blur-md border-b border-transparent'
+          ? 'backdrop-blur-xl bg-white/95 border-b border-navy-900/10 shadow-[0_4px_20px_-12px_rgba(11,29,58,0.15)]'
+          : 'bg-white/85 backdrop-blur-lg border-b border-navy-900/8 shadow-[0_2px_12px_-8px_rgba(11,29,58,0.08)]'
       }`}
       role="banner"
     >
-      <div className="mx-auto flex h-[72px] max-w-7xl items-center justify-between px-5 sm:px-8">
+      <div className="mx-auto flex h-[88px] max-w-7xl items-center justify-between px-5 sm:px-8">
         <BrandMark />
 
         <nav aria-label="Primary" className="hidden items-center gap-1 lg:flex">
@@ -270,7 +271,7 @@ function RouterNav() {
         id="mobile-nav" role="dialog" aria-modal="true" aria-label="Mobile menu"
         className={`nav-drawer fixed right-0 top-0 z-[70] flex h-[100dvh] w-[88%] max-w-[400px] flex-col bg-white shadow-card-lg lg:hidden ${open ? 'is-open' : ''}`}
       >
-        <div className="flex h-[72px] flex-none items-center justify-between border-b border-navy-900/10 px-5">
+        <div className="flex h-[88px] flex-none items-center justify-between border-b border-navy-900/10 px-5">
           <BrandMark />
           <button type="button" onClick={() => setOpen(false)}
             className="inline-flex h-11 w-11 items-center justify-center rounded-xl border border-navy-900/10 bg-white text-navy-900"
@@ -491,7 +492,7 @@ function Layout() {
 // ---------- Generic placeholder page ----------
 function PageHero({ eyebrow, title, sub, accent }) {
   return (
-    <section className="hero-bg hero-grid relative overflow-hidden pt-[128px] pb-16 sm:pt-[148px] sm:pb-20" aria-labelledby="page-heading">
+    <section className="hero-bg hero-grid relative overflow-hidden pt-[144px] pb-16 sm:pt-[164px] sm:pb-20" aria-labelledby="page-heading">
       <div className="relative mx-auto max-w-7xl px-5 sm:px-8">
         <Reveal>
           <div className="inline-flex items-center gap-2 rounded-full border border-navy-900/10 bg-white px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.2em] text-navy-900/70 shadow-card">
@@ -598,47 +599,302 @@ function ProductsIndex() {
     </>
   );
 }
+function PowerOfSimplicity() {
+  // Wheel geometry — 6 donut slices around a center hole
+  const cx = 240, cy = 240, ri = 95, ro = 220;
+
+  const slices = [
+    { startA: 210, endA: 270, midA: 240, color: '#7CBA9F', label: 'BUSINESS\nTRANSACTION', Icon: Banknote },
+    { startA: 270, endA: 330, midA: 300, color: '#F4BD96', label: 'COMMUNICATION',         Icon: MessageCircle },
+    { startA: 330, endA: 390, midA: 360, color: '#EBD27D', label: 'DATA\nACCESSIBILITY',   Icon: RefreshCw },
+    { startA:  30, endA:  90, midA:  60, color: '#A0D5BB', label: 'FINANCIAL NEEDS',       Icon: IndianRupee },
+    { startA:  90, endA: 150, midA: 120, color: '#E8AAB2', label: 'REPORTING\nACCESSIBILITY', Icon: BarChart3 },
+    { startA: 150, endA: 210, midA: 180, color: '#9FBED8', label: 'COMPLIANCE',            Icon: ShieldCheck },
+  ];
+
+  const toRad = (d) => d * Math.PI / 180;
+  const donutSlice = (a1, a2) => {
+    const a1r = toRad(a1), a2r = toRad(a2);
+    const x1o = cx + ro * Math.cos(a1r), y1o = cy + ro * Math.sin(a1r);
+    const x2o = cx + ro * Math.cos(a2r), y2o = cy + ro * Math.sin(a2r);
+    const x1i = cx + ri * Math.cos(a1r), y1i = cy + ri * Math.sin(a1r);
+    const x2i = cx + ri * Math.cos(a2r), y2i = cy + ri * Math.sin(a2r);
+    return `M ${x1i},${y1i} L ${x1o},${y1o} A ${ro},${ro} 0 0 1 ${x2o},${y2o} L ${x2i},${y2i} A ${ri},${ri} 0 0 0 ${x1i},${y1i} Z`;
+  };
+
+  const labelPos = (midA, r) => {
+    const rad = toRad(midA);
+    return {
+      left: ((cx + r * Math.cos(rad)) / 480 * 100) + '%',
+      top:  ((cy + r * Math.sin(rad)) / 480 * 100) + '%',
+    };
+  };
+
+  return (
+    <section className="relative overflow-hidden border-t border-navy-900/8 bg-gradient-to-b from-[#FBF8F1] to-[#F1EADB] py-20 sm:py-24">
+      <div className="mx-auto max-w-7xl px-5 sm:px-8">
+
+        {/* Eyebrow + heading row */}
+        <div className="grid gap-10 lg:grid-cols-2 lg:gap-16 items-end">
+          <Reveal>
+            <div>
+              <div className="text-[11px] font-bold uppercase tracking-[0.22em] text-teal-700">TallyPrime · Power of Simplicity</div>
+              <h2 className="font-display mt-3 text-[34px] font-semibold leading-[1.05] tracking-[-0.02em] text-navy-900 sm:text-[48px]">
+                Everything in your business — <span className="italic text-orange-600">connected</span>.
+              </h2>
+            </div>
+          </Reveal>
+          <Reveal delay={80}>
+            <p className="text-[15.5px] leading-[1.7] text-navy-900/70 sm:text-[16.5px]">
+              Six pillars sit around a single TallyPrime. Banking, GST, reports, cloud, communication and lending — all native, all in one place.
+            </p>
+          </Reveal>
+        </div>
+
+        {/* Three-column layout: left info | wheel | right info */}
+        <div className="mt-14 grid gap-10 lg:grid-cols-[1fr_auto_1fr] lg:gap-12 items-start">
+
+          {/* LEFT INFO COLUMN */}
+          <div className="flex flex-col gap-8">
+            <div>
+              <div className="flex items-center gap-3">
+                <span className="inline-flex h-9 w-9 items-center justify-center rounded-lg bg-orange-50 text-orange-600">
+                  <Wallet size={18} strokeWidth={2} />
+                </span>
+                <h3 className="font-display text-[19px] font-semibold text-navy-900">Banking & payments</h3>
+              </div>
+              <ul className="mt-4 space-y-2.5 text-[14px] leading-[1.55] text-navy-900/70">
+                <li className="flex gap-2"><span className="mt-1.5 h-1 w-1 flex-none rounded-full bg-orange-500"/>Check bank balance & get statements (Axis, SBI & Kotak)</li>
+                <li className="flex gap-2"><span className="mt-1.5 h-1 w-1 flex-none rounded-full bg-orange-500"/>Direct vendor payments (Axis, SBI & Kotak)</li>
+                <li className="flex gap-2"><span className="mt-1.5 h-1 w-1 flex-none rounded-full bg-orange-500"/>Payment Link & QR Code</li>
+                <li className="flex gap-2"><span className="mt-1.5 h-1 w-1 flex-none rounded-full bg-orange-500"/>Bharat Connect integration with NPCI</li>
+              </ul>
+            </div>
+            <div>
+              <div className="flex items-center gap-3">
+                <span className="inline-flex h-9 w-9 items-center justify-center rounded-lg bg-teal-50 text-teal-700">
+                  <FileText size={18} strokeWidth={2} />
+                </span>
+                <h3 className="font-display text-[19px] font-semibold text-navy-900">GST & e-Invoicing built in</h3>
+              </div>
+              <ul className="mt-4 space-y-2.5 text-[14px] leading-[1.55] text-navy-900/70">
+                <li className="flex gap-2"><span className="mt-1.5 h-1 w-1 flex-none rounded-full bg-teal-500"/>File GSTR-1 & auto reconciliation</li>
+                <li className="flex gap-2"><span className="mt-1.5 h-1 w-1 flex-none rounded-full bg-teal-500"/>Create party from GSTIN</li>
+                <li className="flex gap-2"><span className="mt-1.5 h-1 w-1 flex-none rounded-full bg-teal-500"/>E-invoice</li>
+                <li className="flex gap-2"><span className="mt-1.5 h-1 w-1 flex-none rounded-full bg-teal-500"/>E-way bill</li>
+                <li className="flex gap-2"><span className="mt-1.5 h-1 w-1 flex-none rounded-full bg-teal-500"/>IMS</li>
+              </ul>
+            </div>
+          </div>
+
+          {/* CENTER WHEEL */}
+          <div className="mx-auto flex flex-col items-center justify-self-center">
+            <div className="relative aspect-square w-[320px] sm:w-[400px] lg:w-[440px]">
+              <svg viewBox="0 0 480 480" className="absolute inset-0 h-full w-full" aria-hidden>
+                {slices.map((s, i) => (
+                  <path key={i} d={donutSlice(s.startA, s.endA)} fill={s.color} stroke="#FBF8F1" strokeWidth="3" />
+                ))}
+                {/* Center circle */}
+                <circle cx={cx} cy={cy} r={ri - 5} fill="#ffffff" stroke="rgba(11,29,58,0.10)" strokeWidth="1.5" />
+              </svg>
+
+              {/* Slice icons + labels */}
+              {slices.map((s, i) => {
+                const SliceIcon = s.Icon;
+                return (
+                  <div key={i}
+                    className="absolute flex -translate-x-1/2 -translate-y-1/2 flex-col items-center gap-1.5"
+                    style={labelPos(s.midA, 160)}>
+                    <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-white text-navy-900 shadow-card">
+                      <SliceIcon size={16} strokeWidth={2} />
+                    </span>
+                    <span className="whitespace-pre-line text-center text-[9px] font-bold uppercase tracking-[0.08em] leading-tight text-navy-900/85">
+                      {s.label}
+                    </span>
+                  </div>
+                );
+              })}
+
+              {/* Center label */}
+              <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-center">
+                <div className="font-display text-[18px] font-semibold leading-none text-navy-900">
+                  Tally<span className="text-orange-600">·</span>Prime
+                </div>
+                <div className="mt-1 text-[9px] font-medium uppercase tracking-[0.14em] text-navy-900/55">
+                  Everything is<br/>Connected
+                </div>
+              </div>
+            </div>
+
+            {/* WhatsApp chip below wheel */}
+            <div className="mt-4 inline-flex items-center gap-2 rounded-full border border-navy-900/10 bg-white px-3 py-1.5 text-[12px] font-semibold text-navy-900 shadow-card">
+              <span className="inline-flex h-5 w-5 items-center justify-center rounded-full bg-teal-500 text-white">
+                <MessageCircle size={11} strokeWidth={2.5} />
+              </span>
+              TallyPrime with WhatsApp
+            </div>
+          </div>
+
+          {/* RIGHT INFO COLUMN */}
+          <div className="flex flex-col gap-8">
+            <div>
+              <div className="flex items-center gap-3">
+                <span className="inline-flex h-9 w-9 items-center justify-center rounded-lg bg-sky-50 text-sky-700">
+                  <Cloud size={18} strokeWidth={2} />
+                </span>
+                <h3 className="font-display text-[19px] font-semibold text-navy-900">Cloud Access</h3>
+              </div>
+              <ul className="mt-4 space-y-2.5 text-[14px] leading-[1.55] text-navy-900/70">
+                <li className="flex gap-2"><span className="mt-1.5 h-1 w-1 flex-none rounded-full bg-sky-500"/>TallyPrime Cloud Access</li>
+                <li className="flex gap-2"><span className="mt-1.5 h-1 w-1 flex-none rounded-full bg-sky-500"/>Smart Auto Backup on TallyDrive (cloud)</li>
+              </ul>
+            </div>
+            <div>
+              <div className="flex items-center gap-3">
+                <span className="inline-flex h-9 w-9 items-center justify-center rounded-lg bg-pink-50 text-pink-700">
+                  <IndianRupee size={18} strokeWidth={2} />
+                </span>
+                <h3 className="font-display text-[19px] font-semibold text-navy-900">Tally Capital</h3>
+              </div>
+              <ul className="mt-4 space-y-2.5 text-[14px] leading-[1.55] text-navy-900/70">
+                <li className="flex gap-2"><span className="mt-1.5 h-1 w-1 flex-none rounded-full bg-pink-500"/>Check credit score & loan eligibility</li>
+                <li className="flex gap-2"><span className="mt-1.5 h-1 w-1 flex-none rounded-full bg-pink-500"/>Apply loans from TallyPrime</li>
+              </ul>
+            </div>
+            <div>
+              <div className="flex items-center gap-3">
+                <span className="inline-flex h-9 w-9 items-center justify-center rounded-lg bg-violet-50 text-violet-700">
+                  <Globe size={18} strokeWidth={2} />
+                </span>
+                <h3 className="font-display text-[19px] font-semibold text-navy-900">Tally Reports in Browser (TRiB)</h3>
+              </div>
+              <p className="mt-4 text-[14px] leading-[1.6] text-navy-900/70">
+                View any Tally report on any device, in any browser.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Disclaimer + CTA strip */}
+        <Reveal>
+          <div className="mt-16 flex flex-col items-start justify-between gap-4 rounded-2xl border border-navy-900/10 bg-white p-5 shadow-card sm:flex-row sm:items-center sm:p-6">
+            <div className="flex items-center gap-3 text-[13px] text-navy-900/65">
+              <span className="inline-flex h-6 w-6 flex-none items-center justify-center rounded-full bg-amber-50 text-amber-600">
+                <ShieldCheck size={13} strokeWidth={2} />
+              </span>
+              Tally Solutions Pvt. Ltd. · For informational purposes only
+            </div>
+            <Link to="/contact"
+              className="btn-lift inline-flex items-center gap-2 rounded-full bg-orange-600 px-5 py-2.5 text-[13.5px] font-semibold text-white shadow-card hover:bg-orange-700">
+              Talk to a Tally specialist <ArrowRight size={14} strokeWidth={2.2} />
+            </Link>
+          </div>
+        </Reveal>
+      </div>
+    </section>
+  );
+}
+
 function TallyIndex() {
   return (
     <>
-      <PageHero
-        eyebrow="All Tally"
-        title="TallyPrime — licensing, implementation, support"
-        sub="Authorised Tally 5-Star Partner since 2009. Everything from buying your first licence to customising TDL, deploying Server edition, and migrating from Tally.ERP 9."
-      />
+      {/* HERO */}
+      <section className="relative overflow-hidden bg-gradient-to-b from-[#F1EADB] to-[#FBF8F1] pt-[152px] pb-20 sm:pt-[168px] sm:pb-28 border-b border-navy-900/8">
+        {/* paper grid backdrop */}
+        <div className="pointer-events-none absolute inset-0 opacity-40"
+          style={{
+            backgroundImage:'linear-gradient(rgba(11,29,58,.04) 1px, transparent 1px), linear-gradient(90deg, rgba(11,29,58,.04) 1px, transparent 1px)',
+            backgroundSize:'48px 48px',
+            maskImage:'radial-gradient(ellipse at top, black, transparent 75%)',
+            WebkitMaskImage:'radial-gradient(ellipse at top, black, transparent 75%)',
+          }}
+        />
+        {/* warm halo */}
+        <div className="pointer-events-none absolute -right-48 -top-48 h-[600px] w-[600px] rounded-full"
+          style={{background:'radial-gradient(circle, rgba(225,83,11,.10), transparent 60%)'}}
+        />
 
-      <section className="border-t border-navy-900/8 bg-white py-16 sm:py-20">
+        <div className="relative mx-auto max-w-7xl px-5 sm:px-8">
+          {/* breadcrumb */}
+          <nav aria-label="Breadcrumb" className="mb-6 flex items-center gap-2 text-[12.5px] font-medium text-navy-900/55">
+            <Link to="/" className="hover:text-navy-900 transition-colors">Home</Link>
+            <span aria-hidden className="text-navy-900/40">›</span>
+            <span className="text-navy-900">Tally</span>
+          </nav>
+
+          {/* eyebrow chip */}
+          <Reveal>
+            <div className="inline-flex items-center gap-2 rounded-full border border-navy-900/10 bg-white px-3 py-1.5 text-[11px] font-bold uppercase tracking-[0.2em] text-navy-900/70 shadow-card">
+              <span className="h-1.5 w-1.5 rounded-full bg-teal-500" />
+              All Tally
+            </div>
+          </Reveal>
+
+          {/* big serif title with orange italic accent */}
+          <Reveal delay={80}>
+            <h1 className="font-display mt-6 max-w-5xl text-[44px] font-semibold leading-[1.02] tracking-[-0.025em] text-navy-900 sm:text-[68px]">
+              TallyPrime — <span className="italic text-orange-600">licensing</span>,<br className="hidden sm:block" /> implementation, support.
+            </h1>
+          </Reveal>
+
+          {/* body copy */}
+          <Reveal delay={140}>
+            <p className="mt-6 max-w-2xl text-[16.5px] leading-[1.65] text-navy-900/70 sm:text-[17px]">
+              Authorised Tally 5-Star Partner since 2009. Everything from buying your first licence to customising TDL, deploying Server edition, and migrating from Tally.ERP 9.
+            </p>
+          </Reveal>
+
+          {/* dual CTAs */}
+          <Reveal delay={200}>
+            <div className="mt-8 flex flex-wrap items-center gap-3">
+              <a href="#tally-products"
+                className="btn-lift inline-flex items-center gap-2 rounded-full bg-orange-600 px-6 py-3 text-[14.5px] font-semibold text-white shadow-card hover:bg-orange-700">
+                Compare editions <Icon name="arrow-right" size={15} />
+              </a>
+              <a href={telHref}
+                className="btn-lift inline-flex items-center gap-2 rounded-full bg-navy-900 px-5 py-3 text-[14.5px] font-semibold text-white shadow-card hover:bg-navy-800">
+                <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-white/15">
+                  <Icon name="phone" size={12} />
+                </span>
+                {siteConfig.phones.sales}
+              </a>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* SECTION 01 — TALLY PRODUCTS */}
+      <section id="tally-products" className="border-t border-navy-900/8 bg-white py-20 sm:py-24 scroll-mt-24">
         <div className="mx-auto max-w-7xl px-5 sm:px-8">
           <Reveal>
-            <div className="flex items-end justify-between gap-4">
-              <div>
-                <div className="text-[11px] font-bold uppercase tracking-[0.18em] text-teal-700">Section 01</div>
-                <h2 className="font-display mt-2 text-[28px] font-bold leading-[1.2] text-navy-900 sm:text-[34px]">
-                  Tally Products
-                </h2>
-                <p className="mt-2 max-w-2xl text-[15px] leading-[1.55] text-navy-900/65">
-                  Every TallyPrime edition at partner-channel rates — Silver, Gold, Server, Auditors, Virtual User, Mobile App, and upgrade options.
-                </p>
-              </div>
+            <div className="max-w-3xl">
+              <div className="text-[11px] font-bold uppercase tracking-[0.22em] text-teal-700">Section 01</div>
+              <h2 className="font-display mt-3 text-[34px] font-semibold leading-[1.1] tracking-[-0.02em] text-navy-900 sm:text-[44px]">
+                Tally Products
+              </h2>
+              <p className="mt-4 text-[15.5px] leading-[1.65] text-navy-900/65 sm:text-[16px]">
+                Every TallyPrime edition at partner-channel rates — Silver, Gold, Server, Auditors, Virtual User, Mobile App, and upgrade options.
+              </p>
             </div>
           </Reveal>
           <CardGrid items={TALLY_PRODUCTS} />
         </div>
       </section>
 
-      <section className="border-t border-navy-900/8 bg-navy-50/30 py-16 sm:py-20">
+      <PowerOfSimplicity />
+
+      {/* SECTION 02 — TALLY SERVICES */}
+      <section className="border-t border-navy-900/8 bg-navy-50/30 py-20 sm:py-24">
         <div className="mx-auto max-w-7xl px-5 sm:px-8">
           <Reveal>
-            <div className="flex items-end justify-between gap-4">
-              <div>
-                <div className="text-[11px] font-bold uppercase tracking-[0.18em] text-teal-700">Section 02</div>
-                <h2 className="font-display mt-2 text-[28px] font-bold leading-[1.2] text-navy-900 sm:text-[34px]">
-                  Tally Services
-                </h2>
-                <p className="mt-2 max-w-2xl text-[15px] leading-[1.55] text-navy-900/65">
-                  Beyond licensing: implementation, training, customisation, AMC, cloud hosting, TSS renewal, and Zoho integration — delivered end-to-end by our Jaipur team.
-                </p>
-              </div>
+            <div className="max-w-3xl">
+              <div className="text-[11px] font-bold uppercase tracking-[0.22em] text-teal-700">Section 02</div>
+              <h2 className="font-display mt-3 text-[34px] font-semibold leading-[1.1] tracking-[-0.02em] text-navy-900 sm:text-[44px]">
+                Tally Services
+              </h2>
+              <p className="mt-4 text-[15.5px] leading-[1.65] text-navy-900/65 sm:text-[16px]">
+                Beyond licensing: implementation, training, customisation, AMC, cloud hosting, TSS renewal, and Zoho integration — delivered end-to-end by our Jaipur team.
+              </p>
             </div>
           </Reveal>
           <CardGrid items={TALLY_SERVICES} />

@@ -11,86 +11,25 @@ import { Icon, IconChip } from '../design/Icon';
 
 function DashboardVisual() {
   return (
-    <div style={{ position:'relative', width:'100%', aspectRatio:'1.05 / 1', maxWidth: 560 }}>
-      {/* back chip card — multi-company outstanding */}
-      <div style={{
-        position:'absolute', left:'-6%', top:'10%',
-        width:'62%', aspectRatio:'1.5/1',
-        background:'#fff', borderRadius:14, border:'1px solid var(--line)',
-        boxShadow:'0 24px 40px -28px rgba(14,27,44,.20)',
-        transform:'rotate(-4deg)', padding:14, zIndex:1,
-      }}>
-        <div style={{display:'flex', justifyContent:'space-between', alignItems:'center'}}>
-          <div style={{fontSize:10, fontWeight:700, letterSpacing:'.16em', color:'var(--muted)'}}>CONSOLIDATED OUTSTANDING</div>
-          <div style={{fontSize:10, fontWeight:700, color:'var(--teal)', background:'var(--teal-soft)', padding:'3px 8px', borderRadius:999}}>3 FIRMS</div>
-        </div>
-        <div style={{marginTop:14, fontSize:11, color:'var(--ink-soft)'}}>Sharma Traders</div>
-        <div className="serif" style={{fontSize:28, fontWeight:600, marginTop:2}}>₹5,00,000</div>
-        <div style={{marginTop:10, display:'grid', gridTemplateColumns:'1fr 1fr 1fr', gap:6, fontSize:10}}>
-          <div><div style={{color:'var(--muted)'}}>Co. A</div><div style={{fontWeight:600}}>₹2.50L</div></div>
-          <div><div style={{color:'var(--muted)'}}>Co. B</div><div style={{fontWeight:600}}>₹1.80L</div></div>
-          <div><div style={{color:'var(--muted)'}}>Co. C</div><div style={{fontWeight:600}}>₹0.70L</div></div>
-        </div>
-      </div>
-
-      {/* main dashboard card */}
-      <div style={{
-        position:'absolute', right:'0', top:'4%',
-        width:'78%', background:'#fff', borderRadius:18,
-        border:'1px solid var(--line)', boxShadow:'0 40px 80px -40px rgba(14,27,44,.30)',
-        padding:22, zIndex:2,
-      }}>
-        <div style={{display:'flex', justifyContent:'space-between', alignItems:'center'}}>
-          <div>
-            <div style={{fontSize:10, fontWeight:700, letterSpacing:'.16em', color:'var(--muted)'}}>SMART DASHBOARD</div>
-            <div className="serif" style={{fontSize:18, fontWeight:600, marginTop:2}}>Today · 25 Apr 2026</div>
-          </div>
-          <div style={{width:32, height:32, borderRadius:8, background:'var(--orange)', display:'flex', alignItems:'center', justifyContent:'center', color:'#fff', fontSize:14, fontWeight:700}}>
-            <Icon name="grid" size={16} stroke={2.2}/>
-          </div>
-        </div>
-
-        <div style={{marginTop:18, display:'grid', gridTemplateColumns:'1fr 1fr', gap:10}}>
-          <div style={{padding:12, background:'var(--teal-soft)', borderRadius:10}}>
-            <div style={{fontSize:10, color:'var(--ink-soft)', fontWeight:600}}>SALES TODAY</div>
-            <div className="serif" style={{fontSize:22, fontWeight:600, marginTop:4}}>₹8.4L</div>
-            <div style={{fontSize:10, color:'var(--teal)', marginTop:2, fontWeight:600}}>↑ 12% vs avg</div>
-          </div>
-          <div style={{padding:12, background:'rgba(225,83,11,.08)', borderRadius:10}}>
-            <div style={{fontSize:10, color:'var(--ink-soft)', fontWeight:600}}>COLLECTION</div>
-            <div className="serif" style={{fontSize:22, fontWeight:600, marginTop:4}}>₹6.2L</div>
-            <div style={{fontSize:10, color:'var(--orange)', marginTop:2, fontWeight:600}}>74% of sales</div>
-          </div>
-        </div>
-
-        <div style={{marginTop:10, padding:12, background:'var(--ink)', borderRadius:10, color:'#fff'}}>
-          <div style={{display:'flex', justifyContent:'space-between', alignItems:'center'}}>
-            <div>
-              <div style={{fontSize:10, color:'rgba(255,255,255,.65)', fontWeight:600}}>TOTAL OUTSTANDING</div>
-              <div className="serif" style={{fontSize:22, fontWeight:600, marginTop:2}}>₹47.6L</div>
-            </div>
-            <div style={{fontSize:10, color:'#fff', background:'rgba(255,255,255,.12)', padding:'4px 10px', borderRadius:999, fontWeight:600}}>4 high-risk</div>
-          </div>
-        </div>
-
-        <div style={{marginTop:12, display:'flex', alignItems:'center', gap:8, fontSize:11, color:'var(--ink-soft)'}}>
-          <Icon name="grid" size={13} stroke={1.8}/>
-          <span>Live · auto-refresh every 60s</span>
-        </div>
-      </div>
-
-      {/* floating chip — mobile alert */}
-      <div style={{
-        position:'absolute', right:'-4%', bottom:'4%',
-        background:'var(--ink)', color:'#fff',
-        borderRadius:12, padding:'10px 14px',
-        boxShadow:'0 24px 40px -20px rgba(14,27,44,.45)',
-        zIndex:3, display:'flex', alignItems:'center', gap:10,
-        fontSize:12, fontWeight:500,
-      }}>
-        <div style={{width:8, height:8, borderRadius:'50%', background:'#22c55e'}}/>
-        <span>Mobile alert · Owner sees this live</span>
-      </div>
+    <div style={{
+      position: 'relative',
+      width: '100%',
+      maxWidth: 760,
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+    }}>
+      <img
+        src="/Cloud ERP.png"
+        alt="SoftCloud-ERP product box"
+        style={{
+          width: '100%',
+          height: 'auto',
+          maxWidth: 720,
+          objectFit: 'contain',
+          filter: 'drop-shadow(0 30px 50px rgba(14, 27, 44, 0.18))',
+        }}
+      />
     </div>
   );
 }

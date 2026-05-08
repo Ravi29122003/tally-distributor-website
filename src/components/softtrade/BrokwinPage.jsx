@@ -56,7 +56,7 @@ function SaudaVisual() {
     <div style={{
       position: 'relative',
       width: '100%',
-      maxWidth: 760,
+      maxWidth: 1100,
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
@@ -67,7 +67,7 @@ function SaudaVisual() {
         style={{
           width: '100%',
           height: 'auto',
-          maxWidth: 720,
+          maxWidth: 1060,
           objectFit: 'contain',
           filter: 'drop-shadow(0 30px 50px rgba(14, 27, 44, 0.18))',
         }}
@@ -92,7 +92,7 @@ function Hero() {
         background:'radial-gradient(circle, rgba(225,83,11,.10), transparent 60%)', pointerEvents:'none'}}/>
 
       <div className="container wave-hero" style={{position:'relative', padding:'152px 32px 100px'}}>
-        <div className="wave-hero-grid" style={{display:'grid', gridTemplateColumns:'1.1fr 1fr', gap:80, alignItems:'center'}}>
+        <div className="wave-hero-grid" style={{display:'grid', gridTemplateColumns:'1fr 1.4fr', gap:80, alignItems:'center'}}>
           <div>
             <div style={{display:'flex', gap:10, alignItems:'center', flexWrap:'wrap'}}>
               <span className="eyebrow"><span className="dot"></span>Products · SoftTrade-Brokwin</span>
