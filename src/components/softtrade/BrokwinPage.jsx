@@ -56,7 +56,7 @@ function SaudaVisual() {
     <div style={{
       position: 'relative',
       width: '100%',
-      maxWidth: 560,
+      maxWidth: 760,
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
@@ -67,7 +67,7 @@ function SaudaVisual() {
         style={{
           width: '100%',
           height: 'auto',
-          maxWidth: 520,
+          maxWidth: 720,
           objectFit: 'contain',
           filter: 'drop-shadow(0 30px 50px rgba(14, 27, 44, 0.18))',
         }}
