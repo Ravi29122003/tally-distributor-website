@@ -29,6 +29,22 @@ export function waLink(ctx) {
   return `https://wa.me/${siteConfig.whatsapp}?text=${encodeURIComponent(msg)}`;
 }
 
+// Build a WhatsApp deep-link with the given form payload.
+// Used by both the hero CallbackCard and the bottom Contact form.
+function buildHomepageWhatsAppUrl(payload) {
+  const lines = [`Hi ${siteConfig.brand}, I'd like to get in touch.`, ''];
+  if (payload.name)     lines.push(`Name: ${payload.name}`);
+  if (payload.phone)    lines.push(`Phone: ${payload.phone}`);
+  if (payload.email)    lines.push(`Email: ${payload.email}`);
+  if (payload.interest) lines.push(`Looking for: ${payload.interest}`);
+  if (payload.subject)  lines.push(`Subject: ${payload.subject}`);
+  if (payload.message) {
+    lines.push('');
+    lines.push(`Message: ${payload.message}`);
+  }
+  return `https://wa.me/${siteConfig.whatsapp}?text=${encodeURIComponent(lines.join('\n'))}`;
+}
+
 // ------ Reveal on scroll (with stagger) ------
 export function Reveal({ as = 'div', delay = 0, className = '', children, ...rest }) {
   const ref = useRef(null);
@@ -284,10 +300,16 @@ function CallbackCard() {
     if (Object.keys(errs).length) { setErrors(errs); return; }
     setErrors({});
     setLoading(true);
+    const url = buildHomepageWhatsAppUrl({
+      name: form.name,
+      phone: form.phone,
+      interest: form.interest,
+    });
     setTimeout(() => {
+      window.open(url, '_blank', 'noopener,noreferrer');
       setLoading(false);
       setSubmitted(true);
-    }, 900);
+    }, 400);
   };
 
   return (
@@ -323,10 +345,10 @@ function CallbackCard() {
               <Icon name="check" size={28} strokeWidth={2.5} />
             </div>
             <h4 className="font-display text-[22px] font-bold text-navy-900">
-              Thank you, {form.name.split(' ')[0] || 'friend'}!
+              Sent to WhatsApp
             </h4>
             <p className="mt-1.5 text-[14px] text-navy-900/65">
-              Our specialist will call you at <span className="font-semibold text-navy-900">{form.phone}</span> within 15 minutes.
+              Your message just opened in WhatsApp. Hit send there and we'll reply within one business hour.
             </p>
             <button
               onClick={() => { setSubmitted(false); setForm({ name:'', phone:'', interest:'' }); }}
@@ -1594,7 +1616,18 @@ export function Contact() {
     if (Object.keys(errs).length) { setErrors(errs); return; }
     setErrors({});
     setLoading(true);
-    setTimeout(() => { setLoading(false); setSent(true); }, 1000);
+    const url = buildHomepageWhatsAppUrl({
+      name: form.name,
+      phone: form.phone,
+      email: form.email,
+      subject: form.subject,
+      message: form.message,
+    });
+    setTimeout(() => {
+      window.open(url, '_blank', 'noopener,noreferrer');
+      setLoading(false);
+      setSent(true);
+    }, 400);
   };
 
   const info = [
@@ -1668,9 +1701,9 @@ export function Contact() {
                   <div className="mx-auto mb-4 inline-flex h-14 w-14 items-center justify-center rounded-full bg-teal-50 text-teal-600">
                     <Icon name="check" size={28} strokeWidth={2.5} />
                   </div>
-                  <h4 className="font-display text-[22px] font-bold text-navy-900">Message received</h4>
+                  <h4 className="font-display text-[22px] font-bold text-navy-900">Sent to WhatsApp</h4>
                   <p className="mt-1.5 text-[14px] text-navy-900/65">
-                    Thanks, {form.name.split(' ')[0]}. We'll reply to <span className="font-semibold text-navy-900">{form.email}</span> within one business hour.
+                    Your message just opened in WhatsApp. Hit send there and we'll reply within one business hour — or via email to <span className="font-semibold text-navy-900">{form.email}</span>.
                   </p>
                   <button
                     onClick={() => { setSent(false); setForm({ name:'', phone:'', email:'', subject:'', message:'' }); }}
