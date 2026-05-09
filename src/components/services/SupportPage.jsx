@@ -187,7 +187,7 @@ function Hero() {
               <span className="eyebrow"><span className="dot"></span>Services · AMC & Support</span>
               <span style={{display:'inline-flex', alignItems:'center', gap:6, fontSize:12, fontWeight:600,
                 color:'var(--ink-soft)', padding:'4px 10px', border:'1px solid var(--line-2)', borderRadius:999, background:'#fff'}}>
-                <Icon name="shield" size={12} stroke={2}/> 5-Star Tally Partner
+                <Icon name="shield" size={12} stroke={2}/> Tally Certified 3-Star Partner
               </span>
             </div>
 
@@ -381,7 +381,7 @@ function WithYou() {
           </div>
           <div>
             <p style={{fontSize:17, lineHeight:1.7, color:'var(--ink-soft)', margin:0}}>
-              As a <strong style={{color:'var(--ink)'}}>5-Star Certified Premier Tally Partner</strong>, we've seen every kind of mid-month panic — a corrupted .tsf, a missed TSS renewal, a GSTR that won't tally. Our AMC is built to prevent the panic in the first place: scheduled health-checks, remote troubleshooting in minutes, and on-site visits where they're earned.
+              As a <strong style={{color:'var(--ink)'}}>Tally Certified 3-Star Partner</strong>, we've seen every kind of mid-month panic — a corrupted .tsf, a missed TSS renewal, a GSTR that won't tally. Our AMC is built to prevent the panic in the first place: scheduled health-checks, remote troubleshooting in minutes, and on-site visits where they're earned.
             </p>
             <p style={{fontSize:17, lineHeight:1.7, color:'var(--ink-soft)', marginTop:18}}>
               Keep your <strong style={{color:'var(--ink)'}}>TSS subscription renewed</strong> — it's what unlocks remote access, e-invoicing, and the latest compliance updates.

@@ -467,7 +467,7 @@ function RouterFooter() {
           </div>
           <div className="inline-flex flex-wrap items-center gap-x-2 gap-y-1 rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-[11px] font-medium text-white/65">
             <Icon name="award" size={13} className="text-amber-400" />
-            <span>Certified 5-Star TallyPrime Partner</span>
+            <span>Tally Certified 3-Star Partner</span>
             <span className="h-1 w-1 rounded-full bg-white/25" />
             <span>Licences issued by Tally Solutions Pvt. Ltd.</span>
           </div>
@@ -757,7 +757,7 @@ function ProductsIndex() {
                 <div>
                   <div className="text-[11px] font-bold uppercase tracking-[0.22em] text-teal-700">Looking for Tally?</div>
                   <h3 className="font-display mt-2 text-[24px] font-semibold leading-[1.2] text-navy-900 sm:text-[28px]">
-                    We're a 5-Star TallyPrime Partner since 2009.
+                    We're a Tally Certified 3-Star Partner since 2010.
                   </h3>
                   <p className="mt-2 max-w-xl text-[14.5px] leading-[1.6] text-navy-900/65">
                     Need TallyPrime licensing, implementation, customisation or migration from Tally.ERP 9? View our Tally services.
@@ -822,7 +822,7 @@ function PowerOfSimplicity() {
           </Reveal>
           <Reveal delay={80}>
             <p className="text-[15.5px] leading-[1.7] text-navy-900/70 sm:text-[16.5px]">
-              Six pillars sit around a single TallyPrime. Banking, GST, reports, cloud, communication and lending — all native, all in one place.
+              Six pillars sit around a single TallyPrime. Banking, GST, reports, cloud, communication and compliance — all native, all in one place.
             </p>
           </Reveal>
         </div>
@@ -843,7 +843,7 @@ function PowerOfSimplicity() {
                 <li className="flex gap-2"><span className="mt-1.5 h-1 w-1 flex-none rounded-full bg-orange-500"/>Check bank balance & get statements (Axis, SBI & Kotak)</li>
                 <li className="flex gap-2"><span className="mt-1.5 h-1 w-1 flex-none rounded-full bg-orange-500"/>Direct vendor payments (Axis, SBI & Kotak)</li>
                 <li className="flex gap-2"><span className="mt-1.5 h-1 w-1 flex-none rounded-full bg-orange-500"/>Payment Link & QR Code</li>
-                <li className="flex gap-2"><span className="mt-1.5 h-1 w-1 flex-none rounded-full bg-orange-500"/>Bharat Connect integration with NPCI</li>
+                <li className="flex gap-2"><span className="mt-1.5 h-1 w-1 flex-none rounded-full bg-orange-500"/>UPI and online payment integrations</li>
               </ul>
             </div>
             <div>
@@ -858,7 +858,6 @@ function PowerOfSimplicity() {
                 <li className="flex gap-2"><span className="mt-1.5 h-1 w-1 flex-none rounded-full bg-teal-500"/>Create party from GSTIN</li>
                 <li className="flex gap-2"><span className="mt-1.5 h-1 w-1 flex-none rounded-full bg-teal-500"/>E-invoice</li>
                 <li className="flex gap-2"><span className="mt-1.5 h-1 w-1 flex-none rounded-full bg-teal-500"/>E-way bill</li>
-                <li className="flex gap-2"><span className="mt-1.5 h-1 w-1 flex-none rounded-full bg-teal-500"/>IMS</li>
               </ul>
             </div>
           </div>
@@ -922,19 +921,7 @@ function PowerOfSimplicity() {
               </div>
               <ul className="mt-4 space-y-2.5 text-[14px] leading-[1.55] text-navy-900/70">
                 <li className="flex gap-2"><span className="mt-1.5 h-1 w-1 flex-none rounded-full bg-sky-500"/>TallyPrime Cloud Access</li>
-                <li className="flex gap-2"><span className="mt-1.5 h-1 w-1 flex-none rounded-full bg-sky-500"/>Smart Auto Backup on TallyDrive (cloud)</li>
-              </ul>
-            </div>
-            <div>
-              <div className="flex items-center gap-3">
-                <span className="inline-flex h-9 w-9 items-center justify-center rounded-lg bg-pink-50 text-pink-700">
-                  <IndianRupee size={18} strokeWidth={2} />
-                </span>
-                <h3 className="font-display text-[19px] font-semibold text-navy-900">Tally Capital</h3>
-              </div>
-              <ul className="mt-4 space-y-2.5 text-[14px] leading-[1.55] text-navy-900/70">
-                <li className="flex gap-2"><span className="mt-1.5 h-1 w-1 flex-none rounded-full bg-pink-500"/>Check credit score & loan eligibility</li>
-                <li className="flex gap-2"><span className="mt-1.5 h-1 w-1 flex-none rounded-full bg-pink-500"/>Apply loans from TallyPrime</li>
+                <li className="flex gap-2"><span className="mt-1.5 h-1 w-1 flex-none rounded-full bg-sky-500"/>Automatic backups to the cloud</li>
               </ul>
             </div>
             <div>
@@ -942,7 +929,7 @@ function PowerOfSimplicity() {
                 <span className="inline-flex h-9 w-9 items-center justify-center rounded-lg bg-violet-50 text-violet-700">
                   <Globe size={18} strokeWidth={2} />
                 </span>
-                <h3 className="font-display text-[19px] font-semibold text-navy-900">Tally Reports in Browser (TRiB)</h3>
+                <h3 className="font-display text-[19px] font-semibold text-navy-900">Reports in any browser</h3>
               </div>
               <p className="mt-4 text-[14px] leading-[1.6] text-navy-900/70">
                 View any Tally report on any device, in any browser.
@@ -1018,7 +1005,7 @@ function TallyIndex() {
           {/* body copy */}
           <Reveal delay={140}>
             <p className="mt-6 max-w-2xl text-[16.5px] leading-[1.65] text-navy-900/70 sm:text-[17px]">
-              Authorised Tally 5-Star Partner since 2009. Everything from buying your first licence to customising TDL, deploying Server edition, and migrating from Tally.ERP 9.
+              Tally Certified 3-Star Partner since 2010. Everything from buying your first licence to customising TDL, deploying Server edition, and migrating from Tally.ERP 9.
             </p>
           </Reveal>
 

@@ -2,7 +2,7 @@ export const siteConfig = {
   brand: 'Unique Info Systems',
   tagline: 'Business Software Partner',
   location: 'Jaipur',
-  since: '2009',
+  since: '2010',
   phones: {
     sales: '+91 98290 06111',
     support: '+91 90016 18810',

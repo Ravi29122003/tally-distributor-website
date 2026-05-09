@@ -84,10 +84,10 @@ function Hero() {
         <div className="wave-hero-grid" style={{display:'grid', gridTemplateColumns:'1.2fr 1fr', gap:64, alignItems:'center'}}>
           <div>
             <div style={{display:'flex', gap:10, alignItems:'center', flexWrap:'wrap'}}>
-              <span className="eyebrow"><span className="dot"></span>About · since 2009</span>
+              <span className="eyebrow"><span className="dot"></span>About · since 2010</span>
               <span style={{display:'inline-flex', alignItems:'center', gap:6, fontSize:12, fontWeight:600,
                 color:'var(--ink-soft)', padding:'4px 10px', border:'1px solid var(--line-2)', borderRadius:999, background:'#fff'}}>
-                <Icon name="award" size={12} stroke={2}/> 5-Star Tally Partner
+                <Icon name="award" size={12} stroke={2}/> Tally Certified 3-Star Partner
               </span>
             </div>
 
@@ -97,7 +97,7 @@ function Hero() {
             </h1>
 
             <p style={{fontSize:19, lineHeight:1.6, color:'var(--ink-soft)', maxWidth:580, marginTop:24}}>
-              Sixteen years, five-star certification, and hundreds of businesses still on our books — that's the only resume that matters.
+              Three-star certification and hundreds of businesses still on our books — that's the only resume that matters.
             </p>
 
             <div style={{display:'flex', gap:12, marginTop:32, flexWrap:'wrap'}}>
@@ -113,9 +113,8 @@ function Hero() {
           {/* Stats card stack */}
           <div className="wave-grid-2" style={{display:'grid', gridTemplateColumns:'1fr 1fr', gap:14}}>
             {[
-              ['2009',  'Founded in Jaipur',     'calc'],
-              ['600+',  'Active clients',         'users'],
-              ['5★',   'Tally Partner tier',     'star'],
+              ['2010',  'Founded in Jaipur',     'calc'],
+              ['3★',   'Tally Partner tier',     'star'],
               ['16',    'Modules shipped',        'grid'],
             ].map(([n,l,ic],i)=>(
               <div key={i} style={{background:'#fff', border:'1px solid var(--line)', borderRadius:14, padding:'22px 22px',
@@ -149,13 +148,13 @@ function Story() {
           </div>
           <div style={{display:'flex', flexDirection:'column', gap:24, fontSize:17, lineHeight:1.7, color:'var(--ink-soft)'}}>
             <p>
-              We started in 2009 as a Tally franchise from a small office in Jaipur. The brief was simple: sell genuine licences, install them properly, and pick up the phone when something breaks. Sixteen years on, the brief hasn't changed — we've just gotten better at it.
+              We started in 2010 as a Tally franchise from a small office in Jaipur. The brief was simple: sell genuine licences, install them properly, and pick up the phone when something breaks. The brief hasn't changed — we've just gotten better at it.
             </p>
             <p>
               {"What did change is who we built for. Mandi traders kept asking us why TallyPrime didn't speak "}<em>their</em>{" language — Aaita, Chittha, Talpat. So we built "}<strong style={{color:'var(--ink)'}}>SoftTrade-Mandi</strong>{". Brokers asked the same question about Sauda. We built "}<strong style={{color:'var(--ink)'}}>Brokwin</strong>{". Cold-storage owners about Hammali and Bardana — "}<strong style={{color:'var(--ink)'}}>Coldwin</strong>{". Every product in our catalogue started as a customer phone call."}
             </p>
             <p>
-              {"Today we're a 5-Star Certified Premier Tally Partner with an in-house TDL team, a support desk that picks up the phone fast, and over 600 businesses still on our AMC books. No call centre, no hold music — just people who know your books because they helped set them up."}
+              {"Today we're a Tally Certified 3-Star Partner with an in-house TDL team, a support desk that picks up the phone fast, and businesses across India still on our AMC books. No call centre, no hold music — just people who know your books because they helped set them up."}
             </p>
           </div>
         </div>

@@ -148,7 +148,7 @@ function CodeEditor() {
           </div>
           <div>
             <div style={{fontSize:11, fontWeight:700, letterSpacing:'.12em', color:'var(--muted)'}}>UPGRADE-SAFE</div>
-            <div style={{fontSize:13, fontWeight:600, marginTop:1}}>Tested vs. TallyPrime 7.0</div>
+            <div style={{fontSize:13, fontWeight:600, marginTop:1}}>Tested with the latest TallyPrime</div>
           </div>
         </div>
         <div style={{marginTop:10, paddingTop:10, borderTop:'1px dashed var(--line-2)',
@@ -180,7 +180,7 @@ function Hero() {
               <span className="eyebrow"><span className="dot"></span>Services · Tally Customisation</span>
               <span style={{display:'inline-flex', alignItems:'center', gap:6, fontSize:12, fontWeight:600,
                 color:'var(--ink-soft)', padding:'4px 10px', border:'1px solid var(--line-2)', borderRadius:999, background:'#fff'}}>
-                <Icon name="shield" size={12} stroke={2}/> 5-Star Tally Partner · in-house dev
+                <Icon name="shield" size={12} stroke={2}/> Tally Certified 3-Star Partner · in-house dev
               </span>
             </div>
 

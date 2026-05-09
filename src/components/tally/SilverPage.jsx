@@ -20,9 +20,9 @@
 //   - Hero CTAs: design's 3 buttons kept with re-targeted destinations:
 //     "Buy Now" → tally.com/buy-tally/ (new tab), "Talk to us" → /contact,
 //     "Download" → tally.com/download/ (new tab)
-//   - LicenseCard: back "SILVER vs GOLD" comparison card dropped per
-//     content reconciliation; main dark license card and floating
-//     "NEW IN RELEASE 7.0" card kept verbatim
+//   - LicenseCard: back "SILVER vs GOLD" comparison card and the
+//     floating release-highlights card both dropped per content
+//     reconciliation; only the main dark license card remains
 //   - Pricing: design only shows Lifetime — kept that, rentals dropped.
 //     "+18% GST" sub-text under price dropped. "EMI & GST" info chip
 //     dropped (3 chips → 2). A small footnote "All prices exclude
@@ -47,8 +47,8 @@ const PHONE_TEL        = '+919829006111';
 
 // ============================================================
 // LicenseCard — decorative TallyPrime Silver license-key visual.
-// Main dark card + floating "NEW IN RELEASE 7.0" card.
-// Back "SILVER vs GOLD" comparison card dropped per content
+// Main dark card only. Back "SILVER vs GOLD" comparison card and
+// floating release-highlights card both dropped per content
 // reconciliation.
 // ============================================================
 
@@ -95,7 +95,7 @@ function LicenseCard() {
             ['USERS',    '1 concurrent'],
             ['ACCESS',   'Single PC'],
             ['TSS',      '12 months'],
-            ['INCLUDES', 'Release 7.0'],
+            ['INCLUDES', 'Latest release'],
           ].map((r,i)=>(
             <div key={i} style={{borderTop:'1px solid rgba(255,255,255,.08)', paddingTop:10}}>
               <div style={{fontSize:10, fontWeight:700, letterSpacing:'.12em', color:'rgba(255,255,255,.4)'}}>{r[0]}</div>
@@ -115,31 +115,6 @@ function LicenseCard() {
         </div>
       </div>
 
-      {/* Floating "NEW IN RELEASE 7.0" card */}
-      <div style={{
-        position:'absolute', right:0, bottom:'-10%', width:'56%',
-        background:'#fff', border:'1px solid var(--line)', borderRadius:14,
-        padding:'16px 18px', boxShadow:'0 24px 40px -20px rgba(14,27,44,.30)', zIndex:3,
-      }}>
-        <div style={{display:'flex', alignItems:'center', gap:10}}>
-          <div style={{width:34, height:34, borderRadius:8, background:'var(--orange-soft)',
-            color:'var(--orange)', display:'grid', placeItems:'center'}}>
-            <Icon name="sparkle" size={16} stroke={2}/>
-          </div>
-          <div style={{fontSize:11.5, fontWeight:700, letterSpacing:'.14em', color:'var(--muted)'}}>NEW IN RELEASE 7.0</div>
-        </div>
-        <div style={{display:'flex', flexDirection:'column', gap:8, marginTop:12}}>
-          {['SmartFind — fuzzy search', 'PrimeBanking Payments', 'Auto Backup', 'Connected GST + IMS'].map((t,i)=>(
-            <div key={i} style={{display:'flex', alignItems:'center', gap:8, fontSize:12.5}}>
-              <span style={{width:14, height:14, borderRadius:'50%', background:'var(--teal-soft)',
-                color:'var(--teal)', display:'grid', placeItems:'center'}}>
-                <Icon name="check" size={9} stroke={3}/>
-              </span>
-              <span style={{fontWeight:500}}>{t}</span>
-            </div>
-          ))}
-        </div>
-      </div>
     </div>
   );
 }
@@ -163,7 +138,7 @@ function Hero() {
               <span className="eyebrow"><span className="dot"></span>Tally · TallyPrime Silver</span>
               <span style={{display:'inline-flex', alignItems:'center', gap:6, fontSize:12, fontWeight:600,
                 color:'var(--ink-soft)', padding:'4px 10px', border:'1px solid var(--line-2)', borderRadius:999, background:'#fff'}}>
-                <Icon name="shield" size={12} stroke={2}/> Certified 5-Star Tally Partner
+                <Icon name="shield" size={12} stroke={2}/> Tally Certified 3-Star Partner
               </span>
             </div>
 
@@ -176,7 +151,7 @@ function Hero() {
             </h1>
 
             <p style={{fontSize:18, lineHeight:1.6, color:'var(--ink-soft)', maxWidth:560, marginTop:24}}>
-              The single-user edition of TallyPrime — perfect for proprietors, freelancers, and small offices where one person runs Tally at a time. Ships with <strong style={{color:'var(--ink)'}}>Release 7.0</strong> including SmartFind, Auto Backup, and PrimeBanking Payments.
+              The single-user edition of TallyPrime — perfect for proprietors, freelancers, and small offices where one person runs Tally at a time. Ships with the latest TallyPrime release.
             </p>
 
             <div style={{display:'flex', gap:12, marginTop:32, flexWrap:'wrap'}}>
@@ -199,8 +174,8 @@ function Hero() {
               </div>
               <div style={{width:1, height:36, background:'var(--line-2)'}}/>
               <div>
-                <div className="serif" style={{fontSize:28, fontWeight:600, lineHeight:1}}>Release 7.0</div>
-                <div style={{fontSize:11.5, color:'var(--muted)', marginTop:4, letterSpacing:'.06em', textTransform:'uppercase'}}>Latest version</div>
+                <div className="serif" style={{fontSize:28, fontWeight:600, lineHeight:1}}>Latest</div>
+                <div style={{fontSize:11.5, color:'var(--muted)', marginTop:4, letterSpacing:'.06em', textTransform:'uppercase'}}>TallyPrime release</div>
               </div>
               <div style={{width:1, height:36, background:'var(--line-2)'}}/>
               <div>
@@ -322,20 +297,19 @@ function Pricing() {
 // ============================================================
 
 const featureGroups = [
-  { ic:'sparkle', tone:'orange', title:'Release 7.0 highlights', items:[
-    ['SmartFind',             'Fuzzy search across all loaded companies'],
-    ['PrimeBanking Payments', 'Online payments with real-time status'],
-    ['Auto Backup',           'Configurable, scheduled, automatic'],
+  { ic:'sparkle', tone:'orange', title:'Productivity highlights', items:[
+    ['Fast in-app search',   'Find any voucher, master or report quickly'],
+    ['Online bank payments', 'Pay vendors with real-time status'],
+    ['Automatic backup',     'Configurable, scheduled, automatic'],
   ]},
   { ic:'file', tone:'teal', title:'Connected compliance', items:[
     ['Connected GST',         'GSTR-1 / 3B filing, 2A / 2B auto-reconciliation'],
     ['e-Invoice & e-Way Bill','Generation inside Tally'],
-    ['IMS',                   'Invoice Management with ITC reduction support'],
   ]},
   { ic:'ledger', tone:'paper', title:'Banking & data', items:[
-    ['Connected Banking',       'Axis, SBI, Kotak (ICICI reconciliation only)'],
-    ['TallyDrive cloud backup', '1 GB free with active TSS'],
-    ['1 free TVU pack',         'For secure virtual access'],
+    ['Connected Banking',  'Axis, SBI, Kotak (ICICI reconciliation only)'],
+    ['Cloud backup',       'Included with active TSS'],
+    ['1 free TVU pack',    'For secure virtual access'],
   ]},
   { ic:'user', tone:'ink', title:'Single-user edition', items:[
     ['Single user, single-PC', 'Concurrent access by one person'],
@@ -462,7 +436,7 @@ function FinalCTA() {
               <div style={{fontSize:11.5, fontWeight:700, letterSpacing:'.14em', color:'rgba(255,255,255,.5)'}}>WHY BUY THROUGH US</div>
               <div style={{display:'flex', flexDirection:'column', gap:14, marginTop:16}}>
                 {[
-                  ['5-Star Tally Partner','Certified by Tally Solutions Pvt. Ltd.'],
+                  ['Tally Certified 3-Star Partner','Certified by Tally Solutions Pvt. Ltd.'],
                   ['Free installation',  'Activation and migration handled by us'],
                   ['Local Jaipur support','Same team for SoftTrade and Tally — one number'],
                 ].map((r,i)=>(

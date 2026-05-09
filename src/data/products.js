@@ -1,6 +1,6 @@
 // src/data/products.js
 // Single source of truth for all product sub-page content.
-// Updated from research doc (TallyPrime 7.0, released Dec 2025).
+// Reference content for TallyPrime products. Keep version-agnostic.
 
 const TALLY_BUY_URL = 'https://tallysolutions.com/buy-tally/';
 const TALLY_SERVER_URL = 'https://tallysolutions.com/tally-prime-server/';
@@ -11,7 +11,7 @@ export const productsData = {
     eyebrow: 'Products · Silver',
     title: 'TallyPrime Silver',
     tagline: 'For businesses that need TallyPrime on a single PC',
-    description: 'The single-user edition of TallyPrime — perfect for proprietors, freelancers, and small offices where only one person runs Tally at a time. Ships with Release 7.0 including SmartFind, Auto Backup, and PrimeBanking Payments.',
+    description: 'The single-user edition of TallyPrime — perfect for proprietors, freelancers, and small offices where only one person runs Tally at a time. Ships with the latest TallyPrime release.',
     pricingTiers: [
       {
         label: '1 Month',
@@ -50,10 +50,7 @@ export const productsData = {
       'Connected GST — GSTR-1/3B filing, 2A/2B auto-reconciliation',
       'Connected Banking — Axis, SBI, Kotak (ICICI reconciliation only)',
       'e-Invoice and e-Way Bill generation inside Tally',
-      'TallyDrive cloud backup — 1 GB free with active TSS',
-      'SmartFind — fuzzy search across all loaded companies (new in 7.0)',
-      'PrimeBanking Payments — online payments with real-time status',
-      'IMS (Invoice Management System) with ITC reduction support',
+      'Cloud backup with active TSS',
       '1 free TVU pack for secure virtual access',
     ],
     notes: [
@@ -103,7 +100,7 @@ export const productsData = {
     features: [
       'Unlimited concurrent multi-user access on a single LAN',
       'All Silver features included',
-      'TallyDrive cloud backup — 3 GB free with active TSS',
+      'Cloud backup with active TSS',
       '10 free TVU packs for remote/virtual access',
       'Role-based user security with audit trail',
       'Data synchronisation across branches',
@@ -329,19 +326,19 @@ export const productsData = {
   upgrade: {
     slug: 'upgrade',
     eyebrow: 'Products · Upgrade',
-    title: 'Upgrade to TallyPrime 7.0',
-    tagline: 'Free upgrade with active TSS — window closes June 2026',
-    description: 'If you\'re on Tally.ERP 9 or an older TallyPrime release, upgrade to 7.0 free with an active TSS. After June 2026, upgrades cost 40% of your license fee. Your license, serial number, and all data are retained.',
+    title: 'Upgrade to the latest TallyPrime',
+    tagline: 'Free upgrade with active TSS — subject to Tally\'s current pricing',
+    description: 'If you\'re on Tally.ERP 9 or an older TallyPrime release, upgrade to the latest TallyPrime free with an active TSS. After the current pricing window closes, upgrades will be charged at Tally\'s prevailing rates. Your license, serial number, and all data are retained.',
     pricingTiers: [
       {
         label: 'With Active TSS',
         priceLabel: 'Free',
-        discount: 'Until June 2026',
+        discount: 'Limited window',
         highlights: [
           'Free upgrade with active TSS',
           'License and serial retained',
           'Full data migration included',
-          'Deadline: June 2026',
+          'Subject to Tally pricing',
         ],
         ctaUrl: 'https://tallysolutions.com/upgrade-tally-erp-9-to-tallyprime-free/',
         ctaLabel: 'Upgrade Now',
@@ -352,7 +349,7 @@ export const productsData = {
         effectiveMonthly: 'Then upgrade free',
         highlights: [
           'Silver TSS 1-year renewal',
-          'Then free upgrade to 7.0',
+          'Then free upgrade to the latest TallyPrime',
           'Activation in 2–4 hours',
         ],
         ctaUrl: 'https://tallysolutions.com/tally-software-service/',
@@ -364,20 +361,20 @@ export const productsData = {
         effectiveMonthly: 'Then upgrade free',
         highlights: [
           'Gold TSS 1-year renewal',
-          'Then free upgrade to 7.0',
+          'Then free upgrade to the latest TallyPrime',
           'Activation in 2–4 hours',
         ],
         ctaUrl: 'https://tallysolutions.com/tally-software-service/',
         ctaLabel: 'Renew TSS',
       },
       {
-        label: 'After June 2026',
+        label: 'After current window',
         price: 9000,
         effectiveMonthly: 'Indicative: 40% of Silver license',
         highlights: [
           '40% of license fee',
           'Based on Silver (₹22,500)',
-          'Gold upgrade: ₹27,000 after deadline',
+          'Gold upgrade: ₹27,000 after the window',
           'Avoid by upgrading now',
         ],
         ctaUrl: '/contact',
@@ -389,7 +386,6 @@ export const productsData = {
       'Supports TallyPrime 2.1 and earlier',
       'Pause/resume migration — keep working while migration runs',
       'License, serial number, and all data retained',
-      'New features: SmartFind, Auto Backup, PrimeBanking Payments',
       'Connected GST with GSTR-1/3B filing',
       'Partner-handled backup, install, reactivation',
       '5-step process: backup → download → install → reactivate → migrate',
@@ -399,7 +395,7 @@ export const productsData = {
     notes: [
       'Prices exclude 18% GST.',
       'Upgrade is free ONLY with active TSS. Lapsed TSS must be renewed first.',
-      'After June 2026, Tally Solutions will charge 40% of license fee for upgrades.',
+      'After Tally\'s current free-upgrade window closes, upgrades will be charged at the then-current rate.',
     ],
   },
   'softtrade-mandi': {
@@ -407,7 +403,7 @@ export const productsData = {
     eyebrow: 'Products · SoftTrade-Mandi',
     title: 'SoftTrade-Mandi',
     tagline: 'Mahajani accounting, purpose-built for mandis, mills and kirana traders',
-    description: 'A Windows-based accounting and inventory suite that runs the traditional Mahajani (Adat) bookkeeping North Indian grain, kirana, oil-mill and commission traders actually use — Chittha, Talpat, Aaita, Dalali — while layering modern GST, e-invoice and e-Way Bill generation on top. Developed by SoftTrade Infotech, Jaipur. Sold and supported locally by Unique Info Systems since 2009.',
+    description: 'A Windows-based accounting and inventory suite that runs the traditional Mahajani (Adat) bookkeeping North Indian grain, kirana, oil-mill and commission traders actually use — Chittha, Talpat, Aaita, Dalali — while layering modern GST, e-invoice and e-Way Bill generation on top. Developed by SoftTrade Infotech, Jaipur. Sold and supported locally by Unique Info Systems since 2010.',
     pricingTiers: [
       {
         label: 'Single User',
@@ -550,7 +546,7 @@ export const productsData = {
       'GST return filing support (GSTR-1 and GSTR-3B generation)',
       'e-Way Bill JSON export at configurable thresholds',
       'Runs on the same accounting engine as SoftTrade-Mandi',
-      'Part of SoftTrade\'s product family — trusted by 1,800+ Indian businesses',
+      'Part of SoftTrade\'s product family — trusted by Indian businesses',
     ],
     additionalFeaturesHeading: 'What you can typically expect',
     additionalFeatures: [
@@ -584,7 +580,7 @@ export const productsData = {
     eyebrow: 'Services · Tally Customisation',
     title: 'Tally Customisation (TDL)',
     tagline: 'Custom vouchers, reports, print formats and modules that fit how you actually run your business',
-    description: 'TDL (Tally Definition Language) lets a certified partner modify almost every user-facing element in TallyPrime — input screens, voucher types, masters, print formats, reports and business logic — without breaking upgrade compatibility. As a Tally 5-Star Partner with an in-house development team, we build both narrow enhancements (a new field on a sales voucher, a custom GSTR-1 summary) and full industry modules.',
+    description: 'TDL (Tally Definition Language) lets a certified partner modify almost every user-facing element in TallyPrime — input screens, voucher types, masters, print formats, reports and business logic — without breaking upgrade compatibility. As a Tally Certified 3-Star Partner with an in-house development team, we build both narrow enhancements (a new field on a sales voucher, a custom GSTR-1 summary) and full industry modules.',
     pricingTiers: [
       {
         label: 'Scoped Project',
@@ -901,7 +897,7 @@ export const productsData = {
       'Bulk renewal for multi-licence customers, distributors and CA firms',
       'Pre-expiry reminders — we track your TSS end-date and reach out 30, 15 and 7 days before',
       'Early-renewal benefit — renew before expiry and get +1 month free (per Tally Solutions\' policy)',
-      'Migration-and-renew — if you\'re still on Tally.ERP 9, we migrate you to TallyPrime 7 free while renewing',
+      'Migration-and-renew — if you\'re still on Tally.ERP 9, we migrate you to the latest TallyPrime free while renewing',
       'Instant activation — new expiry date visible inside TallyPrime within minutes',
       'GST-compliant tax invoice emailed the same day',
     ],

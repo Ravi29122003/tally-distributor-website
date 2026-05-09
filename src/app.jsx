@@ -664,7 +664,6 @@ export function Hero() {
           <Reveal as="p" delay={160} className="mt-5 max-w-xl text-[16.5px] leading-[1.6] text-navy-900/65 sm:text-[17.5px]">
             From Tally and SoftTrade to custom business software — we help Indian
             businesses run their books with confidence.
-            <span className="text-navy-900/85"> 1,800+ businesses already trust us.</span>
           </Reveal>
 
           <Reveal delay={240} className="mt-7 flex flex-wrap items-center gap-3">
@@ -695,9 +694,6 @@ export function Hero() {
 
           <Reveal delay={320} className="mt-10 grid grid-cols-3 gap-4 rounded-2xl border border-navy-900/8 bg-white/60 p-5 backdrop-blur sm:gap-6 sm:p-6">
             <Stat value={500} suffix="+" label="Happy clients" sub="Across India" />
-            <div className="border-l border-navy-900/10 pl-4 sm:pl-6">
-              <Stat value={15} suffix="+" label="Years experience" sub="Since 2010" />
-            </div>
             <div className="border-l border-navy-900/10 pl-4 sm:pl-6">
               <Stat value={4.8} decimals={1} suffix="★" label="Average rating" sub="420+ reviews" />
             </div>
@@ -1251,7 +1247,7 @@ export function Services() {
 
 // ------ About ------
 const ABOUT_BADGES = [
-  { label: 'Tally 5-Star Partner', icon: 'award' },
+  { label: 'Tally Certified 3-Star Partner', icon: 'award' },
   { label: 'ISO 9001:2015', icon: 'badge-check' },
   { label: 'GSTN Suvidha', icon: 'file-check' },
   { label: 'MSME · Udyam', icon: 'building-2' },
@@ -1260,7 +1256,6 @@ const ABOUT_BADGES = [
 export function About() {
   const numbers = [
     { v: '500+', k: 'Businesses served' },
-    { v: '15+',  k: 'Years in business' },
     { v: '120+', k: 'TDL customisations' },
     { v: '4.8★', k: 'Avg. client rating' },
   ];
@@ -1276,21 +1271,21 @@ export function About() {
         <Reveal as="div">
           <Eyebrow>About us</Eyebrow>
           <h2 className="mt-5 font-display text-[36px] font-bold leading-[1.1] text-navy-900 sm:text-[46px]">
-            <span className="text-teal-600">17 years</span> of empowering{' '}
+            <span className="text-teal-600">Empowering</span> Indian{' '}
             <span className="italic text-navy-800">businesses</span>
           </h2>
 
           <div className="mt-6 space-y-4 text-[15.5px] leading-[1.7] text-navy-900/70" id="about-body">
             <p>
-              We started in 2009 with a simple idea: Indian SMBs deserve
+              We started in 2010 with a simple idea: Indian SMBs deserve
               business software that fits how they actually work, not how a
-              textbook says they should. Seventeen years on, {siteConfig.brand} is
-              a certified Tally 5-Star Partner and the authorised SoftTrade
+              textbook says they should. Today, {siteConfig.brand} is
+              a Tally Certified 3-Star Partner and the authorised SoftTrade
               reseller for Rajasthan — selling software we use, implement and
               support ourselves.
             </p>
             <p>
-              Today we serve 1,800+ customers across seven states — Rajasthan,
+              We serve customers across multiple states — Rajasthan,
               Gujarat, Madhya Pradesh, Uttar Pradesh, Haryana, Punjab and
               Maharashtra — in retail, manufacturing, trading, CA practice and
               services. We handle licensing, implementation, customisation and

@@ -151,7 +151,7 @@ function Hero() {
               <span className="eyebrow"><span className="dot"></span>Tally · TallyPrime Server</span>
               <span style={{display:'inline-flex', alignItems:'center', gap:6, fontSize:12, fontWeight:600,
                 color:'var(--ink-soft)', padding:'4px 10px', border:'1px solid var(--line-2)', borderRadius:999, background:'#fff'}}>
-                <Icon name="shield" size={12} stroke={2}/> Certified 5-Star Tally Partner
+                <Icon name="shield" size={12} stroke={2}/> Tally Certified 3-Star Partner
               </span>
             </div>
 
@@ -416,7 +416,7 @@ function FinalCTA() {
               <div style={{fontSize:11.5, fontWeight:700, letterSpacing:'.14em', color:'rgba(255,255,255,.5)'}}>WHY BUY THROUGH US</div>
               <div style={{display:'flex', flexDirection:'column', gap:14, marginTop:16}}>
                 {[
-                  ['5-Star Tally Partner', 'Certified by Tally Solutions Pvt. Ltd.'],
+                  ['Tally Certified 3-Star Partner', 'Certified by Tally Solutions Pvt. Ltd.'],
                   ['Free installation',    'Activation and migration handled by us'],
                   ['Local Jaipur support', 'Same team for SoftTrade and Tally — one number'],
                 ].map((r,i)=>(

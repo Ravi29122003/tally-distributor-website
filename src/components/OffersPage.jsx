@@ -769,7 +769,7 @@ function Newsletter() {
                 </button>
 
                 <p style={{fontSize:11.5, color:'rgba(255,255,255,.45)', textAlign:'center', marginTop:14}}>
-                  Used by 1,200+ Tally users across Rajasthan
+                  Trusted by Tally users across Rajasthan
                 </p>
               </form>
             )}

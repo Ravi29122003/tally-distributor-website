@@ -1,6 +1,7 @@
 import { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import { Icon, IconChip } from '../design/Icon';
+import { siteConfig } from '../../config/site';
 
 // ============================================================
 // DashboardVisual — decorative ERP dashboard card on the right of
@@ -80,16 +81,6 @@ function Hero() {
             </div>
 
             <div style={{display:'flex', alignItems:'center', gap:24, marginTop:40, paddingTop:24, borderTop:'1px dashed var(--line-2)'}}>
-              <div>
-                <div className="serif" style={{fontSize:28, fontWeight:600, lineHeight:1}}>20+</div>
-                <div style={{fontSize:11.5, color:'var(--muted)', marginTop:4, letterSpacing:'.06em', textTransform:'uppercase'}}>Years experience</div>
-              </div>
-              <div style={{width:1, height:36, background:'var(--line-2)'}}/>
-              <div>
-                <div className="serif" style={{fontSize:28, fontWeight:600, lineHeight:1}}>3,000+</div>
-                <div style={{fontSize:11.5, color:'var(--muted)', marginTop:4, letterSpacing:'.06em', textTransform:'uppercase'}}>Active users</div>
-              </div>
-              <div style={{width:1, height:36, background:'var(--line-2)'}}/>
               <div>
                 <div className="serif" style={{fontSize:28, fontWeight:600, lineHeight:1}}>Cloud</div>
                 <div style={{fontSize:11.5, color:'var(--muted)', marginTop:4, letterSpacing:'.06em', textTransform:'uppercase'}}>Anywhere access</div>
@@ -420,8 +411,6 @@ function MultiCompanyView() {
 
 function TrustAndCTA() {
   const credentials = [
-    { ic:'grid',   stat:'20+',     label:'Years of experience' },
-    { ic:'coins',  stat:'3,000+',  label:'Active users' },
     { ic:'ledger', stat:'Deep',    label:'Mandi-trade understanding' },
     { ic:'file',   stat:'Stable',  label:'& reliable software' },
     { ic:'msg',    stat:'Cloud',   label:'Secure, anywhere access' },
@@ -503,12 +492,16 @@ function TrustAndCTA() {
               </div>
             </div>
             <div style={{padding:24, background:'rgba(255,255,255,.06)', border:'1px solid rgba(255,255,255,.10)', borderRadius:14}}>
-              <div style={{fontSize:11, color:'rgba(255,255,255,.55)', fontWeight:700, letterSpacing:'.16em', textTransform:'uppercase'}}>Reach SoftTrade Infotech</div>
-              <div className="serif" style={{fontSize:18, fontWeight:600, marginTop:10}}>SoftTrade Infotech Pvt Ltd</div>
-              <div style={{fontSize:13.5, color:'rgba(255,255,255,.75)', marginTop:6, lineHeight:1.5}}>E-154, Ambabari, Jaipur 302039</div>
-              <div style={{fontSize:13.5, color:'rgba(255,255,255,.85)', marginTop:10, fontWeight:500}}>+91 80580-54606<br/>+91 98299-57850</div>
-              <a href="https://www.softtradeindia.com" target="_blank" rel="noopener noreferrer" style={{display:'inline-flex', alignItems:'center', gap:6, fontSize:13.5, color:'var(--orange)', marginTop:10, fontWeight:600, textDecoration:'none'}}>
-                www.softtradeindia.com →
+              <div style={{fontSize:11, color:'rgba(255,255,255,.55)', fontWeight:700, letterSpacing:'.16em', textTransform:'uppercase'}}>Reach us</div>
+              <div className="serif" style={{fontSize:18, fontWeight:600, marginTop:10}}>{siteConfig.brand}</div>
+              <div style={{fontSize:13.5, color:'rgba(255,255,255,.75)', marginTop:6, lineHeight:1.5}}>
+                {siteConfig.address.line1}<br/>
+                {siteConfig.address.line2}<br/>
+                {siteConfig.address.line3}
+              </div>
+              <div style={{fontSize:13.5, color:'rgba(255,255,255,.85)', marginTop:10, fontWeight:500}}>{siteConfig.phones.sales}</div>
+              <a href={`mailto:${siteConfig.emails.sales}`} style={{display:'inline-flex', alignItems:'center', gap:6, fontSize:13.5, color:'var(--orange)', marginTop:10, fontWeight:600, textDecoration:'none'}}>
+                {siteConfig.emails.sales} →
               </a>
             </div>
           </div>
