@@ -6,6 +6,7 @@ import {
   Instagram, LifeBuoy, Linkedin, Mail, MapPin, Menu, Phone,
   Quote, Receipt, RefreshCw, Send, Server, Settings, Shield, ShieldCheck,
   Sparkles, Star, Tag, Target, User, Users, X, Youtube, Zap,
+  Download,
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { siteConfig } from './config/site';
@@ -874,9 +875,165 @@ function PriceCard({ plan }) {
 }
 
 // ------ SoftTrade flagship showcase ------
+function SoftTradeFeaturedView() {
+  const [active, setActive] = useState(0);
+
+  const products = [
+    {
+      eyebrow: 'Mandi accounting',
+      name: 'SoftTrade-Mandi',
+      tagline: 'Mahajani accounting, the way mandis actually keep books.',
+      description: 'Windows-based accounting and inventory suite that runs traditional Mahajani (Adat) bookkeeping for North Indian grain, kirana, oil-mill and commission traders — Chittha, Talpat, Aaita, Dalali — while layering modern GST, e-invoice and e-Way Bill on top.',
+      features: ['Chittha · Talpat · Aaita', 'Mahajani / Adat system', 'GST + e-Way Bill', 'Multi-godown stock'],
+      image: '/softtrade-mandi-box.png',
+      to: '/products/softtrade-mandi',
+    },
+    {
+      eyebrow: 'Broker-only suite',
+      name: 'SoftTrade-Brokwin',
+      tagline: 'Broker-only Mahajani accounting, built around the sauda.',
+      description: 'A purpose-built product for pure commission agents — grain, kirana, cattle-feed, oil-cake, bilty-cut and textile brokers who never take ownership of goods. Sauda-first, with confirmation slips, brokerage bills and dual-party Mahajani ledgers.',
+      features: ['Sauda contracts', 'Confirmation slips', 'Brokerage bills', 'Dual-party Mahajani'],
+      image: '/brokwin-removebg-preview.png',
+      to: '/products/softtrade-brokwin',
+    },
+    {
+      eyebrow: 'Cold-chain billing',
+      name: 'SoftTrade-Coldwin',
+      tagline: 'Cold storage billing & stock register for the Indian cold chain.',
+      description: 'Offline Windows-based accounting and billing for Indian cold storage operators and warehouses. Inward / outward, per-bag and per-bilty billing, GST invoicing and return filing — same trusted product family as SoftTrade-Mandi.',
+      features: ['Inward / outward', 'Per-bag · per-bilty', 'Chamber allotment', 'GST + e-way bills'],
+      image: '/Coldwin-removebg-preview.png',
+      to: '/products/softtrade-coldwin',
+    },
+    {
+      eyebrow: 'Cloud ERP',
+      name: 'SoftCloud-ERP',
+      tagline: 'Smart business control for mandis, mills & processing units.',
+      description: 'Cloud-based ERP built for grain, dal, spice, kirana and dry-fruit traders, plus flour, dal and oil mills and processing units. Real-time profit, item-wise margin, lot-wise stock, branch-wise control and a mobile dashboard for the owner.',
+      features: ['Real-time profit', 'Lot-wise stock', 'Branch-wise control', 'Mobile dashboard'],
+      image: '/Cloud ERP.png',
+      to: '/products/softcloud-erp',
+    },
+  ];
+
+  const p = products[active];
+
+  return (
+    <div className="mt-12">
+      {/* FEATURED VIEW */}
+      <div className="rounded-3xl border border-navy-900/8 bg-white p-6 shadow-card sm:p-10 lg:p-12">
+        <div className="grid items-center gap-8 lg:grid-cols-[1fr_1.1fr] lg:gap-14">
+          {/* IMAGE COLUMN */}
+          <div key={`img-${active}`} className="stf-slide-in flex items-center justify-center">
+            <img
+              src={p.image}
+              alt={`${p.name} product box`}
+              className="w-full max-w-[400px] h-auto"
+              style={{ filter: 'drop-shadow(0 30px 50px rgba(11, 27, 44, 0.18))' }}
+            />
+          </div>
+
+          {/* CONTENT COLUMN */}
+          <div key={`content-${active}`} className="stf-slide-in">
+            <div className="text-[11px] font-bold uppercase tracking-[0.22em] text-teal-700">
+              {p.eyebrow}
+            </div>
+            <h3 className="font-display mt-3 text-[32px] font-semibold leading-[1.1] tracking-[-0.02em] text-navy-900 sm:text-[42px]">
+              {p.name}
+            </h3>
+            <p className="font-display mt-3 text-[17px] italic font-medium text-navy-900/85 sm:text-[19px]">
+              {p.tagline}
+            </p>
+            <p className="mt-4 text-[14.5px] leading-[1.65] text-navy-900/70 sm:text-[15.5px]">
+              {p.description}
+            </p>
+
+            {/* feature chips */}
+            <div className="mt-5 flex flex-wrap gap-2">
+              {p.features.map((f, j) => (
+                <span key={j}
+                  className="inline-flex items-center gap-1.5 rounded-full border border-navy-900/10 bg-[#FBF8F1] px-3 py-1.5 text-[12.5px] font-semibold text-navy-900/80">
+                  <span className="h-1.5 w-1.5 rounded-full bg-orange-500" />
+                  {f}
+                </span>
+              ))}
+            </div>
+
+            {/* CTAs */}
+            <div className="mt-7 flex flex-wrap items-center gap-3">
+              <Link to="/contact"
+                className="btn-lift inline-flex items-center gap-2 rounded-full bg-navy-900 px-5 py-3 text-[14px] font-semibold text-white shadow-card hover:bg-navy-800">
+                Contact us
+                <Icon name="arrow-right" size={14} strokeWidth={2.2} />
+              </Link>
+              <a href="#"
+                className="btn-lift inline-flex items-center gap-2 rounded-full border border-navy-900/15 bg-white px-5 py-3 text-[14px] font-semibold text-navy-900 shadow-card hover:border-orange-500/40">
+                <Download size={14} strokeWidth={2.2} />
+                Download brochure
+              </a>
+              <Link to={p.to}
+                className="text-[13px] font-semibold text-orange-600 hover:text-orange-700 inline-flex items-center gap-1">
+                Learn more
+                <Icon name="arrow-right" size={12} strokeWidth={2.5} />
+              </Link>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* TAB STRIP */}
+      <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-4">
+        {products.map((prod, i) => {
+          const isActive = i === active;
+          return (
+            <button
+              key={prod.name}
+              type="button"
+              onClick={() => setActive(i)}
+              className={`group flex items-center gap-3 rounded-2xl border p-4 text-left transition-all duration-300 ${
+                isActive
+                  ? 'border-orange-500/50 bg-white shadow-card-lg'
+                  : 'border-navy-900/8 bg-white/60 hover:border-navy-900/15 hover:bg-white'
+              }`}
+            >
+              <span className={`flex h-10 w-10 flex-none items-center justify-center rounded-xl text-[12px] font-bold transition-colors ${
+                isActive
+                  ? 'bg-orange-600 text-white'
+                  : 'bg-navy-50 text-navy-900/60 group-hover:bg-orange-50 group-hover:text-orange-600'
+              }`}>
+                0{i + 1}
+              </span>
+              <div className="min-w-0">
+                <div className={`font-display text-[14px] font-semibold leading-tight transition-colors ${isActive ? 'text-navy-900' : 'text-navy-900/75'}`}>
+                  {prod.name}
+                </div>
+                <div className="mt-0.5 truncate text-[11.5px] font-medium text-navy-900/55">
+                  {prod.eyebrow}
+                </div>
+              </div>
+            </button>
+          );
+        })}
+      </div>
+
+      {/* slide-in animation */}
+      <style>{`
+        @keyframes stf-slide-in {
+          from { transform: translateX(28px); opacity: 0; }
+          to   { transform: translateX(0);    opacity: 1; }
+        }
+        .stf-slide-in {
+          animation: stf-slide-in 380ms ease-out both;
+        }
+      `}</style>
+    </div>
+  );
+}
+
 export function SoftTradeShowcase() {
   return (
-    <section id="softtrade" className="relative overflow-hidden bg-white py-20 sm:py-28">
+    <section id="softtrade" className="relative overflow-hidden bg-white pt-4 pb-20 sm:pt-6 sm:pb-28">
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0"
@@ -888,14 +1045,14 @@ export function SoftTradeShowcase() {
 
       <div className="relative mx-auto max-w-7xl px-5 sm:px-8">
         <Reveal className="mx-auto max-w-2xl text-center">
-          <div className="mx-auto -mb-2 flex justify-center">
+          <div className="mx-auto flex justify-center">
             <img
               src="/Soft-Trade.png"
               alt="SoftTrade"
-              className="h-36 w-auto sm:h-44 lg:h-52"
+              className="h-20 w-auto sm:h-24 lg:h-28"
             />
           </div>
-          <h2 className="mt-1 font-display text-[40px] font-bold leading-[1.05] text-navy-900 sm:text-[54px]">
+          <h2 className="mt-4 font-display text-[40px] font-bold leading-[1.05] text-navy-900 sm:text-[54px]">
             Our{' '}
             <span className="relative inline-block">
               <span className="relative z-10 text-orange-600">SoftTrade</span>
@@ -911,39 +1068,7 @@ export function SoftTradeShowcase() {
           </p>
         </Reveal>
 
-        <div className="mt-14 grid grid-cols-1 gap-7 sm:grid-cols-2 lg:grid-cols-3">
-          {softTradeShowcase.map((p, i) => (
-            <Reveal key={p.name} delay={i * 120}>
-              <Link
-                to={p.to}
-                className="btn-lift group flex h-full flex-col overflow-hidden rounded-2xl border border-navy-900/8 bg-white shadow-card hover:border-orange-500/40 hover:shadow-card-lg"
-              >
-                <div className="aspect-[4/3] w-full overflow-hidden bg-navy-50">
-                  <img
-                    src={p.image}
-                    alt={p.name}
-                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
-                    loading="lazy"
-                  />
-                </div>
-                <div className="flex flex-1 flex-col p-6 sm:p-7">
-                  <h3 className="font-display text-[24px] font-bold leading-tight text-navy-900 sm:text-[26px]">
-                    {p.name}
-                  </h3>
-                  <span className="mt-auto inline-flex items-center gap-2 pt-6 text-[14.5px] font-semibold text-orange-700">
-                    {p.cta}
-                    <Icon
-                      name="arrow-right"
-                      size={15}
-                      strokeWidth={2.5}
-                      className="transition-transform group-hover:translate-x-0.5"
-                    />
-                  </span>
-                </div>
-              </Link>
-            </Reveal>
-          ))}
-        </div>
+        <SoftTradeFeaturedView />
       </div>
     </section>
   );
