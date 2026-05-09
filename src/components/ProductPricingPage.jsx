@@ -192,6 +192,21 @@ export default function ProductPricingPage({ product }) {
               </p>
             </Reveal>
           )}
+          {product.downloadUrl && (
+            <Reveal delay={200}>
+              <div className="mt-7 flex flex-wrap items-center gap-3">
+                <a
+                  href={product.downloadUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-lift inline-flex items-center gap-2 rounded-full border border-navy-900/15 bg-white px-5 py-3 text-[14.5px] font-semibold text-navy-900 shadow-card hover:border-teal-500/40"
+                >
+                  <Icon name="download" size={15} strokeWidth={2} />
+                  Download installer
+                </a>
+              </div>
+            </Reveal>
+          )}
         </div>
       </section>
 

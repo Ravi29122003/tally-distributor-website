@@ -21,6 +21,7 @@ import { Icon, IconChip } from '../design/Icon';
 
 const TALLY_BUY_URL    = 'https://tallysolutions.com/buy-tally/';
 const TALLY_TRIAL_URL  = 'https://tallysolutions.com/business-software-7day-free-trial/';
+const TALLY_DOWNLOAD_URL = 'https://tallysolutions.com/download/';
 const PHONE_DISPLAY    = '+91 98290 06111';
 const PHONE_TEL        = '+919829006111';
 
@@ -166,6 +167,9 @@ function Hero() {
               </Link>
               <a href={TALLY_TRIAL_URL} target="_blank" rel="noopener noreferrer" className="btn btn-ghost">
                 <Icon name="download" size={15} stroke={2}/> Download trial
+              </a>
+              <a href={TALLY_DOWNLOAD_URL} target="_blank" rel="noopener noreferrer" className="btn btn-ghost">
+                <Icon name="download" size={15} stroke={2}/> Download installer
               </a>
             </div>
 

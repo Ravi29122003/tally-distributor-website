@@ -162,6 +162,7 @@ export const productsData = {
     title: 'TallyPrime Auditors\' Edition',
     tagline: 'Purpose-built for practising Chartered Accountants',
     description: 'A Gold-class edition exclusively for CAs registered with ICAI — with built-in Tally Audit, sampling tools, centralised audit notes, and deep discounts under the ICAI community licensing scheme.',
+    downloadUrl: 'https://tallysolutions.com/download/',
     pricingTiers: [
       {
         label: '80% Off Gold',
