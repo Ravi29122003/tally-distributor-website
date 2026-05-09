@@ -275,7 +275,7 @@ function FloatingShapes() {
 
 // ------ Callback form card ------
 function CallbackCard() {
-  const [form, setForm] = useState({ name: '', interests: [] });
+  const [form, setForm] = useState({ name: '', interests: [], message: '' });
   const [errors, setErrors] = useState({});
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -302,6 +302,7 @@ function CallbackCard() {
     const url = buildHomepageWhatsAppUrl({
       name: form.name,
       interest: form.interests.join(', '),
+      message: form.message,
     });
     setTimeout(() => {
       window.open(url, '_blank', 'noopener,noreferrer');
@@ -331,10 +332,6 @@ function CallbackCard() {
               Send a WhatsApp
             </span>
           </div>
-          <span className="hidden items-center gap-1 rounded-full bg-amber-500/10 px-2.5 py-1 text-[11px] font-semibold text-amber-600 sm:inline-flex">
-            <Icon name="clock" size={12} strokeWidth={2.5} />
-            1 hr SLA
-          </span>
         </div>
 
         {submitted ? (
@@ -349,7 +346,7 @@ function CallbackCard() {
               Your message just opened in WhatsApp. Hit send there and we'll reply within one business hour.
             </p>
             <button
-              onClick={() => { setSubmitted(false); setForm({ name:'', interests: [] }); }}
+              onClick={() => { setSubmitted(false); setForm({ name:'', interests: [], message: '' }); }}
               className="mt-5 text-[13px] font-semibold text-teal-700 hover:text-teal-600"
             >
               Submit another request →
@@ -406,6 +403,19 @@ function CallbackCard() {
                     );
                   })}
                 </div>
+              </div>
+              <div className="mt-4">
+                <label htmlFor="callback-message" className="text-[12px] font-semibold uppercase tracking-[0.08em] text-navy-900/55">
+                  Tell us a bit more
+                </label>
+                <textarea
+                  id="callback-message"
+                  value={form.message}
+                  onChange={(e) => setForm((f) => ({ ...f, message: e.target.value }))}
+                  rows={3}
+                  placeholder="e.g. We run a flour mill in Bhilwara and want to switch from manual books to TallyPrime…"
+                  className="mt-2 w-full resize-y rounded-xl border border-navy-900/15 bg-white px-3.5 py-2.5 text-[14px] text-navy-900 placeholder:text-navy-900/35 focus:border-navy-900/40 focus:outline-none"
+                />
               </div>
             </div>
 
