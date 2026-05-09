@@ -275,7 +275,7 @@ function FloatingShapes() {
 
 // ------ Callback form card ------
 function CallbackCard() {
-  const [form, setForm] = useState({ name: '', phone: '', interest: '' });
+  const [form, setForm] = useState({ name: '', interests: [] });
   const [errors, setErrors] = useState({});
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -296,14 +296,12 @@ function CallbackCard() {
     if (loading) return;
     const errs = {};
     if (!form.name.trim()) errs.name = 'Please enter your name';
-    if (!isValidPhone(form.phone)) errs.phone = 'Please enter a valid 10-digit phone number';
     if (Object.keys(errs).length) { setErrors(errs); return; }
     setErrors({});
     setLoading(true);
     const url = buildHomepageWhatsAppUrl({
       name: form.name,
-      phone: form.phone,
-      interest: form.interest,
+      interest: form.interests.join(', '),
     });
     setTimeout(() => {
       window.open(url, '_blank', 'noopener,noreferrer');
@@ -330,12 +328,12 @@ function CallbackCard() {
               <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-teal-500"></span>
             </span>
             <span className="text-[12px] font-semibold uppercase tracking-[0.14em] text-navy-900/70">
-              Request a Callback
+              Send a WhatsApp
             </span>
           </div>
           <span className="hidden items-center gap-1 rounded-full bg-amber-500/10 px-2.5 py-1 text-[11px] font-semibold text-amber-600 sm:inline-flex">
             <Icon name="clock" size={12} strokeWidth={2.5} />
-            15 min response
+            1 hr SLA
           </span>
         </div>
 
@@ -351,7 +349,7 @@ function CallbackCard() {
               Your message just opened in WhatsApp. Hit send there and we'll reply within one business hour.
             </p>
             <button
-              onClick={() => { setSubmitted(false); setForm({ name:'', phone:'', interest:'' }); }}
+              onClick={() => { setSubmitted(false); setForm({ name:'', interests: [] }); }}
               className="mt-5 text-[13px] font-semibold text-teal-700 hover:text-teal-600"
             >
               Submit another request →
@@ -363,7 +361,7 @@ function CallbackCard() {
               Talk to a software expert
             </h3>
             <p className="mt-1.5 text-[13.5px] text-navy-900/60">
-              Share a few details — we'll call back in <span className="font-semibold text-navy-900">15 minutes</span> with a tailored recommendation.
+              Share a few details — your message opens in WhatsApp and we reply within <span className="font-semibold text-navy-900">one business hour</span>.
             </p>
 
             <div className="mt-5 space-y-3.5">
@@ -377,27 +375,38 @@ function CallbackCard() {
                 onChange={(v) => { clearError('name'); setForm((f) => ({ ...f, name: v })); }}
                 error={errors.name}
               />
-              <Field
-                label="Phone number"
-                icon="phone"
-                type="tel"
-                autoComplete="tel"
-                required
-                prefix="+91"
-                placeholder="90000 00000"
-                inputMode="numeric"
-                value={form.phone}
-                onChange={(v) => { clearError('phone'); setForm((f) => ({ ...f, phone: v.replace(/[^0-9\s]/g, '') })); }}
-                error={errors.phone}
-              />
-              <SelectField
-                label="I'm interested in"
-                icon="target"
-                placeholder="Tell us what you're exploring"
-                value={form.interest}
-                onChange={(v) => setForm((f) => ({ ...f, interest: v }))}
-                options={interests}
-              />
+              <div className="mt-3">
+                <div className="text-[12px] font-semibold uppercase tracking-[0.08em] text-navy-900/55 mb-2">
+                  What do you need help with? <span className="font-medium normal-case tracking-normal text-navy-900/45">(select all that apply)</span>
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  {interests.map(opt => {
+                    const isActive = form.interests.includes(opt);
+                    return (
+                      <button
+                        key={opt}
+                        type="button"
+                        onClick={() => {
+                          setForm(f => ({
+                            ...f,
+                            interests: f.interests.includes(opt)
+                              ? f.interests.filter(x => x !== opt)
+                              : [...f.interests, opt],
+                          }));
+                        }}
+                        className={[
+                          'rounded-full px-3 py-1.5 text-[12.5px] font-semibold transition-colors',
+                          isActive
+                            ? 'bg-navy-900 text-white border border-navy-900'
+                            : 'bg-white text-navy-900 border border-navy-900/15 hover:border-navy-900/35',
+                        ].join(' ')}
+                      >
+                        {opt}
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
             </div>
 
             <button
@@ -412,7 +421,7 @@ function CallbackCard() {
                 </>
               ) : (
                 <>
-                  Request callback
+                  Send via WhatsApp
                   <Icon name="arrow-right" size={16} strokeWidth={2.5} />
                 </>
               )}
@@ -1599,10 +1608,19 @@ export function FAQ() {
 
 // ------ Contact ------
 export function Contact() {
-  const [form, setForm] = useState({ name: '', phone: '', email: '', subject: '', message: '' });
+  const [form, setForm] = useState({ name: '', subject: '', message: '', interests: [] });
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
   const [sent, setSent] = useState(false);
+
+  const interests = [
+    'New TallyPrime licence',
+    'Renewal / TSS',
+    'Upgrade from older version',
+    'Multi-user / Server edition',
+    'Customisation & integration',
+    'Training & support',
+  ];
 
   const clearError = (field) => setErrors((prev) => ({ ...prev, [field]: undefined }));
 
@@ -1611,15 +1629,12 @@ export function Contact() {
     if (loading) return;
     const errs = {};
     if (!form.name.trim()) errs.name = 'Please enter your name';
-    if (!isValidPhone(form.phone)) errs.phone = 'Please enter a valid 10-digit phone number';
-    if (!isValidEmail(form.email)) errs.email = 'Please enter a valid email address';
     if (Object.keys(errs).length) { setErrors(errs); return; }
     setErrors({});
     setLoading(true);
     const url = buildHomepageWhatsAppUrl({
       name: form.name,
-      phone: form.phone,
-      email: form.email,
+      interest: form.interests.join(', '),
       subject: form.subject,
       message: form.message,
     });
@@ -1703,10 +1718,10 @@ export function Contact() {
                   </div>
                   <h4 className="font-display text-[22px] font-bold text-navy-900">Sent to WhatsApp</h4>
                   <p className="mt-1.5 text-[14px] text-navy-900/65">
-                    Your message just opened in WhatsApp. Hit send there and we'll reply within one business hour — or via email to <span className="font-semibold text-navy-900">{form.email}</span>.
+                    Your message just opened in WhatsApp. Hit send there and we'll reply within one business hour.
                   </p>
                   <button
-                    onClick={() => { setSent(false); setForm({ name:'', phone:'', email:'', subject:'', message:'' }); }}
+                    onClick={() => { setSent(false); setForm({ name:'', subject:'', message:'', interests: [] }); }}
                     className="mt-5 text-[13px] font-semibold text-teal-700 hover:text-teal-600"
                   >
                     Send another message →
@@ -1719,21 +1734,43 @@ export function Contact() {
                     We respond within one business hour, Mon&ndash;Sat.
                   </p>
 
-                  <div className="mt-5 grid grid-cols-1 gap-3.5 sm:grid-cols-2">
+                  <div className="mt-5">
                     <Field label="Your name" icon="user" placeholder="e.g. Priya Sharma"
                       autoComplete="name" required
                       value={form.name} onChange={(v) => { clearError('name'); setForm((f) => ({ ...f, name: v })); }}
                       error={errors.name} />
-                    <Field label="Phone" icon="phone" type="tel" autoComplete="tel" required
-                      prefix="+91" placeholder="90000 00000" inputMode="numeric"
-                      value={form.phone} onChange={(v) => { clearError('phone'); setForm((f) => ({ ...f, phone: v.replace(/[^0-9\s]/g, '') })); }}
-                      error={errors.phone} />
                   </div>
                   <div className="mt-3.5">
-                    <Field label="Email" icon="mail" type="email" autoComplete="email" required
-                      placeholder="you@company.com"
-                      value={form.email} onChange={(v) => { clearError('email'); setForm((f) => ({ ...f, email: v })); }}
-                      error={errors.email} />
+                    <div className="text-[12px] font-semibold uppercase tracking-[0.08em] text-navy-900/55 mb-2">
+                      What do you need help with? <span className="font-medium normal-case tracking-normal text-navy-900/45">(select all that apply)</span>
+                    </div>
+                    <div className="flex flex-wrap gap-2">
+                      {interests.map(opt => {
+                        const isActive = form.interests.includes(opt);
+                        return (
+                          <button
+                            key={opt}
+                            type="button"
+                            onClick={() => {
+                              setForm(f => ({
+                                ...f,
+                                interests: f.interests.includes(opt)
+                                  ? f.interests.filter(x => x !== opt)
+                                  : [...f.interests, opt],
+                              }));
+                            }}
+                            className={[
+                              'rounded-full px-3 py-1.5 text-[12.5px] font-semibold transition-colors',
+                              isActive
+                                ? 'bg-navy-900 text-white border border-navy-900'
+                                : 'bg-white text-navy-900 border border-navy-900/15 hover:border-navy-900/35',
+                            ].join(' ')}
+                          >
+                            {opt}
+                          </button>
+                        );
+                      })}
+                    </div>
                   </div>
                   <div className="mt-3.5">
                     <SelectField
@@ -1764,7 +1801,7 @@ export function Contact() {
                     disabled={loading}
                     className="btn-primary btn-lift mt-5 flex w-full items-center justify-center gap-2 rounded-xl bg-navy-900 px-5 py-3.5 text-[15px] font-semibold text-white hover:bg-navy-800 hover:shadow-card-lg disabled:cursor-wait disabled:opacity-80"
                   >
-                    {loading ? (<><span className="spinner" aria-hidden />Sending…</>) : (<>Send message <Icon name="send" size={16} strokeWidth={2.5} /></>)}
+                    {loading ? (<><span className="spinner" aria-hidden />Sending…</>) : (<>Send via WhatsApp <Icon name="send" size={16} strokeWidth={2.5} /></>)}
                   </button>
 
                   <p className="mt-3 text-center text-[11.5px] text-navy-900/50">

@@ -63,17 +63,13 @@ function buildWhatsAppUrl({ name, company, phone, email, helpWith, message }) {
 function Hero() {
   const [name,     setName]     = useState('');
   const [company,  setCompany]  = useState('');
-  const [phone,    setPhone]    = useState('');
-  const [email,    setEmail]    = useState('');
-  const [helpWith, setHelpWith] = useState('New Tally licence');
+  const [helpWith, setHelpWith] = useState([]);
   const [message,  setMessage]  = useState('');
   const [errors,   setErrors]   = useState({});
 
   const validate = () => {
     const e = {};
-    if (!name.trim())  e.name = 'Required';
-    if (!phone.trim()) e.phone = 'Required';
-    if (!email.trim()) e.email = 'Required';
+    if (!name.trim()) e.name = 'Required';
     setErrors(e);
     return Object.keys(e).length === 0;
   };
@@ -81,7 +77,12 @@ function Hero() {
   const onSubmit = (ev) => {
     ev.preventDefault();
     if (!validate()) return;
-    const url = buildWhatsAppUrl({ name, company, phone, email, helpWith, message });
+    const url = buildWhatsAppUrl({
+      name,
+      company,
+      helpWith: helpWith.join(', '),
+      message,
+    });
     window.open(url, '_blank', 'noopener,noreferrer');
   };
 
@@ -208,37 +209,22 @@ function Hero() {
                 </div>
               </div>
 
-              <div style={{display:'grid', gridTemplateColumns:'1fr 1fr', gap:12, marginBottom:14}}>
-                <div>
-                  <label style={labelStyle}>Phone / WhatsApp <span style={{color:'var(--orange)'}}>*</span></label>
-                  <input
-                    type="tel" value={phone}
-                    onChange={(e) => { setPhone(e.target.value); if (errors.phone) setErrors({...errors, phone:undefined}); }}
-                    placeholder="+91 98290 06111"
-                    style={inputStyle(errors.phone)}
-                  />
-                </div>
-                <div>
-                  <label style={labelStyle}>Email <span style={{color:'var(--orange)'}}>*</span></label>
-                  <input
-                    type="email" value={email}
-                    onChange={(e) => { setEmail(e.target.value); if (errors.email) setErrors({...errors, email:undefined}); }}
-                    placeholder="you@company.in"
-                    style={inputStyle(errors.email)}
-                  />
-                </div>
-              </div>
-
               <div style={{marginBottom:14}}>
-                <label style={labelStyle}>What do you need help with? <span style={{color:'var(--orange)'}}>*</span></label>
+                <label style={labelStyle}>What do you need help with? <span style={{color:'var(--ink-soft)', fontWeight:500, textTransform:'none', letterSpacing:0}}>(select all that apply)</span></label>
                 <div style={{display:'flex', flexWrap:'wrap', gap:8, marginTop:4}}>
                   {HELP_OPTIONS.map(opt => {
-                    const isActive = helpWith === opt;
+                    const isActive = helpWith.includes(opt);
                     return (
                       <button
                         key={opt}
                         type="button"
-                        onClick={() => setHelpWith(opt)}
+                        onClick={() => {
+                          setHelpWith(prev =>
+                            prev.includes(opt)
+                              ? prev.filter(x => x !== opt)
+                              : [...prev, opt]
+                          );
+                        }}
                         style={{
                           padding:'8px 14px', borderRadius:999,
                           fontSize:12.5, fontWeight:600, cursor:'pointer',
