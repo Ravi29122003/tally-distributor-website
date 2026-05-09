@@ -202,7 +202,7 @@ export default function ProductPricingPage({ product }) {
                   className="btn-lift inline-flex items-center gap-2 rounded-full border border-navy-900/15 bg-white px-5 py-3 text-[14.5px] font-semibold text-navy-900 shadow-card hover:border-teal-500/40"
                 >
                   <Icon name="download" size={15} strokeWidth={2} />
-                  Download installer
+                  Download
                 </a>
               </div>
             </Reveal>

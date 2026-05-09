@@ -15,14 +15,12 @@
 //
 // External destinations:
 //   TALLY_SERVER_URL = https://tallysolutions.com/tally-prime-server/
-//   TALLY_TRIAL_URL  = https://tallysolutions.com/business-software-7day-free-trial/
 //   PHONE            = +91 98290 06111
 
 import { Link } from 'react-router-dom';
 import { Icon, IconChip } from '../design/Icon';
 
 const TALLY_SERVER_URL = 'https://tallysolutions.com/tally-prime-server/';
-const TALLY_TRIAL_URL  = 'https://tallysolutions.com/business-software-7day-free-trial/';
 const TALLY_DOWNLOAD_URL = 'https://tallysolutions.com/download/';
 const PHONE_DISPLAY    = '+91 98290 06111';
 const PHONE_TEL        = '+919829006111';
@@ -176,11 +174,8 @@ function Hero() {
               <Link to="/contact" className="btn btn-dark">
                 <Icon name="phone" size={13} stroke={2}/> Talk to us
               </Link>
-              <a href={TALLY_TRIAL_URL} target="_blank" rel="noopener noreferrer" className="btn btn-ghost">
-                <Icon name="download" size={15} stroke={2}/> Download trial
-              </a>
               <a href={TALLY_DOWNLOAD_URL} target="_blank" rel="noopener noreferrer" className="btn btn-ghost">
-                <Icon name="download" size={15} stroke={2}/> Download installer
+                <Icon name="download" size={15} stroke={2}/> Download
               </a>
             </div>
 

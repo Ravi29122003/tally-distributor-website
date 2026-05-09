@@ -13,14 +13,13 @@
 //
 // External destinations:
 //   TALLY_BUY_URL    = https://tallysolutions.com/buy-tally/
-//   TALLY_TRIAL_URL  = https://tallysolutions.com/business-software-7day-free-trial/
 //   PHONE            = +91 98290 06111
 //
 // Edits from the design (per content reconciliation):
 //   - Hero: top inline padding 80→152px (fixed RouterNav clearance)
 //   - Hero CTAs: design's 3 buttons kept with re-targeted destinations:
 //     "Buy Now" → tally.com/buy-tally/ (new tab), "Talk to us" → /contact,
-//     "Download trial" → tally.com 7-day trial page (new tab)
+//     "Download" → tally.com/download/ (new tab)
 //   - LicenseCard: back "SILVER vs GOLD" comparison card dropped per
 //     content reconciliation; main dark license card and floating
 //     "NEW IN RELEASE 7.0" card kept verbatim
@@ -42,7 +41,6 @@ import { Link } from 'react-router-dom';
 import { Icon, IconChip } from '../design/Icon';
 
 const TALLY_BUY_URL    = 'https://tallysolutions.com/buy-tally/';
-const TALLY_TRIAL_URL  = 'https://tallysolutions.com/business-software-7day-free-trial/';
 const TALLY_DOWNLOAD_URL = 'https://tallysolutions.com/download/';
 const PHONE_DISPLAY    = '+91 98290 06111';
 const PHONE_TEL        = '+919829006111';
@@ -188,11 +186,8 @@ function Hero() {
               <Link to="/contact" className="btn btn-dark">
                 <Icon name="phone" size={13} stroke={2}/> Talk to us
               </Link>
-              <a href={TALLY_TRIAL_URL} target="_blank" rel="noopener noreferrer" className="btn btn-ghost">
-                <Icon name="download" size={15} stroke={2}/> Download trial
-              </a>
               <a href={TALLY_DOWNLOAD_URL} target="_blank" rel="noopener noreferrer" className="btn btn-ghost">
-                <Icon name="download" size={15} stroke={2}/> Download installer
+                <Icon name="download" size={15} stroke={2}/> Download
               </a>
             </div>
 
