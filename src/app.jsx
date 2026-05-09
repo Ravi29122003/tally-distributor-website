@@ -1044,24 +1044,15 @@ export function SoftTradeShowcase() {
       />
 
       <div className="relative mx-auto max-w-7xl px-5 sm:px-8">
-        <Reveal className="mx-auto max-w-2xl text-center">
-          <div className="mx-auto flex justify-center">
+        <Reveal className="mx-auto max-w-3xl text-center">
+          <h2 className="font-display flex flex-wrap items-center justify-center gap-x-3 gap-y-2 text-[40px] font-bold leading-[1.05] text-navy-900 sm:gap-x-4 sm:text-[54px]">
+            <span>Our</span>
             <img
               src="/Soft-Trade.png"
               alt="SoftTrade"
-              className="h-20 w-auto sm:h-24 lg:h-28"
+              className="inline-block h-14 w-auto sm:h-16 lg:h-20"
             />
-          </div>
-          <h2 className="mt-4 font-display text-[40px] font-bold leading-[1.05] text-navy-900 sm:text-[54px]">
-            Our{' '}
-            <span className="relative inline-block">
-              <span className="relative z-10 text-orange-600">SoftTrade</span>
-              <span
-                aria-hidden
-                className="absolute inset-x-0 bottom-1 -z-0 h-3 rounded-sm bg-orange-600/20 sm:h-4"
-              />
-            </span>{' '}
-            Products
+            <span>Products</span>
           </h2>
           <p className="mx-auto mt-5 max-w-xl text-[16px] leading-[1.6] text-navy-900/65 sm:text-[17px]">
             Built in-house for Indian agri trade, cold chain and modern ERP needs — sold and supported directly by our team.
