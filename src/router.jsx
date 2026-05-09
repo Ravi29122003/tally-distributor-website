@@ -19,6 +19,7 @@ import BizAnalystPage from './components/tally/BizAnalystPage';
 import CustomizationPage from './components/services/CustomizationPage';
 import SupportPage from './components/services/SupportPage';
 import AboutPage from './components/AboutPage';
+import OffersPage from './components/OffersPage';
 import { productsData } from './data/products';
 import { Banknote, MessageCircle, RefreshCw, IndianRupee, BarChart3, ShieldCheck, ArrowRight, FileText, Cloud, Wallet, Globe } from 'lucide-react';
 import './index.css';
@@ -1139,9 +1140,6 @@ function makeSub(eyebrow, title, sub, accent) {
 }
 
 // Service sub-pages
-
-// Offers
-const OffersPage              = makeSub('Offers',               'Current ',       'Festive and launch-period discounts on TallyPrime licences and services. Check back often — new offers added monthly.',     'Offers');
 
 // Top-level pages
 const ContactPage      = makeSub('Contact',     'Let\'s ',                   'Reach out by phone, WhatsApp, email or by visiting our office. We respond within one business hour, every working day.', 'talk');
