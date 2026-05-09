@@ -169,6 +169,32 @@ const OFFERS = [
   },
 ];
 
+// ============================================================
+// FAQ entries — 5 questions, all answers in user's own voice
+// ============================================================
+const FAQ_ITEMS = [
+  {
+    q: 'Are these offers genuine?',
+    a: 'Yes — every licence is a fresh activation key issued direct by Tally Solutions Pvt. Ltd. We do not sell second-hand or grey-market keys. Channel-partner discounts come from Tally; bundle and customisation discounts come from us.',
+  },
+  {
+    q: 'Can I combine offers?',
+    a: 'In most cases, no — each offer applies on its own. The exception is bundles, where the bundle price already factors in the SoftTrade discount. If you want to stack a customisation offer on top of a Tally licence offer, call us and we will work it out.',
+  },
+  {
+    q: 'Do prices include GST?',
+    a: 'Prices shown are exclusive of 18% GST unless we specifically mark "incl. GST". Your final invoice will always show the GST line separately so you can claim the input credit.',
+  },
+  {
+    q: 'What about returns?',
+    a: 'Tally licences are non-refundable once the activation key is issued, since the key is tied to your serial. AMC and customisation work is refundable on a pro-rata basis if you cancel before the work begins.',
+  },
+  {
+    q: 'Do you ship outside Rajasthan?',
+    a: 'Yes. Genuine Tally licences are delivered as digital activation keys — no shipping required. Remote installation works anywhere in India over screen-share. On-site visits are limited to Rajasthan, but we do travel for enterprise deals.',
+  },
+];
+
 // Maps category id → icon name (uses Icon component's existing names)
 const CATEGORY_ICON = {
   tallyprime: 'grid',
@@ -624,7 +650,241 @@ function FilterStrip({ active, setActive }) {
 }
 
 // ============================================================
-// OffersPage — page shell. More sections come in next prompts.
+// Newsletter — dark section with subscribe form. Form does not
+// actually submit anywhere yet (UI-only); user can wire it up
+// to Mailchimp/ConvertKit/etc. later.
+// ============================================================
+function Newsletter() {
+  const [name, setName]   = useState('');
+  const [phone, setPhone] = useState('');
+  const [email, setEmail] = useState('');
+  const [submitted, setSubmitted] = useState(false);
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    if (!name.trim() || !email.trim()) return;
+    // TODO: wire up to Mailchimp / ConvertKit / your email tool here
+    setSubmitted(true);
+  };
+
+  return (
+    <section style={{
+      position:'relative', overflow:'hidden',
+      background:'var(--ink)', color:'#fff',
+      padding:'90px 0',
+    }}>
+      <div style={{position:'absolute', right:'-200px', top:'-150px', width:500, height:500, borderRadius:'50%',
+        background:'radial-gradient(circle, rgba(225,83,11,.18), transparent 65%)', pointerEvents:'none'}}/>
+      <div style={{position:'absolute', left:'-150px', bottom:'-150px', width:400, height:400, borderRadius:'50%',
+        background:'radial-gradient(circle, rgba(22,160,133,.10), transparent 65%)', pointerEvents:'none'}}/>
+
+      <div className="container" style={{position:'relative', padding:'0 32px'}}>
+        <div style={{display:'grid', gridTemplateColumns:'1fr 1.1fr', gap:60, alignItems:'center'}}>
+          {/* LEFT — copy */}
+          <div>
+            <div style={{fontSize:11, fontWeight:700, letterSpacing:'.20em', color:'rgba(255,255,255,.55)', textTransform:'uppercase'}}>
+              Stay in the loop
+            </div>
+            <h2 className="serif" style={{
+              fontSize:'clamp(32px,4.2vw,48px)', fontWeight:600,
+              lineHeight:1.05, marginTop:14, letterSpacing:'-0.02em',
+            }}>
+              New offers, every first of the month.
+            </h2>
+            <p style={{fontSize:15, color:'rgba(255,255,255,.65)', marginTop:18, lineHeight:1.6, maxWidth:440}}>
+              One short email a month. Festive deals, TDL bundles, AMC sweeteners. No spam, unsubscribe anytime.
+            </p>
+          </div>
+
+          {/* RIGHT — form */}
+          <div style={{
+            background:'rgba(255,255,255,.04)', border:'1px solid rgba(255,255,255,.10)',
+            borderRadius:18, padding:32, backdropFilter:'blur(8px)',
+          }}>
+            {submitted ? (
+              <div style={{textAlign:'center', padding:'12px 0'}}>
+                <div style={{
+                  width:52, height:52, borderRadius:'50%', background:'var(--teal)',
+                  display:'inline-flex', alignItems:'center', justifyContent:'center',
+                  marginBottom:14,
+                }}>
+                  <Icon name="check" size={22} stroke={2.5}/>
+                </div>
+                <h3 className="serif" style={{fontSize:22, fontWeight:600, margin:0}}>
+                  You're subscribed.
+                </h3>
+                <p style={{fontSize:13.5, color:'rgba(255,255,255,.65)', marginTop:8}}>
+                  We'll send the next deal to <strong style={{color:'#fff'}}>{email}</strong> on the 1st.
+                </p>
+              </div>
+            ) : (
+              <form onSubmit={onSubmit} noValidate>
+                <div style={{fontSize:11, fontWeight:700, letterSpacing:'.16em', color:'rgba(255,255,255,.55)', textTransform:'uppercase', marginBottom:14}}>
+                  Subscribe free
+                </div>
+
+                <div style={{display:'grid', gridTemplateColumns:'1fr 1fr', gap:10, marginBottom:10}}>
+                  <input
+                    type="text"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    placeholder="Your name"
+                    required
+                    style={{
+                      width:'100%', padding:'13px 14px', fontSize:14, color:'#fff',
+                      background:'rgba(255,255,255,.06)', border:'1px solid rgba(255,255,255,.12)',
+                      borderRadius:10, outline:'none',
+                    }}
+                  />
+                  <input
+                    type="tel"
+                    value={phone}
+                    onChange={(e) => setPhone(e.target.value)}
+                    placeholder="Phone / WhatsApp"
+                    style={{
+                      width:'100%', padding:'13px 14px', fontSize:14, color:'#fff',
+                      background:'rgba(255,255,255,.06)', border:'1px solid rgba(255,255,255,.12)',
+                      borderRadius:10, outline:'none',
+                    }}
+                  />
+                </div>
+
+                <input
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="Email address"
+                  required
+                  style={{
+                    width:'100%', padding:'13px 14px', fontSize:14, color:'#fff',
+                    background:'rgba(255,255,255,.06)', border:'1px solid rgba(255,255,255,.12)',
+                    borderRadius:10, outline:'none', marginBottom:14,
+                  }}
+                />
+
+                <button type="submit" className="btn btn-primary" style={{
+                  width:'100%', justifyContent:'center', padding:'14px 20px',
+                }}>
+                  Send me the next deal <Icon name="arrow" size={15} stroke={2.2} className="arrow"/>
+                </button>
+
+                <p style={{fontSize:11.5, color:'rgba(255,255,255,.45)', textAlign:'center', marginTop:14}}>
+                  Used by 1,200+ Tally users across Rajasthan
+                </p>
+              </form>
+            )}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// ============================================================
+// FAQ — accordion. First item open by default.
+// ============================================================
+function FAQItem({ item, isOpen, onToggle }) {
+  return (
+    <div style={{
+      background:'#fff', border:'1px solid var(--line)', borderRadius:14,
+      overflow:'hidden', transition:'border-color .2s ease',
+      borderColor: isOpen ? 'rgba(225,83,11,.4)' : 'var(--line)',
+    }}>
+      <button
+        type="button"
+        onClick={onToggle}
+        style={{
+          width:'100%', display:'flex', justifyContent:'space-between', alignItems:'center',
+          gap:16, padding:'22px 26px', background:'transparent', border:'none',
+          textAlign:'left', cursor:'pointer', fontFamily:'inherit',
+        }}
+      >
+        <span className="serif" style={{
+          fontSize:16, fontWeight:600, color:'var(--ink)', lineHeight:1.4,
+        }}>
+          {item.q}
+        </span>
+        <span style={{
+          flexShrink:0, width:32, height:32, borderRadius:'50%',
+          background: isOpen ? 'var(--orange)' : 'rgba(14,27,44,.06)',
+          color: isOpen ? '#fff' : 'var(--ink)',
+          display:'inline-flex', alignItems:'center', justifyContent:'center',
+          transition:'background-color .2s ease, color .2s ease, transform .2s ease',
+          transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)',
+        }}>
+          <Icon name="arrow" size={14} stroke={2.5} style={{transform:'rotate(90deg)'}}/>
+        </span>
+      </button>
+
+      {isOpen && (
+        <div style={{padding:'0 26px 24px'}}>
+          <p style={{fontSize:14, color:'var(--ink-soft)', lineHeight:1.65, margin:0}}>
+            {item.a}
+          </p>
+        </div>
+      )}
+    </div>
+  );
+}
+
+function FAQ() {
+  const [openIdx, setOpenIdx] = useState(0); // first open by default
+
+  return (
+    <section style={{padding:'100px 0', background:'#FBF8F1'}}>
+      <div className="container" style={{padding:'0 32px'}}>
+        <div style={{textAlign:'center', maxWidth:560, margin:'0 auto 48px'}}>
+          <div style={{fontSize:11, fontWeight:700, letterSpacing:'.20em', color:'var(--orange)', textTransform:'uppercase'}}>
+            FAQ
+          </div>
+          <h2 className="serif" style={{fontSize:'clamp(32px,4.2vw,48px)', fontWeight:600, lineHeight:1.05, marginTop:14, letterSpacing:'-0.02em'}}>
+            About these offers.
+          </h2>
+        </div>
+
+        <div style={{maxWidth:760, margin:'0 auto', display:'flex', flexDirection:'column', gap:12}}>
+          {FAQ_ITEMS.map((item, i) => (
+            <FAQItem
+              key={i}
+              item={item}
+              isOpen={openIdx === i}
+              onToggle={() => setOpenIdx(openIdx === i ? -1 : i)}
+            />
+          ))}
+        </div>
+
+        {/* closing CTA strip */}
+        <div style={{
+          maxWidth:760, margin:'48px auto 0',
+          padding:'24px 28px', background:'#fff',
+          border:'1px solid var(--line)', borderRadius:16,
+          display:'flex', justifyContent:'space-between', alignItems:'center',
+          flexWrap:'wrap', gap:16,
+        }}>
+          <div>
+            <div className="serif" style={{fontSize:17, fontWeight:600, color:'var(--ink)'}}>
+              Still have questions?
+            </div>
+            <div style={{fontSize:13, color:'var(--ink-soft)', marginTop:4}}>
+              We pick up the phone every working day, 10:00 to 19:00.
+            </div>
+          </div>
+          <div style={{display:'flex', gap:10, flexWrap:'wrap'}}>
+            <a href={`tel:${PHONE_TEL}`} className="btn btn-dark">
+              <Icon name="phone" size={13} stroke={2}/> {PHONE_DISPLAY}
+            </a>
+            <Link to="/contact" className="btn btn-primary">
+              Contact us <Icon name="arrow" size={14} stroke={2.2} className="arrow"/>
+            </Link>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// ============================================================
+// OffersPage — page shell.
 // ============================================================
 export default function OffersPage() {
   const [activeCategory, setActiveCategory] = useState('all');
@@ -635,7 +895,8 @@ export default function OffersPage() {
       <FilterStrip active={activeCategory} setActive={setActiveCategory}/>
       <OfferCardsGrid activeCategory={activeCategory}/>
       <HowItWorks/>
-      {/* Newsletter and FAQ — coming in next prompt */}
+      <Newsletter/>
+      <FAQ/>
     </div>
   );
 }
