@@ -231,7 +231,7 @@ function WorkflowDiagram() {
 // 4 highlights from products.js, all checked. CTA is <Link to="/contact">.
 // ============================================================
 
-function PlanCard({ tag, name, blurb, features, highlight, badge, ctaLabel = 'Get a Quote' }) {
+function PlanCard({ tag, name, blurb, features, highlight, badge, ctaLabel = 'Get a Quote', downloadUrl }) {
   return (
     <div style={{
       position:'relative',
@@ -291,6 +291,41 @@ function PlanCard({ tag, name, blurb, features, highlight, badge, ctaLabel = 'Ge
         <Link to="/contact" className={highlight ? 'btn btn-primary' : 'btn btn-dark'} style={{marginTop:28, width:'100%', justifyContent:'center'}}>
           {ctaLabel} <Icon name="arrow" size={15} stroke={2.2} className="arrow"/>
         </Link>
+        {downloadUrl && (
+          <a
+            href={downloadUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              marginTop: 12,
+              width: '100%',
+              display: 'inline-flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: 8,
+              padding: '12px 20px',
+              borderRadius: 999,
+              fontSize: 14,
+              fontWeight: 600,
+              background: 'transparent',
+              color: highlight ? '#fff' : 'var(--ink)',
+              border: highlight ? '1px solid rgba(255,255,255,.25)' : '1px solid var(--line)',
+              textDecoration: 'none',
+              transition: 'background-color .2s ease, border-color .2s ease',
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.background = highlight ? 'rgba(255,255,255,.08)' : 'var(--teal-soft)';
+              e.currentTarget.style.borderColor = highlight ? 'rgba(255,255,255,.4)' : 'var(--teal)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.background = 'transparent';
+              e.currentTarget.style.borderColor = highlight ? 'rgba(255,255,255,.25)' : 'var(--line)';
+            }}
+          >
+            <Icon name="arrow" size={14} stroke={2.2} style={{ transform: 'rotate(90deg)' }}/>
+            Download installer
+          </a>
+        )}
       </div>
     </div>
   );
@@ -341,6 +376,7 @@ function Pricing() {
                 'GST-ready with e-Way Bill JSON',
                 'Local Jaipur support',
               ]}
+              downloadUrl="https://onedrive.live.com/?redeem=aHR0cHM6Ly8xZHJ2Lm1zL3UvYy85OTYyMjc1Y2ViMDE5MzA2L0lRRGwxRHJHX2Nhc1FiNy01cEg2czNQZUFZVXQwa0FEdEhqVkpLTGxxN1BFb2pvP2U9YnUwTE01&cid=9962275CEB019306&id=9962275CEB019306%21sc63ad4e5c6fd41acbefee691fab373de&parId=9962275CEB019306%21sbedc6f2afeff48b78db118964be08629&o=OneUp"
             />
             <PlanCard
               tag="MULTI USER · LAN"
@@ -354,6 +390,7 @@ function Pricing() {
               ]}
               highlight
               badge="MOST POPULAR"
+              downloadUrl="https://onedrive.live.com/?redeem=aHR0cHM6Ly8xZHJ2Lm1zL3UvYy85OTYyMjc1Y2ViMDE5MzA2L0lRQmdFR0M2STN1dFJLc3JsUS1FUTJVV0FVZzhhUDE3OXZaRDFOdEZIalRLRU1NP2U9U0VUMkZu&cid=9962275CEB019306&id=9962275CEB019306%21sba6010607b2344adab2b950f84436516&parId=9962275CEB019306%21sbedc6f2afeff48b78db118964be08629&o=OneUp"
             />
           </div>
         </div>
