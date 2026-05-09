@@ -383,11 +383,12 @@ function RouterFooter() {
       links: PRODUCTS_NON_TALLY.map(p => ({ label: p.label, to: p.to })),
     },
     {
-      title: 'Tally',
-      links: [
-        ...TALLY_PRODUCTS.map(p => ({ label: p.label, to: p.to })),
-        ...TALLY_SERVICES.map(s => ({ label: s.label, to: s.to })),
-      ],
+      title: 'Tally Products',
+      links: TALLY_PRODUCTS.map(p => ({ label: p.label, to: p.to })),
+    },
+    {
+      title: 'Tally Services',
+      links: TALLY_SERVICES.map(s => ({ label: s.label, to: s.to })),
     },
     {
       title: 'Company',
@@ -418,22 +419,16 @@ function RouterFooter() {
           WebkitMaskImage: 'radial-gradient(ellipse at 50% 0%, black 10%, transparent 70%)',
         }} />
 
-      <div className="relative mx-auto max-w-7xl px-5 pt-16 pb-10 sm:px-8">
-        <div className="grid grid-cols-2 gap-10 md:grid-cols-3 lg:grid-cols-4 lg:gap-10">
+      <div className="relative mx-auto max-w-7xl px-5 pt-12 pb-8 sm:px-8 sm:pt-14">
+        <div className="grid grid-cols-2 gap-10 md:grid-cols-3 lg:grid-cols-5 lg:gap-8">
           <div className="col-span-2 md:col-span-3 lg:col-span-1">
-            <Link to="/" className="inline-flex items-center gap-3" aria-label={`${siteConfig.brand} home`}>
-              <span className="inline-flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-white/10 ring-1 ring-white/20 backdrop-blur">
-                <span className="font-display text-[18px] font-bold leading-none text-white">
-                  U<span className="text-orange-500">.</span>
-                </span>
-              </span>
-              <span className="flex flex-col">
-                <span className="font-display text-[16px] font-bold leading-tight text-white">
-                  {siteConfig.brand}
-                </span>
-                <span className="text-[10px] font-bold uppercase tracking-[0.18em] text-white/55">
-                  {siteConfig.tagline}
-                </span>
+            <Link to="/" className="inline-flex items-center" aria-label={`${siteConfig.brand} home`}>
+              <span className="inline-flex items-center justify-center rounded-xl bg-white px-3 py-2 shadow-card-lg ring-1 ring-white/20">
+                <img
+                  src="/Logo.png"
+                  alt={siteConfig.brand}
+                  className="h-10 w-auto sm:h-12"
+                />
               </span>
             </Link>
 
@@ -480,7 +475,7 @@ function RouterFooter() {
           ))}
         </div>
 
-        <div className="mt-14 flex flex-col items-start gap-4 border-t border-white/10 pt-6 text-[12.5px] text-white/55 lg:flex-row lg:items-center lg:justify-between">
+        <div className="mt-10 flex flex-col items-start gap-4 border-t border-white/10 pt-6 text-[12.5px] text-white/55 lg:flex-row lg:items-center lg:justify-between">
           <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
             <span>© {new Date().getFullYear()} {siteConfig.brand}</span>
             <span className="text-white/25">·</span>
