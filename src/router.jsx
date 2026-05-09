@@ -20,6 +20,7 @@ import CustomizationPage from './components/services/CustomizationPage';
 import SupportPage from './components/services/SupportPage';
 import AboutPage from './components/AboutPage';
 import OffersPage from './components/OffersPage';
+import ContactPage from './components/ContactPage';
 import { productsData } from './data/products';
 import { Banknote, MessageCircle, RefreshCw, IndianRupee, BarChart3, ShieldCheck, ArrowRight, FileText, Cloud, Wallet, Globe } from 'lucide-react';
 import './index.css';
@@ -1142,7 +1143,6 @@ function makeSub(eyebrow, title, sub, accent) {
 // Service sub-pages
 
 // Top-level pages
-const ContactPage      = makeSub('Contact',     'Let\'s ',                   'Reach out by phone, WhatsApp, email or by visiting our office. We respond within one business hour, every working day.', 'talk');
 const PoliciesPage     = makeSub('Policies',    'Privacy, Refund & ',        'The fine print — privacy policy, refund terms, terms of service and licence agreements.', 'Terms');
 
 function NotFound() {
