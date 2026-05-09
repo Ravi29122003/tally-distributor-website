@@ -421,20 +421,45 @@ function RouterFooter() {
       <div className="relative mx-auto max-w-7xl px-5 pt-16 pb-10 sm:px-8">
         <div className="grid grid-cols-2 gap-10 md:grid-cols-3 lg:grid-cols-4 lg:gap-10">
           <div className="col-span-2 md:col-span-3 lg:col-span-1">
-            <Link to="/" className="flex items-center" aria-label={`${siteConfig.brand} home`}>
-              <img
-                src="/Logo.png"
-                alt={siteConfig.brand}
-                className="h-10 w-auto sm:h-12"
-              />
+            <Link to="/" className="inline-flex items-center gap-3" aria-label={`${siteConfig.brand} home`}>
+              <span className="inline-flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-white/10 ring-1 ring-white/20 backdrop-blur">
+                <span className="font-display text-[18px] font-bold leading-none text-white">
+                  U<span className="text-orange-500">.</span>
+                </span>
+              </span>
+              <span className="flex flex-col">
+                <span className="font-display text-[16px] font-bold leading-tight text-white">
+                  {siteConfig.brand}
+                </span>
+                <span className="text-[10px] font-bold uppercase tracking-[0.18em] text-white/55">
+                  {siteConfig.tagline}
+                </span>
+              </span>
             </Link>
-            <p className="mt-4 max-w-xs text-[13.5px] leading-[1.6] text-white/60">
+
+            <p className="mt-5 max-w-xs text-[13.5px] leading-[1.6] text-white/60">
               Helping Indian businesses run their books with confidence since 2010. Genuine licences. Honest service. No surprises.
             </p>
-            <div className="mt-5 flex flex-wrap items-center gap-2">
-              {socials.map((s) => (
+
+            {/* Contact strip */}
+            <div className="mt-5 flex flex-col gap-2 text-[13px]">
+              <a href={`tel:${siteConfig.phones.sales.replace(/\s|\+/g, '').replace(/^/, '+')}`}
+                 className="inline-flex items-center gap-2 text-white/70 transition-colors hover:text-white">
+                <Icon name="phone" size={13} className="text-teal-400" />
+                {siteConfig.phones.sales}
+              </a>
+              <a href={`mailto:${siteConfig.emails.sales}`}
+                 className="inline-flex items-center gap-2 text-white/70 transition-colors hover:text-white">
+                <Icon name="mail" size={13} className="text-teal-400" />
+                {siteConfig.emails.sales}
+              </a>
+            </div>
+
+            {/* Socials */}
+            <div className="mt-6 flex flex-wrap items-center gap-2">
+              {socials.filter(s => s.href).map((s) => (
                 <a key={s.name} href={s.href} target="_blank" rel="noreferrer" aria-label={s.name}
-                  className="btn-lift inline-flex h-9 w-9 items-center justify-center rounded-lg border border-white/15 bg-white/5 text-white/80 hover:border-teal-400/50 hover:bg-white/10 hover:text-white">
+                  className="btn-lift inline-flex h-9 w-9 items-center justify-center rounded-lg border border-white/15 bg-white/5 text-white/70 hover:border-teal-400/50 hover:bg-white/10 hover:text-white">
                   {s.icon ? <Icon name={s.icon} size={15} /> : <WhatsAppGlyph />}
                 </a>
               ))}
@@ -443,8 +468,8 @@ function RouterFooter() {
 
           {cols.map((c) => (
             <div key={c.title}>
-              <h4 className="font-display text-[13px] font-bold uppercase tracking-[0.16em] text-white/90">{c.title}</h4>
-              <ul className="mt-4 space-y-2.5">
+              <h4 className="font-display text-[12px] font-bold uppercase tracking-[0.18em] text-orange-400">{c.title}</h4>
+              <ul className="mt-5 space-y-2.5">
                 {c.links.map((l) => (
                   <li key={l.label}>
                     <Link to={l.to} className="text-[13.5px] text-white/60 transition-colors hover:text-white">{l.label}</Link>
