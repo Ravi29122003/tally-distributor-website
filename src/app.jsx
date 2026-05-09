@@ -1230,7 +1230,12 @@ export function About() {
   ];
 
   return (
-    <section id="about" className="relative bg-white py-20 sm:py-28">
+    <section id="about" className="relative overflow-hidden py-20 sm:py-28" style={{
+      background:
+        'radial-gradient(900px 480px at 95% 10%, rgba(225,83,11,0.06), transparent 60%),' +
+        'radial-gradient(700px 400px at 5% 90%, rgba(245,158,11,0.07), transparent 60%),' +
+        'linear-gradient(180deg, #FBF6EC 0%, #F8F1E1 100%)'
+    }}>
       <div className="mx-auto grid max-w-7xl grid-cols-1 gap-12 px-5 sm:px-8 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16">
         <Reveal as="div">
           <Eyebrow>About us</Eyebrow>
