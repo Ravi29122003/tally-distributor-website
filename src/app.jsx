@@ -1638,28 +1638,26 @@ export function Contact() {
               ))}
             </ul>
 
-            <div
-              role="img"
-              aria-label="Map location placeholder"
-              className="relative mt-4 h-56 overflow-hidden rounded-2xl border border-navy-900/8 shadow-card"
-              style={{
-                background: 'linear-gradient(135deg, #e7edf6 0%, #dbe4f0 50%, #cdd9ea 100%)',
-              }}
-            >
-              <svg className="absolute inset-0 h-full w-full text-navy-900/12" viewBox="0 0 400 224" fill="none" aria-hidden>
-                <path d="M-10 60 L180 110 L260 40 L420 90" stroke="currentColor" strokeWidth="2" />
-                <path d="M-10 140 L120 170 L230 130 L330 180 L420 150" stroke="currentColor" strokeWidth="2" />
-                <path d="M60 -10 L80 80 L130 130 L100 234" stroke="currentColor" strokeWidth="1.5" strokeDasharray="4 4" />
-                <path d="M300 -10 L270 70 L310 160 L260 234" stroke="currentColor" strokeWidth="1.5" strokeDasharray="4 4" />
-              </svg>
-              <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-center">
-                <span className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-white text-teal-600 shadow-card-lg">
-                  <Icon name="map-pin" size={22} strokeWidth={2} />
-                </span>
-                <div className="mt-3 inline-flex items-center gap-2 rounded-full bg-white/85 px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.16em] text-navy-900/60 backdrop-blur">
-                  Google Maps embed
-                </div>
-              </div>
+            <div className="relative mt-4 h-64 overflow-hidden rounded-2xl border border-navy-900/8 shadow-card sm:h-72">
+              <iframe
+                title="Unique Info Systems · Jaipur office location"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3559.0!2d75.7789042!3d26.9641541!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x396db24aba093b1f%3A0x22e232bac2df7b3f!2sUnique%20Info%20Systems%20(Tally%20Certified%20Partner)!5e0!3m2!1sen!2sin!4v1715000000000"
+                className="h-full w-full"
+                style={{ border: 0 }}
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                allowFullScreen
+              />
+              <a
+                href="https://maps.app.goo.gl/yHoMuU4oe1N5WgR96"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="absolute right-3 top-3 inline-flex items-center gap-1.5 rounded-full bg-white/95 px-3 py-1.5 text-[11.5px] font-semibold text-navy-900 shadow-card backdrop-blur transition-colors hover:text-orange-600"
+              >
+                <Icon name="map-pin" size={12} strokeWidth={2.2} />
+                Open in Google Maps
+                <Icon name="arrow-right" size={11} strokeWidth={2.2} />
+              </a>
             </div>
           </Reveal>
 
