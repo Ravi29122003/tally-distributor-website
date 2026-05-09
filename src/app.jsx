@@ -1033,16 +1033,12 @@ function SoftTradeFeaturedView() {
 
 export function SoftTradeShowcase() {
   return (
-    <section id="softtrade" className="relative overflow-hidden bg-white pt-4 pb-20 sm:pt-6 sm:pb-28">
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0"
-        style={{
-          background:
-            'radial-gradient(720px 420px at 12% 0%, rgba(245,158,11,0.08), transparent 60%), radial-gradient(640px 360px at 92% 100%, rgba(20,184,166,0.06), transparent 60%)',
-        }}
-      />
-
+    <section id="softtrade" className="relative overflow-hidden pt-4 pb-20 sm:pt-6 sm:pb-28" style={{
+      background:
+        'radial-gradient(900px 500px at 90% 20%, rgba(225,83,11,0.05), transparent 60%),' +
+        'radial-gradient(700px 400px at 5% 80%, rgba(245,158,11,0.06), transparent 60%),' +
+        'linear-gradient(180deg, #FBF6EC 0%, #F8F1E1 100%)'
+    }}>
       <div className="relative mx-auto max-w-7xl px-5 sm:px-8">
         <Reveal className="mx-auto max-w-3xl text-center">
           <h2 className="font-display flex flex-wrap items-center justify-center gap-x-3 gap-y-2 text-[40px] font-bold leading-[1.05] text-navy-900 sm:gap-x-4 sm:text-[54px]">
@@ -1071,16 +1067,12 @@ export function Pricing() {
   )}`;
 
   return (
-    <section id="pricing" className="relative overflow-hidden border-t border-navy-900/8 bg-[#fafbfd] py-16 sm:py-20">
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0"
-        style={{
-          background:
-            'radial-gradient(700px 380px at 85% 0%, rgba(20,184,166,0.05), transparent 60%), radial-gradient(600px 320px at 10% 100%, rgba(245,158,11,0.04), transparent 60%)',
-        }}
-      />
-
+    <section id="pricing" className="relative overflow-hidden border-t border-navy-900/8 py-16 sm:py-20" style={{
+      background:
+        'radial-gradient(700px 380px at 85% 0%, rgba(225,83,11,0.05), transparent 60%),' +
+        'radial-gradient(600px 320px at 10% 100%, rgba(245,158,11,0.06), transparent 60%),' +
+        'linear-gradient(180deg, #F8F1E1 0%, #FBF6EC 100%)'
+    }}>
       <div className="relative mx-auto max-w-7xl px-5 sm:px-8">
         <Reveal className="mx-auto max-w-2xl text-center">
           <Eyebrow>Also Available · TallyPrime</Eyebrow>
@@ -1167,7 +1159,10 @@ const SERVICES = [
 
 export function Services() {
   return (
-    <section id="services" className="relative border-y border-navy-900/8 bg-navy-50/40 py-20 sm:py-24">
+    <section id="services" className="relative border-y border-navy-900/8 py-20 sm:py-24" style={{
+      background:
+        'linear-gradient(180deg, #FBF6EC 0%, #F8F1E1 100%)'
+    }}>
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
         <div className="flex flex-col items-start justify-between gap-5 md:flex-row md:items-end">
           <div className="max-w-xl">
