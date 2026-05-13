@@ -46,75 +46,29 @@ const PHONE_DISPLAY    = '+91 98290 06111';
 const PHONE_TEL        = '+919829006111';
 
 // ============================================================
-// LicenseCard — decorative TallyPrime Silver license-key visual.
-// Main dark card only. Back "SILVER vs GOLD" comparison card and
-// floating release-highlights card both dropped per content
-// reconciliation.
+// LicenseCard — TallyPrime product box image.
 // ============================================================
 
 function LicenseCard() {
   return (
-    <div style={{position:'relative', width:'100%', maxWidth:520}}>
-      {/* Main dark license card */}
-      <div style={{
-        position:'relative', zIndex:2, width:'88%',
-        background:'linear-gradient(155deg, #1B2C42 0%, #0E1B2C 100%)',
-        borderRadius:18, padding:'28px 30px', color:'#fff',
-        boxShadow:'0 30px 60px -22px rgba(14,27,44,.5)',
-        border:'1px solid rgba(255,255,255,.08)', overflow:'hidden',
-      }}>
-        <div style={{position:'absolute', right:-80, top:-80, width:240, height:240, borderRadius:'50%',
-          background:'radial-gradient(circle, rgba(225,83,11,.30), transparent 60%)', pointerEvents:'none'}}/>
-
-        <div style={{position:'relative', display:'flex', alignItems:'center', justifyContent:'space-between'}}>
-          <div style={{display:'flex', alignItems:'center', gap:10}}>
-            <div style={{width:36, height:36, borderRadius:9, background:'#fff',
-              display:'grid', placeItems:'center', fontFamily:"'Fraunces',serif", fontSize:18, fontWeight:700, color:'var(--ink)', letterSpacing:'-0.02em'}}>T</div>
-            <div>
-              <div style={{fontSize:11, fontWeight:700, letterSpacing:'.14em', color:'rgba(255,255,255,.5)'}}>TALLYPRIME · 7.0</div>
-              <div style={{fontSize:14, fontWeight:600, marginTop:1}}>Silver License</div>
-            </div>
-          </div>
-          <div style={{display:'inline-flex', alignItems:'center', gap:5, fontSize:10, fontWeight:600,
-            padding:'5px 9px', borderRadius:999, background:'rgba(15,138,111,.20)', color:'#5DDDB0',
-            border:'1px solid rgba(15,138,111,.3)'}}>
-            <span style={{width:6, height:6, borderRadius:'50%', background:'#5DDDB0'}}></span>Activated
-          </div>
-        </div>
-
-        <div style={{position:'relative', marginTop:24, padding:'14px 16px', background:'rgba(255,255,255,.04)',
-          border:'1px dashed rgba(255,255,255,.15)', borderRadius:10}}>
-          <div style={{fontSize:10, fontWeight:700, letterSpacing:'.14em', color:'rgba(255,255,255,.4)'}}>SERIAL NUMBER</div>
-          <div className="mono" style={{fontSize:18, fontWeight:600, marginTop:4, letterSpacing:'.06em'}}>
-            777 · 2486 · <span style={{color:'var(--orange)'}}>1029</span>
-          </div>
-        </div>
-
-        <div style={{position:'relative', display:'grid', gridTemplateColumns:'1fr 1fr', gap:14, marginTop:18}}>
-          {[
-            ['USERS',    '1 concurrent'],
-            ['ACCESS',   'Single PC'],
-            ['TSS',      '12 months'],
-            ['INCLUDES', 'Latest release'],
-          ].map((r,i)=>(
-            <div key={i} style={{borderTop:'1px solid rgba(255,255,255,.08)', paddingTop:10}}>
-              <div style={{fontSize:10, fontWeight:700, letterSpacing:'.12em', color:'rgba(255,255,255,.4)'}}>{r[0]}</div>
-              <div style={{fontSize:14, fontWeight:600, marginTop:3}}>{r[1]}</div>
-            </div>
-          ))}
-        </div>
-
-        <div style={{position:'relative', marginTop:18, paddingTop:14, borderTop:'1px solid rgba(255,255,255,.08)',
-          display:'flex', justifyContent:'space-between', alignItems:'center'}}>
-          <div style={{fontSize:11, color:'rgba(255,255,255,.5)'}}>Sold &amp; serviced by</div>
-          <div style={{display:'flex', alignItems:'center', gap:6, fontSize:12, fontWeight:600}}>
-            <span style={{width:18, height:18, borderRadius:4, background:'var(--orange)',
-              display:'grid', placeItems:'center', fontSize:10, fontWeight:700}}>U</span>
-            Unique Info Systems
-          </div>
-        </div>
-      </div>
-
+    <div style={{
+      position: 'relative',
+      width: '100%',
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+    }}>
+      <img
+        src="/tally product logo.png"
+        alt="TallyPrime product box"
+        style={{
+          width: '100%',
+          height: 'auto',
+          maxWidth: 520,
+          objectFit: 'contain',
+          filter: 'drop-shadow(0 30px 50px rgba(14, 27, 44, 0.18))',
+        }}
+      />
     </div>
   );
 }
