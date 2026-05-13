@@ -76,7 +76,7 @@ function BrandMark({ className = '' }) {
       <img
         src="/Logo.png"
         alt={siteConfig.brand}
-        className="h-16 w-auto sm:h-20"
+        className="h-20 w-auto sm:h-24"
       />
     </Link>
   );
