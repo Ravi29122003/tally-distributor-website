@@ -21,8 +21,9 @@ import SupportPage from './components/services/SupportPage';
 import AboutPage from './components/AboutPage';
 import OffersPage from './components/OffersPage';
 import ContactPage from './components/ContactPage';
+import DownloadsPage from './components/DownloadsPage';
 import { productsData } from './data/products';
-import { Banknote, MessageCircle, RefreshCw, IndianRupee, BarChart3, ShieldCheck, ArrowRight, FileText, Cloud, Wallet, Globe } from 'lucide-react';
+import { Banknote, MessageCircle, RefreshCw, IndianRupee, BarChart3, ShieldCheck, ArrowRight, FileText, Cloud, Wallet, Globe, Download } from 'lucide-react';
 import './index.css';
 
 const telHref = `tel:${siteConfig.phones.sales.replace(/\s/g, '')}`;
@@ -240,6 +241,13 @@ function RouterNav() {
               </NavLink>
             );
           })}
+          <Link
+            to="/downloads"
+            className="ml-2 inline-flex items-center gap-1.5 rounded-full border border-orange-500/40 bg-orange-500/5 px-3.5 py-1.5 text-[13px] font-semibold text-orange-600 transition-colors hover:border-orange-500 hover:bg-orange-500 hover:text-white"
+          >
+            <Download className="h-3.5 w-3.5" strokeWidth={2.4}/>
+            Downloads
+          </Link>
         </nav>
 
         <div className="flex items-center gap-2.5">
@@ -327,6 +335,10 @@ function RouterNav() {
               </Link>
             );
           })}
+          <Link to="/downloads" onClick={() => setOpen(false)} className="flex items-center gap-3 px-5 py-3.5 text-[16px] font-medium text-navy-900">
+            <Download className="h-4 w-4 text-orange-600" strokeWidth={2.2}/>
+            Downloads
+          </Link>
         </nav>
         <div className="flex-none border-t border-navy-900/10 p-5">
           <a href={telHref} className="btn-lift mb-2.5 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-navy-900 px-4 py-3.5 text-[15px] font-semibold text-white">
@@ -1206,6 +1218,7 @@ function RouterApp() {
           <Route path="about"                  element={<AboutPage />} />
           <Route path="offers"                 element={<OffersPage />} />
           <Route path="contact"                element={<ContactPage />} />
+          <Route path="downloads"              element={<DownloadsPage />} />
           <Route path="policies"               element={<PoliciesPage />} />
 
           <Route path="*"                      element={<NotFound />} />
