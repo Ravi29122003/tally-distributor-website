@@ -6,6 +6,9 @@ import { siteConfig } from '../config/site';
 const PHONE_DISPLAY = siteConfig.phones.sales;
 const PHONE_TEL     = siteConfig.phones.sales.replace(/\s|\+/g, '').replace(/^/, '+');
 
+// Master flag — flip to true when real live offers exist
+const OFFERS_ACTIVE = false;
+
 // ============================================================
 // Featured offer — the big hero card
 // ============================================================
@@ -315,6 +318,43 @@ function OfferCard({ offer }) {
 // OfferCardsGrid — section that filters OFFERS by activeCategory
 // ============================================================
 function OfferCardsGrid({ activeCategory }) {
+  if (!OFFERS_ACTIVE) {
+    return (
+      <section style={{padding:'40px 0 80px', background:'#FBF8F1', borderBottom:'1px solid var(--line)'}}>
+        <div className="container" style={{padding:'0 32px'}}>
+          <div style={{
+            maxWidth:760, margin:'0 auto',
+            padding:'56px 40px', textAlign:'center',
+            background:'#fff', border:'1px dashed var(--line-2)', borderRadius:20,
+          }}>
+            <div style={{
+              width:56, height:56, borderRadius:'50%',
+              background:'rgba(225,83,11,.10)', color:'var(--orange)',
+              display:'inline-flex', alignItems:'center', justifyContent:'center',
+              marginBottom:18,
+            }}>
+              <Icon name="receipt" size={24} stroke={2}/>
+            </div>
+            <h2 className="serif" style={{fontSize:'clamp(24px,3.2vw,34px)', fontWeight:600, lineHeight:1.15, letterSpacing:'-0.015em', margin:0}}>
+              The next batch drops soon.
+            </h2>
+            <p style={{fontSize:15, color:'var(--ink-soft)', lineHeight:1.65, marginTop:14, maxWidth:520, marginLeft:'auto', marginRight:'auto'}}>
+              We refresh offers on the first of each month — festive deals, bundle pricing, AMC sweeteners. Subscribe below or get in touch directly for a custom quote.
+            </p>
+            <div style={{display:'inline-flex', flexWrap:'wrap', gap:10, justifyContent:'center', marginTop:24}}>
+              <Link to="/contact" className="btn btn-primary">
+                Get a custom quote <Icon name="arrow" size={14} stroke={2.2} className="arrow"/>
+              </Link>
+              <a href="#newsletter" className="btn btn-dark">
+                Subscribe for the next drop
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
   const visibleOffers = activeCategory === 'all'
     ? OFFERS
     : OFFERS.filter(o => o.category === activeCategory);
@@ -322,7 +362,6 @@ function OfferCardsGrid({ activeCategory }) {
   return (
     <section style={{padding:'80px 0 100px', background:'#FBF8F1', borderBottom:'1px solid var(--line)'}}>
       <div className="container" style={{padding:'0 32px'}}>
-        {/* section header */}
         <div style={{display:'flex', justifyContent:'space-between', alignItems:'flex-end', flexWrap:'wrap', gap:24, marginBottom:40}}>
           <div>
             <div style={{fontSize:11, fontWeight:700, letterSpacing:'.16em', color:'var(--orange)', textTransform:'uppercase'}}>
@@ -338,7 +377,6 @@ function OfferCardsGrid({ activeCategory }) {
           </div>
         </div>
 
-        {/* cards grid — 3 columns, responsive */}
         {visibleOffers.length > 0 ? (
           <div style={{
             display:'grid',
@@ -363,6 +401,7 @@ function OfferCardsGrid({ activeCategory }) {
 // HowItWorks — 3-step explainer below the cards grid
 // ============================================================
 function HowItWorks() {
+  if (!OFFERS_ACTIVE) return null;
   const steps = [
     {
       ic:'msg',
@@ -505,100 +544,115 @@ function Hero() {
           <span style={{color:'var(--ink)'}}>Offers</span>
         </nav>
 
-        <div className="wave-hero-grid" style={{display:'grid', gridTemplateColumns:'1.05fr 1fr', gap:64, alignItems:'center'}}>
-          <div>
-            <span className="eyebrow"><span className="dot"></span>Live offers · May 2026</span>
+        {OFFERS_ACTIVE ? (
+          <div className="wave-hero-grid" style={{display:'grid', gridTemplateColumns:'1.05fr 1fr', gap:64, alignItems:'center'}}>
+            <div>
+              <span className="eyebrow"><span className="dot"></span>Live offers</span>
+              <h1 className="serif" style={{fontSize:'clamp(44px,5.6vw,76px)', lineHeight:0.98, fontWeight:600, margin:'24px 0 0', letterSpacing:'-0.025em'}}>
+                Save more on{' '}
+                <span style={{color:'var(--orange)', fontStyle:'italic'}}>genuine</span>{' '}
+                Tally this season.
+              </h1>
+              <p style={{fontSize:17, lineHeight:1.65, color:'var(--ink-soft)', maxWidth:520, marginTop:24}}>
+                Festive discounts, bundle pricing on TDL customisation, and zero-cost EMI on Server edition. New offers added every month — straight from our Jaipur partner desk.
+              </p>
+              <div style={{display:'flex', gap:12, marginTop:32, flexWrap:'wrap'}}>
+                <Link to="/contact" className="btn btn-primary">
+                  Claim your offer <Icon name="arrow" size={16} stroke={2.2} className="arrow"/>
+                </Link>
+                <a href={`tel:${PHONE_TEL}`} className="btn btn-dark">
+                  <Icon name="phone" size={13} stroke={2}/> {PHONE_DISPLAY}
+                </a>
+              </div>
+            </div>
 
-            <h1 className="serif" style={{
-              fontSize:'clamp(44px,5.6vw,76px)', lineHeight:0.98,
-              fontWeight:600, margin:'24px 0 0', letterSpacing:'-0.025em',
+            {/* FEATURED OFFER CARD with countdown — keep existing JSX */}
+            <div style={{
+              position:'relative', background:'var(--ink)', color:'#fff',
+              borderRadius:20, padding:'32px 32px 28px',
+              boxShadow:'0 40px 80px -40px rgba(14,27,44,.45)',
+              overflow:'hidden',
             }}>
-              Save more on{' '}
-              <span style={{color:'var(--orange)', fontStyle:'italic'}}>genuine</span>{' '}
-              Tally this season.
-            </h1>
+              <div style={{position:'absolute', right:'-80px', top:'-80px', width:280, height:280, borderRadius:'50%',
+                background:'radial-gradient(circle, rgba(225,83,11,.20), transparent 65%)', pointerEvents:'none'}}/>
 
-            <p style={{fontSize:17, lineHeight:1.65, color:'var(--ink-soft)', maxWidth:520, marginTop:24}}>
-              Festive discounts, bundle pricing on TDL customisation, and zero-cost EMI on Server edition. New offers added every month — straight from our Jaipur partner desk.
-            </p>
+              <div style={{position:'relative', display:'flex', justifyContent:'space-between', alignItems:'flex-start', flexWrap:'wrap', gap:12}}>
+                <div style={{display:'flex', gap:8, flexWrap:'wrap'}}>
+                  <span style={{
+                    fontSize:10.5, fontWeight:700, letterSpacing:'.14em', textTransform:'uppercase',
+                    background:'var(--orange)', color:'#fff', padding:'5px 10px', borderRadius:999,
+                  }}>
+                    ✦ {FEATURED_OFFER.badge}
+                  </span>
+                  <span style={{
+                    fontSize:10.5, fontWeight:700, letterSpacing:'.14em', textTransform:'uppercase',
+                    background:'rgba(255,255,255,.08)', color:'rgba(255,255,255,.85)',
+                    padding:'5px 10px', borderRadius:999, border:'1px solid rgba(255,255,255,.10)',
+                  }}>
+                    {FEATURED_OFFER.badgeSecondary}
+                  </span>
+                </div>
+                <div style={{textAlign:'right'}}>
+                  <div style={{fontSize:10, color:'rgba(255,255,255,.55)', fontWeight:600, letterSpacing:'.12em', textTransform:'uppercase'}}>Code</div>
+                  <div className="serif" style={{fontSize:16, fontWeight:600, marginTop:2, color:'var(--orange)'}}>
+                    {FEATURED_OFFER.code}
+                  </div>
+                </div>
+              </div>
 
-            <div style={{display:'flex', gap:12, marginTop:32, flexWrap:'wrap'}}>
-              <Link to="/contact" className="btn btn-primary">
-                Claim your offer <Icon name="arrow" size={16} stroke={2.2} className="arrow"/>
+              <div style={{position:'relative', marginTop:24}}>
+                <div className="serif" style={{fontSize:54, fontWeight:600, lineHeight:1, letterSpacing:'-0.025em'}}>
+                  {FEATURED_OFFER.title}
+                </div>
+                <div className="serif" style={{fontSize:24, fontStyle:'italic', fontWeight:500, marginTop:6, color:'rgba(255,255,255,.82)'}}>
+                  {FEATURED_OFFER.subtitle}
+                </div>
+              </div>
+
+              <div style={{position:'relative', marginTop:20, display:'flex', alignItems:'baseline', gap:14, flexWrap:'wrap'}}>
+                <div style={{textDecoration:'line-through', color:'rgba(255,255,255,.5)', fontSize:18, fontWeight:500}}>
+                  ₹{formatINR(FEATURED_OFFER.originalPrice)}
+                </div>
+                <div className="serif" style={{fontSize:36, fontWeight:600, color:'#fff', letterSpacing:'-0.02em'}}>
+                  ₹{formatINR(FEATURED_OFFER.finalPrice)}
+                </div>
+                <div style={{fontSize:13, color:'rgba(255,255,255,.55)', fontWeight:500}}>+ GST</div>
+              </div>
+
+              <div style={{position:'relative', marginTop:24}}>
+                <div style={{fontSize:10.5, fontWeight:700, letterSpacing:'.16em', textTransform:'uppercase', color:'rgba(255,255,255,.55)', marginBottom:10}}>
+                  Offer ends in
+                </div>
+                <CountdownTimer endsAt={endsAt}/>
+              </div>
+
+              <Link to="/contact" className="btn btn-primary" style={{
+                position:'relative', marginTop:24, width:'100%', justifyContent:'center',
+              }}>
+                Claim {FEATURED_OFFER.title} <Icon name="arrow" size={15} stroke={2.2} className="arrow"/>
               </Link>
+            </div>
+          </div>
+        ) : (
+          // INACTIVE state — between cycles
+          <div style={{maxWidth: 760}}>
+            <span className="eyebrow"><span className="dot"></span>Between offer cycles</span>
+            <h1 className="serif" style={{fontSize:'clamp(44px,5.6vw,76px)', lineHeight:0.98, fontWeight:600, margin:'24px 0 0', letterSpacing:'-0.025em'}}>
+              No live offers <span style={{color:'var(--orange)', fontStyle:'italic'}}>right now</span>.
+            </h1>
+            <p style={{fontSize:17, lineHeight:1.65, color:'var(--ink-soft)', maxWidth:600, marginTop:24}}>
+              Our next wave of festive and bundle pricing drops on the first of the month. Subscribe below to be the first to know — or call us anytime for a direct quote on TallyPrime licences, AMC, customisation or SoftTrade software.
+            </p>
+            <div style={{display:'flex', gap:12, marginTop:32, flexWrap:'wrap'}}>
+              <a href="#newsletter" className="btn btn-primary">
+                Notify me <Icon name="arrow" size={16} stroke={2.2} className="arrow"/>
+              </a>
               <a href={`tel:${PHONE_TEL}`} className="btn btn-dark">
                 <Icon name="phone" size={13} stroke={2}/> {PHONE_DISPLAY}
               </a>
             </div>
           </div>
-
-          {/* FEATURED OFFER CARD */}
-          <div style={{
-            position:'relative', background:'var(--ink)', color:'#fff',
-            borderRadius:20, padding:'32px 32px 28px',
-            boxShadow:'0 40px 80px -40px rgba(14,27,44,.45)',
-            overflow:'hidden',
-          }}>
-            <div style={{position:'absolute', right:'-80px', top:'-80px', width:280, height:280, borderRadius:'50%',
-              background:'radial-gradient(circle, rgba(225,83,11,.20), transparent 65%)', pointerEvents:'none'}}/>
-
-            <div style={{position:'relative', display:'flex', justifyContent:'space-between', alignItems:'flex-start', flexWrap:'wrap', gap:12}}>
-              <div style={{display:'flex', gap:8, flexWrap:'wrap'}}>
-                <span style={{
-                  fontSize:10.5, fontWeight:700, letterSpacing:'.14em', textTransform:'uppercase',
-                  background:'var(--orange)', color:'#fff', padding:'5px 10px', borderRadius:999,
-                }}>
-                  ✦ {FEATURED_OFFER.badge}
-                </span>
-                <span style={{
-                  fontSize:10.5, fontWeight:700, letterSpacing:'.14em', textTransform:'uppercase',
-                  background:'rgba(255,255,255,.08)', color:'rgba(255,255,255,.85)',
-                  padding:'5px 10px', borderRadius:999, border:'1px solid rgba(255,255,255,.10)',
-                }}>
-                  {FEATURED_OFFER.badgeSecondary}
-                </span>
-              </div>
-              <div style={{textAlign:'right'}}>
-                <div style={{fontSize:10, color:'rgba(255,255,255,.55)', fontWeight:600, letterSpacing:'.12em', textTransform:'uppercase'}}>Code</div>
-                <div className="serif" style={{fontSize:16, fontWeight:600, marginTop:2, color:'var(--orange)'}}>
-                  {FEATURED_OFFER.code}
-                </div>
-              </div>
-            </div>
-
-            <div style={{position:'relative', marginTop:24}}>
-              <div className="serif" style={{fontSize:54, fontWeight:600, lineHeight:1, letterSpacing:'-0.025em'}}>
-                {FEATURED_OFFER.title}
-              </div>
-              <div className="serif" style={{fontSize:24, fontStyle:'italic', fontWeight:500, marginTop:6, color:'rgba(255,255,255,.82)'}}>
-                {FEATURED_OFFER.subtitle}
-              </div>
-            </div>
-
-            <div style={{position:'relative', marginTop:20, display:'flex', alignItems:'baseline', gap:14, flexWrap:'wrap'}}>
-              <div style={{textDecoration:'line-through', color:'rgba(255,255,255,.5)', fontSize:18, fontWeight:500}}>
-                ₹{formatINR(FEATURED_OFFER.originalPrice)}
-              </div>
-              <div className="serif" style={{fontSize:36, fontWeight:600, color:'#fff', letterSpacing:'-0.02em'}}>
-                ₹{formatINR(FEATURED_OFFER.finalPrice)}
-              </div>
-              <div style={{fontSize:13, color:'rgba(255,255,255,.55)', fontWeight:500}}>+ GST</div>
-            </div>
-
-            <div style={{position:'relative', marginTop:24}}>
-              <div style={{fontSize:10.5, fontWeight:700, letterSpacing:'.16em', textTransform:'uppercase', color:'rgba(255,255,255,.55)', marginBottom:10}}>
-                Offer ends in
-              </div>
-              <CountdownTimer endsAt={endsAt}/>
-            </div>
-
-            <Link to="/contact" className="btn btn-primary" style={{
-              position:'relative', marginTop:24, width:'100%', justifyContent:'center',
-            }}>
-              Claim 25% off <Icon name="arrow" size={15} stroke={2.2} className="arrow"/>
-            </Link>
-          </div>
-        </div>
+        )}
       </div>
     </section>
   );
@@ -609,6 +663,7 @@ function Hero() {
 // active state from page so cards filter accordingly.
 // ============================================================
 function FilterStrip({ active, setActive }) {
+  if (!OFFERS_ACTIVE) return null;
   return (
     <section style={{
       position:'relative', background:'#FBF8F1',
@@ -668,7 +723,7 @@ function Newsletter() {
   };
 
   return (
-    <section style={{
+    <section id="newsletter" style={{
       position:'relative', overflow:'hidden',
       background:'var(--ink)', color:'#fff',
       padding:'90px 0',
